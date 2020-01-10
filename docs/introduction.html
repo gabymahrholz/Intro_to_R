@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 1 Introduction | Introduction to R</title>
   <meta name="description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
-  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Introduction | Introduction to R" />
   <meta property="og:type" content="book" />
@@ -53,68 +53,41 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -174,8 +147,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.8.2" data-path="introduction.html"><a href="introduction.html#the-anatomy-of-a-function-names-and-arguments"><i class="fa fa-check"></i><b>1.8.2</b> The Anatomy of a Function: names and arguments</a></li>
 </ul></li>
 <li class="chapter" data-level="1.9" data-path="introduction.html"><a href="introduction.html#formative-assignment"><i class="fa fa-check"></i><b>1.9</b> Formative Assignment</a><ul>
-<li class="chapter" data-level="1.9.1" data-path="introduction.html"><a href="introduction.html#access-to-rstudio"><i class="fa fa-check"></i><b>1.9.1</b> Access to RStudio</a></li>
-<li class="chapter" data-level="1.9.2" data-path="introduction.html"><a href="introduction.html#installing-and-loading-tidyverse"><i class="fa fa-check"></i><b>1.9.2</b> Installing and Loading Tidyverse</a></li>
+<li class="chapter" data-level="1.9.1" data-path="introduction.html"><a href="introduction.html#accessing"><i class="fa fa-check"></i><b>1.9.1</b> Access to RStudio</a></li>
+<li class="chapter" data-level="1.9.2" data-path="introduction.html"><a href="introduction.html#maximising-reproducibility-and-visibility"><i class="fa fa-check"></i><b>1.9.2</b> Maximising Reproducibility and Visibility</a></li>
+<li class="chapter" data-level="1.9.3" data-path="introduction.html"><a href="introduction.html#installing-and-loading-tidyverse"><i class="fa fa-check"></i><b>1.9.3</b> Installing and Loading Tidyverse</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="introduction-to-data.html"><a href="introduction-to-data.html"><i class="fa fa-check"></i><b>2</b> Introduction to Data</a><ul>
@@ -284,6 +258,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="recap-2-before-the-final-assessment.html"><a href="recap-2-before-the-final-assessment.html#intended-learning-outcomes-9"><i class="fa fa-check"></i><b>10.1</b> Intended Learning Outcomes</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html"><i class="fa fa-check"></i>Appendices</a><ul>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#changing-the-appearance-of-rmarkdown"><i class="fa fa-check"></i>Changing the Appearance of RMarkdown</a></li>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#source-materials"><i class="fa fa-check"></i>Source Materials</a></li>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#further-reading"><i class="fa fa-check"></i>Further Reading</a><ul>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#statistics"><i class="fa fa-check"></i>Statistics</a></li>
@@ -320,12 +295,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Able to <em>describe R and Studio, the coding environment and the associated file types</em>.</li>
 <li>Able to <em>install, load and describe the nature of R packages<strong> and </strong>describe the nature and use of functions in general</em>.</li>
 </ol>
+<p>This lesson is led by <a href="http://www.psy.gla.ac.uk/staff/index.php?id=RL003">Rebecca Lai</a>.</p>
 </div>
 <div id="computer-literacy-basics" class="section level2">
 <h2><span class="header-section-number">1.1</span> Computer Literacy Basics</h2>
 <p>In order to successfully navigate this course there are a number of things that you need to know about computers more generally. This section here should be everything that you are <em>required</em> to know or learn.</p>
 <p>We are aware that many people will have been using computers for many years, and in some cases many people will have grown up with them in their household. We have noticed, however, that a number of our incoming students are not familiar with many of the basic concepts that are required to be a successful coder. There is an assumption that “digital native” automatically equates to “computer literate” but in many cases we have found this assumption to be incorrect.</p>
 <p>More people than ever before are using some sort of personal computing device, but the type of use differs greatly from what we are going to be doing over the next 10 weeks. Many mobile phones, tablets and (increasingly) PC operating systems hide many of their operations from users. This can create a feeling of compentency with computers that can quickly dissolve when asked to engage with anything slightly more complex.</p>
+<p>If you already know most of this then we apologise, but there may well be people with us who don’t. This is a beginner class, so we thought it prudent to start us all off on the same footing.</p>
 </div>
 <div id="r-and-r-studio" class="section level2">
 <h2><span class="header-section-number">1.2</span> R and R Studio</h2>
@@ -434,7 +411,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <figure>
 <img src="images/zipping.gif">
 <figcaption>
-Adapted from Level 1 Data Skills, <span class="citation">(Nordmann and Woods <a href="#ref-l1book" role="doc-biblioref">2019</a>)</span>.
+Adapted from Level 1 Data Skills, <span class="citation">(Nordmann and Woods <a href="#ref-l1book">2019</a>)</span>.
 </figcaption>
 </figure>
 </center>
@@ -446,7 +423,7 @@ Adapted from Level 1 Data Skills, <span class="citation">(Nordmann and Woods <a 
 <ul>
 <li>.r: an R script</li>
 <li>.Rmd: an RMarkdown document</li>
-<li>.csv: <strong>C</strong>omma <strong>S</strong>eparated <strong>V</strong>ariable document, a common and universal type of file containing data sets.</li>
+<li>.csv: <strong>C</strong>omma <strong>S</strong>eparated <strong>V</strong>alues file, a common and universal type of file containing data sets.</li>
 </ul>
 <div class="danger">
 <p>
@@ -505,13 +482,13 @@ You must not add any code or text to the lines which contain backticks other tha
 <p>Comments can- and should- be used throughout both .r and .Rmd file types. These are anything written <em>after</em> a hashtag symbol (and, if using a .Rmd file, within a code chunk). This symbol instructs the computer to disregard this text, letting it know that this is not for it to interpret as exectuable code but rather it is something for the human user to read and interpret.</p>
 <p>These are handy for letting others know what each piece of code was written to do, or to inform your future self of what you were doing.</p>
 <p>Make use of comments in the code we write in class and let this function as your class-notes.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction.html#cb1-1"></a><span class="co"># this is what a comment looks like. Anything AFTER a hashtag.</span></span>
-<span id="cb1-2"><a href="introduction.html#cb1-2"></a><span class="co"># R doesn&#39;t &quot;speak&quot; natural languages so it would not be able </span></span>
-<span id="cb1-3"><a href="introduction.html#cb1-3"></a><span class="co"># to understand any of this and would give errors!</span></span>
-<span id="cb1-4"><a href="introduction.html#cb1-4"></a></span>
-<span id="cb1-5"><a href="introduction.html#cb1-5"></a><span class="co"># comments are for humans. You can use them to put notes in scripts to</span></span>
-<span id="cb1-6"><a href="introduction.html#cb1-6"></a><span class="co"># remind yourself of what is happening, or to inform people with whom</span></span>
-<span id="cb1-7"><a href="introduction.html#cb1-7"></a><span class="co"># you have shared your code.</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># this is what a comment looks like. Anything AFTER a hashtag.</span>
+<span class="co"># R doesn&#39;t &quot;speak&quot; natural languages so it would not be able </span>
+<span class="co"># to understand any of this and would give errors!</span>
+
+<span class="co"># comments are for humans. You can use them to put notes in scripts to</span>
+<span class="co"># remind yourself of what is happening, or to inform people with whom</span>
+<span class="co"># you have shared your code.</span></code></pre></div>
 </div>
 <div id="saving-your-file" class="section level2">
 <h2><span class="header-section-number">1.5</span> Saving your file</h2>
@@ -519,8 +496,7 @@ You must not add any code or text to the lines which contain backticks other tha
 <p>Your script is a set of instructions on how to make those objects. If you have saved your script or markdown, you can essentially re-run it and get back to where you left off when you last saved your progress.</p>
 <p>Saving your file for the first time is as easy as going to File &gt; Save As and filling in the details in the dialogue box as appropriate:</p>
 <center>
-<img src="images/save_as_menu.png" width="198">
-<img src="images/save_as_dialogue.png" width="602">
+<img src="images/save_as_menu.png" width="198"> <img src="images/save_as_dialogue.png" width="602">
 </center>
 <p><br></p>
 <p>Saving changes to an already existing file is done by going to File &gt; Save:</p>
@@ -583,7 +559,7 @@ This is at best rude and at worst it can break their installation.
 <img src="images/console.png" alt="The Console" style="margin:10px 10px">
 </center>
 <p>Types the following in and then hit “enter”:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="introduction.html#cb2-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
 <p>Note that the name of the package is in quotation marks when used here. This is not always the case!</p>
 <p>The console will then fill with a lot of text showing you what is being done. It is not neccessary to understand all of this.</p>
 <p>Look out for this message being printed in the console</p>
@@ -601,7 +577,7 @@ This is at best rude and at worst it can break their installation.
 <p>Now that we have installed Tidyverse it is on our machine but it is not ready to use yet!</p>
 <p>It is easier to understand if you think about it like this: if you install Instagram on your phone you only do it once and you have to open the app each time you want to use it.</p>
 <p>Similarly, once Tidyverse is installed it is on your computer until you remove it. If you want to use it you need to “open it”. This is done by using another <strong>function</strong>, <code>library()</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction.html#cb3-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
 <p>This must be done before you use Tidyverse. We normally do this in the first chunk in the document, essentially gathering our tools before we start working.</p>
 <p>If you want to load other packages you would reuse the <strong>function</strong> <code>library()</code>, replacing “tidyverse” with the name of the package you want to load.</p>
 </div>
@@ -617,7 +593,7 @@ This is at best rude and at worst it can break their installation.
 <div id="the-anatomy-of-a-function-names-and-arguments" class="section level3">
 <h3><span class="header-section-number">1.8.2</span> The Anatomy of a Function: names and arguments</h3>
 <p>Functions are made up of elements. See the code chunk below:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="introduction.html#cb4-1"></a><span class="kw">function_name</span>(argument1, argument2, etc...)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">function_name</span>(argument1, argument2, etc...)</code></pre></div>
 <p>The part outside of the brackets is the <strong>name of the function</strong>. This tells R exactly what to do- the action to be performed. The parts inside the brackets are called <strong>arguments</strong>… these provide information to R on what to perform the actions on (and input) and can provide information on slight changes to the actions.</p>
 <div class="info">
 <p>
@@ -634,7 +610,7 @@ Think about <code>install.packages(“tidyverse”)</code> and <code>library(tid
 <div id="formative-assignment" class="section level2">
 <h2><span class="header-section-number">1.9</span> Formative Assignment</h2>
 <p>This formative assignment is an important one as it will enable you to complete your future assignments. It looks long, but it is mostly screenshots to guide you through the process of installing the required software, or a short guide on how to use RStudio Cloud.</p>
-<div id="access-to-rstudio" class="section level3">
+<div id="accessing" class="section level3">
 <h3><span class="header-section-number">1.9.1</span> Access to RStudio</h3>
 <p>Please ensure by the next class that you have access to the software so that you can practice using the formative assignments and complete the summative assignments when they are issued.</p>
 <p>The first summative assignment will be issued after class next week and you will be given one week to complete and submit it.</p>
@@ -643,8 +619,6 @@ Think about <code>install.packages(“tidyverse”)</code> and <code>library(tid
 <p>Unfortunately this is not as simple as installing software normally is on your computer. There are two separate things that you will need to install.</p>
 <div id="first-install-r" class="section level5">
 <h5><span class="header-section-number">1.9.1.1.1</span> First: Install R</h5>
-<div id="windows-users" class="section level6">
-<h6><span class="header-section-number">1.9.1.1.1.1</span> Windows Users</h6>
 <p>Follow <a href="https://www.stats.bris.ac.uk/R/">this link</a> and click on the part that says Download R 3.6.2 for Windows. You will get the following pop-up dialogue:</p>
 <center>
 <img src="images/download_prompt_R.png">
@@ -679,14 +653,8 @@ Think about <code>install.packages(“tidyverse”)</code> and <code>library(tid
 <img src="images/install_wiz_7.png">
 </center>
 </div>
-<div id="mac-os-users" class="section level6">
-<h6><span class="header-section-number">1.9.1.1.1.2</span> Mac OS Users</h6>
-</div>
-</div>
 <div id="second-install-rstudio" class="section level5">
 <h5><span class="header-section-number">1.9.1.1.2</span> Second: Install RStudio</h5>
-<div id="windows-users-1" class="section level6">
-<h6><span class="header-section-number">1.9.1.1.2.1</span> Windows Users</h6>
 <p>Follow <a href="https://rstudio.com/products/rstudio/download/">this link</a> to the RStudio website. Scroll down and press the button “Download” under RStudio Desktop- not the Server Option. On the next page press the button under stage 2, “Download RStudio for Windows”. Your download will start and you will see the following prompt:</p>
 <center>
 <img src="images/download_prompt_Rstudio.png">
@@ -712,10 +680,6 @@ Think about <code>install.packages(“tidyverse”)</code> and <code>library(tid
 <center>
 <img src="images/install_wiz_studio_5.png">
 </center>
-</div>
-<div id="mac-os-users-1" class="section level6">
-<h6><span class="header-section-number">1.9.1.1.2.2</span> Mac OS Users</h6>
-</div>
 </div>
 <div id="opening-rstudio" class="section level5">
 <h5><span class="header-section-number">1.9.1.1.3</span> Opening RStudio</h5>
@@ -747,8 +711,7 @@ Think about <code>install.packages(“tidyverse”)</code> and <code>library(tid
 <center>
 <img src="images/rstudio_cloud_nameproj.png">
 </center>
-<p>You will also need to upload any data files to the server before you can work with them. This is done with the
-addition to the panel Files/Plots/Packages/Help/Viewer on the right- the “Files” pane now had a button to upload:</p>
+<p>You will also need to upload any data files to the server before you can work with them. This is done with the addition to the panel Files/Plots/Packages/Help/Viewer on the right- the “Files” pane now had a button to upload:</p>
 <center>
 <img src="images/rstudio_cloud_upload1.png">
 </center>
@@ -783,8 +746,25 @@ We want you to do well and have a good experience learning with us, let us know 
 </div>
 </div>
 </div>
+<div id="maximising-reproducibility-and-visibility" class="section level3">
+<h3><span class="header-section-number">1.9.2</span> Maximising Reproducibility and Visibility</h3>
+<p>In order to set up R the way that we require, there are a few more steps.</p>
+<p>First, open RStudio and click on the Tools menu at the top of the page and click on the part that says “Global Options”:</p>
+<center>
+<img src="images/tools.png">
+</center>
+<p>Next, a dialogue box will open. Ensure that these tick boxes and options are selected on yours and click apply:</p>
+<center>
+<img src="images/options.png">
+</center>
+<p>Finally, go to RMarkdown and ensure that this option is unchecked:</p>
+<center>
+<img src="images/inline.png">
+</center>
+<p>This meaning of the first part will be discussed in future lessons, and the second will mean that graphs that you make will be in the “Plots” tab to the right of the console. This means that code will not be obscured whenever you make a graph.</p>
+</div>
 <div id="installing-and-loading-tidyverse" class="section level3">
-<h3><span class="header-section-number">1.9.2</span> Installing and Loading Tidyverse</h3>
+<h3><span class="header-section-number">1.9.3</span> Installing and Loading Tidyverse</h3>
 <p>Use the information in the section <a href="introduction.html#install-tidyverse">1.7.1.1</a> above to install the Tidyverse package on your RStudio installation.</p>
 <div class="info">
 <p>
@@ -804,7 +784,7 @@ If you are using RStudio Cloud you are provided with a completely self-contained
 <h3> References</h3>
 <div id="refs" class="references">
 <div id="ref-l1book">
-<p>Nordmann, Emily, and Heather Cleland Woods. 2019. “Level 1 Data Skills.” 2019. <a href="https://psyteachr.github.io/ug1-practical/index.html">https://psyteachr.github.io/ug1-practical/index.html</a>.</p>
+<p>Nordmann, Emily, and Heather Cleland Woods. 2019. “Level 1 Data Skills.” <a href="https://psyteachr.github.io/ug1-practical/index.html" class="uri">https://psyteachr.github.io/ug1-practical/index.html</a>.</p>
 </div>
 </div>
 <script>
@@ -911,6 +891,7 @@ window.onload = function() {
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
+"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -929,6 +910,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

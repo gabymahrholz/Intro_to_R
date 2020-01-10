@@ -1,0 +1,533 @@
+# Data Transformation 3: Finetuned Data Manipulation
+
+## Intended Learning Outcomes {-}
+
+The whole purpose of this lecture is to tidy up dataframe and expose you to a bunch of useful functions that would make your daily life easier when dealing with your own data. By the end of today, you will know
+
+1. How to rearrange data from long format into to wide format and vice versa
+2. How to combine and separate columns
+3. How to rename column headers
+4. How to recode cell values
+5. How to mutate based on conditions
+6. How to obtain unique values from your data
+
+
+
+## Pre-steps
+
+Before we can start to focus on some other functions that might come in handy for data manipulation, we need to make sure to load `tidyverse` into the library and read the data we will be working with today into our `Global Environment`. 
+
+```{r, message=FALSE}
+library(tidyverse)
+data_SMH <- read_csv("Student_Mental_Health.csv")
+
+```
+
+
+## gather() and spread()
+
+`gather()` and `spread()` are part of `tidyr` (also part of the tidyverse package) and help you to rearrange the shape of your data. To get your data into long format, you would use `gather()`; if you wanted to get your data from long to wide format, you would need `spread()`. Here is a nice gif animation by Garrick Aden-Buie () that shows you how `gather()` and `spread()` work.
+
+<center> <img src="images/tidyr-spread-gather.gif" > </center>
+
+The catch is that you need to know what kind of statistics you want to run, and how your data needs to be structured in order for you to achieve that. We cannot tell you that in this mere 10 week introduction course, however, we can give you the tools to prepare you as best as we can for what's out there.
+
+
+### gather()
+We can start this lecture by looking at a practical example in the build-in dataset `table1` to `table5`. They show the number of Tuberculosis cases documented by the World Health Organization in Afghanistan, Brazil, and China between 1999 and 2000 (the full dataset is called `who`). The data is part of the `tidyverse` package, so as long as we have `tidyverse` loaded into the library, there should not be an issue in accessing this dataset.
+
+
+```{r}
+table1
+```
+
+`table1` has a very tidy structure. You can see the data contains values associated with four variables (`country`, `year`, `cases`, and `population`). `table4a` however, looks a touch not right.
+
+```{r}
+table4a
+```
+
+Somehow the values for the columns `year` and `cases` are missing and instead we find two separate columns for `1999` and `2000` that have all `cases` values listed. This is a problem as `1999` and `2000` are actual values and not variables.
+
+Currently the data is in what is called a `wide format`. The function `gather()` comes in handy when we want to get the data back into the shape of a `long format` like in `table1`. `gather()` is structured like:
+
+<br>
+
+<center> <img src="images/gather.png" > </center>
+
+<br>
+
+
+
+Let's apply this formula to `table4a`
+
+* We need a dataframe that we want to modify -> `table4a` 
+* We need to come up with the name of a new column in which the values of 1999 and 2000 will be stored -> `year`
+* We need to come up with the name of a new column in which all the case values will be stored -> `cases`
+* And finally, we need to tell R which columns in `table4a` we want to turn into long format (i.e. the columns of the 7 subscales) -> 1999 and 2000 (Note that "1999" and "2000" are non-syntactic names as they don't start with a letter. The solution is to surround them in backticks.)
+
+
+```{r}
+gather(table4a, key = year, value = cases, `1999`:`2000`)
+```
+
+```{block, type="funfact"}
+Here we have only 2 columns to reshape `1999` and `2000`. We could have written ``gather(table4a, year, cases, \`1999\`, \`2000\`)``.
+```
+
+
+```{block, type="task"}
+**Your turn**
+
+Use the `gather()` function with the student mental health data `data_SMH` to reshape it from wide format into long format.
+
+Step 1: Only work with a selection of columns from `data_SMH` to see better what is going on. Create a new object `SMH_short` that shows only `ID`, and the 7 subscales of `ToAS` (`APD:AMiscell`).
+
+Step 2: use `gather()` according to the formula above so that the 7 subscales `APD:AMiscell` of `SMH_short` are gathered in one column named `Subscales` and their values in another column `Scores`. Store results in the `Global Environment` as `SMH_long`.
+
+Step 3: `arrange()` the data `SMH_long` by the column `ID`. Store the results as `SMH_long`. You can either overwrite `SMH_long` from Step 2 or use a pipe (`%>%`).
+
+When you are done, `SMH_long` should look like this.
+
+```
+
+```{r, echo=FALSE}
+data_SMH %>% 
+  select(ID, APD:AMiscell) %>% 
+  gather(Subscales, Scores, APD:AMiscell) %>% 
+  arrange(ID)
+```
+
+`r hide("Solution")`
+```{r}
+SMH_short <- select(data_SMH, ID, APD:AMiscell)
+SMH_long <- SMH_short %>% 
+  gather(Subscales, Scores, APD:AMiscell) %>% 
+  arrange(ID)
+SMH_long
+```
+
+```{block, type="solved"}
+A more detailed explanation:
+
+* We needed a dataframe that we want to modify -> `SMH_short` 
+* We needed to come up with the name of a new column in which all the column headers of the 7 subscales will be stored -> `Subscales`
+* We needed to come up with the name of a new column in which all the cell values of the 7 subscales will be stored -> `Scores`
+* And finally, we needed to tell R which columns in the dataframe `SMH_short` we wanted to turn into long format (i.e. the columns of the 7 subscales) -> `APD:AMiscell`
+
+`SMH_short` has 268 observations and 8 variables, whereas the rearranged `SMH_long` has 1876 observations and 3 columns - `ID` (which was there before) and the two new columns `Subscales` and `Scores` we created within `gather()`. After sorting it by `ID` we can see that each of the 268 participants have now 7 rows of observation - one for each subscale.
+```
+
+`r unhide()`
+
+### spread()
+
+
+Now onto the reverse. `spread()` will spread the data from `long` into `wide format`. When you have observation that are scattered across multiple rows, you can use `spread()` to split rows up into separate variables. For example, `table2` has the variabes `cases` and `population` stored in one column `type`, however, they are separate variables rather than values of `type`. So best to get `cases` and `population` back into their own columns.
+
+```{r}
+table2
+```
+
+
+Take a look how `spread()` achieves that.
+
+<br>
+
+<center> <img src="images/spread.png" > </center>
+
+<br>
+
+Let's apply the formula above to `table2`:
+
+* We need a dataframe that we want to modify -> `table2` 
+* We need to decide which of the columns in `table2` will become the new column headers -> `type`
+* We need to decide which of the columns in `table2` has all the data in it that will become the new cell values -> `count`
+
+
+```{r}
+spread(table2, key = type, value = count)
+```
+
+Voila, `cases` and `population` are in their own columns.
+
+```{block, type="task"}
+**Your turn**
+
+Let's pretend that the 7 subscales in `SMH_long` are actually 7 variables. Use `spread()` to achieve that. Store your results in the `Global Environment` as `SMH_wide`. When you are done, your results should look like this.
+```
+
+```{r, echo=FALSE}
+spread(SMH_long, Subscales, Scores)
+```
+
+
+`r hide("Solution")`
+```{r}
+SMH_wide <- spread(SMH_long, Subscales, Scores)
+```
+
+
+```{block, type="solved"}
+A more detailed explanation
+
+* We needed a dataframe that we want to modify -> `SMH_long` 
+* We needed to decide which of the columns in `SMH_long` would become the new column headers -> `Subscales`
+* We needed to decide which of the columns in `SMH_long` had all the data in it that would become the new cell values -> `Scores`
+
+```
+
+Now the 7 subscales are back in separate columns each.
+
+`r unhide()`
+
+
+
+Most of the time, data isn't collected in a way that is useful for us (or R). It can happen that the data for the whole experiment is stored in a 2-column format. For example, some online platforms would give you a column in which all your dependent variables are stored, and another one that recorded the responses of the participants to that variable. That wouldn't be a very useful format to analyse anything really.
+
+
+
+
+
+
+
+<center> <img src="images/spread.png" > </center>
+
+Let's apply the formula above to our data and store results in the `Global Environment` as `SMH_wide`.
+
+* We need a dataframe that we want to modify -> `SMH_long` 
+* We need to decide which of the columns in `SMH_long` will become the new column headers -> `Subscales`
+* We need to decide which of the columns in `SMH_long` has all the data in it that will become the new cell values -> `Scores`
+
+
+```{r}
+SMH_wide <- spread(SMH_long, Subscales, Scores)
+SMH_wide
+```
+
+
+
+## unite() and separate()
+
+Let's start this part of by looking at a practical example in the build-in dataset `table1` to `table5`. They show the number of Tuberculosis cases documented by the World Health Organization in Afghanistan, Brazil, and China between 1999 and 2000. The data is part of the `tidyverse` package, so as long as we have `tidyverse` loaded into the library, there should not be an issue in accessing this dataset.
+
+```{r}
+table1
+```
+
+`table1` has a very tidy structure. You can see the data contains values associated with four variables (`country`, `year`, `cases`, and `population`). `table5` however, looks a touch not right.
+
+
+```{r}
+table5
+```
+
+```{block, type="task"}
+
+Take 2 min with the person next to you to discuss what is wrong with this tibble.
+```
+
+`r hide("Solution")`
+
+```{block, type="solved"}
+1. column `rate` holds the values for `cases` and `population` in one cell, separated by a `/`
+2. the values in column `year` are split into `century` and `year`
+```
+`r unhide()`
+
+This is where the functions `separate()` and `unite()` come in handy. We would use `separate()` to split the column `rate` back into two columns, and `unite()` (the inverse of separate) to combine `century` and `year` into a single column.
+
+The function `separate()` is structured like this
+
+```{r, eval=FALSE}
+separate(data, column_to_sep, into = c(new_column1, new_column2), sep = " ")
+```
+
+We would need
+
+* the data in which the column to separate is located,
+* the actual colum we want to separate,
+* the into argument telling into how many columns we want to separate the old column and what we want to call these new columns, and
+* a separator argument.
+
+Let's tackle the first problem, splitting `rate` back into two columns `cases` and `population`/
+
+```{r}
+separate(table5, rate, into = c("cases", "population"), sep = "/")
+```
+
+We have told R to separate the column `rate` (which is located in `table5`) into two new columns `cases` and `population`. The separator argument was set to a forward slash (`/`), and R will put all cell information before the `/` into `cases`, and everything after the `/` into `population`.
+
+
+If for some reason, you wanted to keep the original column, you can set an additional argument `remove` to `FALSE`.
+
+```{r}
+separate(table5, rate, into = c("cases", "population"), sep = "/", remove = FALSE)
+```
+
+What if you are just interested retaining part of the data in the cell, for example you want to keep the column `cases` but not `population`. The solution is to work with an `NA` argument. Defining the new columns as `cases` and `NA` will keep everything before the separator in the column `cases`, and drops everything after the separator.
+
+```{r}
+separate(table5, rate, into = c("cases", NA), sep = "/")
+```
+
+
+```{block, type="info"}
+By the way, the separator argument `sep = ` can be anything, for example an 
+
+* underscore ("_"), 
+* comma (","), 
+* semi-colon (";"),
+* colon (":"),
+* forward-slash ("/"),
+* space (" ") or 
+* nothing ("").
+
+It is also possible to separate by position. `sep = 2` would split the column between the second and third character/ number etc.
+
+Technically, you would not need a separator argument in the case above, as `separate()` splits the data whenever it detects a non-alphanumeric character (i.e. a character that isn't a number or letter). Saying that, the separator argument is needed when your column contains non-alphanumeric characters as part of your cell values.
+
+
+But watch out! When the separator is a `full stop`, you would need to add a double backward slash in front of it (``sep = "\\\\."``).
+```
+
+
+Let's try that the separation by position. We will keep 4 letters from each `country` name rather than the whole word, and drop the rest.
+
+```{r}
+separate(table5, country, into = c("country", NA), sep = 4)
+```
+
+Yay! Notice how `rate` is back to one column with both values in each row since we haven't stored any output in the `Global Environment`.
+
+
+There is only one thing left to do, and that is combining the columns `century` and `year` into a new column called `year`. Here, we can use the function `unite()` which is structured like
+
+```{r, eval=FALSE}
+unite(data, new_column, col_to_unite1, col_to_unite2, sep = "_")
+```
+
+We would need the data `table5`, a new column we want to create `year`, the two columns we would like to combine (`century` and `year`), and define the separator as "nothing" since the default is sep = "_".
+
+```{r, eval=FALSE}
+unite(table5, year, century, year, sep = "")
+```
+
+
+Right, let's combine the two steps of tidying the `table5` data by creating a pipe `%>%` and store the new object `tb_cases` in the `Global Environment`.
+
+```{r}
+tb_cases <- table5 %>% 
+  separate(rate, into = c("cases", "population"), sep = "/") %>% 
+  unite(year, century, year, sep = "")
+tb_cases
+```
+
+
+```{block, type="question"}
+There is still a tiny bit off in the tibble above. Can you spot what it is? * Hint: Think about if you wanted to sum up all the TB cases occured in the 3 countries within the years 1999, and 2000.
+```
+
+`r hide("Solution")`
+```{block, type="solved"}
+All the columns are `character` columns. For any calculation however, the columns need to be `numerical`. The quickest solution would be to add another argument `convert` to `separate()` and set it to `TRUE`.
+```
+
+```{r}
+tb_cases <- table5 %>% 
+  separate(rate, into = c("cases", "population"), sep = "/", convert = TRUE) %>% 
+  unite(year, century, year, sep = "")
+tb_cases
+```
+
+```{block, type="question"}
+Unfortunately, `unite()` does not have a `convert` statement available. If you wanted to set column `year` as an `interger`, you would have to `mutate` the column. How would you do this?
+```
+
+`r hide("Solution")`
+```{r}
+tb_cases <- tb_cases %>% 
+  mutate(year = as.integer(year))
+tb_cases
+```
+`r unhide()`
+`r unhide()`
+
+
+## rename()
+
+`rename()` is a very useful function if we wanted to change column names. All available column names are retained, so nothing is lost. It follows a very simple pattern of
+
+```{r, eval=FALSE}
+rename(data, new_column_name = old_column_name)
+```
+
+You can rename multiple column headers by including more arguments, separarting them with a comma. Let's take a look at a simple example in `table1`.
+
+```{r}
+table1
+```
+
+If we wanted to change the column headers of `country` to `Country` and `population` to `Population`, we would code
+
+```{r}
+rename(table1, Country = country,
+       Population = population)
+```
+
+If you want to select a few columns and rename them in the process, you could use `select()`. The structure is the same as with `rename()`, the only difference is that the new data only retains the columns mentioned explicitly within `select()`.
+
+```{r, eval=FALSE}
+select(data, new_column_name = old_column_name)
+```
+
+Modifying the `rename()` example from above would lead to selecting the columns `country` and `population` from `table1` and renaming them as `Country` and `Population` at the same time.
+
+```{r}
+select(table1, Country = country,
+       Population = population)
+```
+
+
+## recode()
+
+works with mutate
+
+
+
+
+## ifelse and case_when
+
+in combination with mutate
+
+We can recode the Age groups...
+
+
+use %in% so that they can do the homework task - we did not explain that in filter
+
+
+## distinct
+
+The `distinct()` function is used to remove duplicate rows in your dataframe. If we are using `distinct()` without specifying any arguments, R checks the whole row and excludes any row that is exactly repeated.
+
+```{r}
+data_SMH_no_dup <- data_SMH %>% 
+  distinct()
+```
+
+We can see that all rows are still there. This is not surprising, given every participant has a unique ID number. We could exclude the `ID` column to check how many full rows are exactly identical.
+
+```{r}
+data_SMH_no_dup <- data_SMH %>% 
+  select(-ID) %>% 
+  distinct()
+```
+
+
+We can see here that 5 rows were excluded as `data_SMH_no_dup` has 263 observations compared to 268 in `data_SMH`.
+
+`distinct()` does take arguments as well, namely the variable columns you are trying to determine uniqueness for. Say we we wanted to investigate how many regions are included in `data_SMH`.
+
+
+```{r}
+regions <- data_SMH %>% 
+  distinct(Region)
+
+regions
+```
+
+We can see that there are 5 distinct regions. But what happened to the output? Now we have an overview that people were from 5 distinct regions, but we have lost all the other data in the dataframe. One quick solution would be to use the argument `.keep_all` and set that to `TRUE` (the default here is `FALSE`).
+
+
+```{r}
+regions <- data_SMH %>% 
+  distinct(Region, .keep_all = TRUE)
+
+regions
+```
+
+In the new `regions` dataframe, we still have 5 rows of observations but we kept all 19 columns. If there are multiple rows with the same input (in this case 268 people came from 5 different regions), `distinct()` only preserves the first row a new value occurs.
+
+The `distinct()` function also allows you to eliminate duplicate rows with multiple variables in the dataframe. So if we wanted to see how many different regions participants were from, but also whether they are male or female, we would type...
+
+```{r}
+RegGen <- data_SMH %>% 
+  distinct(Region, Gender)
+
+RegGen
+```
+
+`RegGen` has 10 observations, so that means, we have at least 1 male and 1 female participant from each of the 5 regions. 
+
+```{block, type="question"}
+You can see they are not sorted by either of the column. Why is that?
+```
+
+`r hide("Solution")`
+```{block, type="solved"}
+The values are sorted by occurence. R goes throgh the tibble row by row to determine whether the values are distinct from the ones in the row before. So if you look at your original dataframe `data_SMH`, you can see the first row is a male participant from SEA. But the participants in rows 2 and 3 are also males from SEA. The next unique value would be detected in row 4, then in row 7 (as row 5 is the same as 4, and row 6 is a repetition of row 1), then in row 8, ...
+```
+`r unhide()`
+
+```{block, type="info"}
+You can add as many variables as you like, however they need to be separated by a comma. `distinct()` does not take any "shortcuts" such as `inter_dom:ToAS`. Don't believe it? Try it out in your `Console`.
+```
+
+
+
+## Additional information
+
+More information on stuff we covered today and beyond can be found here:
+
+* https://r4ds.had.co.nz "R 4 Data Science" by Garrett Grolemund and Hadley Wickham is the official guidebook for R
+* https://suzan.rbind.io/categories/tutorial/ She has some pretty cool tutorials on data wrangling
+
+
+
+## Bonus: mutate rownames from the mtcars
+
+Remember, in lecture 2 when we were talking about the mtcars dataset and how the car types were not in listed as a separate column but rather rownames? Let's just read in the data and have another quick look to jug our memories...
+
+```{r}
+df_mtcars <- mtcars
+
+head(df_mtcars)
+```
+
+You can see much better what I'm talking about when you view your `df_mtcars`.
+
+
+Now, that we have learnt about the `mutate()` function, we can attempt to get all of these rownames into a new column. All we have to do is combining a function called `rownames()` with `mutate()`. We also could use some more of these handy pipes `%>%` you learnt about last week.
+
+```{r}
+df_mtcars <- mtcars %>% 
+  mutate(Car_type = rownames(mtcars))
+```
+
+In this example, we have taken the dataset `mtcars`, then added a new column to it with `mutate()` in which we wanted the new column header to be named `Car_type`. The column `Car_type` should then hold all the values that were previously listed as the rownames in the original `mtcars` data.
+
+```{r}
+head(df_mtcars)
+```
+
+
+```{block, type="question"}
+We can now look at the data `df_mtcars`, and see that the new column was added at the end of the dataset. What would we have to do to make `Car_type` the first column in the dataframe?
+```
+
+`r hide("Answer")`
+```{r}
+# We could use the fuction select()
+df_mtcars <- mtcars %>% 
+  mutate(Car_type = rownames(mtcars)) %>% 
+  select(Car_type, mpg:carb)
+
+head(df_mtcars)
+```
+`r unhide()`
+
+
+
+## Formative Homework
+
+

@@ -1,0 +1,21 @@
+# Appendices {-}
+
+## Source Materials {-}
+
+This course has been remixed from the following sources.
+
+If you wish to further your reading we would advise looking over these sources yourself. They are aimed at a variety of different level students, thus they may move a little faster and have greater expectations of prior knowledge.
+
+* Our Level 1 Data Skills Handbook [@l1book]
+
+## Further Reading {-}
+
+### Statistics {-}
+
+### More Advanced Use of R {-}
+
+For those who are looking to read in more detail about what we have been doing in this class:
+
+* R for Data Science [@rfordatascience]
+
+# References

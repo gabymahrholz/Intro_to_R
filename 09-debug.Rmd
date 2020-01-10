@@ -1,0 +1,48 @@
+# Errors
+
+## Under Construction
+
+This page is currently under construction and will be updated as it is written. I'm trying to write material that will suit the diverse needs of the class.
+
+## Intended Learning Outcomes {-}
+
+By the end of this session you should be:
+
+1. Able to *debug some of the more common errors found in your code*.
+2. Know where to go online *to find help and continue your coding journey on your own*.
+3. Be able to *write a simple custom function, including one error message output for incorrect data type input*.
+4. Understand *why transparency and openness in data analysis is important for both scientists and the general public*.
+
+## Errors: How to avoid some and live through the rest
+
+I don't know a single person who can produce 100% correct code on the first attempt. It's even common to produce code that runs, only for you to find out later that there were errors. Not all errors prevent code from running!
+
+How to avoid some and deal with the unavoidable.
+
+### Debugging
+
+<center> <figure><img src="images/debugging.jpg"><figcaption>A literal bug in a machine, often incorrectly cited as the source of the term "debugging". From https://en.wikipedia.org/wiki/Debugging. </figcaption></figure> </center> <br>
+
+#### What is Debugging?
+
+#### Ways to Debug
+
+##### Messages from R
+
+###### Error Messages
+
+###### Warning Messages
+
+###### Other Messages
+
+### Debugging Questions
+
+## Seeking Help
+
+### Searching for Help Online
+
+## Custom Functions
+
+A way to avoid copying and pasting code and introducing simple errors.
+
+## Living Through Errors: How reproducible code enables science to self-correct

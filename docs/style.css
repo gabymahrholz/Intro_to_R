@@ -1,0 +1,130 @@
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  /*word-break: normal;*/
+  /*word-wrap: normal;*/
+  border: 1px solid grey !important;
+  border-radius: 5px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+pre code {
+  white-space: inherit;
+}
+.logo {
+  height: 300px;
+  width: 300px;
+  float: right;
+}
+
+.join {
+  height: 300px;
+  width: 300px;
+  float: right;
+  clear: right;
+}
+
+/* set styles for alert boxes */
+
+.danger, .funfact, .solved, .info, .warning, .question, .task {
+  color: black;
+  padding: 1em 1em 1em 4em;
+  margin-bottom: 10px;
+  background: #ffffff 5px center/3em no-repeat;
+}
+
+.danger {
+  background-image: url("images/alerts/danger.png");
+  background-color: hsl(360, 80%, 85%);
+  border: 3px solid hsl(360, 80%, 50%);
+  border-radius: 5px;
+}
+
+.funfact {
+  background-image: url("images/alerts/funfact.png");
+  background-color: hsl(340, 80%, 95%);
+  border: 2px solid hsl(340, 80%, 90%);
+  border-radius: 5px;
+}
+
+.solved {
+  background-image: url("images/alerts/solution.png");
+  background-color: hsl(25, 80%, 95%);
+  border: 2px solid hsl(25, 80%, 90%);
+  border-radius: 5px;
+}
+
+.info {
+  background-image: url("images/alerts/info.png");
+  background-color: hsl(220, 80%, 95%);
+  border: 2px solid hsl(220, 80%, 90%);
+  border-radius: 5px;
+}
+
+.warning {
+  background-image: url("images/alerts/warning.svg");
+  background-color: hsl(45, 100%, 80%);
+  border: 3px solid hsl(360, 80%, 50%);
+  border-radius: 5px;
+}
+
+.question {
+  background-image: url("images/alerts/question.png");
+  background-color: hsl(100, 80%, 90%);
+  border: 2px solid hsl(100, 80%, 85%);
+  border-radius: 5px;
+}
+
+.task {
+  background-image: url("images/alerts/task.png");
+  background-color: hsl(280, 60%, 95%);
+  border: 2px solid hsl(280, 60%, 85%);
+  border-radius: 5px;
+}
+
+/* set styles for code output messages */
+
+pre:not(.sourceCode) {
+  background-color: hsl(240, 31%, 95%);
+}
+pre:not(.sourceCode) code {
+  color: grey;
+}
+
+/* webex style */
+
+/* styles for solveme */
+.solveme { border-width: 2px; border-style: dotted; border-color: hsl(24, 100%, 50%); }
+.solveme.correct { border-width: 2px; border-style: solid; border-color: hsl(80, 60%, 35%); }
+/* styles for hidden solutions */
+.solution {
+    height: 3em;
+    overflow-y: hidden;
+    padding: 1em;
+}
+.solution.open {
+    height: auto;
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+.solution button {
+    height: 1.5em;
+    margin-bottom: 0.5em;
+    background-color: #fad1d1;
+    border-color: #f5a3a3;
+    border-radius: 5px;
+}
+.solution button:hover {
+    background-color: #fce8e8;
+    border-color: #f5a3a3;
+}
+.solution pre.sourceCode {
+    border-color: hsl(89, 100%, 50%);
+}
+
+

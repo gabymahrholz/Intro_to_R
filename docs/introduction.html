@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Introduction | Introduction to R</title>
+  <meta name="description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
+  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Introduction | Introduction to R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Introduction | Introduction to R" />
+  
+  <meta name="twitter:description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
+  
+
+<meta name="author" content="Gaby Mahrholz, Rebecca J. Lai, Kate Haining, Greta Todorova, and Wilhelmiina Toivo" />
+
+
+<meta name="date" content="2020-01-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="introduction-to-data.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this course</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#intended-learning-outcomes"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-will-i-need-to-complete-this-course"><i class="fa fa-check"></i>What will I need to complete this course?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-assessments"><i class="fa fa-check"></i>About the Assessments</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#formative-assessments"><i class="fa fa-check"></i>Formative Assessments</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#summative-assessments"><i class="fa fa-check"></i>Summative Assessments</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-submit-your-assessments"><i class="fa fa-check"></i>How to Submit Your Assessments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#assistance"><i class="fa fa-check"></i>Assistance</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-are-these-materials-open"><i class="fa fa-check"></i>Why are these materials open?</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#intended-learning-outcomes-1"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#computer-literacy-basics"><i class="fa fa-check"></i><b>1.1</b> Computer Literacy Basics</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#r-and-r-studio"><i class="fa fa-check"></i><b>1.2</b> R and R Studio</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction.html"><a href="introduction.html#r"><i class="fa fa-check"></i><b>1.2.1</b> R</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduction.html"><a href="introduction.html#rstudio-ide"><i class="fa fa-check"></i><b>1.2.2</b> RStudio IDE</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#r-r-studio-and-associated-file-types"><i class="fa fa-check"></i><b>1.3</b> R, R Studio and Associated File Types</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction.html"><a href="introduction.html#file-structuredirectories"><i class="fa fa-check"></i><b>1.3.1</b> File Structure/Directories</a></li>
+<li class="chapter" data-level="1.3.2" data-path="introduction.html"><a href="introduction.html#file-extensions"><i class="fa fa-check"></i><b>1.3.2</b> File Extensions</a></li>
+<li class="chapter" data-level="1.3.3" data-path="introduction.html"><a href="introduction.html#zip-files"><i class="fa fa-check"></i><b>1.3.3</b> .zip Files</a></li>
+<li class="chapter" data-level="1.3.4" data-path="introduction.html"><a href="introduction.html#rstudio-specific-files"><i class="fa fa-check"></i><b>1.3.4</b> RStudio Specific Files</a></li>
+<li class="chapter" data-level="1.3.5" data-path="introduction.html"><a href="introduction.html#r-files"><i class="fa fa-check"></i><b>1.3.5</b> .r Files</a></li>
+<li class="chapter" data-level="1.3.6" data-path="introduction.html"><a href="introduction.html#rmd-files"><i class="fa fa-check"></i><b>1.3.6</b> .Rmd files</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#comments"><i class="fa fa-check"></i><b>1.4</b> Comments</a></li>
+<li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#saving-your-file"><i class="fa fa-check"></i><b>1.5</b> Saving your file</a></li>
+<li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#sessions"><i class="fa fa-check"></i><b>1.6</b> Sessions</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="introduction.html"><a href="introduction.html#what-is-a-session-in-r"><i class="fa fa-check"></i><b>1.6.1</b> What is a session in R?</a></li>
+<li class="chapter" data-level="1.6.2" data-path="introduction.html"><a href="introduction.html#restarting-your-current-session"><i class="fa fa-check"></i><b>1.6.2</b> Restarting Your Current Session</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#packages"><i class="fa fa-check"></i><b>1.7</b> Packages</a><ul>
+<li class="chapter" data-level="1.7.1" data-path="introduction.html"><a href="introduction.html#installing-packages"><i class="fa fa-check"></i><b>1.7.1</b> Installing Packages</a></li>
+<li class="chapter" data-level="1.7.2" data-path="introduction.html"><a href="introduction.html#load-tidyverse"><i class="fa fa-check"></i><b>1.7.2</b> Loading Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="introduction.html"><a href="introduction.html#functions"><i class="fa fa-check"></i><b>1.8</b> Functions</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="introduction.html"><a href="introduction.html#what-is-a-function"><i class="fa fa-check"></i><b>1.8.1</b> What is a function?</a></li>
+<li class="chapter" data-level="1.8.2" data-path="introduction.html"><a href="introduction.html#the-anatomy-of-a-function-names-and-arguments"><i class="fa fa-check"></i><b>1.8.2</b> The Anatomy of a Function: names and arguments</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="introduction.html"><a href="introduction.html#formative-assignment"><i class="fa fa-check"></i><b>1.9</b> Formative Assignment</a><ul>
+<li class="chapter" data-level="1.9.1" data-path="introduction.html"><a href="introduction.html#access-to-rstudio"><i class="fa fa-check"></i><b>1.9.1</b> Access to RStudio</a></li>
+<li class="chapter" data-level="1.9.2" data-path="introduction.html"><a href="introduction.html#installing-and-loading-tidyverse"><i class="fa fa-check"></i><b>1.9.2</b> Installing and Loading Tidyverse</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-data.html"><a href="introduction-to-data.html"><i class="fa fa-check"></i><b>2</b> Introduction to Data</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-data.html"><a href="introduction-to-data.html#intended-learning-outcomes-2"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="2.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#pre-steps"><i class="fa fa-check"></i><b>2.1</b> Pre-Steps</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#downloading-materials"><i class="fa fa-check"></i><b>2.1.1</b> Downloading materials</a></li>
+<li class="chapter" data-level="2.1.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#unzipping-the-zip-folder"><i class="fa fa-check"></i><b>2.1.2</b> Unzipping the zip folder</a></li>
+<li class="chapter" data-level="2.1.3" data-path="introduction-to-data.html"><a href="introduction-to-data.html#setting-the-working-directory"><i class="fa fa-check"></i><b>2.1.3</b> Setting the working directory</a></li>
+<li class="chapter" data-level="2.1.4" data-path="introduction-to-data.html"><a href="introduction-to-data.html#load-tidyverse-into-the-library"><i class="fa fa-check"></i><b>2.1.4</b> Load tidyverse into the library</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#basic-data-types"><i class="fa fa-check"></i><b>2.2</b> Basic data types</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#character"><i class="fa fa-check"></i><b>2.2.1</b> Character</a></li>
+<li class="chapter" data-level="2.2.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#numeric"><i class="fa fa-check"></i><b>2.2.2</b> Numeric</a></li>
+<li class="chapter" data-level="2.2.3" data-path="introduction-to-data.html"><a href="introduction-to-data.html#logical"><i class="fa fa-check"></i><b>2.2.3</b> Logical</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-data.html"><a href="introduction-to-data.html#vectors"><i class="fa fa-check"></i><b>2.3</b> Vectors</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#creating-vectors"><i class="fa fa-check"></i><b>2.3.1</b> Creating vectors</a></li>
+<li class="chapter" data-level="2.3.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#converting-vectors-into-different-data-types-of-vectors-aka-funky-things-we-can-do"><i class="fa fa-check"></i><b>2.3.2</b> Converting vectors into different data types of vectors aka funky things we can do</a></li>
+<li class="chapter" data-level="2.3.3" data-path="introduction-to-data.html"><a href="introduction-to-data.html#adding-elements-to-existing-vectors"><i class="fa fa-check"></i><b>2.3.3</b> Adding elements to existing vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-data.html"><a href="introduction-to-data.html#tibble---the-new-way-of-creating-a-dataframe"><i class="fa fa-check"></i><b>2.4</b> Tibble - the new way of creating a dataframe</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#what-the-heck-is-a-tibble-do-you-mean-table"><i class="fa fa-check"></i><b>2.4.1</b> What the heck is a tibble? Do you mean table?</a></li>
+<li class="chapter" data-level="2.4.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#how-to-make-a-tibble-from-scratch"><i class="fa fa-check"></i><b>2.4.2</b> How to make a tibble from scratch</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-data.html"><a href="introduction-to-data.html#reading-in-data"><i class="fa fa-check"></i><b>2.5</b> Reading in data</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#from-pre-existing-databases"><i class="fa fa-check"></i><b>2.5.1</b> from pre-existing databases</a></li>
+<li class="chapter" data-level="2.5.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#from-existing-data-files"><i class="fa fa-check"></i><b>2.5.2</b> from existing data files</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-data.html"><a href="introduction-to-data.html#last-point-for-today"><i class="fa fa-check"></i><b>2.6</b> Last point for today</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-data.html"><a href="introduction-to-data.html#summative-homework"><i class="fa fa-check"></i><b>2.7</b> Summative Homework</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html"><i class="fa fa-check"></i><b>3</b> Data Transformation 1: Basic One Table Verbs</a><ul>
+<li class="chapter" data-level="" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#intended-learning-outcomes-3"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="3.1" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#data-wrangling"><i class="fa fa-check"></i><b>3.1</b> Data Wrangling</a></li>
+<li class="chapter" data-level="3.2" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#pre-steps-1"><i class="fa fa-check"></i><b>3.2</b> Pre-Steps</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#downloading-materials-1"><i class="fa fa-check"></i><b>3.2.1</b> Downloading materials</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#unzipping-the-zip-folder-1"><i class="fa fa-check"></i><b>3.2.2</b> Unzipping the zip folder</a></li>
+<li class="chapter" data-level="3.2.3" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#setting-the-working-directory-1"><i class="fa fa-check"></i><b>3.2.3</b> Setting the working directory</a></li>
+<li class="chapter" data-level="3.2.4" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#load-tidyverse-into-the-library-1"><i class="fa fa-check"></i><b>3.2.4</b> Load tidyverse into the library</a></li>
+<li class="chapter" data-level="3.2.5" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#reading-in-the-data"><i class="fa fa-check"></i><b>3.2.5</b> Reading in the data</a></li>
+<li class="chapter" data-level="3.2.6" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#view-the-data"><i class="fa fa-check"></i><b>3.2.6</b> View the data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#select"><i class="fa fa-check"></i><b>3.3</b> Select()</a></li>
+<li class="chapter" data-level="3.4" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#arrange"><i class="fa fa-check"></i><b>3.4</b> Arrange()</a></li>
+<li class="chapter" data-level="3.5" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#filter"><i class="fa fa-check"></i><b>3.5</b> Filter()</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#single-criterion"><i class="fa fa-check"></i><b>3.5.1</b> Single criterion</a></li>
+<li class="chapter" data-level="3.5.2" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#multiple-criteria"><i class="fa fa-check"></i><b>3.5.2</b> Multiple criteria</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#mutate"><i class="fa fa-check"></i><b>3.6</b> Mutate()</a></li>
+<li class="chapter" data-level="3.7" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#formative-homework"><i class="fa fa-check"></i><b>3.7</b> Formative Homework</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#brief-introduction-to-the-homework-data"><i class="fa fa-check"></i><b>3.7.1</b> Brief introduction to the homework data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html"><i class="fa fa-check"></i><b>4</b> Data Transformation 2: Two Table Verbs</a><ul>
+<li class="chapter" data-level="" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#intended-learning-outcomes-4"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="4.1" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#pre-steps-2"><i class="fa fa-check"></i><b>4.1</b> Pre-Steps</a></li>
+<li class="chapter" data-level="4.2" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#group_by-and-summarise"><i class="fa fa-check"></i><b>4.2</b> Group_by() and Summarise()</a></li>
+<li class="chapter" data-level="4.3" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#the-pipe-operator"><i class="fa fa-check"></i><b>4.3</b> The pipe operator (%&gt;%)</a></li>
+<li class="chapter" data-level="4.4" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#two-table-verbs"><i class="fa fa-check"></i><b>4.4</b> Two-Table Verbs</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#mutating-join-verbs"><i class="fa fa-check"></i><b>4.4.1</b> Mutating Join Verbs</a></li>
+<li class="chapter" data-level="4.4.2" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#binding-join-verbs"><i class="fa fa-check"></i><b>4.4.2</b> Binding Join Verbs</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#additional-information"><i class="fa fa-check"></i><b>4.5</b> Additional information</a></li>
+<li class="chapter" data-level="4.6" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#summative-homework-1"><i class="fa fa-check"></i><b>4.6</b> Summative Homework</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html"><i class="fa fa-check"></i><b>5</b> Data Transformation 3: Finetuned Data Manipulation</a><ul>
+<li class="chapter" data-level="" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#intended-learning-outcomes-5"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="5.1" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#pre-steps-3"><i class="fa fa-check"></i><b>5.1</b> Pre-steps</a></li>
+<li class="chapter" data-level="5.2" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#gather-and-spread"><i class="fa fa-check"></i><b>5.2</b> gather() and spread()</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#gather"><i class="fa fa-check"></i><b>5.2.1</b> gather()</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#spread"><i class="fa fa-check"></i><b>5.2.2</b> spread()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#unite-and-separate"><i class="fa fa-check"></i><b>5.3</b> unite() and separate()</a></li>
+<li class="chapter" data-level="5.4" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#rename"><i class="fa fa-check"></i><b>5.4</b> rename()</a></li>
+<li class="chapter" data-level="5.5" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#recode"><i class="fa fa-check"></i><b>5.5</b> recode()</a></li>
+<li class="chapter" data-level="5.6" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#ifelse-and-case_when"><i class="fa fa-check"></i><b>5.6</b> ifelse and case_when</a></li>
+<li class="chapter" data-level="5.7" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#distinct"><i class="fa fa-check"></i><b>5.7</b> distinct</a></li>
+<li class="chapter" data-level="5.8" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#additional-information-1"><i class="fa fa-check"></i><b>5.8</b> Additional information</a></li>
+<li class="chapter" data-level="5.9" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#bonus-mutate-rownames-from-the-mtcars"><i class="fa fa-check"></i><b>5.9</b> Bonus: mutate rownames from the mtcars</a></li>
+<li class="chapter" data-level="5.10" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#formative-homework-1"><i class="fa fa-check"></i><b>5.10</b> Formative Homework</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="recap-1.html"><a href="recap-1.html"><i class="fa fa-check"></i><b>6</b> Recap 1</a><ul>
+<li class="chapter" data-level="6.1" data-path="recap-1.html"><a href="recap-1.html#outline-for-today"><i class="fa fa-check"></i><b>6.1</b> Outline for today</a></li>
+<li class="chapter" data-level="6.2" data-path="recap-1.html"><a href="recap-1.html#in-class-practice-exam"><i class="fa fa-check"></i><b>6.2</b> In-class practice exam</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html"><i class="fa fa-check"></i><b>7</b> Data Visualisation 1</a><ul>
+<li class="chapter" data-level="" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#intended-learning-outcomes-6"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html"><i class="fa fa-check"></i><b>8</b> Data Visualisation 2</a><ul>
+<li class="chapter" data-level="" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#intended-learning-outcomes-7"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>9</b> Errors</a><ul>
+<li class="chapter" data-level="9.1" data-path="errors.html"><a href="errors.html#under-construction"><i class="fa fa-check"></i><b>9.1</b> Under Construction</a></li>
+<li class="chapter" data-level="" data-path="errors.html"><a href="errors.html#intended-learning-outcomes-8"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="9.2" data-path="errors.html"><a href="errors.html#errors-how-to-avoid-some-and-live-through-the-rest"><i class="fa fa-check"></i><b>9.2</b> Errors: How to avoid some and live through the rest</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="errors.html"><a href="errors.html#debugging"><i class="fa fa-check"></i><b>9.2.1</b> Debugging</a></li>
+<li class="chapter" data-level="9.2.2" data-path="errors.html"><a href="errors.html#debugging-questions"><i class="fa fa-check"></i><b>9.2.2</b> Debugging Questions</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="errors.html"><a href="errors.html#seeking-help"><i class="fa fa-check"></i><b>9.3</b> Seeking Help</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="errors.html"><a href="errors.html#searching-for-help-online"><i class="fa fa-check"></i><b>9.3.1</b> Searching for Help Online</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="errors.html"><a href="errors.html#custom-functions"><i class="fa fa-check"></i><b>9.4</b> Custom Functions</a></li>
+<li class="chapter" data-level="9.5" data-path="errors.html"><a href="errors.html#living-through-errors-how-reproducible-code-enables-science-to-self-correct"><i class="fa fa-check"></i><b>9.5</b> Living Through Errors: How reproducible code enables science to self-correct</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="recap-2-before-the-final-assessment.html"><a href="recap-2-before-the-final-assessment.html"><i class="fa fa-check"></i><b>10</b> Recap 2: Before the Final Assessment</a><ul>
+<li class="chapter" data-level="10.1" data-path="recap-2-before-the-final-assessment.html"><a href="recap-2-before-the-final-assessment.html#intended-learning-outcomes-9"><i class="fa fa-check"></i><b>10.1</b> Intended Learning Outcomes</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html"><i class="fa fa-check"></i>Appendices</a><ul>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#source-materials"><i class="fa fa-check"></i>Source Materials</a></li>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#further-reading"><i class="fa fa-check"></i>Further Reading</a><ul>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#statistics"><i class="fa fa-check"></i>Statistics</a></li>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#more-advanced-use-of-r"><i class="fa fa-check"></i>More Advanced Use of R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>11</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
+<div id="intended-learning-outcomes-1" class="section level2 unnumbered">
+<h2>Intended Learning Outcomes</h2>
+<p>By the end of this session you should be:</p>
+<ol style="list-style-type: decimal">
+<li>Familiar enough with a computer to <em>open, save and access previously saved files</em>.</li>
+<li>Able to <em>describe R and Studio, the coding environment and the associated file types</em>.</li>
+<li>Able to <em>install, load and describe the nature of R packages<strong> and </strong>describe the nature and use of functions in general</em>.</li>
+</ol>
+</div>
+<div id="computer-literacy-basics" class="section level2">
+<h2><span class="header-section-number">1.1</span> Computer Literacy Basics</h2>
+<p>In order to successfully navigate this course there are a number of things that you need to know about computers more generally. This section here should be everything that you are <em>required</em> to know or learn.</p>
+<p>We are aware that many people will have been using computers for many years, and in some cases many people will have grown up with them in their household. We have noticed, however, that a number of our incoming students are not familiar with many of the basic concepts that are required to be a successful coder. There is an assumption that “digital native” automatically equates to “computer literate” but in many cases we have found this assumption to be incorrect.</p>
+<p>More people than ever before are using some sort of personal computing device, but the type of use differs greatly from what we are going to be doing over the next 10 weeks. Many mobile phones, tablets and (increasingly) PC operating systems hide many of their operations from users. This can create a feeling of compentency with computers that can quickly dissolve when asked to engage with anything slightly more complex.</p>
+</div>
+<div id="r-and-r-studio" class="section level2">
+<h2><span class="header-section-number">1.2</span> R and R Studio</h2>
+<p>Are they different? Yes! Is this important? Yes!</p>
+<div id="r" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> R</h3>
+<p><img src="images/Rlogo.png" height="50" width="50" alt="R Commander Logo" align="right" style="margin:10px 10px"></p>
+<p>R is a programming language and completely free software, and it is widely used for data analysis. It is a stand-alone program and can be run on it’s own without R Studio, but it’s not particularly user friendly.</p>
+<center>
+<img src="images/commander.png" alt="R Commander" style="margin:10px 10px">
+</center>
+</div>
+<div id="rstudio-ide" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> RStudio IDE</h3>
+<p><img src="images/rstudio.png" height="75" width="190" alt="R Studio Logo" align="right" style="margin:10px 10px"></p>
+<p>RStudio IDE (short for <strong>I</strong>ntegrated <strong>D</strong>evelopment <strong>E</strong>nvironment) is essentially a shiny facade, which sits atop R and gives it all sorts of useful features and makes it much <em>easier to use</em>.</p>
+<p>When you first open it you get 3 main panels, which can be seen in the picture below.</p>
+<center>
+<img src="images/open.png" style="margin:10px 10px">
+</center>
+<div id="console" class="section level4">
+<h4><span class="header-section-number">1.2.2.1</span> Console</h4>
+<p>This is essentially the same thing as R commander. You can run code in here, and it can be a useful playground to try out new things and do things that you don’t neccessarily want saved into a script because <strong>it’s not permanent- anything typed here will be lost when you close R</strong>!</p>
+<p>Examples of things you might want to run in the console include, but are not limited to, running new functions and seeing what they do, or installing packages (never EVER done in a script).</p>
+<p>This is what the console looks like before you have run any code:</p>
+<center>
+<img src="images/console.png" alt="The Console" style="margin:10px 10px">
+</center>
+</div>
+<div id="environmenthistoryconnections" class="section level4">
+<h4><span class="header-section-number">1.2.2.2</span> Environment/History/Connections</h4>
+<p>This panel is tabbed, with 2 tabs that you need to pay particular attention to right now:</p>
+<ul>
+<li><p><strong>Environment</strong>: this contains all of the virtual “objects” that you have created. These include, but are not limited to, variables containing data that you have read in, lists, individual values, custom-written functions.</p>
+<p>Objects can and should be created in your scripts. When you close R you might lose some of the objects, but as long as you have the script containing the instructions to re-create these objects you can re-run it and make them again.</p></li>
+<li><p><strong>History</strong>: this is a list of all of the commands that you have run in the past “session”, which can be useful to go back to some times if you did run some code in the console that you want to look at again. To scroll through you can put the cursor in the console window and use up and down keys.</p></li>
+</ul>
+<p>At this point you don’t really need to worry about the one called connections (it lets you connect to things like online data sources and stuff).</p>
+<p>This is what that panel looks like for me right now… it’s empty!</p>
+<center>
+<img src="images/environment.png" alt="The Environment" style="margin:10px 10px">
+</center>
+</div>
+<div id="filesplotspackageshelpviewer" class="section level4">
+<h4><span class="header-section-number">1.2.2.3</span> Files/Plots/Packages/Help/Viewer</h4>
+<p>This panel set is going to be mega-useful to you throughout the duration of your career as an R user. Viewer is not immediately required, so we’ll just cover Files, Plots, Packages and Help.</p>
+<ul>
+<li><p><strong>Files</strong>: Shows a file browser that let’s you look around in your file structure. helpful hint: click on the more button and “Go to working directory” to see the same files that R can see. <strong>You <em>can</em> load files in through this tab, but you should always strive to do it in the script!</strong></p></li>
+<li><p><strong>Plots</strong>: A tab that displays plots that you have made. You can navigate backwards and forwards between multiple plots- allowing you to test out new things and see the changes in comparison to each other.</p></li>
+<li><p><strong>Packages</strong>: This allows you to look at the R packages that are installed on the machine that you are using, and the check box next to it indicates if it is loaded in from the library. <strong>You <em>can</em> click the box to load a package, but you should always strive to do it in the script!</strong></p></li>
+<li><p><strong>Help</strong>: this window displays the built in help information, much the same as Microsoft Word or Powerpoint has. You can search using the search box, but you can also type into the console. For example, if I wanted to find the help file for the <code>library()</code> function I would type <code>?library</code>. the result is displayed in the help tab to the right.</p></li>
+</ul>
+<center>
+<img src="images/using_help_2.png" alt="Using the console for help" style="margin:10px 10px">
+</center>
+<p>Alternatively, you can type the name of the function you want help with into the search box in the help tab:</p>
+<center>
+<img src="images/using_help.png" alt="Using the Help panel for help" style="margin:10px 10px">
+</center>
+<p>Sometimes these files are not exactly written in a manner that could be considered accessible to novice users. You get the hang of reading them over time. In this case you might want to try Googling it… we <strong>all</strong> do it, no matter our level of experience!</p>
+<p>Even Googling can be difficult, but you will eventually get a better idea of the types of search terms most likely to direct you to the information that you are after.</p>
+</div>
+</div>
+</div>
+<div id="r-r-studio-and-associated-file-types" class="section level2">
+<h2><span class="header-section-number">1.3</span> R, R Studio and Associated File Types</h2>
+<p>When you open a program, such as Microsoft Word, you haven’t actually created a Word document you’ve just started the program. Opening RStudio is much the same. Even though it can function without opening a file, there is much utility to be added by opening a file.</p>
+<p>When you open a file, the console will shrink and the space taken away in the window will be taken up by the new file.</p>
+<p>Opening a new file allows you to write code that can be saved, amended, shared etc. Code sharing is an important aspect of reproducibility!</p>
+<p>R can handle a lot of different files types, we will only focus on the two kinds that we learned about in the first semester. These are .r and .Rmd files. Both are saved as plain text files. Many of the files R uses are plain text files at their core. What changes is how R interprets the files, and the types of outputs that you can get from them.</p>
+<div id="file-structuredirectories" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> File Structure/Directories</h3>
+<p>Your files should be stored in something called <strong>“directories”</strong>. This is the technical name for a folder. It is a storage space on your computer. Here you can see all of the files contained within the folder for this course document in the <strong>“File Explorer”</strong>, the programme used to view files and folders in Windows:</p>
+<center>
+<img src="images/folder.png">
+</center>
+<p><br></p>
+<p>Each folder and the files within will have a specific <strong>“file path”</strong>, an address within your file storage system that allows you and the computer to pinpoint the location of the information that you and it need to perform tasks involving that file. In windows you can get the file path of a folder by clicking on the bar at the top of the folder when you are looking in it in the file explorer:</p>
+<center>
+<img src="images/path.png">
+</center>
+<p><br></p>
+<p>This will be neccessary later when you start to use RStudio in conjunction with external files, such as data files.</p>
+</div>
+<div id="file-extensions" class="section level3">
+<h3><span class="header-section-number">1.3.2</span> File Extensions</h3>
+<p>Files come in different types, and each different type comes with a different <strong>file extension</strong>, meaning that it is associated with a different type of program. A <strong>file extension</strong> is that part after a full-stop in the file name. Some common ones are:</p>
+<ul>
+<li>.xlsx: a spreadsheet file associated with Microsoft Excel</li>
+<li>.docx: a formatted text document associated with Microsoft Word</li>
+<li>.pdf: a <strong>P</strong>ortable <strong>D</strong>ocument <strong>F</strong>ile, commonly text and images, associated with Adobe Acrobat</li>
+<li>.txt: a plain text file, can be opened in multiple programs such as Notepad or other word processing software.</li>
+<li>.zip: a <em>compressed folder</em> which can contain many files. These files must be <em>uncompressed/extracted</em> before you use them successfully.</li>
+</ul>
+</div>
+<div id="zip-files" class="section level3">
+<h3><span class="header-section-number">1.3.3</span> .zip Files</h3>
+<p>In this course we will often ask you to download a folder with multiple files and this will be stored on the server as a zip file. A zip file is a folder that contains files that have been compressed to make the file size smaller and enables you to download multiple files at once, however, before you use the files from a zip folder you first need to extract them.</p>
+<ol style="list-style-type: decimal">
+<li>Click on the link to download the compressed folder.</li>
+<li>Navgiate to the zip file (probably in your downloads folder) and open it. You will see all the files it contains but don’t use these - click “Extract all” on the top ribbon.</li>
+<li>You will be asked to select a location to save the unzipped files. Normally the default location it suggests will be the same folder and so you can just click “Extract”. If you want to unzip these files to a different place click browse and select the folder you want to keep it in. I like to keep all the files for one project in the same folder.</li>
+<li>You can now delete the zip file and use the unzipped files. This is a really important step - if you use the compressed files your code may not work properly. This usually causes error messages relating to temporary files.</li>
+</ol>
+<center>
+<figure>
+<img src="images/zipping.gif">
+<figcaption>
+Adapted from Level 1 Data Skills, <span class="citation">(Nordmann and Woods <a href="#ref-l1book" role="doc-biblioref">2019</a>)</span>.
+</figcaption>
+</figure>
+</center>
+<p><br></p>
+</div>
+<div id="rstudio-specific-files" class="section level3">
+<h3><span class="header-section-number">1.3.4</span> RStudio Specific Files</h3>
+<p>RStudio uses many different types of files, but each is a variation on a <strong>“plain text” file</strong>. This means that all files we will be using in class will be able to be opened in Notepad or other similar text programs. The three main ones we will be working with will be:</p>
+<ul>
+<li>.r: an R script</li>
+<li>.Rmd: an RMarkdown document</li>
+<li>.csv: <strong>C</strong>omma <strong>S</strong>eparated <strong>V</strong>ariable document, a common and universal type of file containing data sets.</li>
+</ul>
+<div class="danger">
+<p>
+If the file extension on a file is incorrect it may not be recognised as a file to be opened with a specific program and might not work.
+</p>
+<p>
+This is particularly an issue when you are downloading your files for class. As they are technically “plain text” files, some internet browsers will download them with the extension “.txt”, or even add it on as a second one which doesn’t work! Changing the extension to “.Rmd” or removing the extra added one will solve this issue.
+</p>
+</div>
+</div>
+<div id="r-files" class="section level3">
+<h3><span class="header-section-number">1.3.5</span> .r Files</h3>
+<p>This is what we refer to as a script. It is designed to be read by R, not so much by humans. To create a new script go to File &gt; New File &gt; R Script. This is what will be brought up:</p>
+<center>
+<img src="images/new_script.png">
+</center>
+<p><br></p>
+<p>All of the text in an R script will default to being read as <strong>executable code (that is, text which is directed at the machine)</strong>. We can, however, tell R <strong>not</strong> to read it as executable code, but instead for the machine to ignore certain parts of it, by using something called <strong>comments</strong>- you will read more about these below.</p>
+</div>
+<div id="rmd-files" class="section level3">
+<h3><span class="header-section-number">1.3.6</span> .Rmd files</h3>
+<p>These are the types of files that you will mostly be using during this class. You will be given some pre-formatted ones to complete your assessments on also.</p>
+<p>When you go to File &gt; New file &gt; R Markdown… you will be prompted to supply some information. You can do this, but don’t have to as you can change many of these parameters later:</p>
+<center>
+<img src="images/new_markdown_dialogue.png">
+</center>
+<p><br></p>
+<p>When a new RMarkdown file is opened the file isn’t empty. What you actually get is an example with a YAML header (at the top bordered with the dashes), some code chunks (in the shaded sections, more on these in a minute), text and some headers (the hashtagged blue text <strong>outside</strong> of chunks).</p>
+<p>I like to think of the way this file type is interpreted as being <em>like a script, but flipped</em>- the default interpretation of text aimed at humans. If we want <strong>executable code</strong> we need to prompt R to read the text in this way. This is done using “code chunks”, or sometimes just called “chunks”.</p>
+<center>
+<img src="images/new_markdown.png">
+</center>
+<p><br></p>
+<div id="code-chunks" class="section level4">
+<h4><span class="header-section-number">1.3.6.1</span> Code Chunks</h4>
+<p>Code chunks are bordered by “backticks”, which look an awful lot like apostrophes but they are different! These are important as they tell R where it needs to start and stop reading.</p>
+<p>Chunks also contain “curly brackets” at the start which contains various bits of information neccessary to how the computer reads it. This includes what programming language you are writing in there (yes! R can understand other programming languages!), name of the chunk (used for a variety of reasons, such as our marking software and document indexing) and other attributes which are not neccessary to learn about right now.</p>
+<center>
+<img src="images/chunk.png">
+</center>
+<p><br></p>
+<div class="danger">
+<p>
+The chunk <strong>must</strong> have the backticks to show the beginning and end of the executable code, otherwise the code doesn’t run.
+</p>
+<p>
+You must not add any code or text to the lines which contain backticks other than the code to alter the attributes of the chunk within the curly brackets (and only if you know how to do so). If you do this the code will not run and other chunks in the document might also be affected.
+</p>
+</div>
+<p>Hastags used inside of code chunks don’t result in headers, but rather are ignored as the comments discussed in the section about .r files.</p>
+</div>
+</div>
+</div>
+<div id="comments" class="section level2">
+<h2><span class="header-section-number">1.4</span> Comments</h2>
+<p>Comments can- and should- be used throughout both .r and .Rmd file types. These are anything written <em>after</em> a hashtag symbol (and, if using a .Rmd file, within a code chunk). This symbol instructs the computer to disregard this text, letting it know that this is not for it to interpret as exectuable code but rather it is something for the human user to read and interpret.</p>
+<p>These are handy for letting others know what each piece of code was written to do, or to inform your future self of what you were doing.</p>
+<p>Make use of comments in the code we write in class and let this function as your class-notes.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction.html#cb1-1"></a><span class="co"># this is what a comment looks like. Anything AFTER a hashtag.</span></span>
+<span id="cb1-2"><a href="introduction.html#cb1-2"></a><span class="co"># R doesn&#39;t &quot;speak&quot; natural languages so it would not be able </span></span>
+<span id="cb1-3"><a href="introduction.html#cb1-3"></a><span class="co"># to understand any of this and would give errors!</span></span>
+<span id="cb1-4"><a href="introduction.html#cb1-4"></a></span>
+<span id="cb1-5"><a href="introduction.html#cb1-5"></a><span class="co"># comments are for humans. You can use them to put notes in scripts to</span></span>
+<span id="cb1-6"><a href="introduction.html#cb1-6"></a><span class="co"># remind yourself of what is happening, or to inform people with whom</span></span>
+<span id="cb1-7"><a href="introduction.html#cb1-7"></a><span class="co"># you have shared your code.</span></span></code></pre></div>
+</div>
+<div id="saving-your-file" class="section level2">
+<h2><span class="header-section-number">1.5</span> Saving your file</h2>
+<p>As mentioned before, anything in the console vanishes when you close R. Any objects that you have used code to make (those things that live in the environment) should vanish too.</p>
+<p>Your script is a set of instructions on how to make those objects. If you have saved your script or markdown, you can essentially re-run it and get back to where you left off when you last saved your progress.</p>
+<p>Saving your file for the first time is as easy as going to File &gt; Save As and filling in the details in the dialogue box as appropriate:</p>
+<center>
+<img src="images/save_as_menu.png" width="198">
+<img src="images/save_as_dialogue.png" width="602">
+</center>
+<p><br></p>
+<p>Saving changes to an already existing file is done by going to File &gt; Save:</p>
+<center>
+<img src="images/save.png">
+</center>
+<p><br></p>
+</div>
+<div id="sessions" class="section level2">
+<h2><span class="header-section-number">1.6</span> Sessions</h2>
+<div id="what-is-a-session-in-r" class="section level3">
+<h3><span class="header-section-number">1.6.1</span> What is a session in R?</h3>
+<p>A session in R is a segment of time/workspace/processor time that is dedicated to performing a specific processing or analysis task. It can be difficult to wrap your head around at first, but it helps to draw comparisons with software that we are already familiar with.</p>
+<p>Let’s go back to Microsoft Word. We can have an essay open in one window and class notes opened up in another window. Both are instances of Word, but they are dedicated to two different tasks which just so happen to be running concurrently.</p>
+<p>You can have multiple sessions open in R, but I wouldn’t recommend it because it can become confusing. We can start a new session by going to Session &gt; new session. We Are much more interested in a task which is closely linked to this idea- restarting your current session.</p>
+<center>
+<img src="images/session_menu.png">
+</center>
+<p><br></p>
+</div>
+<div id="restarting-your-current-session" class="section level3">
+<h3><span class="header-section-number">1.6.2</span> Restarting Your Current Session</h3>
+<p>This can be done by going to Session &gt; Restart R, see the image above.</p>
+<p>Restarting your R session does some important things:</p>
+<ul>
+<li>it clears the environment of objects if R is set up in a maximally reproducible way- so make sure your script is saved so that you keep the instructions for making them again</li>
+<li>it “unloads” packages that you have called from the library using the <code>library()</code> function</li>
+<li>If you encounter an error with an unknown source sometimes restarting the session can clear the problem</li>
+<li>It allows you to test the reproducibility of the script that you are writing by clearing the environment and starting over with only the instructions you have provided, without the possibility of “contamination” of objects inadvertently created in other ways, such as playing in the console</li>
+</ul>
+</div>
+</div>
+<div id="packages" class="section level2">
+<h2><span class="header-section-number">1.7</span> Packages</h2>
+<p>R is a programming language which is primarily used for data processing and analysis. As the software is open source a number of people have created extensions to the software to adapt it to their needs.</p>
+<p>These software extensions are referred to as “packages”.</p>
+<div id="installing-packages" class="section level3">
+<h3><span class="header-section-number">1.7.1</span> Installing Packages</h3>
+<p>There are a number of functions that we will be using in this course that are not part of the original programming language. The most common package we will be using will be one called “Tidyverse”.</p>
+<p>We will use the example of Tidyverse to show you how to install packages that you might need.</p>
+<div id="install-tidyverse" class="section level4">
+<h4><span class="header-section-number">1.7.1.1</span> What is Tidyverse?</h4>
+<div class="danger">
+<p>
+Do not install any packages on the university machines. All the packages you need are already installed. You would only need to install packages if you are using your own machine.
+</p>
+<p>
+You must also never place <code>install.packages()</code> in any r script or RMarkdown document: installing it a second time can break the installation and by sharing this script you would be attempting to force others to install it on their machines.
+</p>
+<p>
+This is at best rude and at worst it can break their installation.
+</p>
+</div>
+<p>Tidyverse is a “metapackage”- a package that is actually a collection of packages that have been bundled together. It was developed by Hadley Wickham. You can read more abut the package <a href="https://www.tidyverse.org/">here</a>.</p>
+</div>
+<div id="install.packages" class="section level4">
+<h4><span class="header-section-number">1.7.1.2</span> <code>install.packages()</code></h4>
+<p>When you install a package, you should do this in the console part of the interface, as shown here:</p>
+<center>
+<img src="images/console.png" alt="The Console" style="margin:10px 10px">
+</center>
+<p>Types the following in and then hit “enter”:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="introduction.html#cb2-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<p>Note that the name of the package is in quotation marks when used here. This is not always the case!</p>
+<p>The console will then fill with a lot of text showing you what is being done. It is not neccessary to understand all of this.</p>
+<p>Look out for this message being printed in the console</p>
+<center>
+<img src="images/tidyverse_installed.png" style="border:1px solid #000000">
+</center>
+<p>This indicates that the package has been installed successfully. There will be many of these messages for different packages. There may even be parts after this message if the computer determines that other “dependencies” (additional software that tidyverse requires to run) are required.</p>
+<p>Once R has stopped working (doing it’s current task) the <code>&gt;</code> will reappear in the console. This symbol reappearing means that R is ready for further code.</p>
+<p>To install other packages you would reuse the <strong>function</strong> <code>install.packages()</code>, replacing the name “tidyverse” with the name of the package you want to install.</p>
+<p>We will cover functions shortly.</p>
+</div>
+</div>
+<div id="load-tidyverse" class="section level3">
+<h3><span class="header-section-number">1.7.2</span> Loading Packages</h3>
+<p>Now that we have installed Tidyverse it is on our machine but it is not ready to use yet!</p>
+<p>It is easier to understand if you think about it like this: if you install Instagram on your phone you only do it once and you have to open the app each time you want to use it.</p>
+<p>Similarly, once Tidyverse is installed it is on your computer until you remove it. If you want to use it you need to “open it”. This is done by using another <strong>function</strong>, <code>library()</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction.html#cb3-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<p>This must be done before you use Tidyverse. We normally do this in the first chunk in the document, essentially gathering our tools before we start working.</p>
+<p>If you want to load other packages you would reuse the <strong>function</strong> <code>library()</code>, replacing “tidyverse” with the name of the package you want to load.</p>
+</div>
+</div>
+<div id="functions" class="section level2">
+<h2><span class="header-section-number">1.8</span> Functions</h2>
+<p>“Function” is a word that you will hear a lot in this class. But what are they? What do they look like? what are they made up of?</p>
+<div id="what-is-a-function" class="section level3">
+<h3><span class="header-section-number">1.8.1</span> What is a function?</h3>
+<p>If I were to tell you to jump, you would understand the action I was asking you to perform wouldn’t you? But before you carry it out you might ask me a question in return: how high?</p>
+<p>This is what a function is for R… it’s a command that tells R to do something. It just does it in a way that R understands.</p>
+</div>
+<div id="the-anatomy-of-a-function-names-and-arguments" class="section level3">
+<h3><span class="header-section-number">1.8.2</span> The Anatomy of a Function: names and arguments</h3>
+<p>Functions are made up of elements. See the code chunk below:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="introduction.html#cb4-1"></a><span class="kw">function_name</span>(argument1, argument2, etc...)</span></code></pre></div>
+<p>The part outside of the brackets is the <strong>name of the function</strong>. This tells R exactly what to do- the action to be performed. The parts inside the brackets are called <strong>arguments</strong>… these provide information to R on what to perform the actions on (and input) and can provide information on slight changes to the actions.</p>
+<div class="info">
+<p>
+Essentially the function name is the action to perform (jump) and the arguments give information on how to perform the action (how high).
+</p>
+<p>
+Think about <code>install.packages(“tidyverse”)</code> and <code>library(tidyverse)</code>: what are the function names and what are the arguments? Which part changes when you want to install and load a different package?
+</p>
+</div>
+<p>Once your function has taken the input and run the command on it it will produce an output of some sort.</p>
+<p>As we progress through this course see if you can spot the functions, the arguments, the inputs and the outputs.</p>
+</div>
+</div>
+<div id="formative-assignment" class="section level2">
+<h2><span class="header-section-number">1.9</span> Formative Assignment</h2>
+<p>This formative assignment is an important one as it will enable you to complete your future assignments. It looks long, but it is mostly screenshots to guide you through the process of installing the required software, or a short guide on how to use RStudio Cloud.</p>
+<div id="access-to-rstudio" class="section level3">
+<h3><span class="header-section-number">1.9.1</span> Access to RStudio</h3>
+<p>Please ensure by the next class that you have access to the software so that you can practice using the formative assignments and complete the summative assignments when they are issued.</p>
+<p>The first summative assignment will be issued after class next week and you will be given one week to complete and submit it.</p>
+<div id="installing-r-and-rstudio-on-your-own-machine" class="section level4">
+<h4><span class="header-section-number">1.9.1.1</span> Installing R and RStudio on Your Own Machine</h4>
+<p>Unfortunately this is not as simple as installing software normally is on your computer. There are two separate things that you will need to install.</p>
+<div id="first-install-r" class="section level5">
+<h5><span class="header-section-number">1.9.1.1.1</span> First: Install R</h5>
+<div id="windows-users" class="section level6">
+<h6><span class="header-section-number">1.9.1.1.1.1</span> Windows Users</h6>
+<p>Follow <a href="https://www.stats.bris.ac.uk/R/">this link</a> and click on the part that says Download R 3.6.2 for Windows. You will get the following pop-up dialogue:</p>
+<center>
+<img src="images/download_prompt_R.png">
+</center>
+<p>Click “Save File”. The file will then be downloaded to your computer, most likely the “Downloads” folder unless you have changed your settings. Double click to run the file.</p>
+<p>You will be asked if you want to allow this to make changes to your computer, click yes. Select your language preference, review the license agreement and click next. The following screen will be presented:</p>
+<center>
+<img src="images/install_wiz_1.png">
+</center>
+<p>Click next without changing the folder. The next screen let’s you customise the installation, but we shouldn’t need to make any changes at this point so click next without unselecting any components:</p>
+<center>
+<img src="images/install_wiz_2.png">
+</center>
+<p>Also leave the star-up options as standard and click next:</p>
+<center>
+<img src="images/install_wiz_3.png">
+</center>
+<p>Leave the start menu folder as standard:</p>
+<center>
+<img src="images/install_wiz_4.png">
+</center>
+<p>Don’t make any changes to the additional tasks part, just click next:</p>
+<center>
+<img src="images/install_wiz_5.png">
+</center>
+<p>The Install Wizard will then install R:</p>
+<center>
+<img src="images/install_wiz_6.png">
+</center>
+<p>You will be told when installation is complete:</p>
+<center>
+<img src="images/install_wiz_7.png">
+</center>
+</div>
+<div id="mac-os-users" class="section level6">
+<h6><span class="header-section-number">1.9.1.1.1.2</span> Mac OS Users</h6>
+</div>
+</div>
+<div id="second-install-rstudio" class="section level5">
+<h5><span class="header-section-number">1.9.1.1.2</span> Second: Install RStudio</h5>
+<div id="windows-users-1" class="section level6">
+<h6><span class="header-section-number">1.9.1.1.2.1</span> Windows Users</h6>
+<p>Follow <a href="https://rstudio.com/products/rstudio/download/">this link</a> to the RStudio website. Scroll down and press the button “Download” under RStudio Desktop- not the Server Option. On the next page press the button under stage 2, “Download RStudio for Windows”. Your download will start and you will see the following prompt:</p>
+<center>
+<img src="images/download_prompt_Rstudio.png">
+</center>
+<p>Click “Save File” when the button becomes active.</p>
+<p>Look in your download folder and double click the downloaded file. Click to allow the program to make changes to your computer. You will see this part next:</p>
+<center>
+<img src="images/install_wiz_studio_1.png">
+</center>
+<p>Click next on this next window. Do not change the installation location. Click next:</p>
+<center>
+<img src="images/install_wiz_studio_2.png">
+</center>
+<p>You will be taken to this screen. Again, don’t change the start menu folder location here.</p>
+<center>
+<img src="images/install_wiz_studio_3.png">
+</center>
+<p>Click next and the installation will begin:</p>
+<center>
+<img src="images/install_wiz_studio_4.png">
+</center>
+<p>You will then be notified when the installation is complete with this screen:</p>
+<center>
+<img src="images/install_wiz_studio_5.png">
+</center>
+</div>
+<div id="mac-os-users-1" class="section level6">
+<h6><span class="header-section-number">1.9.1.1.2.2</span> Mac OS Users</h6>
+</div>
+</div>
+<div id="opening-rstudio" class="section level5">
+<h5><span class="header-section-number">1.9.1.1.3</span> Opening RStudio</h5>
+<p>Remember that we have installed <strong>two</strong> programs on our computer. R, which is the base program, and RStudio, which is an extension of R.</p>
+<p>The software that we want to open and use is RStudio, not R. We want the shiny interface and added features.</p>
+</div>
+</div>
+<div id="accessing-rstudio-on-university-computers" class="section level4">
+<h4><span class="header-section-number">1.9.1.2</span> Accessing RStudio on University Computers</h4>
+<p>If you have a student card you will be able to access computing facilities provided for students, including those in the various libraries across campus. All university computers should have R and RStudio installed, as well as the required packages for this course.</p>
+<p>You will not be required to install anything on university computers, please don’t attempt to do so because we don’t want the IT guys to yell at us.</p>
+<p>To login to the university computers you will require your GUID and password.</p>
+</div>
+<div id="using-rstudio-cloud" class="section level4">
+<h4><span class="header-section-number">1.9.1.3</span> Using RStudio Cloud</h4>
+<p>We recognise that not all students will have access to their own computers, and that some of those students will not be able to travel to campus to use the provided facilities. For this reason we recommend to those in that postition to think about using RStudio Cloud, available <a href="https://rstudio.cloud/">here</a>.</p>
+<p>The RStudio Cloud allows you an electronic workspace, hosted by the RStudio team themselves.</p>
+<p>Navigate to the page and click the “Sign Up” button at the top right-hand side of the page.</p>
+<p>Once you are logged in you will see your (for now) empty workspace:</p>
+<center>
+<img src="images/rstudio_cloud.png">
+</center>
+<p>Click on “new project” and you will be taken to this page:</p>
+<center>
+<img src="images/rstudio_cloud_new.png">
+</center>
+<p>As you can see it is almost identical to the way the program would appear on your computer if you had installed it there.</p>
+<p>To name your project you can click the name at the top of the page and type in a new one:</p>
+<center>
+<img src="images/rstudio_cloud_nameproj.png">
+</center>
+<p>You will also need to upload any data files to the server before you can work with them. This is done with the
+addition to the panel Files/Plots/Packages/Help/Viewer on the right- the “Files” pane now had a button to upload:</p>
+<center>
+<img src="images/rstudio_cloud_upload1.png">
+</center>
+<p>Pressing this will open a pop-up box. Click on the “browse” button, navigate through your directories and identify the file you wish to upload and confirm. Then press ok. The file should then be uploaded and displayed in the files pane.</p>
+<center>
+<img src="images/rstudio_cloud_upload2.png">
+</center>
+<div class="info">
+<p>
+If at any point you are struggling to access the required materials or software it is important that you contact the tutors <strong>at the earliest opportunity</strong> to discuss the issues you are having.
+</p>
+<p>
+We want you to do well and have a good experience learning with us, let us know if you are experiencing difficulty so that we may help you resolve it!
+</p>
+</div>
+<div id="downloading-your-files-from-rstudio-cloud" class="section level5">
+<h5><span class="header-section-number">1.9.1.3.1</span> Downloading Your Files from RStudio Cloud</h5>
+<p>If you are using RStudio Cloud your files will be saved on the cloud, but you will need to download the .Rmd files that you have been working with (containing coursework etc) to upload them to the assignment submission pages on Moodle.</p>
+<p>Here you can see the file <code>myfile.Rmd</code> that I have made on the cloud. To download it I select the checkbox next to the file and click on the “More” drop-down menu and click “export”, as shown here:</p>
+<center>
+<img src="images/rstudio_cloud_download1.png">
+</center>
+<p>I then get a dialogue box asking me if I want to name the file something different. I will stick with the original name, so I just click “Download”:</p>
+<center>
+<img src="images/rstudio_cloud_download2.png">
+</center>
+<p>Now I get a pop-up as I would when downloading any other file. To save the file ensure “Save File” is selected and click “OK”:</p>
+<center>
+<img src="images/rstudio_cloud_download3.png">
+</center>
+<p>The file will then be saved in the folder where your downloads are saved (usually the “Downloads” folder by default). You can then navigate to this file when browsing files to upload to Moodle.</p>
+</div>
+</div>
+</div>
+<div id="installing-and-loading-tidyverse" class="section level3">
+<h3><span class="header-section-number">1.9.2</span> Installing and Loading Tidyverse</h3>
+<p>Use the information in the section <a href="introduction.html#install-tidyverse">1.7.1.1</a> above to install the Tidyverse package on your RStudio installation.</p>
+<div class="info">
+<p>
+If you are using RStudio Cloud you are provided with a completely self-contained computing environment. This means that you can <code>install.packages()</code> on your virtual RStudio too as required.
+</p>
+</div>
+<p>Load Tidyverse from the using the <code>library()</code> function in section <a href="introduction.html#load-tidyverse">1.7.2</a>. <em>For now</em> you can do this in either a new .r file, .Rmd file or even in the console.</p>
+<p>If you successfully load it you will see this printed in the console:</p>
+<center>
+<img src="images/tidyverse_success.png">
+</center>
+<p>You will be using the Tidyverse package in the next lesson, so don’t worry if you struggle with this at the moment.</p>
+
+</div>
+</div>
+</div>
+<h3> References</h3>
+<div id="refs" class="references">
+<div id="ref-l1book">
+<p>Nordmann, Emily, and Heather Cleland Woods. 2019. “Level 1 Data Skills.” 2019. <a href="https://psyteachr.github.io/ug1-practical/index.html">https://psyteachr.github.io/ug1-practical/index.html</a>.</p>
+</div>
+</div>
+<script>
+
+/* update total correct if #total_correct exists */
+update_total_correct = function() {
+  if (t = document.getElementById("total_correct")) {
+    t.innerHTML =
+      document.getElementsByClassName("correct").length + " of " +
+      document.getElementsByClassName("solveme").length + " correct";
+  }
+}
+
+/* solution button toggling function */
+b_func = function() {
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "");
+  }
+  
+  if (my_answer !== "" & real_answers.includes(my_answer)) {
+    cl.add("correct");
+  } else {
+    cl.remove("correct");
+  }
+  update_total_correct();
+}
+
+window.onload = function() {
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+  
+  /* set up solveme inputs */
+  var solveme = document.getElementsByClassName("solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off"); 
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+    
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+    
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  update_total_correct();
+}
+
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduction-to-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

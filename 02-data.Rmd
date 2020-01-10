@@ -1,0 +1,731 @@
+# Introduction to Data
+
+## Intended Learning Outcomes {-}
+
+1. understand basic data types
+2. create and store vectors 
+3. convert data types into one another
+4. create a data table from scratch
+5. import and store data
+
+
+TAKE OUT LATER ON - just examples of what boxes exist for the minute
+
+
+```{block, type = "solved"}
+
+{block, type = "solved"}
+
+```
+
+
+```{block, type = "funfact"}
+
+{block, type = "funfact"}
+
+```
+
+
+```{block, type = "question"}
+
+{block, type = "question"}
+
+```
+
+
+```{block, type = "info"}
+
+{block, type = "info"}
+
+```
+
+
+```{block, type = "danger"}
+
+{block, type = "danger"}
+
+```
+
+
+```{block, type = "warning"}
+
+{block, type = "warning"}
+
+```
+
+
+```{block, type = "task"}
+
+{block, type = "task"}
+
+```
+
+
+## Pre-Steps
+
+Before we begin, we need to do some house-keeping.
+
+### Downloading materials
+
+First, we need to download the materials we are working with today. You can find them <a href="data\L2_data.zip" download>here</a> or on moodle. It's a zip folder that contains an Rmd file called `L2_stub` and a data file in .csv format forlater. `L2_stub` has all the code chunks listed for today's lesson. You are more than welcome to add notes and comments to the Rmd (white chunks), however there is no need to copy any code.
+
+
+### Unzipping the zip folder
+
+The folder we have downloaded is a zip folder. R cannot handle zip folders very well, so the folder needs to be unzipped. Right-mouseclick on the zipped folder, then choose `Extract All...`.
+
+Copy and paste/ move the folder to your M drive (or somewhere that makes sense to you - and where you can find it again - if you are using your own computer).
+
+Check the unzipped folder contains the `L2_stub.Rmd` and a data file called `MM_data.csv`.
+
+
+### Setting the working directory
+
+It is always good practice to set your working directory to the folder you are working with. This can be done in 2 ways:
+
+1. In the menu, go to **Session > Set Working Directory > Choose Directory** (Crtl + Shift + H also works as key short cut in a Windows environment). Then select the folder containing the data file and click 'open'. You might not see any files in the folder you are selecting - that is fine.
+
+2. In the `Files pane`, you could navigate to today's folder, and once there click on **More > Set As Working Directory**. 
+
+Whichever way you prefer is fine. The files `L2_stub` and `MM_data.csv` should now be visible in the `Files pane`.
+
+
+### Load tidyverse into the library
+
+We will be using a few functions today that are part of the `tidyverse` package compilation. Let's load tidyverse in the library now, so we do not have to worry about it later on.
+
+```{r}
+library(tidyverse)
+```
+
+
+
+Yay, with that out of the way, we can begin Lesson 2.
+
+
+## Basic data types
+
+There are plenty data types, however for our purposes we will be focussing on:
+
+| data type | description                | example                  |
+|:----------|:---------------------------|:--------------|
+| character | text string                | `"hello World!"`, `"35.2"`, `'TRUE'` |
+| double    | double precision floating point numbers | `.033`, `-2.5`            |
+| integer   | positive & negative whole numbers       | `0L`, `1L`, `365L`        |
+| logical   | Boolean operator with only two possible values  | `TRUE`, `FALSE`   |
+
+
+### Character
+
+You can store any text as a value in your local environment. You can either use single or double inverted commas.
+
+```{r quote, eval=FALSE}
+my_quote <- 'R is Fun to learn!'
+cat(my_quote) # cat() prints the value stored in my_quote
+```
+
+
+If you want to use a direct quote, you need to include a backslash before each inverted comma.
+
+```{r direct quote}
+direct_quote <- "My friend said \"R is Fun to learn\", and we all agreed."
+cat(direct_quote)
+```
+
+```{block, type="info"}
+
+You can check the data type using the `typeof()` function. If you want to know which class they belong to, you can use the `class()` function.
+
+```
+
+
+### Numeric
+
+`double` and `integer` are both class numeric. Double is a number with decimal places whereas integer is a number that's a full number. Any number will be stored as a `double` unless you specify `integer` by adding an L as a suffix.
+
+Example:
+
+```{r}
+typeof(359.1)
+typeof(5)
+typeof(45L)
+```
+
+
+### Logical
+
+A logical vector is a vector that only contains TRUE and FALSE values. You can use that type of data to compare (or relate) 2 pieces of information. We have several comparison (or relational) operators in R. A few of them are:
+
+<center> <img src="images/Logical_operators.png"> </center>
+
+More information on logical comparison operators can be found on https://bookdown.org/ndphillips/YaRrr/logical-indexing.html (from which the above image was modified).
+
+You could compare if two values are equal...
+
+```{r}
+100 == 100
+```
+
+... or if they are not equal.
+
+```{r}
+100 != 100
+```
+
+We can test if one value is smaller or equal than the other...
+
+```{r}
+5 <= 9-4
+```
+
+... or if one value is larger than another.
+
+```{r}
+101 > 111
+```
+
+Note that it works with character strings as well. (Not really important for this class though)
+
+```{r}
+# "a" == "a" would be TRUE as both side of the comparison contain the same information.
+"a" == "a"
+
+# "a" <= "b" would be TRUE as a comes before b in the alphabet (i.e. 1st letter vs 2nd letter)
+"a" <= "b"
+
+# "abc" > "a" would be TRUE as there are more values on the left than on the right
+"abc" > "a"
+```
+
+
+
+
+<span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span>
+
+Run the following examples in your Console and select from the drop down menu what data type they belong to:
+
+
+* class(1): `r mcq(c("character", answer = "double", "integer", "logical", "Error message"))`
+* class(1L): `r mcq(c("character", "double", answer = "integer", "logical", "Error message"))`
+* class(1.0): `r mcq(c("character", answer = "double", "integer", "logical", "Error message"))`
+* class("1"): `r mcq(c(answer = "character", "double", "integer", "logical", "Error message"))`
+* class(1L == 2L): `r mcq(c("character", "double", "integer", answer = "logical", "Error message"))`
+* class(1L <= 2L): `r mcq(c("character", "double", "integer", answer = "logical", "Error message"))`
+* class(1L <= 2L, "1"): `r mcq(c("character", "double", "integer", "logical", answer = "Error message"))`
+
+
+`r hide("Explain this - why is 1 not an integer?")`
+```{block, type = "solved"}
+
+Any number will be stored as a `double` unless you specify `integer` by adding an L as a suffix.
+
+```
+`r unhide()` 
+
+
+
+## Vectors 
+
+Vectors are one of the very simple data structure in R. You could define them as "a single entity consisting of a collection of things". 
+
+
+### Creating vectors
+
+If you want to combine more than one element into one vector, you can do that by using the `c()` function. c stands for combine or as my colleague once said, it's hugging multiple elements together. All elements in the vector have to be of the same data type.
+
+
+**Examples:**
+
+This is a vector of datatype `double`.
+```{r}
+c(1, 2.5, 4.7)
+typeof(c(1, 2.5, 4.7))
+```
+
+This is a vector of datatype `integer`. Adding the `L` makes it an integer, but see that in the printout the `L` is actually omitted.
+
+```{r}
+c(0L, 1L, 2L, 365L)
+typeof(c(0L, 1L, 2L, 365L))
+```
+
+This is a vector of datatype `character`.
+```{r}
+c("hello", "student")
+typeof(c("hello", "student"))
+```
+This is a vector of datatype `logic`.
+```{r}
+c(TRUE, FALSE)
+typeof(c(TRUE, FALSE))
+```
+
+We have seen what vectors look like. If you want to store these vectors in your global environment, all you need is the `assignment operator <-` and a `meaingful name` for "the thing" you want to store. Here the first example reads like: "Take a vector of 3 elements (namely 1, 2.5, 4.7) and store it in your `Global Environment` under the name `vec_double`." You can then use the name you assigned to the vector within the `typeof()` function, rather than the vector itself.
+
+```{r}
+vec_double <- c(1, 2.5, 4.7)
+typeof(vec_double)
+
+vec_integer <- c(0L, 1L, 2L, 365L)
+typeof(vec_integer)
+
+vec_character <- c("hello", "student")
+typeof(vec_character)
+
+vec_logic <- c(TRUE, FALSE)
+typeof(vec_logic)
+```
+
+
+```{block, type = "funfact"}
+Funnily enough, a vector `i <- c(1,3,4,6)` would be stored as a `double`. However, when coded as `i <- 1:10` would be stored as an `integer`.
+
+Don't believe it? Try it out in your Console!
+```
+
+
+<span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span>
+
+```{block, type="task"}
+
+**Your turn**
+
+* Create a vector of your 3 favourite movies and call it `favourite_movies`. What type of data are we expecting?
+
+* Pick a couple of your family members or friends and create a vector `years_birth` that lists their year of birth. How many elements does the vector have, and what type of data are we expecting?
+
+* Create a vector that holds all the letters of the alphabet and call it `alph`.
+
+* Create a vector with 3 elements of your name, age, and the country you are from. Store this vector under the name `this_is_me`. What type of data are we expecting?
+```
+
+
+`r hide("Explain this!")`
+```{r}
+# Gaby's solution:
+favourite_movies <- c("Red", "Cloud Atlas", "Hot Fuzz") # character
+years_birth <- c(1953, 1975) # double
+alph <- letters # muahahahaaaa! & character
+this_is_me <- c("Gaby", 38, "Germany") # character
+```
+
+
+```{block, type = "solved"}
+More detailed explanations:
+
+R has Built-in Constants:
+
+* `letters`: the 26 lower-case letters of the Roman alphabet; <br>
+* `LETTERS`: the 26 UPPER-case letters of the Roman alphabet; <br>
+* `month.abb`: the three-letter abbreviations for the English month names; <br>
+* `month.name`: the English names for the months of the year; <br>
+* `pi`: the ratio of the circumference of a circle to its diameter
+
+Of course, the task could have been solved typing alph <- c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
+
+`this_is_me` would be stored as a `character` vector despite having text as well as numeric elements. Remember how we said earlier that all elements have to be of the same data type? After the next section, you will understand why they are stored as a character and not as a numeric vector.
+
+```
+`r unhide()` 
+
+
+
+### Converting vectors into different data types of vectors aka funky things we can do
+
+We can also reassign data types to our vectors we have just created. For example if we wanted to turn our `var_double` from `double` to `character`, we would code
+
+```{r}
+vec_double_as_char <- as.character(vec_double)
+typeof(vec_double_as_char)
+
+```
+
+In your Global Environment, you can now see that the vector `vec_double` has 3 numeric elements (abbreviated `num`), whereas `vec_double_as_char` has 3 character elements (abbreviated `chr`). Also note that the numbers 1.2, 2.5, and 4.7 have now quotation marks around them.
+
+Likewise, if we wanted to turn our integer vector `vec_integer` into data type `double`, we would use
+
+```{r}
+vec_integer_as_double <- as.double(vec_integer)
+typeof(vec_integer_as_double)
+```
+
+In your Global Environment, see how `vec_integer` has `int` assigned to it, whereas `vec_integer_as_double` is now listed as `num`. The `typeof` function revealed that the 4 elements of `vec_integer_as_double` are now stored as data type `double`.
+
+
+
+However, trying to turn a character vector into an `integer` or a `double` would fail. 
+
+```{r}
+vec_char_as_int <- as.integer(vec_character) # same outcome if we tried as.double
+typeof(vec_char_as_int)
+```
+
+
+R would still compute "something" but it would be accompanied by the above warning message. As you can see in your Global Environment, `vec_char_as_int` does indeed exist as a numeric vector with 2 elements, but `NA` tells us they are classified as missing values.
+
+
+A logical vector can be converted into all other basic data types.
+
+```{r}
+vec_logic_as_int <- as.integer(vec_logic)
+vec_logic_as_int
+```
+
+`TRUE` and `FALSE` will be coded as `1` and `0` respectively when converting a logical into a numeric vector (integer or double). When converting a logical into a characters, it will just read as `"TRUE"` and `"FALSE"`.
+
+```{r}
+vec_logic_as_char <- as.character(vec_logic)
+vec_logic_as_char
+```
+
+<span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span> 
+
+
+Remember the vector `this_is_me`? Can you explain now why it was stored as `character`?
+
+
+`r hide("Nope, I don't get it!")`
+```{block, type = "info"}
+
+`this_is_me` would be stored as a `character` vector because this is the best way to retain all information. If this were to be stored as a `numeric` vector, the name and home country could only be coded as missing values `NA`. So rather than trying to turn everything into a number (which is not possible/ does not retain meaningful information), R turns the number into character (which is possible). 
+
+```
+`r unhide()`
+
+<br>
+
+With this in mind, what data type would the vector be stored as if you combined the following elements? 
+
+1. logical and double - i.e. c(TRUE, 45)
+2. character and logical - i.e. c("Sarah", "Marc", FALSE)
+3. integer and logical - i.e. c(1:3, TRUE)
+4. logical, double, and integer - i.e. c(FALSE, 99.5, 3L)
+
+
+
+`r hide("Solution")`
+```{block, type = "solved"}
+1. double
+2. character
+3. integer
+4. double
+```
+`r unhide()`
+
+
+### Adding elements to existing vectors
+
+Let's start with a vector called `friends` that has three names in it.
+```{r}
+friends <- c("Gaby", "Wil", "Greta")
+friends
+```
+
+We can now add more `friends` to our little group of `friends` by adding them either at the end, or the beginning of the vector. `friends` will now have four, and five values respectively, since we are "overwriting" our existing vector with the new one of the same name.
+
+```{r}
+friends <- c(friends, "Kate")
+friends
+
+friends <- c("Rebecca", friends)
+friends
+
+```
+
+
+Vectors also support missing data. If we wanted to add "another friend" whose name we do not know yet, we can just simply add `NA` to `friends`.
+
+```{r}
+friends <- c(friends, NA)
+friends
+
+```
+
+The vector `friends` would still be a character vector. Missing values do not alter the original data type. However, if you look in the Global Environment, you can see that the number of elements stored in `friends` increased from 5 to 6. To determine the number of elements in a vector in R (rather than eye sight), you can also use a function called `length()`. 
+
+```{r}
+typeof(friends)
+length(friends)
+```
+
+Well, now we decided that 5 friends in our little group of friends is sufficient, and we did not want anyone else to join, we could remove the "placeholder friend NA" by coding
+
+```{r}
+friends <- friends[1:5]
+friends
+```
+
+You can see that the length of the vector `friends` is now back to 5 again.
+
+```{block, type = "funfact"}
+`1:5` uses the colon operator`:` which is read as in "access the vector elements 1, 5, and everything in between". An alternative way of writing out the above without using a colon operator would be `friends[c(1,2,3,4,5)]`. Notice that you need the `c()` function again.
+```
+
+
+Just as easily, we can create vectors for numeric sequences. The function `seq()` is a neat way of doing this, or you can use the colon operator`:` again. Just with the elements in the vector above, the same logic applies here. For example `1:10` means, you want to list number 1, number 10, and all numbers in between.
+
+```{r}
+sequence1 <- 1:10
+sequence1
+
+sequence2 <- seq(10)
+sequence2
+
+# compare whether sequence1 and sequence2 are of the same data type
+typeof(sequence1) == typeof(sequence2)
+
+# compare whether elements of sequence1 are the same as the elements in sequence2 
+sequence1 == sequence2
+```
+
+<span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span>
+
+* What data type is `sequence1`? `r mcq(c("character", "double", answer = "integer", "logical"))`
+* What data type is `sequence2`? `r mcq(c("character", "double", answer = "integer", "logical"))`
+* If we were to store the output of `sequence1 == sequence2` in a vector, what data type would the vector be? `r mcq(c("character", "double", "integer", answer = "logical"))`
+
+
+## Tibble - the new way of creating a dataframe
+
+### What the heck is a tibble? Do you mean table?
+
+First of all, tibble is not a spelling error; it's the way r refers to its newest form of data table or dataframe. You can create a dataframe either by using the `tibble()` function or a function called `data.frame()`. `tibble()` is part of the package `tidyverse` whereas `data.frame` can be found in base R and does not need an additional package read into the library. Tibbles are slightly different to dataframes in that
+
+* they have better print properties (Dataframes print ALL data when you call the data whereas tibbles only print the first 10 rows of data)
+* character vectors are not coerced into factors (which you will be thankful for later on in your programming life)
+* column names are not modified (for example if you wanted to make a column called `Female Voices` you could just do that. `tibble` keeps it as `Female Voices` with a space between the two words, whereas the `data.table` function would change it to `Female.Voices`)
+
+If you want to read more about the differences between dataframes and tibbles (and appreciate the advantages of tibbles), have a look on https://cran.r-project.org/web/packages/tibble/vignettes/tibble.html.
+
+
+### How to make a tibble from scratch
+
+Now that you have learnt how to create vectors, we can try and combine them into a tibble. The easiest way is to use the `tibble()` function. Let's say we want to create a tibble that is called `tibble_year` with 4 columns:
+
+* The first column `month` lists all months of the year
+* The second column `abb_month` gives us the three-letter abbreviation of each year.
+* The third column `month_num` tells which number of the year is which month (e.g. January would be the first month of the year; December would be number 12).
+* The fourth column `season` would tell us in which season the month is (Northern hemisphere). 
+
+Remember the Built-in Constants we were talking about earlier?
+
+```{r}
+# Remember to load tidyverse into your script at least once (usually at the beginning)
+library(tidyverse)
+
+tibble_year <- tibble(month = month.name,
+                      abb.month = month.abb,
+                      month_num = 1:12,
+                      season = c(rep("Winter", 2), rep("Spring", 3), rep("Summer", 3), rep("Autumn", 3), "Winter"))
+
+tibble_year
+```
+
+The generic structure of each of these columns we are creating is `column header name` `=` `values to fill in the rows`.
+
+```{block, type = "info"}
+Here, we used the built-in replication function `rep()` to build the column `season` which is a more time-efficient approach than typing out 4 seasons 3 times. Of course, we could have written season = c("Winter", "Winter", "Spring", "Spring", "Spring", "Summer", "Summer", "Summer", "Autumn", "Autumn", "Autumn", "Winter") instead.
+```
+
+
+We can now use the function `glimpse()` to see which data types our columns are. This is a very handy function to keep in mind for later!
+
+```{r}
+glimpse(tibble_year)
+```
+
+
+`glimpse()` tells us that our tibble has one column that is an integer, and three columns that are character strings. If we wanted to influence which datatype the columns (something that is not automatically assigned), we can do that by using the functions `as.double()`, `as.character()`, `as.integer()`, etc. we have seen earlier when we were talking about vectors. For example, if we wanted to modify the `integer` column as a `double`, we would type
+
+
+```{r}
+tibble_year2 <- tibble(month = month.name,
+                       abb.month = month.abb,
+                       month_num = as.double(1:12),
+                       season = c(rep("Winter", 2), rep("Spring", 3), rep("Summer", 3), rep("Autumn", 3), "Winter"))
+```
+
+
+
+```{block, type = "warning"}
+If you click on the name of the dataset in your `Global Environment` to view your dataframe, you would see no actual difference between `tibble_year` and `tibble_year2`. However, `glimpse()` would tell you.
+
+If I were a mean person, and had recoded month_num = as.character(1:12) instead, you would not see it when you visually inspect the data. What would the consequences be?
+```
+
+
+<span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span>
+
+```{block, type="task"}
+
+**Your turn**
+
+Make a dataframe called `mydata` with 5 columns and 10 rows:
+
+* column 1 is called `PP_ID` and contains participant numbers 1 to 10. Make sure this data type is `integer`.
+* column 2 is called `PP_Age` and and contains the age of the participant. Make sure this data type is `double`.
+* column 3 is called `PP_Sex` and contains the sex of the participant. Even PP_IDs are male, odd PP_IDs are female participants.
+* column 4 is called `PP_Country` and contains the country participants were born in. Surprise, surprise - they were all born in Scotland!!!
+* column 5 is called `PP_Consent` and is an overview whether participants have given their consent to participate in an experiment (TRUE) or not (FALSE). Participants 1-9 have given their consent, participant 10 has not.
+```
+
+
+`r hide("Solution")`
+```{r, eval = FALSE}
+# Gaby's solution:
+mydata <- tibble(PP_ID = 1:10,
+                 PP_Age = c(22, 21, 24, 36, 33, 25, 21, 31, 28, 35),
+                 PP_Sex = rep(c("Female", "Male"), 5),
+                 PP_Country = "Scotland",
+                 PP_Consent = c(rep(TRUE, 9), FALSE))
+```
+
+```{block, type="info"}
+But there are plenty of other ways how this could have been done. For example:
+
+* PP_ID = seq(10) <br>
+* PP_ID = as.integer(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) <br>
+* PP_Age = as.double(22:31) <br>
+* PP_Sex = c("Female", "Male", "Female", "Male", "Female", "Male", "Female", "Male", "Female", "Male") <br>
+* PP_Country = rep("Scotland", 10) <br>
+* PP_Consent = c(TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE)
+```
+`r unhide()`
+
+
+
+## Reading in data
+
+### from pre-existing databases
+
+R comes with pre-installed datasets available for you to use and practice your skills on. If you want have an overview over all databases available type `data()` into your Console.
+
+One of those datasets is called "Motor Trend Car Road Tests" or in short `mtcars`. If you type `mtcars` into your Console, you can see what the dataset looks like.
+
+```{r}
+mtcars
+```
+
+You can look up what all the column headers mean by typing `?mtcars` into your Console, or using the help tab to search for `mtcars`.
+
+```{block, type="question"}
+`mtcars` is a dataframe rather than a tibble. How do we know that?
+```
+
+`r hide("Answer")`
+```{block, type="solved"}
+When we called `mtcars` it printed the whole dataframe rather than just the first 10 rows.
+```
+`r unhide()`
+
+However, we have seen what the data in `mtcars` looks now, but we would be able to work with it better if put it into our `Global Environment`. Let's save `mtcars` as a dataframe called `data_mtcars`, and look at the first few rows which can be achieved using the `head()` function.
+
+```{r}
+data_mtcars <- mtcars # read in as a dataframe
+head(data_mtcars)
+```
+
+Notice that we do not have a column header for the type of car. The reason is that the type of car is actually the name of the rows, rather than a column itself. As you can see in your `Global Environment`, `df_mtcars` has 32 observations, and 11 variables - car type is not one of them. 
+
+
+```{block, type = "info"}
+Adding the rownames as a separate column would be rather tricky at this stage in the course (but you could try and do it after lecture 5). 
+```
+
+
+Another interesting dataset is called `starwars`. It can be found in the package `dplyr` which is part of `tidyverse`. So, as long as you have `tidyverse` loaded into your library, `starwars` should be available to you.
+
+```{r}
+library(tidyverse) # if you have already done this in your Rmd, this step is superfluous
+starwars
+```
+
+In comparison to `mtcars`, `starwars` is already a tibble (which you can see in the first line of the printout). It gives you the number of observations (87) and variables (13), the column headers, the data type of each column, and the first 10 rows of data. Again, it would be neater to work with the data if we saved the data tibble to our `Global Environment`. Let's do that and call it `data_SW`.
+
+```{r}
+data_SW <- starwars
+```
+
+Again, you could use the very handy `glimpse()` function to see what data types the columns are.
+
+```{r, eval=FALSE}
+glimpse(data_SW)
+```
+
+
+
+```{block, type = "funfact"}
+There are other built in datasets available, such as `babynames`. The `babynames` dataset is located in a package called `babynames` which needs to be installed first, and then loaded into the library before you can look at the data. Do you remember how we install packages and load them into the library?
+```
+
+`r hide("Hint")`
+```{block, type = "solved"}
+install.packages("babynames") <br>
+library(babynames)
+
+Remember that you only have to do the `install.packages("babynames")` once - before you want to use `babynames` for the very first time. Once you have installed it, you can use it whenever you feel like by just loading it into the library.
+```
+`r unhide()`
+
+
+
+### from existing data files
+
+R is able to handle different types of data files. The most common one available is `.csv`. CSV stands for **comma-separated values**. Usually, a `.csv` file is opened with some sort of excel programme (like Microsoft Excel, LibreOffice, OpenOffice, Apple Numbers, etc.) which takes the comma separator as a mean to format everything into a nice and neat table. If you open your data in Notepad, you can actually see the structure of it.
+
+<center> <img src="images/MM_csv.png"> </center>
+
+```{block, type="info"}
+There are other file types out there, apart from csv, like tsv (tab-separated values), excel, SAS, or SPSS. However, these would go beyond the scope of this class. All of our data will be in a .csv format.
+```
+
+
+Getting the data from the csv file into your `Global Environment` in R is by using a function called `read_csv()` from the package `tidyverse`. Since we did the house-keeping (i.e. loading in the package tidyverse into the library) at the very beginning, there is no need for us to do that again.
+
+The data you just saw in the screenshot above are from `M&Ms colours by bag` (http://www.randomservices.org/random/data/index.html). The data table gives the color counts and net weight (in grams) for a sample of 30 bags of M&M's. The advertised net weight is 47.9 grams.
+
+```{r}
+MM_data <- read_csv("MM_data.csv")
+```
+
+As you can see, R is giving you a bit of an output of what it has just done - parsed some columns. The data is stored as an object in your `Global Environment` now, and we could either `call the data` (by typing `MM_data` into the `Console`) or use `glimpse()` to have a look what the data actually looks like and what data types are in each column.
+
+```{r}
+MM_data
+glimpse(MM_data)
+```
+
+
+```{block, type="info"}
+You could also have used the function `head()` to show the first 6 rows of the dataframe or could have viewed the data by clicking manually on `MM_data` in the `Global Environment`. 
+
+Watch out, though!!! `head(`) can be a bit misleading in that it creates a new tibble and the output reads `# A tibble: 6 x 7`. This does not mean that our `MM_data` only has 6 rows of observations!!!
+
+Viewing the data opens the data in a new tab in the `Source pane` but it does not show you the data types of the columns. You could, however, click on the wee blue arrow next to the data name.
+```
+
+
+Now that we have inspected the data, what does it actually tell us? 
+
+<span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span>
+
+How many rows (or observations) does `MM_data` have? `r fitb("30")` <br>
+How many columns (or variables) does `MM_data` have? `r fitb("7")` <br>
+What data type are all of the columns? `r mcq(c("character", answer = "double", "integer", "logical"))`
+
+```{block, type="danger"}
+Always use read_csv() from the tidyverse package for reading in the data. There is a similar function called read.csv() from base R - **DO NOT USE read.csv()**. These two functions have differences in assigning datatypes to the columns and **read_csv() does a better job**. This applies to the homework task as well. You will not receive marks if you are using the wrong function. So double check before submitting!!!
+```
+
+
+## Last point for today 
+
+Knit your L2_stub. If it knits, it is an indication that all your code chunks are running. This is important for most of the graded assessments in the future. If it runs on your computer, it will run on ours.
+
+## Summative Homework
+
+The first summative assessment is compiled of 11 questions from Lectures 1 and 2. You can download the files from moodle. The folder you download is a zip folder that needs to be unzipped before you can work with it. It contains the homework submission file labelled `GUID_L1L2.Rmd` and a data file called `TraitJudgementData.csv`.
+
+Good luck.
+
+Check that your Rmd file knits into a html file before submitting. Upload your Rmd file (not the knitted html) to moodle. 

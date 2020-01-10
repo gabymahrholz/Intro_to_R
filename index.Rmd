@@ -1,0 +1,132 @@
+--- 
+title: "Introduction to R"
+author: Gaby Mahrholz, Rebecca J. Lai, Kate Haining, Greta Todorova, and Wilhelmiina
+  Toivo
+date: "`r Sys.Date()`"
+bibliography:
+- book.bib
+- packages.bib
+biblio-style: "apalike"
+description: This is the course handbook for the Glasgow University Open Studies course
+  Introduction to R, academic session 2019-2020.
+documentclass: book
+link-citations: yes
+site: bookdown::bookdown_site
+
+---
+
+# About this course {-}
+
+```{r setup, include = F}
+# to render entire book run: bookdown::render_book(input = input_files) in the console with this object in the environment
+input_files <- list.files()[endsWith(list.files(), ".Rmd")] 
+```
+
+```{r setup2, include=FALSE}
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE)
+if (!requireNamespace("webex")) {
+  stop("You must have the 'webex' package installed to knit HTML from this template.\n   devtools::install_github(\"psyteachr/webex\")")
+} else {
+  library("webex")
+}
+
+```
+
+
+This course is a short introduction on using R for dealing with data. 
+
+## Intended Learning Outcomes {-}
+
+The Intended Learning Outcomes (ILOs) for the entire course are:
+
+1. To not be scared
+2. To be encouraged
+3. To get (a little bit) good
+
+Each chapter contained within will come with its own specific ILOs which will be clearly specified at the top of each page. 
+
+These ILOs will be the points that will be covered in the assessments.
+
+## What will I need to complete this course? {-}
+
+To successfully complete this course you will need access to a computer that either already has, or you can download R and RStudio software on. This computer will need to use a Windows, Mac or Linux based operating system. You *can* run RStudio on a Chromebook sometimes, but the process is more complex (see <a href="https://www.reddit.com/r/chromeos/comments/8r5lwb/r_studio_for_chromebook/">here</a>).
+
+If you cannot use RStudio on your computer you might want to consider using <a href="https://rstudio.cloud/">RStudio Cloud</a>.
+
+All University of Glasgow Library computers should have this software installed. If you have enrolled in the University you should have access to these.
+
+After the first lesson you will be given the task of either installing R and RStudio on your own personal computer, or finding another suitable method of accessing the software.
+
+**If you are having issues with access talk to your tutors via the Moodle forum as soon as possible so that we can help you!** R, like any skill, will get better with practice and we want to ensure you can practice and complete the asessments as easily as possible.
+
+## About the Assessments {-}
+
+### Formative Assessments {-}
+
+These assessments allow you to revise the concepts that you have learned in class. These do not count towards the course grade and, although we encourage you to, there is no requirement to complete them.
+
+These may take the form of coding assessments or multiple choice questions (MCQs) that will be delivered through the Moodle site that you have been enrolled in.
+
+### Summative Assessments {-}
+
+***These are the assessments that count towards your course grade***.
+
+There will be 5 take-home exercises to complete as you progress through this course. They will be evenly spaced across the entire 10 week span, occuring every two weeks. You will have one week from the time of the release of each assessment to submit your answer(s). 
+
+We will never ask you to memorise any code as this is not how people produce code in reality. You may use notes and resources you complete in class to do these assessments and consult online resources to help you. You can work together to complete these tasks, but remember that grades are given on an individual basis and that you must not plagiarise the work of others.
+
+***For the purposes of your final grade only 4 of these assessments will be counted and each will be worth 25%***. The lowest score out of the 5 assessments will be dropped and not taken into account when calculating your final grade. We encourage you to complete all 5 assessments.
+
+Each assessment will have between 3 and 5 questions for you to complete. 
+
+#### Assessment 1 {-}
+
+This will assess the ILOs taught in the first two classes covering the basics. 
+
+#### Assessment 2 {-}
+
+This will cover the ILOs taught in the third and fourth class, but you will also need to use knowledge from previous lessons as your learning is supposed to be cumulative.
+
+#### Assessment 3 {-}
+
+This will cover the ILOs taught in the fifth and sixth class, but you will also need to use knowledge from previous lessons as your learning is supposed to be cumulative.
+
+#### Assessment 4 {-}
+
+This will cover the ILOs taught in the seventh and eighth class, but you will also need to use knowledge from previous lessons as your learning is supposed to be cumulative.
+
+#### Assessment 5 {-}
+
+This will cover the ILOs taught in the nineth and tenth class, but you will also need to use knowledge from previous lessons as your learning is supposed to be cumulative.
+
+### How to Submit Your Assessments {-}
+
+A file to complete each summative assessment will be provided to you. In this file you will be provided with code chunks in which to type your answers. 
+
+Once you have provided code in all of the appropriate slots you will then upload this file to the assignment submission page on Moodle.
+
+#### MCQs {-}
+
+MCQ assessments will be posted on the Moodle page for this course. You will see a selection of questions and will be asked to select the correct answer from a dropdown list of possible answers. 
+
+Submitting these assessments will require you to select an answer for each of the questions and then press the "submit" button at the bottom of the page.
+
+***MCQ assessments will always be formative, completely optional and will not contribute to your final grade for the class***. However we do encourage you to try them as practice for the summative assessments. You may need to create some code in order to generate the answers to the MCQ questions.
+
+#### Coding Assessments {-}
+
+Coding assessments will be uploaded to Moodle under your account. You should upload the file with the extension ".Rmd", and not any files ending in ".R"/".r", ".txt", ".csv" or ".html".
+
+Coding assessments will be a mixture of formative and summative. Summative assessments will be clearly marked as such.
+
+## Assistance {-}
+
+You can ask questions on the Moodle page that accompanies this course. We ask that you do not post solutions to assessments here and any solutions posted will be removed.
+
+## Why are these materials open? {-}
+
+These materials have been adapted from various sources. Some of these materials have been Open Educational Materials with CC-BY-SA licenses. This means that any materials that use them must also be made open (SA means "share alike"). 
+
+We also believe in the value of open educational materials. Your course fees contribute to the development of this course, but also to providing you with supporting staff and certification at the end of the course.

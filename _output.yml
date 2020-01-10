@@ -1,0 +1,11 @@
+bookdown::gitbook:
+  css: style.css
+  include:
+    after_body: webex.js
+  config:
+    toc:
+      collapse: section
+      before: |
+        <li><a href="./">Introduction to R</a></li>
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>

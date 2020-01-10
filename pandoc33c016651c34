@@ -1,0 +1,3 @@
+<p>You could also have used the function <code>head()</code> to show the first 6 rows of the dataframe or could have viewed the data by clicking manually on <code>MM_data</code> in the <code>Global Environment</code>.</p>
+<p>Watch out, though!!! <code>head(</code>) can be a bit misleading in that it creates a new tibble and the output reads <code># A tibble: 6 x 7</code>. This does not mean that our <code>MM_data</code> only has 6 rows of observations!!!</p>
+<p>Viewing the data opens the data in a new tab in the <code>Source pane</code> but it does not show you the data types of the columns. You could, however, click on the wee blue arrow next to the data name.</p>

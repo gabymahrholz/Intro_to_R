@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Data Transformation 2: Two Table Verbs | Introduction to R</title>
+  <meta name="description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
+  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Data Transformation 2: Two Table Verbs | Introduction to R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Data Transformation 2: Two Table Verbs | Introduction to R" />
+  
+  <meta name="twitter:description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
+  
+
+<meta name="author" content="Gaby Mahrholz, Rebecca J. Lai, Kate Haining, Greta Todorova, and Wilhelmiina Toivo" />
+
+
+<meta name="date" content="2020-01-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-transformation-1-basic-one-table-verbs.html"/>
+<link rel="next" href="data-transformation-3-finetuned-data-manipulation.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this course</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#intended-learning-outcomes"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-will-i-need-to-complete-this-course"><i class="fa fa-check"></i>What will I need to complete this course?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-assessments"><i class="fa fa-check"></i>About the Assessments</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#formative-assessments"><i class="fa fa-check"></i>Formative Assessments</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#summative-assessments"><i class="fa fa-check"></i>Summative Assessments</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-submit-your-assessments"><i class="fa fa-check"></i>How to Submit Your Assessments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#assistance"><i class="fa fa-check"></i>Assistance</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-are-these-materials-open"><i class="fa fa-check"></i>Why are these materials open?</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#intended-learning-outcomes-1"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#computer-literacy-basics"><i class="fa fa-check"></i><b>1.1</b> Computer Literacy Basics</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#r-and-r-studio"><i class="fa fa-check"></i><b>1.2</b> R and R Studio</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction.html"><a href="introduction.html#r"><i class="fa fa-check"></i><b>1.2.1</b> R</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduction.html"><a href="introduction.html#rstudio-ide"><i class="fa fa-check"></i><b>1.2.2</b> RStudio IDE</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#r-r-studio-and-associated-file-types"><i class="fa fa-check"></i><b>1.3</b> R, R Studio and Associated File Types</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction.html"><a href="introduction.html#file-structuredirectories"><i class="fa fa-check"></i><b>1.3.1</b> File Structure/Directories</a></li>
+<li class="chapter" data-level="1.3.2" data-path="introduction.html"><a href="introduction.html#file-extensions"><i class="fa fa-check"></i><b>1.3.2</b> File Extensions</a></li>
+<li class="chapter" data-level="1.3.3" data-path="introduction.html"><a href="introduction.html#zip-files"><i class="fa fa-check"></i><b>1.3.3</b> .zip Files</a></li>
+<li class="chapter" data-level="1.3.4" data-path="introduction.html"><a href="introduction.html#rstudio-specific-files"><i class="fa fa-check"></i><b>1.3.4</b> RStudio Specific Files</a></li>
+<li class="chapter" data-level="1.3.5" data-path="introduction.html"><a href="introduction.html#r-files"><i class="fa fa-check"></i><b>1.3.5</b> .r Files</a></li>
+<li class="chapter" data-level="1.3.6" data-path="introduction.html"><a href="introduction.html#rmd-files"><i class="fa fa-check"></i><b>1.3.6</b> .Rmd files</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#comments"><i class="fa fa-check"></i><b>1.4</b> Comments</a></li>
+<li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#saving-your-file"><i class="fa fa-check"></i><b>1.5</b> Saving your file</a></li>
+<li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#sessions"><i class="fa fa-check"></i><b>1.6</b> Sessions</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="introduction.html"><a href="introduction.html#what-is-a-session-in-r"><i class="fa fa-check"></i><b>1.6.1</b> What is a session in R?</a></li>
+<li class="chapter" data-level="1.6.2" data-path="introduction.html"><a href="introduction.html#restarting-your-current-session"><i class="fa fa-check"></i><b>1.6.2</b> Restarting Your Current Session</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#packages"><i class="fa fa-check"></i><b>1.7</b> Packages</a><ul>
+<li class="chapter" data-level="1.7.1" data-path="introduction.html"><a href="introduction.html#installing-packages"><i class="fa fa-check"></i><b>1.7.1</b> Installing Packages</a></li>
+<li class="chapter" data-level="1.7.2" data-path="introduction.html"><a href="introduction.html#load-tidyverse"><i class="fa fa-check"></i><b>1.7.2</b> Loading Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="introduction.html"><a href="introduction.html#functions"><i class="fa fa-check"></i><b>1.8</b> Functions</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="introduction.html"><a href="introduction.html#what-is-a-function"><i class="fa fa-check"></i><b>1.8.1</b> What is a function?</a></li>
+<li class="chapter" data-level="1.8.2" data-path="introduction.html"><a href="introduction.html#the-anatomy-of-a-function-names-and-arguments"><i class="fa fa-check"></i><b>1.8.2</b> The Anatomy of a Function: names and arguments</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="introduction.html"><a href="introduction.html#formative-assignment"><i class="fa fa-check"></i><b>1.9</b> Formative Assignment</a><ul>
+<li class="chapter" data-level="1.9.1" data-path="introduction.html"><a href="introduction.html#access-to-rstudio"><i class="fa fa-check"></i><b>1.9.1</b> Access to RStudio</a></li>
+<li class="chapter" data-level="1.9.2" data-path="introduction.html"><a href="introduction.html#installing-and-loading-tidyverse"><i class="fa fa-check"></i><b>1.9.2</b> Installing and Loading Tidyverse</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-data.html"><a href="introduction-to-data.html"><i class="fa fa-check"></i><b>2</b> Introduction to Data</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-data.html"><a href="introduction-to-data.html#intended-learning-outcomes-2"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="2.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#pre-steps"><i class="fa fa-check"></i><b>2.1</b> Pre-Steps</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#downloading-materials"><i class="fa fa-check"></i><b>2.1.1</b> Downloading materials</a></li>
+<li class="chapter" data-level="2.1.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#unzipping-the-zip-folder"><i class="fa fa-check"></i><b>2.1.2</b> Unzipping the zip folder</a></li>
+<li class="chapter" data-level="2.1.3" data-path="introduction-to-data.html"><a href="introduction-to-data.html#setting-the-working-directory"><i class="fa fa-check"></i><b>2.1.3</b> Setting the working directory</a></li>
+<li class="chapter" data-level="2.1.4" data-path="introduction-to-data.html"><a href="introduction-to-data.html#load-tidyverse-into-the-library"><i class="fa fa-check"></i><b>2.1.4</b> Load tidyverse into the library</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#basic-data-types"><i class="fa fa-check"></i><b>2.2</b> Basic data types</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#character"><i class="fa fa-check"></i><b>2.2.1</b> Character</a></li>
+<li class="chapter" data-level="2.2.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#numeric"><i class="fa fa-check"></i><b>2.2.2</b> Numeric</a></li>
+<li class="chapter" data-level="2.2.3" data-path="introduction-to-data.html"><a href="introduction-to-data.html#logical"><i class="fa fa-check"></i><b>2.2.3</b> Logical</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-data.html"><a href="introduction-to-data.html#vectors"><i class="fa fa-check"></i><b>2.3</b> Vectors</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#creating-vectors"><i class="fa fa-check"></i><b>2.3.1</b> Creating vectors</a></li>
+<li class="chapter" data-level="2.3.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#converting-vectors-into-different-data-types-of-vectors-aka-funky-things-we-can-do"><i class="fa fa-check"></i><b>2.3.2</b> Converting vectors into different data types of vectors aka funky things we can do</a></li>
+<li class="chapter" data-level="2.3.3" data-path="introduction-to-data.html"><a href="introduction-to-data.html#adding-elements-to-existing-vectors"><i class="fa fa-check"></i><b>2.3.3</b> Adding elements to existing vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-data.html"><a href="introduction-to-data.html#tibble---the-new-way-of-creating-a-dataframe"><i class="fa fa-check"></i><b>2.4</b> Tibble - the new way of creating a dataframe</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#what-the-heck-is-a-tibble-do-you-mean-table"><i class="fa fa-check"></i><b>2.4.1</b> What the heck is a tibble? Do you mean table?</a></li>
+<li class="chapter" data-level="2.4.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#how-to-make-a-tibble-from-scratch"><i class="fa fa-check"></i><b>2.4.2</b> How to make a tibble from scratch</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-data.html"><a href="introduction-to-data.html#reading-in-data"><i class="fa fa-check"></i><b>2.5</b> Reading in data</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#from-pre-existing-databases"><i class="fa fa-check"></i><b>2.5.1</b> from pre-existing databases</a></li>
+<li class="chapter" data-level="2.5.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#from-existing-data-files"><i class="fa fa-check"></i><b>2.5.2</b> from existing data files</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-data.html"><a href="introduction-to-data.html#last-point-for-today"><i class="fa fa-check"></i><b>2.6</b> Last point for today</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-data.html"><a href="introduction-to-data.html#summative-homework"><i class="fa fa-check"></i><b>2.7</b> Summative Homework</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html"><i class="fa fa-check"></i><b>3</b> Data Transformation 1: Basic One Table Verbs</a><ul>
+<li class="chapter" data-level="" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#intended-learning-outcomes-3"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="3.1" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#data-wrangling"><i class="fa fa-check"></i><b>3.1</b> Data Wrangling</a></li>
+<li class="chapter" data-level="3.2" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#pre-steps-1"><i class="fa fa-check"></i><b>3.2</b> Pre-Steps</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#downloading-materials-1"><i class="fa fa-check"></i><b>3.2.1</b> Downloading materials</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#unzipping-the-zip-folder-1"><i class="fa fa-check"></i><b>3.2.2</b> Unzipping the zip folder</a></li>
+<li class="chapter" data-level="3.2.3" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#setting-the-working-directory-1"><i class="fa fa-check"></i><b>3.2.3</b> Setting the working directory</a></li>
+<li class="chapter" data-level="3.2.4" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#load-tidyverse-into-the-library-1"><i class="fa fa-check"></i><b>3.2.4</b> Load tidyverse into the library</a></li>
+<li class="chapter" data-level="3.2.5" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#reading-in-the-data"><i class="fa fa-check"></i><b>3.2.5</b> Reading in the data</a></li>
+<li class="chapter" data-level="3.2.6" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#view-the-data"><i class="fa fa-check"></i><b>3.2.6</b> View the data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#select"><i class="fa fa-check"></i><b>3.3</b> Select()</a></li>
+<li class="chapter" data-level="3.4" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#arrange"><i class="fa fa-check"></i><b>3.4</b> Arrange()</a></li>
+<li class="chapter" data-level="3.5" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#filter"><i class="fa fa-check"></i><b>3.5</b> Filter()</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#single-criterion"><i class="fa fa-check"></i><b>3.5.1</b> Single criterion</a></li>
+<li class="chapter" data-level="3.5.2" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#multiple-criteria"><i class="fa fa-check"></i><b>3.5.2</b> Multiple criteria</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#mutate"><i class="fa fa-check"></i><b>3.6</b> Mutate()</a></li>
+<li class="chapter" data-level="3.7" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#formative-homework"><i class="fa fa-check"></i><b>3.7</b> Formative Homework</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#brief-introduction-to-the-homework-data"><i class="fa fa-check"></i><b>3.7.1</b> Brief introduction to the homework data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html"><i class="fa fa-check"></i><b>4</b> Data Transformation 2: Two Table Verbs</a><ul>
+<li class="chapter" data-level="" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#intended-learning-outcomes-4"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="4.1" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#pre-steps-2"><i class="fa fa-check"></i><b>4.1</b> Pre-Steps</a></li>
+<li class="chapter" data-level="4.2" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#group_by-and-summarise"><i class="fa fa-check"></i><b>4.2</b> Group_by() and Summarise()</a></li>
+<li class="chapter" data-level="4.3" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#the-pipe-operator"><i class="fa fa-check"></i><b>4.3</b> The pipe operator (%&gt;%)</a></li>
+<li class="chapter" data-level="4.4" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#two-table-verbs"><i class="fa fa-check"></i><b>4.4</b> Two-Table Verbs</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#mutating-join-verbs"><i class="fa fa-check"></i><b>4.4.1</b> Mutating Join Verbs</a></li>
+<li class="chapter" data-level="4.4.2" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#binding-join-verbs"><i class="fa fa-check"></i><b>4.4.2</b> Binding Join Verbs</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#additional-information"><i class="fa fa-check"></i><b>4.5</b> Additional information</a></li>
+<li class="chapter" data-level="4.6" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#summative-homework-1"><i class="fa fa-check"></i><b>4.6</b> Summative Homework</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html"><i class="fa fa-check"></i><b>5</b> Data Transformation 3: Finetuned Data Manipulation</a><ul>
+<li class="chapter" data-level="" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#intended-learning-outcomes-5"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="5.1" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#pre-steps-3"><i class="fa fa-check"></i><b>5.1</b> Pre-steps</a></li>
+<li class="chapter" data-level="5.2" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#gather-and-spread"><i class="fa fa-check"></i><b>5.2</b> gather() and spread()</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#gather"><i class="fa fa-check"></i><b>5.2.1</b> gather()</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#spread"><i class="fa fa-check"></i><b>5.2.2</b> spread()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#unite-and-separate"><i class="fa fa-check"></i><b>5.3</b> unite() and separate()</a></li>
+<li class="chapter" data-level="5.4" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#rename"><i class="fa fa-check"></i><b>5.4</b> rename()</a></li>
+<li class="chapter" data-level="5.5" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#recode"><i class="fa fa-check"></i><b>5.5</b> recode()</a></li>
+<li class="chapter" data-level="5.6" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#ifelse-and-case_when"><i class="fa fa-check"></i><b>5.6</b> ifelse and case_when</a></li>
+<li class="chapter" data-level="5.7" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#distinct"><i class="fa fa-check"></i><b>5.7</b> distinct</a></li>
+<li class="chapter" data-level="5.8" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#additional-information-1"><i class="fa fa-check"></i><b>5.8</b> Additional information</a></li>
+<li class="chapter" data-level="5.9" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#bonus-mutate-rownames-from-the-mtcars"><i class="fa fa-check"></i><b>5.9</b> Bonus: mutate rownames from the mtcars</a></li>
+<li class="chapter" data-level="5.10" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#formative-homework-1"><i class="fa fa-check"></i><b>5.10</b> Formative Homework</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="recap-1.html"><a href="recap-1.html"><i class="fa fa-check"></i><b>6</b> Recap 1</a><ul>
+<li class="chapter" data-level="6.1" data-path="recap-1.html"><a href="recap-1.html#outline-for-today"><i class="fa fa-check"></i><b>6.1</b> Outline for today</a></li>
+<li class="chapter" data-level="6.2" data-path="recap-1.html"><a href="recap-1.html#in-class-practice-exam"><i class="fa fa-check"></i><b>6.2</b> In-class practice exam</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html"><i class="fa fa-check"></i><b>7</b> Data Visualisation 1</a><ul>
+<li class="chapter" data-level="" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#intended-learning-outcomes-6"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html"><i class="fa fa-check"></i><b>8</b> Data Visualisation 2</a><ul>
+<li class="chapter" data-level="" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#intended-learning-outcomes-7"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>9</b> Errors</a><ul>
+<li class="chapter" data-level="9.1" data-path="errors.html"><a href="errors.html#under-construction"><i class="fa fa-check"></i><b>9.1</b> Under Construction</a></li>
+<li class="chapter" data-level="" data-path="errors.html"><a href="errors.html#intended-learning-outcomes-8"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="9.2" data-path="errors.html"><a href="errors.html#errors-how-to-avoid-some-and-live-through-the-rest"><i class="fa fa-check"></i><b>9.2</b> Errors: How to avoid some and live through the rest</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="errors.html"><a href="errors.html#debugging"><i class="fa fa-check"></i><b>9.2.1</b> Debugging</a></li>
+<li class="chapter" data-level="9.2.2" data-path="errors.html"><a href="errors.html#debugging-questions"><i class="fa fa-check"></i><b>9.2.2</b> Debugging Questions</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="errors.html"><a href="errors.html#seeking-help"><i class="fa fa-check"></i><b>9.3</b> Seeking Help</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="errors.html"><a href="errors.html#searching-for-help-online"><i class="fa fa-check"></i><b>9.3.1</b> Searching for Help Online</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="errors.html"><a href="errors.html#custom-functions"><i class="fa fa-check"></i><b>9.4</b> Custom Functions</a></li>
+<li class="chapter" data-level="9.5" data-path="errors.html"><a href="errors.html#living-through-errors-how-reproducible-code-enables-science-to-self-correct"><i class="fa fa-check"></i><b>9.5</b> Living Through Errors: How reproducible code enables science to self-correct</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="recap-2-before-the-final-assessment.html"><a href="recap-2-before-the-final-assessment.html"><i class="fa fa-check"></i><b>10</b> Recap 2: Before the Final Assessment</a><ul>
+<li class="chapter" data-level="10.1" data-path="recap-2-before-the-final-assessment.html"><a href="recap-2-before-the-final-assessment.html#intended-learning-outcomes-9"><i class="fa fa-check"></i><b>10.1</b> Intended Learning Outcomes</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html"><i class="fa fa-check"></i>Appendices</a><ul>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#source-materials"><i class="fa fa-check"></i>Source Materials</a></li>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#further-reading"><i class="fa fa-check"></i>Further Reading</a><ul>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#statistics"><i class="fa fa-check"></i>Statistics</a></li>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#more-advanced-use-of-r"><i class="fa fa-check"></i>More Advanced Use of R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>11</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-transformation-2-two-table-verbs" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Data Transformation 2: Two Table Verbs</h1>
+<div id="intended-learning-outcomes-4" class="section level2 unnumbered">
+<h2>Intended Learning Outcomes</h2>
+<ol style="list-style-type: decimal">
+<li>Be able to use the following dplyr one-table verbs:</li>
+</ol>
+<ul>
+<li>group_by()</li>
+<li>summarise()</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Be able to chain functions together using the pipe operator (%&gt;%)</p></li>
+<li><p>Be able to use the following dplyr two-table verbs:</p></li>
+</ol>
+<ul>
+<li>Mutating joins: <code>left_join()</code>, <code>right_join()</code>, <code>full_join()</code>, <code>inner_join()</code></li>
+<li>Binding joins: <code>bind_rows()</code>, <code>bind_cols()</code></li>
+</ul>
+<p>First, we will cover the remaining ‘one-table verbs’ - <code>group_by()</code> and <code>summarise()</code> - and introduce the pipe operator.</p>
+</div>
+<div id="pre-steps-2" class="section level2">
+<h2><span class="header-section-number">4.1</span> Pre-Steps</h2>
+<ol style="list-style-type: decimal">
+<li>Set your working directory to the <code>L3L4_data</code> folder we were working with last week and that contains the data files <code>Student_Mental_Health.csv</code> and <code>Anx_Emp.csv</code>.</li>
+<li>Open the <code>L3L4_stub</code> file.</li>
+<li>Load <code>tidyverse</code> into the library.</li>
+<li>Read the data from <code>Student_Mental_Health.csv</code> into your <code>Global Environment</code> as <code>student_MH</code>.</li>
+<li>Deselect the columns <code>Region</code>, <code>Stay_Cate</code>, <code>Japanese_cate</code>, and <code>English_cate</code>. Store this data as an object <code>short_MH</code>.</li>
+<li>Read the data from <code>Anx_Emp.csv</code> into your <code>Global Environment</code> as <code>extra_MH</code>. This data will be needed for the two-table verbs later on. <code>Anx_Emp.csv</code> contains fake data relating to 267 students in the previous data file (<code>short_MH</code>). The column <code>GAD7</code> refers to students’ scores on the Generalized Anxiety Disorder 7-item (GAD-7) questionnaire and the column <code>Employment</code> outlines the students’ employment status i.e. part-time, full-time or unemployed.</li>
+</ol>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="data-transformation-2-two-table-verbs.html#cb160-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb160-2"><a href="data-transformation-2-two-table-verbs.html#cb160-2"></a>student_MH &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Student_Mental_Health.csv&quot;</span>)</span>
+<span id="cb160-3"><a href="data-transformation-2-two-table-verbs.html#cb160-3"></a>short_MH &lt;-<span class="st"> </span><span class="kw">select</span>(student_MH, <span class="op">-</span>Region, <span class="op">-</span>Stay_Cate, <span class="op">-</span>Japanese_cate, <span class="op">-</span>English_cate)</span>
+<span id="cb160-4"><a href="data-transformation-2-two-table-verbs.html#cb160-4"></a>extra_MH &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Anx_Emp.csv&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="group_by-and-summarise" class="section level2">
+<h2><span class="header-section-number">4.2</span> Group_by() and Summarise()</h2>
+<p>In order to compute summary statistics such as mean, median and standard deviation, use the <code>summarise()</code> function. The first argument to this function is the object <code>short_MH</code> and the subsequent argument is the new column name and what mathematical operation you want it to contain. You can add as many summary statistics in one <code>summarise()</code> function as you want; just separate them by a comma. For example, say you wanted to work out the mean total score of depression and accompanying standard deviation for the entire sample:</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="data-transformation-2-two-table-verbs.html#cb161-1"></a>short_MH_ToDep &lt;-<span class="st"> </span><span class="kw">summarise</span>(short_MH, <span class="dt">mean =</span> <span class="kw">mean</span>(ToDep), <span class="dt">sd =</span> <span class="kw">sd</span>(ToDep))</span>
+<span id="cb161-2"><a href="data-transformation-2-two-table-verbs.html#cb161-2"></a>short_MH_ToDep</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##    mean    sd
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1  8.19  4.95</code></pre>
+<p>Therefore, the mean total score of depression is 8.19 with a standard deviation of 4.95. It would be interesting to break these summary statistics down by <code>Gender</code>. This is where the <code>group_by()</code> function comes in handy. It can organise observations (rows) by variables (columns) such as <code>Gender</code>. The first argument to this function is the object you created last week (<code>short_MH</code>) and the subsequent argument is the variable you want to group by:</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="data-transformation-2-two-table-verbs.html#cb163-1"></a>short_MH_gen &lt;-<span class="st"> </span><span class="kw">group_by</span>(short_MH, Gender)</span></code></pre></div>
+<p>If you view the object <code>short_MH_gen</code>, it will not look any different to the original dataset (<code>short_MH</code>). However, be aware that the underlying structure has changed. In fact, you could type <code>glimpse(short_MH_gen)</code> to double check this.</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="data-transformation-2-two-table-verbs.html#cb164-1"></a><span class="kw">glimpse</span>(short_MH_gen)</span></code></pre></div>
+<pre><code>## Observations: 268
+## Variables: 15
+## Groups: Gender [2]
+## $ ID        &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1...
+## $ inter_dom &lt;chr&gt; &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;...
+## $ Gender    &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Male&quot;, ...
+## $ Academic  &lt;chr&gt; &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Gra...
+## $ Age       &lt;dbl&gt; 24, 28, 25, 29, 28, 24, 23, 30, 25, 31, 28, 31, 29, ...
+## $ ToDep     &lt;dbl&gt; 0, 2, 2, 3, 3, 6, 3, 9, 7, 3, 5, 8, 1, 3, 9, 6, 3, 3...
+## $ ToSC      &lt;dbl&gt; 34, 48, 41, 37, 37, 38, 46, 41, 36, 48, 32, 47, 48, ...
+## $ APD       &lt;dbl&gt; 23, 8, 13, 16, 15, 18, 17, 16, 22, 8, 24, 17, 8, 9, ...
+## $ AHome     &lt;dbl&gt; 9, 7, 4, 10, 12, 8, 6, 20, 12, 4, 8, 12, 11, 8, 16, ...
+## $ APH       &lt;dbl&gt; 11, 5, 7, 10, 5, 10, 10, 19, 13, 5, 10, 14, 5, 5, 15...
+## $ Afear     &lt;dbl&gt; 8, 4, 6, 8, 8, 8, 5, 15, 13, 12, 8, 13, 4, 4, 8, 4, ...
+## $ ACS       &lt;dbl&gt; 11, 3, 4, 6, 7, 7, 3, 11, 10, 3, 6, 9, 7, 6, 12, 13,...
+## $ AGuilt    &lt;dbl&gt; 2, 2, 3, 4, 4, 3, 2, 6, 6, 2, 6, 4, 2, 7, 8, 2, 5, 2...
+## $ AMiscell  &lt;dbl&gt; 27, 10, 14, 21, 31, 29, 15, 40, 33, 17, 30, 26, 17, ...
+## $ ToAS      &lt;dbl&gt; 91, 39, 51, 75, 82, 83, 58, 127, 109, 51, 92, 95, 54...</code></pre>
+<p>You can now feed this grouped dataset (<code>short_MH_gen</code>) into the previous code line to obtain summary statistics by <code>Gender</code>:</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="data-transformation-2-two-table-verbs.html#cb166-1"></a>short_MH_ToDep_gen &lt;-<span class="st"> </span><span class="kw">summarise</span>(short_MH_gen, <span class="dt">mean =</span> <span class="kw">mean</span>(ToDep), <span class="dt">sd =</span> <span class="kw">sd</span>(ToDep))</span>
+<span id="cb166-2"><a href="data-transformation-2-two-table-verbs.html#cb166-2"></a>short_MH_ToDep_gen</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+##   Gender  mean    sd
+##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 Female  8.4   4.67
+## 2 Male    7.82  5.42</code></pre>
+<p><span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span></p>
+<p>What gender has the highest mean total score of depression? <input class='solveme nospaces' size='6' data-answer='["female"]'/></p>
+<p>You might also want to calculate and display the number of males and females in the dataset. This can be achieved by adding the summary function <code>n()</code> to your previous code line:</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="data-transformation-2-two-table-verbs.html#cb168-1"></a>short_MH_ToDep_gen &lt;-<span class="st"> </span><span class="kw">summarise</span>(short_MH_gen, <span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">mean =</span> <span class="kw">mean</span>(ToDep), <span class="dt">sd =</span> <span class="kw">sd</span>(ToDep))</span>
+<span id="cb168-2"><a href="data-transformation-2-two-table-verbs.html#cb168-2"></a>short_MH_ToDep_gen</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 4
+##   Gender     n  mean    sd
+##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 Female   170  8.4   4.67
+## 2 Male      98  7.82  5.42</code></pre>
+<p><span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span></p>
+<p>How many males are in the dataset? <input class='solveme nospaces' size='2' data-answer='["98"]'/> <br>
+How many females are in the dataset? <input class='solveme nospaces' size='3' data-answer='["170"]'/></p>
+<p>Finally, it is possible to add multiple grouping variables. For example, the following code groups <code>short_MH</code> by <code>Gender</code> and <code>Academic</code> level and then calculates the mean total score of depression (<code>ToDep</code>) for males and females at each academic level.</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="data-transformation-2-two-table-verbs.html#cb170-1"></a>short_MH_group &lt;-<span class="st"> </span><span class="kw">group_by</span>(short_MH, Gender, Academic)</span>
+<span id="cb170-2"><a href="data-transformation-2-two-table-verbs.html#cb170-2"></a>short_MH_ToDep_group &lt;-<span class="st"> </span><span class="kw">summarise</span>(short_MH_group, <span class="dt">mean =</span> <span class="kw">mean</span>(ToDep))</span>
+<span id="cb170-3"><a href="data-transformation-2-two-table-verbs.html#cb170-3"></a>short_MH_ToDep_group</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 3
+## # Groups:   Gender [2]
+##   Gender Academic  mean
+##   &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;
+## 1 Female Grad      7   
+## 2 Female Under     8.52
+## 3 Male   Grad      2.5 
+## 4 Male   Under     8.29</code></pre>
+<p><span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span></p>
+<p>Which group appears to be most resilient to depression? <select class='solveme' data-answer='["male graduates"]'> <option></option> <option>female undergraduates</option> <option>male undergraduates</option> <option>female graduates</option> <option>male graduates</option></select></p>
+<p>Luckily for you, the dataset does not contain any missing values, denoted <code>NA</code> in R. Missing values are always a bit of a hassle to deal with. Any computation you do that involves <code>NA</code> returns an <code>NA</code> - which translates as “you will not get a numeric result when your column contains missing values”. Missing values can be removed by adding the argument <code>na.rm = TRUE</code> to calculation functions like <code>mean()</code>, <code>median()</code> or <code>sd()</code>. For example, the previous code line would read:</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="data-transformation-2-two-table-verbs.html#cb172-1"></a>short_MH_ToDep_group &lt;-<span class="st"> </span><span class="kw">summarise</span>(short_MH_group, <span class="dt">mean =</span> <span class="kw">mean</span>(ToDep, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<div class="info">
+<p>
+If you need to return the data to a non-grouped form, use the <code>ungroup()</code> function.
+</p>
+</div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="data-transformation-2-two-table-verbs.html#cb173-1"></a><span class="kw">glimpse</span>(short_MH_gen)</span></code></pre></div>
+<pre><code>## Observations: 268
+## Variables: 15
+## Groups: Gender [2]
+## $ ID        &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1...
+## $ inter_dom &lt;chr&gt; &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;...
+## $ Gender    &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Male&quot;, ...
+## $ Academic  &lt;chr&gt; &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Gra...
+## $ Age       &lt;dbl&gt; 24, 28, 25, 29, 28, 24, 23, 30, 25, 31, 28, 31, 29, ...
+## $ ToDep     &lt;dbl&gt; 0, 2, 2, 3, 3, 6, 3, 9, 7, 3, 5, 8, 1, 3, 9, 6, 3, 3...
+## $ ToSC      &lt;dbl&gt; 34, 48, 41, 37, 37, 38, 46, 41, 36, 48, 32, 47, 48, ...
+## $ APD       &lt;dbl&gt; 23, 8, 13, 16, 15, 18, 17, 16, 22, 8, 24, 17, 8, 9, ...
+## $ AHome     &lt;dbl&gt; 9, 7, 4, 10, 12, 8, 6, 20, 12, 4, 8, 12, 11, 8, 16, ...
+## $ APH       &lt;dbl&gt; 11, 5, 7, 10, 5, 10, 10, 19, 13, 5, 10, 14, 5, 5, 15...
+## $ Afear     &lt;dbl&gt; 8, 4, 6, 8, 8, 8, 5, 15, 13, 12, 8, 13, 4, 4, 8, 4, ...
+## $ ACS       &lt;dbl&gt; 11, 3, 4, 6, 7, 7, 3, 11, 10, 3, 6, 9, 7, 6, 12, 13,...
+## $ AGuilt    &lt;dbl&gt; 2, 2, 3, 4, 4, 3, 2, 6, 6, 2, 6, 4, 2, 7, 8, 2, 5, 2...
+## $ AMiscell  &lt;dbl&gt; 27, 10, 14, 21, 31, 29, 15, 40, 33, 17, 30, 26, 17, ...
+## $ ToAS      &lt;dbl&gt; 91, 39, 51, 75, 82, 83, 58, 127, 109, 51, 92, 95, 54...</code></pre>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="data-transformation-2-two-table-verbs.html#cb175-1"></a>short_MH_gen &lt;-<span class="st"> </span><span class="kw">ungroup</span>(short_MH_gen)</span>
+<span id="cb175-2"><a href="data-transformation-2-two-table-verbs.html#cb175-2"></a><span class="kw">glimpse</span>(short_MH_gen)</span></code></pre></div>
+<pre><code>## Observations: 268
+## Variables: 15
+## $ ID        &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1...
+## $ inter_dom &lt;chr&gt; &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;...
+## $ Gender    &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Male&quot;, ...
+## $ Academic  &lt;chr&gt; &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Gra...
+## $ Age       &lt;dbl&gt; 24, 28, 25, 29, 28, 24, 23, 30, 25, 31, 28, 31, 29, ...
+## $ ToDep     &lt;dbl&gt; 0, 2, 2, 3, 3, 6, 3, 9, 7, 3, 5, 8, 1, 3, 9, 6, 3, 3...
+## $ ToSC      &lt;dbl&gt; 34, 48, 41, 37, 37, 38, 46, 41, 36, 48, 32, 47, 48, ...
+## $ APD       &lt;dbl&gt; 23, 8, 13, 16, 15, 18, 17, 16, 22, 8, 24, 17, 8, 9, ...
+## $ AHome     &lt;dbl&gt; 9, 7, 4, 10, 12, 8, 6, 20, 12, 4, 8, 12, 11, 8, 16, ...
+## $ APH       &lt;dbl&gt; 11, 5, 7, 10, 5, 10, 10, 19, 13, 5, 10, 14, 5, 5, 15...
+## $ Afear     &lt;dbl&gt; 8, 4, 6, 8, 8, 8, 5, 15, 13, 12, 8, 13, 4, 4, 8, 4, ...
+## $ ACS       &lt;dbl&gt; 11, 3, 4, 6, 7, 7, 3, 11, 10, 3, 6, 9, 7, 6, 12, 13,...
+## $ AGuilt    &lt;dbl&gt; 2, 2, 3, 4, 4, 3, 2, 6, 6, 2, 6, 4, 2, 7, 8, 2, 5, 2...
+## $ AMiscell  &lt;dbl&gt; 27, 10, 14, 21, 31, 29, 15, 40, 33, 17, 30, 26, 17, ...
+## $ ToAS      &lt;dbl&gt; 91, 39, 51, 75, 82, 83, 58, 127, 109, 51, 92, 95, 54...</code></pre>
+</div>
+<div id="the-pipe-operator" class="section level2">
+<h2><span class="header-section-number">4.3</span> The pipe operator (%&gt;%)</h2>
+<p>As you may have noticed, your environment pane has become increasingly cluttered. Indeed, every time you introduced a new line of code, you created a uniquely-named object (unless your original object is overwritten). This can become confusing and time-consuming. One solution is the pipe operator (<code>%&gt;%</code>) which aims to increase efficiency and improve the readability of your code. The pipe operator (<code>%&gt;%</code>) read as <strong>“and then”</strong> and allows you to chain functions together, eliminating the need to create intermediary objects. There is no limit as to how many functions you can chain together in a single pipeline.</p>
+<p>For example, in order to <code>select()</code>, <code>arrange()</code>, <code>group_by()</code> and <code>summarise()</code> the data, you used the following code lines:</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="data-transformation-2-two-table-verbs.html#cb177-1"></a>short_MH &lt;-<span class="st"> </span><span class="kw">select</span>(student_MH, <span class="op">-</span>Region, <span class="op">-</span>Stay_Cate, <span class="op">-</span>Japanese_cate, <span class="op">-</span>English_cate)</span>
+<span id="cb177-2"><a href="data-transformation-2-two-table-verbs.html#cb177-2"></a>short_MH_arr &lt;-<span class="st"> </span><span class="kw">arrange</span>(short_MH, <span class="kw">desc</span>(Gender), <span class="kw">desc</span>(ToAS))</span>
+<span id="cb177-3"><a href="data-transformation-2-two-table-verbs.html#cb177-3"></a>short_MH_group &lt;-<span class="st"> </span><span class="kw">group_by</span>(short_MH_arr, Gender, Academic)</span>
+<span id="cb177-4"><a href="data-transformation-2-two-table-verbs.html#cb177-4"></a>short_MH_ToDep_group &lt;-<span class="st"> </span><span class="kw">summarise</span>(short_MH_group, <span class="dt">mean =</span> <span class="kw">mean</span>(ToDep))</span>
+<span id="cb177-5"><a href="data-transformation-2-two-table-verbs.html#cb177-5"></a>short_MH_ToDep_group</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 3
+## # Groups:   Gender [2]
+##   Gender Academic  mean
+##   &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;
+## 1 Female Grad      7   
+## 2 Female Under     8.52
+## 3 Male   Grad      2.5 
+## 4 Male   Under     8.29</code></pre>
+<p>However, utilisation of the pipe operator (<code>%&gt;%</code>) can simplify this process and create only one object (<code>short_MH_ToDep_group2</code>) as shown:</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="data-transformation-2-two-table-verbs.html#cb179-1"></a>short_MH_ToDep_group2 &lt;-<span class="st"> </span>student_MH <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb179-2"><a href="data-transformation-2-two-table-verbs.html#cb179-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>Region, <span class="op">-</span>Stay_Cate, <span class="op">-</span>Japanese_cate, <span class="op">-</span>English_cate) <span class="op">%&gt;%</span></span>
+<span id="cb179-3"><a href="data-transformation-2-two-table-verbs.html#cb179-3"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(Gender), <span class="kw">desc</span>(ToAS)) <span class="op">%&gt;%</span></span>
+<span id="cb179-4"><a href="data-transformation-2-two-table-verbs.html#cb179-4"></a><span class="st">  </span><span class="kw">group_by</span>(Gender, Academic) <span class="op">%&gt;%</span></span>
+<span id="cb179-5"><a href="data-transformation-2-two-table-verbs.html#cb179-5"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(ToDep))</span>
+<span id="cb179-6"><a href="data-transformation-2-two-table-verbs.html#cb179-6"></a>short_MH_ToDep_group2</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 3
+## # Groups:   Gender [2]
+##   Gender Academic  mean
+##   &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;
+## 1 Female Grad      7   
+## 2 Female Under     8.52
+## 3 Male   Grad      2.5 
+## 4 Male   Under     8.29</code></pre>
+<p>As you can see, <code>short_MH_ToDep_group2</code> produces the same output as <code>short_MH_ToDep_group</code>. So, pipes automatically take the output from one function and feed it directly to the next function. Without pipes, you needed to insert your chosen dataset as the first argument to every function. With pipes, you are only required to specify the original dataset (i.e <code>student_MH</code>) once at the beginning and the pipes will do the rest.</p>
+<div class="funfact">
+<p>
+Note that in the above code chunk, the data object has been on its own line in the code followed immediately by <code>%&gt;%</code> before starting with the “functions”.
+</p>
+<p>
+short_MH_ToDep_group2 &lt;- student_MH %&gt;% <br> select(-Region, -Stay_Cate, -Japanese_cate, -English_cate) %&gt;% <br> …
+</p>
+<p>
+The other option would have been to put the data object as the first argument within the first function, such as
+</p>
+<p>
+short_MH_ToDep_group2 &lt;- select(student_MH, -Region, -Stay_Cate, -Japanese_cate, -English_cate) %&gt;% …
+</p>
+<p>
+The benefit of having the data on its own is that you reorder functions easily or squeeze another one in (for example if you summarised something but forgot to group beforehand) without having to remember to “move” the data object into the first argument of the chain.
+</p>
+</div>
+</div>
+<div id="two-table-verbs" class="section level2">
+<h2><span class="header-section-number">4.4</span> Two-Table Verbs</h2>
+<p>More often than not, data scientists collect and store their data across multiple tables. In order to effectively combine multiple tables, <code>dplyr</code> provides a selection of <strong>two-table verbs</strong>. Today we will focus on two categories of two-table verbs - mutating join verbs and binding join verbs.</p>
+<div id="mutating-join-verbs" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> Mutating Join Verbs</h3>
+<p>Mutating join verbs combine the variables (columns) of two tables so that matching rows are together. There are 4 different types of mutating joins, namely <code>inner_join()</code>, <code>left_join()</code>, <code>right_join()</code>, and <code>full_join()</code>.</p>
+<p>Mutating joins have the following basic syntax:</p>
+<center>
+<img src="images/join.PNG">
+</center>
+<p>Let’s investigate joins using a simple example by creating two tibbles, <code>data1</code> (shown below in blue) and <code>data2</code> (shown below in green), both with only two columns, and two rows.</p>
+<center>
+<img src="images/join_tables.png" height="200">
+</center>
+<p>Coded in R that would look like:</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="data-transformation-2-two-table-verbs.html#cb181-1"></a>data1 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">ID =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,</span>
+<span id="cb181-2"><a href="data-transformation-2-two-table-verbs.html#cb181-2"></a>                <span class="dt">X1 =</span> <span class="kw">c</span>(<span class="st">&quot;a1&quot;</span>, <span class="st">&quot;a2&quot;</span>))</span>
+<span id="cb181-3"><a href="data-transformation-2-two-table-verbs.html#cb181-3"></a>data2 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">ID =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>,</span>
+<span id="cb181-4"><a href="data-transformation-2-two-table-verbs.html#cb181-4"></a>                <span class="dt">X2 =</span> <span class="kw">c</span>(<span class="st">&quot;b1&quot;</span>, <span class="st">&quot;b2&quot;</span>))</span></code></pre></div>
+<div id="inner_join" class="section level4">
+<h4><span class="header-section-number">4.4.1.1</span> inner_join()</h4>
+<p>An inner join returns all rows from x that have a match in y, whereby x is the first (left) table and y is the second (right) table. All columns from x and y are present in the merged object. If there are multiple rows that match, all of them are returned.</p>
+<center>
+<img src="images/inner_join1.png">
+</center>
+<p>Merging <code>data1</code> and <code>data2</code> by <code>inner_join()</code> would be coded in R:</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="data-transformation-2-two-table-verbs.html#cb182-1"></a><span class="kw">inner_join</span>(data1, data2, <span class="dt">by=</span><span class="st">&quot;ID&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##      ID X1    X2   
+##   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+## 1     2 a2    b1</code></pre>
+<p>Using an inner join would return only 1 row of observations because the only <code>ID</code> value matching in <code>data1</code> and <code>data2</code> is the row with <code>ID = 2</code>. However, we are still merging both tibbles together, meaning that all columns from <code>data1</code> and <code>data2</code> are kept (in our case <code>X1</code> and <code>X2</code>).</p>
+<div class="funfact">
+<p>
+<code>inner_join(data1, data2)</code> would have produced the same outcome. When the <code>by</code> statement is omitted, <code>data1</code> and <code>data2</code> are joined by ALL “overlapping” variable columns (in this case <code>ID</code>). Don’t believe it? Try it out in your <code>Console</code>!
+</p>
+</div>
+<p><span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span></p>
+<p>Let’s apply an inner join to join <code>short_MH</code> with <code>extra_MH</code> (the fake data we read in during today’s pre-steps). Before we do that, it might be wise to remind ourselves of the number of rows and columns we are dealing with in both datasets.</p>
+<p>How many rows (or observations) does <code>short_MH</code> have? <input class='solveme nospaces' size='3' data-answer='["268"]'/> <br>
+How many columns (or variables) does <code>short_MH</code> have? <input class='solveme nospaces' size='2' data-answer='["15"]'/> <br>
+How many rows (or observations) does <code>extra_MH</code> have? <input class='solveme nospaces' size='3' data-answer='["267"]'/> <br>
+How many columns (or variables) does <code>extra_MH</code> have? <input class='solveme nospaces' size='1' data-answer='["3"]'/> <br></p>
+<p>Notice that:</p>
+<ul>
+<li>Both datasets contain a common column <code>ID</code></li>
+<li>One person (<code>ID = 3</code>) is missing from the second dataset (<code>extra_MH</code>)</li>
+</ul>
+<div class="task">
+<p>
+<strong>Your turn</strong>
+</p>
+<p>
+Now join <code>short_MH</code> and <code>extra_MH</code> using <code>inner_join()</code>. Save your results in the <code>Global Environment</code> as an object called <code>MH_inner</code>. How many rows and columns do you think <code>MH_inner</code> should have?
+</p>
+</div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="data-transformation-2-two-table-verbs.html#cb184-1"></a>MH_inner &lt;-<span class="st"> </span><span class="kw">inner_join</span>(short_MH, extra_MH, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>)</span>
+<span id="cb184-2"><a href="data-transformation-2-two-table-verbs.html#cb184-2"></a><span class="kw">glimpse</span>(MH_inner)</span></code></pre></div>
+<pre><code>## Observations: 267
+## Variables: 17
+## $ ID         &lt;dbl&gt; 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,...
+## $ inter_dom  &lt;chr&gt; &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter...
+## $ Gender     &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Male&quot;,...
+## $ Academic   &lt;chr&gt; &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Gr...
+## $ Age        &lt;dbl&gt; 24, 28, 29, 28, 24, 23, 30, 25, 31, 28, 31, 29, 23,...
+## $ ToDep      &lt;dbl&gt; 0, 2, 3, 3, 6, 3, 9, 7, 3, 5, 8, 1, 3, 9, 6, 3, 3, ...
+## $ ToSC       &lt;dbl&gt; 34, 48, 37, 37, 38, 46, 41, 36, 48, 32, 47, 48, 32,...
+## $ APD        &lt;dbl&gt; 23, 8, 16, 15, 18, 17, 16, 22, 8, 24, 17, 8, 9, 23,...
+## $ AHome      &lt;dbl&gt; 9, 7, 10, 12, 8, 6, 20, 12, 4, 8, 12, 11, 8, 16, 9,...
+## $ APH        &lt;dbl&gt; 11, 5, 10, 5, 10, 10, 19, 13, 5, 10, 14, 5, 5, 15, ...
+## $ Afear      &lt;dbl&gt; 8, 4, 8, 8, 8, 5, 15, 13, 12, 8, 13, 4, 4, 8, 4, 4,...
+## $ ACS        &lt;dbl&gt; 11, 3, 6, 7, 7, 3, 11, 10, 3, 6, 9, 7, 6, 12, 13, 8...
+## $ AGuilt     &lt;dbl&gt; 2, 2, 4, 4, 3, 2, 6, 6, 2, 6, 4, 2, 7, 8, 2, 5, 2, ...
+## $ AMiscell   &lt;dbl&gt; 27, 10, 21, 31, 29, 15, 40, 33, 17, 30, 26, 17, 18,...
+## $ ToAS       &lt;dbl&gt; 91, 39, 75, 82, 83, 58, 127, 109, 51, 92, 95, 54, 5...
+## $ GAD7       &lt;dbl&gt; 8, 1, 0, 1, 14, 2, 1, 0, 2, 0, 2, 8, 0, 6, 12, 4, 0...
+## $ Employment &lt;chr&gt; &quot;Unemployed&quot;, &quot;Part&quot;, &quot;Part&quot;, &quot;Full&quot;, &quot;Unemployed&quot;,...</code></pre>
+<div class="solved">
+<p>
+<code>MH_inner</code> has 267 rows, and 17 columns. <br>
+</p>
+<ul>
+<li>
+rows: The overlapping <code>ID</code> numbers in both dataframes are <code>1,2,4,5…,268</code> which makes for 267 values. <br>
+</li>
+<li>
+columns: total number of columns is 15 (from <code>short_MH</code>) + 3 (from <code>extra_MH</code>) - the column <code>ID</code> that exists in both objects.
+</li>
+</ul>
+<p>
+Notice how no rows have missing values.
+</p>
+</div>
+</div>
+</div>
+<div id="left_join" class="section level4">
+<h4><span class="header-section-number">4.4.1.2</span> left_join()</h4>
+<p>A left join returns all rows from x, and all columns from x and y. Rows in the left table with no match in the right table will have missing values (<code>NA</code>) in the new columns.</p>
+<center>
+<img src="images/left_join1.png">
+</center>
+<p>Let’s try this <code>left_join()</code> function for our simple example of <code>data1</code> and <code>data2</code> in R.</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="data-transformation-2-two-table-verbs.html#cb186-1"></a><span class="kw">left_join</span>(data1, data2, <span class="dt">by=</span><span class="st">&quot;ID&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+##      ID X1    X2   
+##   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+## 1     1 a1    &lt;NA&gt; 
+## 2     2 a2    b1</code></pre>
+<p>Here <code>data1</code> is returned in full, and for every matching <code>ID</code> number, the value from <code>data2</code> is added for <code>X2</code>. However, <code>data2</code> does not have any value for ID = 1, hence <code>NA</code> is added in <code>X2</code>.</p>
+<p><span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span></p>
+<div class="task">
+<p>
+<strong>Your turn</strong>
+</p>
+<p>
+Combine <code>short_MH</code> and <code>extra_MH</code> using <code>left_join()</code>. Save your results in the <code>Global Environment</code> as an object called <code>MH_left</code>. How many rows and columns are you expecting for <code>MH_left</code>?
+</p>
+</div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="data-transformation-2-two-table-verbs.html#cb188-1"></a>MH_left &lt;-<span class="st"> </span><span class="kw">left_join</span>(short_MH, extra_MH, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>)</span>
+<span id="cb188-2"><a href="data-transformation-2-two-table-verbs.html#cb188-2"></a><span class="kw">glimpse</span>(MH_left)</span></code></pre></div>
+<pre><code>## Observations: 268
+## Variables: 17
+## $ ID         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ...
+## $ inter_dom  &lt;chr&gt; &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter...
+## $ Gender     &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Male&quot;,...
+## $ Academic   &lt;chr&gt; &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Gr...
+## $ Age        &lt;dbl&gt; 24, 28, 25, 29, 28, 24, 23, 30, 25, 31, 28, 31, 29,...
+## $ ToDep      &lt;dbl&gt; 0, 2, 2, 3, 3, 6, 3, 9, 7, 3, 5, 8, 1, 3, 9, 6, 3, ...
+## $ ToSC       &lt;dbl&gt; 34, 48, 41, 37, 37, 38, 46, 41, 36, 48, 32, 47, 48,...
+## $ APD        &lt;dbl&gt; 23, 8, 13, 16, 15, 18, 17, 16, 22, 8, 24, 17, 8, 9,...
+## $ AHome      &lt;dbl&gt; 9, 7, 4, 10, 12, 8, 6, 20, 12, 4, 8, 12, 11, 8, 16,...
+## $ APH        &lt;dbl&gt; 11, 5, 7, 10, 5, 10, 10, 19, 13, 5, 10, 14, 5, 5, 1...
+## $ Afear      &lt;dbl&gt; 8, 4, 6, 8, 8, 8, 5, 15, 13, 12, 8, 13, 4, 4, 8, 4,...
+## $ ACS        &lt;dbl&gt; 11, 3, 4, 6, 7, 7, 3, 11, 10, 3, 6, 9, 7, 6, 12, 13...
+## $ AGuilt     &lt;dbl&gt; 2, 2, 3, 4, 4, 3, 2, 6, 6, 2, 6, 4, 2, 7, 8, 2, 5, ...
+## $ AMiscell   &lt;dbl&gt; 27, 10, 14, 21, 31, 29, 15, 40, 33, 17, 30, 26, 17,...
+## $ ToAS       &lt;dbl&gt; 91, 39, 51, 75, 82, 83, 58, 127, 109, 51, 92, 95, 5...
+## $ GAD7       &lt;dbl&gt; 8, 1, NA, 0, 1, 14, 2, 1, 0, 2, 0, 2, 8, 0, 6, 12, ...
+## $ Employment &lt;chr&gt; &quot;Unemployed&quot;, &quot;Part&quot;, NA, &quot;Part&quot;, &quot;Full&quot;, &quot;Unemploy...</code></pre>
+<div class="solved">
+<p>
+Remember that ID number 3 is missing from the second (right) dataset. Since the first (left) dataset is prioritised in a <code>left_join()</code> and <code>data1</code> contains <code>ID</code> number 3, it is retained in the new dataset <code>MH_left</code> and <code>NA</code> is added to <code>GAD7</code> and <code>Employment</code>.
+</p>
+</div>
+</div>
+</div>
+<div id="right_join" class="section level4">
+<h4><span class="header-section-number">4.4.1.3</span> right_join()</h4>
+<p>A right join returns all rows from y, and all columns from x and y, whereby y is the second (right table) and x is the first (left) table. Rows in the second table with no match in the first table will have <code>NA</code> values in the new columns.</p>
+<center>
+<img src="images/right_join1.png">
+</center>
+<p>However, code-wise, you would still enter x as the first, and y as the second argument within <code>right_join()</code>.</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="data-transformation-2-two-table-verbs.html#cb190-1"></a><span class="kw">right_join</span>(data1, data2, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+##      ID X1    X2   
+##   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+## 1     2 a2    b1   
+## 2     3 &lt;NA&gt;  b2</code></pre>
+<p>Here <code>data2</code> is returned in full, and for every matching <code>ID</code> number, the value from <code>data1</code> is added for <code>X1</code>. As <code>data1</code> does not have any value for ID = 3, <code>NA</code> is added in column <code>X1</code> . Notice the order of the columns, though!!! <code>ID</code>, <code>X1</code> and <code>X2</code>. That is due to the order of how they are entered into the <code>right_join()</code> function.</p>
+<p><span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span></p>
+<div class="task">
+<p>
+<strong>Your turn</strong>
+</p>
+<p>
+combine <code>short_MH</code> and <code>extra_MH</code> using <code>right_join()</code>. Save your results in the <code>Global Environment</code> as an object called <code>MH_right</code>. How many rows and columns should <code>MH_right</code> have?
+</p>
+</div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="data-transformation-2-two-table-verbs.html#cb192-1"></a>MH_right &lt;-<span class="st"> </span><span class="kw">right_join</span>(short_MH, extra_MH, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>)</span>
+<span id="cb192-2"><a href="data-transformation-2-two-table-verbs.html#cb192-2"></a><span class="kw">glimpse</span>(MH_right)</span></code></pre></div>
+<pre><code>## Observations: 267
+## Variables: 17
+## $ ID         &lt;dbl&gt; 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,...
+## $ inter_dom  &lt;chr&gt; &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter...
+## $ Gender     &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Male&quot;,...
+## $ Academic   &lt;chr&gt; &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Gr...
+## $ Age        &lt;dbl&gt; 24, 28, 29, 28, 24, 23, 30, 25, 31, 28, 31, 29, 23,...
+## $ ToDep      &lt;dbl&gt; 0, 2, 3, 3, 6, 3, 9, 7, 3, 5, 8, 1, 3, 9, 6, 3, 3, ...
+## $ ToSC       &lt;dbl&gt; 34, 48, 37, 37, 38, 46, 41, 36, 48, 32, 47, 48, 32,...
+## $ APD        &lt;dbl&gt; 23, 8, 16, 15, 18, 17, 16, 22, 8, 24, 17, 8, 9, 23,...
+## $ AHome      &lt;dbl&gt; 9, 7, 10, 12, 8, 6, 20, 12, 4, 8, 12, 11, 8, 16, 9,...
+## $ APH        &lt;dbl&gt; 11, 5, 10, 5, 10, 10, 19, 13, 5, 10, 14, 5, 5, 15, ...
+## $ Afear      &lt;dbl&gt; 8, 4, 8, 8, 8, 5, 15, 13, 12, 8, 13, 4, 4, 8, 4, 4,...
+## $ ACS        &lt;dbl&gt; 11, 3, 6, 7, 7, 3, 11, 10, 3, 6, 9, 7, 6, 12, 13, 8...
+## $ AGuilt     &lt;dbl&gt; 2, 2, 4, 4, 3, 2, 6, 6, 2, 6, 4, 2, 7, 8, 2, 5, 2, ...
+## $ AMiscell   &lt;dbl&gt; 27, 10, 21, 31, 29, 15, 40, 33, 17, 30, 26, 17, 18,...
+## $ ToAS       &lt;dbl&gt; 91, 39, 75, 82, 83, 58, 127, 109, 51, 92, 95, 54, 5...
+## $ GAD7       &lt;dbl&gt; 8, 1, 0, 1, 14, 2, 1, 0, 2, 0, 2, 8, 0, 6, 12, 4, 0...
+## $ Employment &lt;chr&gt; &quot;Unemployed&quot;, &quot;Part&quot;, &quot;Part&quot;, &quot;Full&quot;, &quot;Unemployed&quot;,...</code></pre>
+<div class="solved">
+<p>
+We should receive 267 observations and 17 columns. Since the second (right) table is prioritised and does not contain ID number 3, it is absent from the new dataset. In this case, <code>right_join()</code> produces the same output as <code>inner_join()</code>.
+</p>
+</div>
+</div>
+</div>
+<div id="full_join" class="section level4">
+<h4><span class="header-section-number">4.4.1.4</span> full_join()</h4>
+<p>A full join returns all rows and all columns from both x and y, whereby x is the first (left) table and y is the second (right) table. NA values fill unmatched rows.</p>
+<center>
+<img src="images/full_join1.png">
+</center>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="data-transformation-2-two-table-verbs.html#cb194-1"></a><span class="kw">full_join</span>(data1, data2)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;ID&quot;</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##      ID X1    X2   
+##   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+## 1     1 a1    &lt;NA&gt; 
+## 2     2 a2    b1   
+## 3     3 &lt;NA&gt;  b2</code></pre>
+<p>As you can see, <code>ID</code> values (1,2, and 3) from both dataframes are retained. ID = 3 does not exist in <code>data1</code>, and ID = 1 does not exist in <code>data2</code>, <code>X1</code> and <code>X2</code> are filled with <code>NA</code> respectively.</p>
+<p><span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span></p>
+<div class="task">
+<p>
+<strong>Your turn</strong>
+</p>
+<p>
+combine <code>short_MH</code> and <code>extra_MH</code> using <code>full_join()</code>. Save your results in the <code>Global Environment</code> as an object called <code>MH_full</code>. How many rows and columns are you expecting for <code>MH_right</code>?
+</p>
+</div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="data-transformation-2-two-table-verbs.html#cb197-1"></a>MH_full &lt;-<span class="st"> </span><span class="kw">full_join</span>(short_MH, extra_MH, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>)</span>
+<span id="cb197-2"><a href="data-transformation-2-two-table-verbs.html#cb197-2"></a><span class="kw">glimpse</span>(MH_full)</span></code></pre></div>
+<pre><code>## Observations: 268
+## Variables: 17
+## $ ID         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ...
+## $ inter_dom  &lt;chr&gt; &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter&quot;, &quot;Inter...
+## $ Gender     &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Male&quot;,...
+## $ Academic   &lt;chr&gt; &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Grad&quot;, &quot;Gr...
+## $ Age        &lt;dbl&gt; 24, 28, 25, 29, 28, 24, 23, 30, 25, 31, 28, 31, 29,...
+## $ ToDep      &lt;dbl&gt; 0, 2, 2, 3, 3, 6, 3, 9, 7, 3, 5, 8, 1, 3, 9, 6, 3, ...
+## $ ToSC       &lt;dbl&gt; 34, 48, 41, 37, 37, 38, 46, 41, 36, 48, 32, 47, 48,...
+## $ APD        &lt;dbl&gt; 23, 8, 13, 16, 15, 18, 17, 16, 22, 8, 24, 17, 8, 9,...
+## $ AHome      &lt;dbl&gt; 9, 7, 4, 10, 12, 8, 6, 20, 12, 4, 8, 12, 11, 8, 16,...
+## $ APH        &lt;dbl&gt; 11, 5, 7, 10, 5, 10, 10, 19, 13, 5, 10, 14, 5, 5, 1...
+## $ Afear      &lt;dbl&gt; 8, 4, 6, 8, 8, 8, 5, 15, 13, 12, 8, 13, 4, 4, 8, 4,...
+## $ ACS        &lt;dbl&gt; 11, 3, 4, 6, 7, 7, 3, 11, 10, 3, 6, 9, 7, 6, 12, 13...
+## $ AGuilt     &lt;dbl&gt; 2, 2, 3, 4, 4, 3, 2, 6, 6, 2, 6, 4, 2, 7, 8, 2, 5, ...
+## $ AMiscell   &lt;dbl&gt; 27, 10, 14, 21, 31, 29, 15, 40, 33, 17, 30, 26, 17,...
+## $ ToAS       &lt;dbl&gt; 91, 39, 51, 75, 82, 83, 58, 127, 109, 51, 92, 95, 5...
+## $ GAD7       &lt;dbl&gt; 8, 1, NA, 0, 1, 14, 2, 1, 0, 2, 0, 2, 8, 0, 6, 12, ...
+## $ Employment &lt;chr&gt; &quot;Unemployed&quot;, &quot;Part&quot;, NA, &quot;Part&quot;, &quot;Full&quot;, &quot;Unemploy...</code></pre>
+<div class="solved">
+<p>
+We should receive 268 observations and 17 columns. All data is kept, including ID = 3, and <code>GAD7</code> and <code>Employment</code> are filled up with <code>NA</code> values. In this case, <code>full_join()</code> produces the same output as <code>left_join()</code>.
+</p>
+</div>
+</div>
+<div class="question">
+<p>
+<strong>Hypothetical scenario</strong>
+</p>
+<p>
+In the case of the student mental health data, we have seen that <code>inner_join()</code> and <code>right_join()</code> as well as <code>left(join)</code> and <code>full_join()</code> produce the same results. Can you think of a way how you would have to modify <code>short_MH</code> and/or <code>extra_MH</code> to produce different results for <code>inner_join()</code>/ <code>right_join()</code> or <code>left(join)</code>/<code>full_join()</code>?
+</p>
+</div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="solved">
+<p>
+Adding data for participant 269 to <code>short_MH</code> and 270 to <code>extra_MH</code> would do the trick:
+</p>
+<ul>
+<li>
+<code>inner_join()</code> would still be the same output of 267 observations since the “overlapping” <code>ID</code> numbers for <code>data1</code> and <code>data2</code> don’t change (1,2,4,5,…,268) <br>
+</li>
+<li>
+<code>right_join()</code> would prioritise the right table <code>extra_MH</code>, leaving us with <code>ID</code> numbers 1,2,4,5,…,268,270 (adding to a total of 268 observations. For ID = 270, <code>X1</code> would be filled with <code>NA</code>; ID = 3 would not be mentioned. <br>
+</li>
+<li>
+<code>left(join)</code> would prioritise the left table <code>short_MH</code>, selecting <code>ID</code> rows 1:269. For ID = 3 and ID = 269 <code>X2</code> would show <code>NA</code>. ID = 270 would not be mentioned. <br>
+</li>
+<li>
+<code>full_join()</code> would add both datasets in full, showing <code>ID</code> values 1:270, with ID = 270 showing <code>NA</code> for <code>X1</code>, and ID = 3 and ID = 269 showing <code>NA</code> for <code>X2</code>.
+</li>
+</ul>
+</div>
+</div>
+<div class="info">
+<p>
+All visualisation for the joins were adapted from <a href="https://statisticsglobe.com/r-dplyr-join-inner-left-right-full-semi-anti" class="uri">https://statisticsglobe.com/r-dplyr-join-inner-left-right-full-semi-anti</a>. The website also provides additional information on filtering joins (semi and anti joins) that we haven’t touched upon.
+</p>
+</div>
+</div>
+</div>
+<div id="binding-join-verbs" class="section level3">
+<h3><span class="header-section-number">4.4.2</span> Binding Join Verbs</h3>
+<p>In contrast to mutating join verbs, binding join verbs simply combine tables without any need for matching. Dplyr provides <code>bind_rows()</code> and <code>bind_cols()</code> for combining tables by row and column respectively. When row binding, missing columns are replaced by <code>NA</code> values. When column binding, if the tables do not match by appropriate dimensions, an error will result.</p>
+<p>Let’s take our simple example from above and see how <code>data1</code> and <code>data2</code> would be merged with <code>bind_rows()</code> and <code>bind_cols()</code>.</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="data-transformation-2-two-table-verbs.html#cb199-1"></a><span class="kw">bind_rows</span>(data1, data2)</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 3
+##      ID X1    X2   
+##   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+## 1     1 a1    &lt;NA&gt; 
+## 2     2 a2    &lt;NA&gt; 
+## 3     2 &lt;NA&gt;  b1   
+## 4     3 &lt;NA&gt;  b2</code></pre>
+<p><code>bind_rows()</code> takes <code>data2</code> and puts it underneath <code>data1</code>. Notice that the binding does not “care” that we have now two rows representing ID = 2. Since <code>X1</code> and <code>X2</code> do not exist in <code>data1</code> and <code>data2</code> respectively, <code>NA</code> are added.</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="data-transformation-2-two-table-verbs.html#cb201-1"></a><span class="kw">bind_cols</span>(data1, data2)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 4
+##      ID X1      ID1 X2   
+##   &lt;int&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt;
+## 1     1 a1        2 b1   
+## 2     2 a2        3 b2</code></pre>
+<p><code>bind_cols()</code> takes <code>data2</code> and puts it right next to <code>data1</code>. Since the column name <code>ID</code> has already been taken, column 3 gets called <code>ID1</code>.</p>
+<p>In the case when the dimension between the dataframes do not match, <code>bind_rows()</code> would still work, whereas <code>bind_cols()</code> would produce an error message.</p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="data-transformation-2-two-table-verbs.html#cb203-1"></a>data3 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">ID =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>,</span>
+<span id="cb203-2"><a href="data-transformation-2-two-table-verbs.html#cb203-2"></a>                <span class="dt">X3 =</span> <span class="kw">c</span>(<span class="st">&quot;c1&quot;</span>, <span class="st">&quot;c2&quot;</span>, <span class="st">&quot;c3&quot;</span>))</span>
+<span id="cb203-3"><a href="data-transformation-2-two-table-verbs.html#cb203-3"></a></span>
+<span id="cb203-4"><a href="data-transformation-2-two-table-verbs.html#cb203-4"></a><span class="kw">bind_rows</span>(data1, data2, data3)</span></code></pre></div>
+<pre><code>## # A tibble: 7 x 4
+##      ID X1    X2    X3   
+##   &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+## 1     1 a1    &lt;NA&gt;  &lt;NA&gt; 
+## 2     2 a2    &lt;NA&gt;  &lt;NA&gt; 
+## 3     2 &lt;NA&gt;  b1    &lt;NA&gt; 
+## 4     3 &lt;NA&gt;  b2    &lt;NA&gt; 
+## 5     3 &lt;NA&gt;  &lt;NA&gt;  c1   
+## 6     4 &lt;NA&gt;  &lt;NA&gt;  c2   
+## 7     5 &lt;NA&gt;  &lt;NA&gt;  c3</code></pre>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="data-transformation-2-two-table-verbs.html#cb205-1"></a><span class="kw">bind_cols</span>(data1, data3)</span></code></pre></div>
+<center>
+<img src="images/error_col.png">
+</center>
+<div class="funfact">
+<p>
+By the way, you can merge as many data objects as you like with the binding functions, whereas in the join functions, you are limited to two. However, you could use a pipe to combine the merged dataframe with a third.
+</p>
+<p>
+example 1: bind_rows(data1, data2, data3) <br> example 2: full_join(data1, data2) %&gt;% full_join(data3)
+</p>
+</div>
+<div class="task">
+<p>
+<strong>Your turn</strong>
+</p>
+<p>
+You have finally found the missing data corresponding to <code>ID</code> number 3. This subject has a GAD7 score of 4 and is employed part-time. Store this information in a tibble called <code>new_participant</code> and bind it to the <code>extra_MH</code> dataset using <code>bind_rows()</code>. Store this merged output to your <code>Global Environment</code> as a new object called <code>extra_MH_final</code>.
+</p>
+</div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="data-transformation-2-two-table-verbs.html#cb206-1"></a>new_participant &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">ID =</span> <span class="dv">3</span>,</span>
+<span id="cb206-2"><a href="data-transformation-2-two-table-verbs.html#cb206-2"></a>                          <span class="dt">GAD7 =</span> <span class="dv">4</span>,</span>
+<span id="cb206-3"><a href="data-transformation-2-two-table-verbs.html#cb206-3"></a>                          <span class="dt">Employment =</span> <span class="st">&quot;Part&quot;</span>)</span>
+<span id="cb206-4"><a href="data-transformation-2-two-table-verbs.html#cb206-4"></a>extra_MH_final &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(new_participant, extra_MH)</span></code></pre></div>
+</div>
+<div class="task">
+<p>
+<strong>Follow-up Question</strong>
+</p>
+<p>
+The dataset <code>extra_MH_final</code> now contains the same number of observations (rows) as <code>short_MH</code>. Use <code>bind_cols()</code> to merge these two datasets together in a tibble called <code>MH_final</code>. How many rows and columns are you expecting for <code>MH_final</code> to have and why?
+</p>
+</div>
+<p>Rows (or observations): <input class='solveme nospaces' size='3' data-answer='["268"]'/> <br>
+Columns (or variables): <input class='solveme nospaces' size='2' data-answer='["18"]'/> <br></p>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="data-transformation-2-two-table-verbs.html#cb207-1"></a>MH_final &lt;-<span class="st"> </span><span class="kw">bind_cols</span>(short_MH, extra_MH_final)</span></code></pre></div>
+<div class="solved">
+<p>
+We were expecting 268 observations (as both datasets have 268 rows) and 18 columns (i.e. 15 from <code>short_MH</code> and 3 from <code>extra_MH_final</code>). Notice that the <code>ID</code> column has been duplicated with an added suffix.
+</p>
+</div>
+<div class="task">
+<p>
+<strong>Follow-up Question 2</strong>
+</p>
+<p>
+Using your knowledge of one-table verbs, exclude the column <code>ID1</code>, overwriting the object <code>MH_final</code>.
+</p>
+</div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="data-transformation-2-two-table-verbs.html#cb208-1"></a>MH_final &lt;-<span class="st"> </span><span class="kw">select</span>(MH_final, <span class="op">-</span>ID1)</span></code></pre></div>
+<div class="task">
+<p>
+<strong>Follow-up Question 3</strong>
+</p>
+<p>
+Rather than using <code>bind_cols()</code> and <code>select()</code>, can you think of a different way how you could have merged <code>short_MH</code> and <code>extra_MH_final</code>?
+</p>
+</div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="data-transformation-2-two-table-verbs.html#cb209-1"></a><span class="co"># One solution:</span></span>
+<span id="cb209-2"><a href="data-transformation-2-two-table-verbs.html#cb209-2"></a>MH_final &lt;-<span class="st"> </span><span class="kw">full_join</span>(short_MH, extra_MH_final)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;ID&quot;</code></pre>
+<div class="solved">
+<p>
+Actually, any of the other joins would have worked as well, though <code>right_join()</code> would have sorted the column <code>ID</code> differently. Try it out!
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="additional-information" class="section level2">
+<h2><span class="header-section-number">4.5</span> Additional information</h2>
+<p>Garrick Aden-Buie created some amazing gganimation gif to illustrate how the joins work. Check it out! <a href="https://www.garrickadenbuie.com/project/tidyexplain/" class="uri">https://www.garrickadenbuie.com/project/tidyexplain/</a></p>
+</div>
+<div id="summative-homework-1" class="section level2">
+<h2><span class="header-section-number">4.6</span> Summative Homework</h2>
+<p>The second summative assessment is available on moodle now.</p>
+<p>Good luck.</p>
+<p>Check that your Rmd file knits into a html file before submitting. Upload your Rmd file (not the knitted html) to moodle.</p>
+
+</div>
+</div>
+<script>
+
+/* update total correct if #total_correct exists */
+update_total_correct = function() {
+  if (t = document.getElementById("total_correct")) {
+    t.innerHTML =
+      document.getElementsByClassName("correct").length + " of " +
+      document.getElementsByClassName("solveme").length + " correct";
+  }
+}
+
+/* solution button toggling function */
+b_func = function() {
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "");
+  }
+  
+  if (my_answer !== "" & real_answers.includes(my_answer)) {
+    cl.add("correct");
+  } else {
+    cl.remove("correct");
+  }
+  update_total_correct();
+}
+
+window.onload = function() {
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+  
+  /* set up solveme inputs */
+  var solveme = document.getElementsByClassName("solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off"); 
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+    
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+    
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  update_total_correct();
+}
+
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-transformation-1-basic-one-table-verbs.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-transformation-3-finetuned-data-manipulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

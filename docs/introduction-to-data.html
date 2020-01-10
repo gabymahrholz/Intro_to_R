@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Introduction to Data | Introduction to R</title>
+  <meta name="description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
+  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Introduction to Data | Introduction to R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Introduction to Data | Introduction to R" />
+  
+  <meta name="twitter:description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
+  
+
+<meta name="author" content="Gaby Mahrholz, Rebecca J. Lai, Kate Haining, Greta Todorova, and Wilhelmiina Toivo" />
+
+
+<meta name="date" content="2020-01-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction.html"/>
+<link rel="next" href="data-transformation-1-basic-one-table-verbs.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this course</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#intended-learning-outcomes"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-will-i-need-to-complete-this-course"><i class="fa fa-check"></i>What will I need to complete this course?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-assessments"><i class="fa fa-check"></i>About the Assessments</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#formative-assessments"><i class="fa fa-check"></i>Formative Assessments</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#summative-assessments"><i class="fa fa-check"></i>Summative Assessments</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-submit-your-assessments"><i class="fa fa-check"></i>How to Submit Your Assessments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#assistance"><i class="fa fa-check"></i>Assistance</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-are-these-materials-open"><i class="fa fa-check"></i>Why are these materials open?</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#intended-learning-outcomes-1"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#computer-literacy-basics"><i class="fa fa-check"></i><b>1.1</b> Computer Literacy Basics</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#r-and-r-studio"><i class="fa fa-check"></i><b>1.2</b> R and R Studio</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction.html"><a href="introduction.html#r"><i class="fa fa-check"></i><b>1.2.1</b> R</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduction.html"><a href="introduction.html#rstudio-ide"><i class="fa fa-check"></i><b>1.2.2</b> RStudio IDE</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#r-r-studio-and-associated-file-types"><i class="fa fa-check"></i><b>1.3</b> R, R Studio and Associated File Types</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction.html"><a href="introduction.html#file-structuredirectories"><i class="fa fa-check"></i><b>1.3.1</b> File Structure/Directories</a></li>
+<li class="chapter" data-level="1.3.2" data-path="introduction.html"><a href="introduction.html#file-extensions"><i class="fa fa-check"></i><b>1.3.2</b> File Extensions</a></li>
+<li class="chapter" data-level="1.3.3" data-path="introduction.html"><a href="introduction.html#zip-files"><i class="fa fa-check"></i><b>1.3.3</b> .zip Files</a></li>
+<li class="chapter" data-level="1.3.4" data-path="introduction.html"><a href="introduction.html#rstudio-specific-files"><i class="fa fa-check"></i><b>1.3.4</b> RStudio Specific Files</a></li>
+<li class="chapter" data-level="1.3.5" data-path="introduction.html"><a href="introduction.html#r-files"><i class="fa fa-check"></i><b>1.3.5</b> .r Files</a></li>
+<li class="chapter" data-level="1.3.6" data-path="introduction.html"><a href="introduction.html#rmd-files"><i class="fa fa-check"></i><b>1.3.6</b> .Rmd files</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#comments"><i class="fa fa-check"></i><b>1.4</b> Comments</a></li>
+<li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#saving-your-file"><i class="fa fa-check"></i><b>1.5</b> Saving your file</a></li>
+<li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#sessions"><i class="fa fa-check"></i><b>1.6</b> Sessions</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="introduction.html"><a href="introduction.html#what-is-a-session-in-r"><i class="fa fa-check"></i><b>1.6.1</b> What is a session in R?</a></li>
+<li class="chapter" data-level="1.6.2" data-path="introduction.html"><a href="introduction.html#restarting-your-current-session"><i class="fa fa-check"></i><b>1.6.2</b> Restarting Your Current Session</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#packages"><i class="fa fa-check"></i><b>1.7</b> Packages</a><ul>
+<li class="chapter" data-level="1.7.1" data-path="introduction.html"><a href="introduction.html#installing-packages"><i class="fa fa-check"></i><b>1.7.1</b> Installing Packages</a></li>
+<li class="chapter" data-level="1.7.2" data-path="introduction.html"><a href="introduction.html#load-tidyverse"><i class="fa fa-check"></i><b>1.7.2</b> Loading Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="introduction.html"><a href="introduction.html#functions"><i class="fa fa-check"></i><b>1.8</b> Functions</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="introduction.html"><a href="introduction.html#what-is-a-function"><i class="fa fa-check"></i><b>1.8.1</b> What is a function?</a></li>
+<li class="chapter" data-level="1.8.2" data-path="introduction.html"><a href="introduction.html#the-anatomy-of-a-function-names-and-arguments"><i class="fa fa-check"></i><b>1.8.2</b> The Anatomy of a Function: names and arguments</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="introduction.html"><a href="introduction.html#formative-assignment"><i class="fa fa-check"></i><b>1.9</b> Formative Assignment</a><ul>
+<li class="chapter" data-level="1.9.1" data-path="introduction.html"><a href="introduction.html#access-to-rstudio"><i class="fa fa-check"></i><b>1.9.1</b> Access to RStudio</a></li>
+<li class="chapter" data-level="1.9.2" data-path="introduction.html"><a href="introduction.html#installing-and-loading-tidyverse"><i class="fa fa-check"></i><b>1.9.2</b> Installing and Loading Tidyverse</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-data.html"><a href="introduction-to-data.html"><i class="fa fa-check"></i><b>2</b> Introduction to Data</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-data.html"><a href="introduction-to-data.html#intended-learning-outcomes-2"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="2.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#pre-steps"><i class="fa fa-check"></i><b>2.1</b> Pre-Steps</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#downloading-materials"><i class="fa fa-check"></i><b>2.1.1</b> Downloading materials</a></li>
+<li class="chapter" data-level="2.1.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#unzipping-the-zip-folder"><i class="fa fa-check"></i><b>2.1.2</b> Unzipping the zip folder</a></li>
+<li class="chapter" data-level="2.1.3" data-path="introduction-to-data.html"><a href="introduction-to-data.html#setting-the-working-directory"><i class="fa fa-check"></i><b>2.1.3</b> Setting the working directory</a></li>
+<li class="chapter" data-level="2.1.4" data-path="introduction-to-data.html"><a href="introduction-to-data.html#load-tidyverse-into-the-library"><i class="fa fa-check"></i><b>2.1.4</b> Load tidyverse into the library</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#basic-data-types"><i class="fa fa-check"></i><b>2.2</b> Basic data types</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#character"><i class="fa fa-check"></i><b>2.2.1</b> Character</a></li>
+<li class="chapter" data-level="2.2.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#numeric"><i class="fa fa-check"></i><b>2.2.2</b> Numeric</a></li>
+<li class="chapter" data-level="2.2.3" data-path="introduction-to-data.html"><a href="introduction-to-data.html#logical"><i class="fa fa-check"></i><b>2.2.3</b> Logical</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-data.html"><a href="introduction-to-data.html#vectors"><i class="fa fa-check"></i><b>2.3</b> Vectors</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#creating-vectors"><i class="fa fa-check"></i><b>2.3.1</b> Creating vectors</a></li>
+<li class="chapter" data-level="2.3.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#converting-vectors-into-different-data-types-of-vectors-aka-funky-things-we-can-do"><i class="fa fa-check"></i><b>2.3.2</b> Converting vectors into different data types of vectors aka funky things we can do</a></li>
+<li class="chapter" data-level="2.3.3" data-path="introduction-to-data.html"><a href="introduction-to-data.html#adding-elements-to-existing-vectors"><i class="fa fa-check"></i><b>2.3.3</b> Adding elements to existing vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-data.html"><a href="introduction-to-data.html#tibble---the-new-way-of-creating-a-dataframe"><i class="fa fa-check"></i><b>2.4</b> Tibble - the new way of creating a dataframe</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#what-the-heck-is-a-tibble-do-you-mean-table"><i class="fa fa-check"></i><b>2.4.1</b> What the heck is a tibble? Do you mean table?</a></li>
+<li class="chapter" data-level="2.4.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#how-to-make-a-tibble-from-scratch"><i class="fa fa-check"></i><b>2.4.2</b> How to make a tibble from scratch</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-data.html"><a href="introduction-to-data.html#reading-in-data"><i class="fa fa-check"></i><b>2.5</b> Reading in data</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#from-pre-existing-databases"><i class="fa fa-check"></i><b>2.5.1</b> from pre-existing databases</a></li>
+<li class="chapter" data-level="2.5.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#from-existing-data-files"><i class="fa fa-check"></i><b>2.5.2</b> from existing data files</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-data.html"><a href="introduction-to-data.html#last-point-for-today"><i class="fa fa-check"></i><b>2.6</b> Last point for today</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-data.html"><a href="introduction-to-data.html#summative-homework"><i class="fa fa-check"></i><b>2.7</b> Summative Homework</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html"><i class="fa fa-check"></i><b>3</b> Data Transformation 1: Basic One Table Verbs</a><ul>
+<li class="chapter" data-level="" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#intended-learning-outcomes-3"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="3.1" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#data-wrangling"><i class="fa fa-check"></i><b>3.1</b> Data Wrangling</a></li>
+<li class="chapter" data-level="3.2" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#pre-steps-1"><i class="fa fa-check"></i><b>3.2</b> Pre-Steps</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#downloading-materials-1"><i class="fa fa-check"></i><b>3.2.1</b> Downloading materials</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#unzipping-the-zip-folder-1"><i class="fa fa-check"></i><b>3.2.2</b> Unzipping the zip folder</a></li>
+<li class="chapter" data-level="3.2.3" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#setting-the-working-directory-1"><i class="fa fa-check"></i><b>3.2.3</b> Setting the working directory</a></li>
+<li class="chapter" data-level="3.2.4" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#load-tidyverse-into-the-library-1"><i class="fa fa-check"></i><b>3.2.4</b> Load tidyverse into the library</a></li>
+<li class="chapter" data-level="3.2.5" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#reading-in-the-data"><i class="fa fa-check"></i><b>3.2.5</b> Reading in the data</a></li>
+<li class="chapter" data-level="3.2.6" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#view-the-data"><i class="fa fa-check"></i><b>3.2.6</b> View the data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#select"><i class="fa fa-check"></i><b>3.3</b> Select()</a></li>
+<li class="chapter" data-level="3.4" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#arrange"><i class="fa fa-check"></i><b>3.4</b> Arrange()</a></li>
+<li class="chapter" data-level="3.5" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#filter"><i class="fa fa-check"></i><b>3.5</b> Filter()</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#single-criterion"><i class="fa fa-check"></i><b>3.5.1</b> Single criterion</a></li>
+<li class="chapter" data-level="3.5.2" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#multiple-criteria"><i class="fa fa-check"></i><b>3.5.2</b> Multiple criteria</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#mutate"><i class="fa fa-check"></i><b>3.6</b> Mutate()</a></li>
+<li class="chapter" data-level="3.7" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#formative-homework"><i class="fa fa-check"></i><b>3.7</b> Formative Homework</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#brief-introduction-to-the-homework-data"><i class="fa fa-check"></i><b>3.7.1</b> Brief introduction to the homework data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html"><i class="fa fa-check"></i><b>4</b> Data Transformation 2: Two Table Verbs</a><ul>
+<li class="chapter" data-level="" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#intended-learning-outcomes-4"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="4.1" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#pre-steps-2"><i class="fa fa-check"></i><b>4.1</b> Pre-Steps</a></li>
+<li class="chapter" data-level="4.2" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#group_by-and-summarise"><i class="fa fa-check"></i><b>4.2</b> Group_by() and Summarise()</a></li>
+<li class="chapter" data-level="4.3" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#the-pipe-operator"><i class="fa fa-check"></i><b>4.3</b> The pipe operator (%&gt;%)</a></li>
+<li class="chapter" data-level="4.4" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#two-table-verbs"><i class="fa fa-check"></i><b>4.4</b> Two-Table Verbs</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#mutating-join-verbs"><i class="fa fa-check"></i><b>4.4.1</b> Mutating Join Verbs</a></li>
+<li class="chapter" data-level="4.4.2" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#binding-join-verbs"><i class="fa fa-check"></i><b>4.4.2</b> Binding Join Verbs</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#additional-information"><i class="fa fa-check"></i><b>4.5</b> Additional information</a></li>
+<li class="chapter" data-level="4.6" data-path="data-transformation-2-two-table-verbs.html"><a href="data-transformation-2-two-table-verbs.html#summative-homework-1"><i class="fa fa-check"></i><b>4.6</b> Summative Homework</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html"><i class="fa fa-check"></i><b>5</b> Data Transformation 3: Finetuned Data Manipulation</a><ul>
+<li class="chapter" data-level="" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#intended-learning-outcomes-5"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="5.1" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#pre-steps-3"><i class="fa fa-check"></i><b>5.1</b> Pre-steps</a></li>
+<li class="chapter" data-level="5.2" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#gather-and-spread"><i class="fa fa-check"></i><b>5.2</b> gather() and spread()</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#gather"><i class="fa fa-check"></i><b>5.2.1</b> gather()</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#spread"><i class="fa fa-check"></i><b>5.2.2</b> spread()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#unite-and-separate"><i class="fa fa-check"></i><b>5.3</b> unite() and separate()</a></li>
+<li class="chapter" data-level="5.4" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#rename"><i class="fa fa-check"></i><b>5.4</b> rename()</a></li>
+<li class="chapter" data-level="5.5" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#recode"><i class="fa fa-check"></i><b>5.5</b> recode()</a></li>
+<li class="chapter" data-level="5.6" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#ifelse-and-case_when"><i class="fa fa-check"></i><b>5.6</b> ifelse and case_when</a></li>
+<li class="chapter" data-level="5.7" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#distinct"><i class="fa fa-check"></i><b>5.7</b> distinct</a></li>
+<li class="chapter" data-level="5.8" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#additional-information-1"><i class="fa fa-check"></i><b>5.8</b> Additional information</a></li>
+<li class="chapter" data-level="5.9" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#bonus-mutate-rownames-from-the-mtcars"><i class="fa fa-check"></i><b>5.9</b> Bonus: mutate rownames from the mtcars</a></li>
+<li class="chapter" data-level="5.10" data-path="data-transformation-3-finetuned-data-manipulation.html"><a href="data-transformation-3-finetuned-data-manipulation.html#formative-homework-1"><i class="fa fa-check"></i><b>5.10</b> Formative Homework</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="recap-1.html"><a href="recap-1.html"><i class="fa fa-check"></i><b>6</b> Recap 1</a><ul>
+<li class="chapter" data-level="6.1" data-path="recap-1.html"><a href="recap-1.html#outline-for-today"><i class="fa fa-check"></i><b>6.1</b> Outline for today</a></li>
+<li class="chapter" data-level="6.2" data-path="recap-1.html"><a href="recap-1.html#in-class-practice-exam"><i class="fa fa-check"></i><b>6.2</b> In-class practice exam</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html"><i class="fa fa-check"></i><b>7</b> Data Visualisation 1</a><ul>
+<li class="chapter" data-level="" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#intended-learning-outcomes-6"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html"><i class="fa fa-check"></i><b>8</b> Data Visualisation 2</a><ul>
+<li class="chapter" data-level="" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#intended-learning-outcomes-7"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>9</b> Errors</a><ul>
+<li class="chapter" data-level="9.1" data-path="errors.html"><a href="errors.html#under-construction"><i class="fa fa-check"></i><b>9.1</b> Under Construction</a></li>
+<li class="chapter" data-level="" data-path="errors.html"><a href="errors.html#intended-learning-outcomes-8"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="9.2" data-path="errors.html"><a href="errors.html#errors-how-to-avoid-some-and-live-through-the-rest"><i class="fa fa-check"></i><b>9.2</b> Errors: How to avoid some and live through the rest</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="errors.html"><a href="errors.html#debugging"><i class="fa fa-check"></i><b>9.2.1</b> Debugging</a></li>
+<li class="chapter" data-level="9.2.2" data-path="errors.html"><a href="errors.html#debugging-questions"><i class="fa fa-check"></i><b>9.2.2</b> Debugging Questions</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="errors.html"><a href="errors.html#seeking-help"><i class="fa fa-check"></i><b>9.3</b> Seeking Help</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="errors.html"><a href="errors.html#searching-for-help-online"><i class="fa fa-check"></i><b>9.3.1</b> Searching for Help Online</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="errors.html"><a href="errors.html#custom-functions"><i class="fa fa-check"></i><b>9.4</b> Custom Functions</a></li>
+<li class="chapter" data-level="9.5" data-path="errors.html"><a href="errors.html#living-through-errors-how-reproducible-code-enables-science-to-self-correct"><i class="fa fa-check"></i><b>9.5</b> Living Through Errors: How reproducible code enables science to self-correct</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="recap-2-before-the-final-assessment.html"><a href="recap-2-before-the-final-assessment.html"><i class="fa fa-check"></i><b>10</b> Recap 2: Before the Final Assessment</a><ul>
+<li class="chapter" data-level="10.1" data-path="recap-2-before-the-final-assessment.html"><a href="recap-2-before-the-final-assessment.html#intended-learning-outcomes-9"><i class="fa fa-check"></i><b>10.1</b> Intended Learning Outcomes</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html"><i class="fa fa-check"></i>Appendices</a><ul>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#source-materials"><i class="fa fa-check"></i>Source Materials</a></li>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#further-reading"><i class="fa fa-check"></i>Further Reading</a><ul>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#statistics"><i class="fa fa-check"></i>Statistics</a></li>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#more-advanced-use-of-r"><i class="fa fa-check"></i>More Advanced Use of R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>11</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction-to-data" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Introduction to Data</h1>
+<div id="intended-learning-outcomes-2" class="section level2 unnumbered">
+<h2>Intended Learning Outcomes</h2>
+<ol style="list-style-type: decimal">
+<li>understand basic data types</li>
+<li>create and store vectors</li>
+<li>convert data types into one another</li>
+<li>create a data table from scratch</li>
+<li>import and store data</li>
+</ol>
+<p>TAKE OUT LATER ON - just examples of what boxes exist for the minute</p>
+<div class="solved">
+<p>
+{block, type = “solved”}
+</p>
+</div>
+<div class="funfact">
+<p>
+{block, type = “funfact”}
+</p>
+</div>
+<div class="question">
+<p>
+{block, type = “question”}
+</p>
+</div>
+<div class="info">
+<p>
+{block, type = “info”}
+</p>
+</div>
+<div class="danger">
+<p>
+{block, type = “danger”}
+</p>
+</div>
+<div class="warning">
+<p>
+{block, type = “warning”}
+</p>
+</div>
+<div class="task">
+<p>
+{block, type = “task”}
+</p>
+</div>
+</div>
+<div id="pre-steps" class="section level2">
+<h2><span class="header-section-number">2.1</span> Pre-Steps</h2>
+<p>Before we begin, we need to do some house-keeping.</p>
+<div id="downloading-materials" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Downloading materials</h3>
+<p>First, we need to download the materials we are working with today. You can find them <a href="data\L2_data.zip" download>here</a> or on moodle. It’s a zip folder that contains an Rmd file called <code>L2_stub</code> and a data file in .csv format forlater. <code>L2_stub</code> has all the code chunks listed for today’s lesson. You are more than welcome to add notes and comments to the Rmd (white chunks), however there is no need to copy any code.</p>
+</div>
+<div id="unzipping-the-zip-folder" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Unzipping the zip folder</h3>
+<p>The folder we have downloaded is a zip folder. R cannot handle zip folders very well, so the folder needs to be unzipped. Right-mouseclick on the zipped folder, then choose <code>Extract All...</code>.</p>
+<p>Copy and paste/ move the folder to your M drive (or somewhere that makes sense to you - and where you can find it again - if you are using your own computer).</p>
+<p>Check the unzipped folder contains the <code>L2_stub.Rmd</code> and a data file called <code>MM_data.csv</code>.</p>
+</div>
+<div id="setting-the-working-directory" class="section level3">
+<h3><span class="header-section-number">2.1.3</span> Setting the working directory</h3>
+<p>It is always good practice to set your working directory to the folder you are working with. This can be done in 2 ways:</p>
+<ol style="list-style-type: decimal">
+<li><p>In the menu, go to <strong>Session &gt; Set Working Directory &gt; Choose Directory</strong> (Crtl + Shift + H also works as key short cut in a Windows environment). Then select the folder containing the data file and click ‘open’. You might not see any files in the folder you are selecting - that is fine.</p></li>
+<li><p>In the <code>Files pane</code>, you could navigate to today’s folder, and once there click on <strong>More &gt; Set As Working Directory</strong>.</p></li>
+</ol>
+<p>Whichever way you prefer is fine. The files <code>L2_stub</code> and <code>MM_data.csv</code> should now be visible in the <code>Files pane</code>.</p>
+</div>
+<div id="load-tidyverse-into-the-library" class="section level3">
+<h3><span class="header-section-number">2.1.4</span> Load tidyverse into the library</h3>
+<p>We will be using a few functions today that are part of the <code>tidyverse</code> package compilation. Let’s load tidyverse in the library now, so we do not have to worry about it later on.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="introduction-to-data.html#cb5-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<p>Yay, with that out of the way, we can begin Lesson 2.</p>
+</div>
+</div>
+<div id="basic-data-types" class="section level2">
+<h2><span class="header-section-number">2.2</span> Basic data types</h2>
+<p>There are plenty data types, however for our purposes we will be focussing on:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">data type</th>
+<th align="left">description</th>
+<th align="left">example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">character</td>
+<td align="left">text string</td>
+<td align="left"><code>"hello World!"</code>, <code>"35.2"</code>, <code>'TRUE'</code></td>
+</tr>
+<tr class="even">
+<td align="left">double</td>
+<td align="left">double precision floating point numbers</td>
+<td align="left"><code>.033</code>, <code>-2.5</code></td>
+</tr>
+<tr class="odd">
+<td align="left">integer</td>
+<td align="left">positive &amp; negative whole numbers</td>
+<td align="left"><code>0L</code>, <code>1L</code>, <code>365L</code></td>
+</tr>
+<tr class="even">
+<td align="left">logical</td>
+<td align="left">Boolean operator with only two possible values</td>
+<td align="left"><code>TRUE</code>, <code>FALSE</code></td>
+</tr>
+</tbody>
+</table>
+<div id="character" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Character</h3>
+<p>You can store any text as a value in your local environment. You can either use single or double inverted commas.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="introduction-to-data.html#cb6-1"></a>my_quote &lt;-<span class="st"> &#39;R is Fun to learn!&#39;</span></span>
+<span id="cb6-2"><a href="introduction-to-data.html#cb6-2"></a><span class="kw">cat</span>(my_quote) <span class="co"># cat() prints the value stored in my_quote</span></span></code></pre></div>
+<p>If you want to use a direct quote, you need to include a backslash before each inverted comma.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="introduction-to-data.html#cb7-1"></a>direct_quote &lt;-<span class="st"> &quot;My friend said </span><span class="ch">\&quot;</span><span class="st">R is Fun to learn</span><span class="ch">\&quot;</span><span class="st">, and we all agreed.&quot;</span></span>
+<span id="cb7-2"><a href="introduction-to-data.html#cb7-2"></a><span class="kw">cat</span>(direct_quote)</span></code></pre></div>
+<pre><code>## My friend said &quot;R is Fun to learn&quot;, and we all agreed.</code></pre>
+<div class="info">
+<p>
+You can check the data type using the <code>typeof()</code> function. If you want to know which class they belong to, you can use the <code>class()</code> function.
+</p>
+</div>
+</div>
+<div id="numeric" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Numeric</h3>
+<p><code>double</code> and <code>integer</code> are both class numeric. Double is a number with decimal places whereas integer is a number that’s a full number. Any number will be stored as a <code>double</code> unless you specify <code>integer</code> by adding an L as a suffix.</p>
+<p>Example:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="introduction-to-data.html#cb9-1"></a><span class="kw">typeof</span>(<span class="fl">359.1</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="introduction-to-data.html#cb11-1"></a><span class="kw">typeof</span>(<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="introduction-to-data.html#cb13-1"></a><span class="kw">typeof</span>(45L)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+</div>
+<div id="logical" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> Logical</h3>
+<p>A logical vector is a vector that only contains TRUE and FALSE values. You can use that type of data to compare (or relate) 2 pieces of information. We have several comparison (or relational) operators in R. A few of them are:</p>
+<center>
+<img src="images/Logical_operators.png">
+</center>
+<p>More information on logical comparison operators can be found on <a href="https://bookdown.org/ndphillips/YaRrr/logical-indexing.html" class="uri">https://bookdown.org/ndphillips/YaRrr/logical-indexing.html</a> (from which the above image was modified).</p>
+<p>You could compare if two values are equal…</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="introduction-to-data.html#cb15-1"></a><span class="dv">100</span> <span class="op">==</span><span class="st"> </span><span class="dv">100</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>… or if they are not equal.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="introduction-to-data.html#cb17-1"></a><span class="dv">100</span> <span class="op">!=</span><span class="st"> </span><span class="dv">100</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p>We can test if one value is smaller or equal than the other…</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="introduction-to-data.html#cb19-1"></a><span class="dv">5</span> <span class="op">&lt;=</span><span class="st"> </span><span class="dv">9-4</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>… or if one value is larger than another.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="introduction-to-data.html#cb21-1"></a><span class="dv">101</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">111</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p>Note that it works with character strings as well. (Not really important for this class though)</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="introduction-to-data.html#cb23-1"></a><span class="co"># &quot;a&quot; == &quot;a&quot; would be TRUE as both side of the comparison contain the same information.</span></span>
+<span id="cb23-2"><a href="introduction-to-data.html#cb23-2"></a><span class="st">&quot;a&quot;</span> <span class="op">==</span><span class="st"> &quot;a&quot;</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="introduction-to-data.html#cb25-1"></a><span class="co"># &quot;a&quot; &lt;= &quot;b&quot; would be TRUE as a comes before b in the alphabet (i.e. 1st letter vs 2nd letter)</span></span>
+<span id="cb25-2"><a href="introduction-to-data.html#cb25-2"></a><span class="st">&quot;a&quot;</span> <span class="op">&lt;=</span><span class="st"> &quot;b&quot;</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="introduction-to-data.html#cb27-1"></a><span class="co"># &quot;abc&quot; &gt; &quot;a&quot; would be TRUE as there are more values on the left than on the right</span></span>
+<span id="cb27-2"><a href="introduction-to-data.html#cb27-2"></a><span class="st">&quot;abc&quot;</span> <span class="op">&gt;</span><span class="st"> &quot;a&quot;</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p><span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span></p>
+<p>Run the following examples in your Console and select from the drop down menu what data type they belong to:</p>
+<ul>
+<li>class(1): <select class='solveme' data-answer='["double"]'> <option></option> <option>character</option> <option>double</option> <option>integer</option> <option>logical</option> <option>Error message</option></select></li>
+<li>class(1L): <select class='solveme' data-answer='["integer"]'> <option></option> <option>character</option> <option>double</option> <option>integer</option> <option>logical</option> <option>Error message</option></select></li>
+<li>class(1.0): <select class='solveme' data-answer='["double"]'> <option></option> <option>character</option> <option>double</option> <option>integer</option> <option>logical</option> <option>Error message</option></select></li>
+<li>class(“1”): <select class='solveme' data-answer='["character"]'> <option></option> <option>character</option> <option>double</option> <option>integer</option> <option>logical</option> <option>Error message</option></select></li>
+<li>class(1L == 2L): <select class='solveme' data-answer='["logical"]'> <option></option> <option>character</option> <option>double</option> <option>integer</option> <option>logical</option> <option>Error message</option></select></li>
+<li>class(1L &lt;= 2L): <select class='solveme' data-answer='["logical"]'> <option></option> <option>character</option> <option>double</option> <option>integer</option> <option>logical</option> <option>Error message</option></select></li>
+<li>class(1L &lt;= 2L, “1”): <select class='solveme' data-answer='["Error message"]'> <option></option> <option>character</option> <option>double</option> <option>integer</option> <option>logical</option> <option>Error message</option></select></li>
+</ul>
+<div class="solution">
+<button>
+Explain this - why is 1 not an integer?
+</button>
+<div class="solved">
+<p>
+Any number will be stored as a <code>double</code> unless you specify <code>integer</code> by adding an L as a suffix.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="vectors" class="section level2">
+<h2><span class="header-section-number">2.3</span> Vectors</h2>
+<p>Vectors are one of the very simple data structure in R. You could define them as “a single entity consisting of a collection of things”.</p>
+<div id="creating-vectors" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Creating vectors</h3>
+<p>If you want to combine more than one element into one vector, you can do that by using the <code>c()</code> function. c stands for combine or as my colleague once said, it’s hugging multiple elements together. All elements in the vector have to be of the same data type.</p>
+<p><strong>Examples:</strong></p>
+<p>This is a vector of datatype <code>double</code>.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="introduction-to-data.html#cb29-1"></a><span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">2.5</span>, <span class="fl">4.7</span>)</span></code></pre></div>
+<pre><code>## [1] 1.0 2.5 4.7</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="introduction-to-data.html#cb31-1"></a><span class="kw">typeof</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">2.5</span>, <span class="fl">4.7</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<p>This is a vector of datatype <code>integer</code>. Adding the <code>L</code> makes it an integer, but see that in the printout the <code>L</code> is actually omitted.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="introduction-to-data.html#cb33-1"></a><span class="kw">c</span>(0L, 1L, 2L, 365L)</span></code></pre></div>
+<pre><code>## [1]   0   1   2 365</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="introduction-to-data.html#cb35-1"></a><span class="kw">typeof</span>(<span class="kw">c</span>(0L, 1L, 2L, 365L))</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<p>This is a vector of datatype <code>character</code>.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="introduction-to-data.html#cb37-1"></a><span class="kw">c</span>(<span class="st">&quot;hello&quot;</span>, <span class="st">&quot;student&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;hello&quot;   &quot;student&quot;</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="introduction-to-data.html#cb39-1"></a><span class="kw">typeof</span>(<span class="kw">c</span>(<span class="st">&quot;hello&quot;</span>, <span class="st">&quot;student&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>This is a vector of datatype <code>logic</code>.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="introduction-to-data.html#cb41-1"></a><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</span></code></pre></div>
+<pre><code>## [1]  TRUE FALSE</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="introduction-to-data.html#cb43-1"></a><span class="kw">typeof</span>(<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<p>We have seen what vectors look like. If you want to store these vectors in your global environment, all you need is the <code>assignment operator &lt;-</code> and a <code>meaingful name</code> for “the thing” you want to store. Here the first example reads like: “Take a vector of 3 elements (namely 1, 2.5, 4.7) and store it in your <code>Global Environment</code> under the name <code>vec_double</code>.” You can then use the name you assigned to the vector within the <code>typeof()</code> function, rather than the vector itself.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="introduction-to-data.html#cb45-1"></a>vec_double &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">2.5</span>, <span class="fl">4.7</span>)</span>
+<span id="cb45-2"><a href="introduction-to-data.html#cb45-2"></a><span class="kw">typeof</span>(vec_double)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="introduction-to-data.html#cb47-1"></a>vec_integer &lt;-<span class="st"> </span><span class="kw">c</span>(0L, 1L, 2L, 365L)</span>
+<span id="cb47-2"><a href="introduction-to-data.html#cb47-2"></a><span class="kw">typeof</span>(vec_integer)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="introduction-to-data.html#cb49-1"></a>vec_character &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;hello&quot;</span>, <span class="st">&quot;student&quot;</span>)</span>
+<span id="cb49-2"><a href="introduction-to-data.html#cb49-2"></a><span class="kw">typeof</span>(vec_character)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="introduction-to-data.html#cb51-1"></a>vec_logic &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</span>
+<span id="cb51-2"><a href="introduction-to-data.html#cb51-2"></a><span class="kw">typeof</span>(vec_logic)</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<div class="funfact">
+<p>
+Funnily enough, a vector <code>i &lt;- c(1,3,4,6)</code> would be stored as a <code>double</code>. However, when coded as <code>i &lt;- 1:10</code> would be stored as an <code>integer</code>.
+</p>
+<p>
+Don’t believe it? Try it out in your Console!
+</p>
+</div>
+<p><span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span></p>
+<div class="task">
+<p>
+<strong>Your turn</strong>
+</p>
+<ul>
+<li>
+<p>
+Create a vector of your 3 favourite movies and call it <code>favourite_movies</code>. What type of data are we expecting?
+</p>
+</li>
+<li>
+<p>
+Pick a couple of your family members or friends and create a vector <code>years_birth</code> that lists their year of birth. How many elements does the vector have, and what type of data are we expecting?
+</p>
+</li>
+<li>
+<p>
+Create a vector that holds all the letters of the alphabet and call it <code>alph</code>.
+</p>
+</li>
+<li>
+<p>
+Create a vector with 3 elements of your name, age, and the country you are from. Store this vector under the name <code>this_is_me</code>. What type of data are we expecting?
+</p>
+</li>
+</ul>
+</div>
+<div class="solution">
+<button>
+Explain this!
+</button>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="introduction-to-data.html#cb53-1"></a><span class="co"># Gaby&#39;s solution:</span></span>
+<span id="cb53-2"><a href="introduction-to-data.html#cb53-2"></a>favourite_movies &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Red&quot;</span>, <span class="st">&quot;Cloud Atlas&quot;</span>, <span class="st">&quot;Hot Fuzz&quot;</span>) <span class="co"># character</span></span>
+<span id="cb53-3"><a href="introduction-to-data.html#cb53-3"></a>years_birth &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1953</span>, <span class="dv">1975</span>) <span class="co"># double</span></span>
+<span id="cb53-4"><a href="introduction-to-data.html#cb53-4"></a>alph &lt;-<span class="st"> </span>letters <span class="co"># muahahahaaaa! &amp; character</span></span>
+<span id="cb53-5"><a href="introduction-to-data.html#cb53-5"></a>this_is_me &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Gaby&quot;</span>, <span class="dv">38</span>, <span class="st">&quot;Germany&quot;</span>) <span class="co"># character</span></span></code></pre></div>
+<div class="solved">
+<p>
+More detailed explanations:
+</p>
+<p>
+R has Built-in Constants:
+</p>
+<ul>
+<li>
+<code>letters</code>: the 26 lower-case letters of the Roman alphabet; <br>
+</li>
+<li>
+<code>LETTERS</code>: the 26 UPPER-case letters of the Roman alphabet; <br>
+</li>
+<li>
+<code>month.abb</code>: the three-letter abbreviations for the English month names; <br>
+</li>
+<li>
+<code>month.name</code>: the English names for the months of the year; <br>
+</li>
+<li>
+<code>pi</code>: the ratio of the circumference of a circle to its diameter
+</li>
+</ul>
+<p>
+Of course, the task could have been solved typing alph &lt;- c(“a”, “b”, “c”, “d”, “e”, “f”, “g”, “h”, “i”, “j”, “k”, “l”, “m”, “n”, “o”, “p”, “q”, “r”, “s”, “t”, “u”, “v”, “w”, “x”, “y”, “z”)
+</p>
+<p>
+<code>this_is_me</code> would be stored as a <code>character</code> vector despite having text as well as numeric elements. Remember how we said earlier that all elements have to be of the same data type? After the next section, you will understand why they are stored as a character and not as a numeric vector.
+</p>
+</div>
+</div>
+</div>
+<div id="converting-vectors-into-different-data-types-of-vectors-aka-funky-things-we-can-do" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Converting vectors into different data types of vectors aka funky things we can do</h3>
+<p>We can also reassign data types to our vectors we have just created. For example if we wanted to turn our <code>var_double</code> from <code>double</code> to <code>character</code>, we would code</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="introduction-to-data.html#cb54-1"></a>vec_double_as_char &lt;-<span class="st"> </span><span class="kw">as.character</span>(vec_double)</span>
+<span id="cb54-2"><a href="introduction-to-data.html#cb54-2"></a><span class="kw">typeof</span>(vec_double_as_char)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>In your Global Environment, you can now see that the vector <code>vec_double</code> has 3 numeric elements (abbreviated <code>num</code>), whereas <code>vec_double_as_char</code> has 3 character elements (abbreviated <code>chr</code>). Also note that the numbers 1.2, 2.5, and 4.7 have now quotation marks around them.</p>
+<p>Likewise, if we wanted to turn our integer vector <code>vec_integer</code> into data type <code>double</code>, we would use</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="introduction-to-data.html#cb56-1"></a>vec_integer_as_double &lt;-<span class="st"> </span><span class="kw">as.double</span>(vec_integer)</span>
+<span id="cb56-2"><a href="introduction-to-data.html#cb56-2"></a><span class="kw">typeof</span>(vec_integer_as_double)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<p>In your Global Environment, see how <code>vec_integer</code> has <code>int</code> assigned to it, whereas <code>vec_integer_as_double</code> is now listed as <code>num</code>. The <code>typeof</code> function revealed that the 4 elements of <code>vec_integer_as_double</code> are now stored as data type <code>double</code>.</p>
+<p>However, trying to turn a character vector into an <code>integer</code> or a <code>double</code> would fail.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="introduction-to-data.html#cb58-1"></a>vec_char_as_int &lt;-<span class="st"> </span><span class="kw">as.integer</span>(vec_character) <span class="co"># same outcome if we tried as.double</span></span></code></pre></div>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="introduction-to-data.html#cb60-1"></a><span class="kw">typeof</span>(vec_char_as_int)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<p>R would still compute “something” but it would be accompanied by the above warning message. As you can see in your Global Environment, <code>vec_char_as_int</code> does indeed exist as a numeric vector with 2 elements, but <code>NA</code> tells us they are classified as missing values.</p>
+<p>A logical vector can be converted into all other basic data types.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="introduction-to-data.html#cb62-1"></a>vec_logic_as_int &lt;-<span class="st"> </span><span class="kw">as.integer</span>(vec_logic)</span>
+<span id="cb62-2"><a href="introduction-to-data.html#cb62-2"></a>vec_logic_as_int</span></code></pre></div>
+<pre><code>## [1] 1 0</code></pre>
+<p><code>TRUE</code> and <code>FALSE</code> will be coded as <code>1</code> and <code>0</code> respectively when converting a logical into a numeric vector (integer or double). When converting a logical into a characters, it will just read as <code>"TRUE"</code> and <code>"FALSE"</code>.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="introduction-to-data.html#cb64-1"></a>vec_logic_as_char &lt;-<span class="st"> </span><span class="kw">as.character</span>(vec_logic)</span>
+<span id="cb64-2"><a href="introduction-to-data.html#cb64-2"></a>vec_logic_as_char</span></code></pre></div>
+<pre><code>## [1] &quot;TRUE&quot;  &quot;FALSE&quot;</code></pre>
+<p><span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span></p>
+<p>Remember the vector <code>this_is_me</code>? Can you explain now why it was stored as <code>character</code>?</p>
+<div class="solution">
+<button>
+Nope, I don’t get it!
+</button>
+<div class="info">
+<p>
+<code>this_is_me</code> would be stored as a <code>character</code> vector because this is the best way to retain all information. If this were to be stored as a <code>numeric</code> vector, the name and home country could only be coded as missing values <code>NA</code>. So rather than trying to turn everything into a number (which is not possible/ does not retain meaningful information), R turns the number into character (which is possible).
+</p>
+</div>
+</div>
+<p><br></p>
+<p>With this in mind, what data type would the vector be stored as if you combined the following elements?</p>
+<ol style="list-style-type: decimal">
+<li>logical and double - i.e. c(TRUE, 45)</li>
+<li>character and logical - i.e. c(“Sarah”, “Marc”, FALSE)</li>
+<li>integer and logical - i.e. c(1:3, TRUE)</li>
+<li>logical, double, and integer - i.e. c(FALSE, 99.5, 3L)</li>
+</ol>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="solved">
+<ol style="list-style-type: decimal">
+<li>
+double
+</li>
+<li>
+character
+</li>
+<li>
+integer
+</li>
+<li>
+double
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="adding-elements-to-existing-vectors" class="section level3">
+<h3><span class="header-section-number">2.3.3</span> Adding elements to existing vectors</h3>
+<p>Let’s start with a vector called <code>friends</code> that has three names in it.</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="introduction-to-data.html#cb66-1"></a>friends &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Gaby&quot;</span>, <span class="st">&quot;Wil&quot;</span>, <span class="st">&quot;Greta&quot;</span>)</span>
+<span id="cb66-2"><a href="introduction-to-data.html#cb66-2"></a>friends</span></code></pre></div>
+<pre><code>## [1] &quot;Gaby&quot;  &quot;Wil&quot;   &quot;Greta&quot;</code></pre>
+<p>We can now add more <code>friends</code> to our little group of <code>friends</code> by adding them either at the end, or the beginning of the vector. <code>friends</code> will now have four, and five values respectively, since we are “overwriting” our existing vector with the new one of the same name.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="introduction-to-data.html#cb68-1"></a>friends &lt;-<span class="st"> </span><span class="kw">c</span>(friends, <span class="st">&quot;Kate&quot;</span>)</span>
+<span id="cb68-2"><a href="introduction-to-data.html#cb68-2"></a>friends</span></code></pre></div>
+<pre><code>## [1] &quot;Gaby&quot;  &quot;Wil&quot;   &quot;Greta&quot; &quot;Kate&quot;</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="introduction-to-data.html#cb70-1"></a>friends &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Rebecca&quot;</span>, friends)</span>
+<span id="cb70-2"><a href="introduction-to-data.html#cb70-2"></a>friends</span></code></pre></div>
+<pre><code>## [1] &quot;Rebecca&quot; &quot;Gaby&quot;    &quot;Wil&quot;     &quot;Greta&quot;   &quot;Kate&quot;</code></pre>
+<p>Vectors also support missing data. If we wanted to add “another friend” whose name we do not know yet, we can just simply add <code>NA</code> to <code>friends</code>.</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="introduction-to-data.html#cb72-1"></a>friends &lt;-<span class="st"> </span><span class="kw">c</span>(friends, <span class="ot">NA</span>)</span>
+<span id="cb72-2"><a href="introduction-to-data.html#cb72-2"></a>friends</span></code></pre></div>
+<pre><code>## [1] &quot;Rebecca&quot; &quot;Gaby&quot;    &quot;Wil&quot;     &quot;Greta&quot;   &quot;Kate&quot;    NA</code></pre>
+<p>The vector <code>friends</code> would still be a character vector. Missing values do not alter the original data type. However, if you look in the Global Environment, you can see that the number of elements stored in <code>friends</code> increased from 5 to 6. To determine the number of elements in a vector in R (rather than eye sight), you can also use a function called <code>length()</code>.</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="introduction-to-data.html#cb74-1"></a><span class="kw">typeof</span>(friends)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="introduction-to-data.html#cb76-1"></a><span class="kw">length</span>(friends)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<p>Well, now we decided that 5 friends in our little group of friends is sufficient, and we did not want anyone else to join, we could remove the “placeholder friend NA” by coding</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="introduction-to-data.html#cb78-1"></a>friends &lt;-<span class="st"> </span>friends[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</span>
+<span id="cb78-2"><a href="introduction-to-data.html#cb78-2"></a>friends</span></code></pre></div>
+<pre><code>## [1] &quot;Rebecca&quot; &quot;Gaby&quot;    &quot;Wil&quot;     &quot;Greta&quot;   &quot;Kate&quot;</code></pre>
+<p>You can see that the length of the vector <code>friends</code> is now back to 5 again.</p>
+<div class="funfact">
+<p>
+<code>1:5</code> uses the colon operator<code>:</code> which is read as in “access the vector elements 1, 5, and everything in between”. An alternative way of writing out the above without using a colon operator would be <code>friends[c(1,2,3,4,5)]</code>. Notice that you need the <code>c()</code> function again.
+</p>
+</div>
+<p>Just as easily, we can create vectors for numeric sequences. The function <code>seq()</code> is a neat way of doing this, or you can use the colon operator<code>:</code> again. Just with the elements in the vector above, the same logic applies here. For example <code>1:10</code> means, you want to list number 1, number 10, and all numbers in between.</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="introduction-to-data.html#cb80-1"></a>sequence1 &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb80-2"><a href="introduction-to-data.html#cb80-2"></a>sequence1</span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="introduction-to-data.html#cb82-1"></a>sequence2 &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">10</span>)</span>
+<span id="cb82-2"><a href="introduction-to-data.html#cb82-2"></a>sequence2</span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="introduction-to-data.html#cb84-1"></a><span class="co"># compare whether sequence1 and sequence2 are of the same data type</span></span>
+<span id="cb84-2"><a href="introduction-to-data.html#cb84-2"></a><span class="kw">typeof</span>(sequence1) <span class="op">==</span><span class="st"> </span><span class="kw">typeof</span>(sequence2)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="introduction-to-data.html#cb86-1"></a><span class="co"># compare whether elements of sequence1 are the same as the elements in sequence2 </span></span>
+<span id="cb86-2"><a href="introduction-to-data.html#cb86-2"></a>sequence1 <span class="op">==</span><span class="st"> </span>sequence2</span></code></pre></div>
+<pre><code>##  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</code></pre>
+<p><span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span></p>
+<ul>
+<li>What data type is <code>sequence1</code>? <select class='solveme' data-answer='["integer"]'> <option></option> <option>character</option> <option>double</option> <option>integer</option> <option>logical</option></select></li>
+<li>What data type is <code>sequence2</code>? <select class='solveme' data-answer='["integer"]'> <option></option> <option>character</option> <option>double</option> <option>integer</option> <option>logical</option></select></li>
+<li>If we were to store the output of <code>sequence1 == sequence2</code> in a vector, what data type would the vector be? <select class='solveme' data-answer='["logical"]'> <option></option> <option>character</option> <option>double</option> <option>integer</option> <option>logical</option></select></li>
+</ul>
+</div>
+</div>
+<div id="tibble---the-new-way-of-creating-a-dataframe" class="section level2">
+<h2><span class="header-section-number">2.4</span> Tibble - the new way of creating a dataframe</h2>
+<div id="what-the-heck-is-a-tibble-do-you-mean-table" class="section level3">
+<h3><span class="header-section-number">2.4.1</span> What the heck is a tibble? Do you mean table?</h3>
+<p>First of all, tibble is not a spelling error; it’s the way r refers to its newest form of data table or dataframe. You can create a dataframe either by using the <code>tibble()</code> function or a function called <code>data.frame()</code>. <code>tibble()</code> is part of the package <code>tidyverse</code> whereas <code>data.frame</code> can be found in base R and does not need an additional package read into the library. Tibbles are slightly different to dataframes in that</p>
+<ul>
+<li>they have better print properties (Dataframes print ALL data when you call the data whereas tibbles only print the first 10 rows of data)</li>
+<li>character vectors are not coerced into factors (which you will be thankful for later on in your programming life)</li>
+<li>column names are not modified (for example if you wanted to make a column called <code>Female Voices</code> you could just do that. <code>tibble</code> keeps it as <code>Female Voices</code> with a space between the two words, whereas the <code>data.table</code> function would change it to <code>Female.Voices</code>)</li>
+</ul>
+<p>If you want to read more about the differences between dataframes and tibbles (and appreciate the advantages of tibbles), have a look on <a href="https://cran.r-project.org/web/packages/tibble/vignettes/tibble.html" class="uri">https://cran.r-project.org/web/packages/tibble/vignettes/tibble.html</a>.</p>
+</div>
+<div id="how-to-make-a-tibble-from-scratch" class="section level3">
+<h3><span class="header-section-number">2.4.2</span> How to make a tibble from scratch</h3>
+<p>Now that you have learnt how to create vectors, we can try and combine them into a tibble. The easiest way is to use the <code>tibble()</code> function. Let’s say we want to create a tibble that is called <code>tibble_year</code> with 4 columns:</p>
+<ul>
+<li>The first column <code>month</code> lists all months of the year</li>
+<li>The second column <code>abb_month</code> gives us the three-letter abbreviation of each year.</li>
+<li>The third column <code>month_num</code> tells which number of the year is which month (e.g. January would be the first month of the year; December would be number 12).</li>
+<li>The fourth column <code>season</code> would tell us in which season the month is (Northern hemisphere).</li>
+</ul>
+<p>Remember the Built-in Constants we were talking about earlier?</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="introduction-to-data.html#cb88-1"></a><span class="co"># Remember to load tidyverse into your script at least once (usually at the beginning)</span></span>
+<span id="cb88-2"><a href="introduction-to-data.html#cb88-2"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb88-3"><a href="introduction-to-data.html#cb88-3"></a></span>
+<span id="cb88-4"><a href="introduction-to-data.html#cb88-4"></a>tibble_year &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">month =</span> month.name,</span>
+<span id="cb88-5"><a href="introduction-to-data.html#cb88-5"></a>                      <span class="dt">abb.month =</span> month.abb,</span>
+<span id="cb88-6"><a href="introduction-to-data.html#cb88-6"></a>                      <span class="dt">month_num =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>,</span>
+<span id="cb88-7"><a href="introduction-to-data.html#cb88-7"></a>                      <span class="dt">season =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;Winter&quot;</span>, <span class="dv">2</span>), <span class="kw">rep</span>(<span class="st">&quot;Spring&quot;</span>, <span class="dv">3</span>), <span class="kw">rep</span>(<span class="st">&quot;Summer&quot;</span>, <span class="dv">3</span>), <span class="kw">rep</span>(<span class="st">&quot;Autumn&quot;</span>, <span class="dv">3</span>), <span class="st">&quot;Winter&quot;</span>))</span>
+<span id="cb88-8"><a href="introduction-to-data.html#cb88-8"></a></span>
+<span id="cb88-9"><a href="introduction-to-data.html#cb88-9"></a>tibble_year</span></code></pre></div>
+<pre><code>## # A tibble: 12 x 4
+##    month     abb.month month_num season
+##    &lt;chr&gt;     &lt;chr&gt;         &lt;int&gt; &lt;chr&gt; 
+##  1 January   Jan               1 Winter
+##  2 February  Feb               2 Winter
+##  3 March     Mar               3 Spring
+##  4 April     Apr               4 Spring
+##  5 May       May               5 Spring
+##  6 June      Jun               6 Summer
+##  7 July      Jul               7 Summer
+##  8 August    Aug               8 Summer
+##  9 September Sep               9 Autumn
+## 10 October   Oct              10 Autumn
+## 11 November  Nov              11 Autumn
+## 12 December  Dec              12 Winter</code></pre>
+<p>The generic structure of each of these columns we are creating is <code>column header name</code> <code>=</code> <code>values to fill in the rows</code>.</p>
+<div class="info">
+<p>
+Here, we used the built-in replication function <code>rep()</code> to build the column <code>season</code> which is a more time-efficient approach than typing out 4 seasons 3 times. Of course, we could have written season = c(“Winter”, “Winter”, “Spring”, “Spring”, “Spring”, “Summer”, “Summer”, “Summer”, “Autumn”, “Autumn”, “Autumn”, “Winter”) instead.
+</p>
+</div>
+<p>We can now use the function <code>glimpse()</code> to see which data types our columns are. This is a very handy function to keep in mind for later!</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="introduction-to-data.html#cb90-1"></a><span class="kw">glimpse</span>(tibble_year)</span></code></pre></div>
+<pre><code>## Observations: 12
+## Variables: 4
+## $ month     &lt;chr&gt; &quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;Jun...
+## $ abb.month &lt;chr&gt; &quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;, &quot;Jul&quot;, &quot;Au...
+## $ month_num &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+## $ season    &lt;chr&gt; &quot;Winter&quot;, &quot;Winter&quot;, &quot;Spring&quot;, &quot;Spring&quot;, &quot;Spring&quot;, &quot;S...</code></pre>
+<p><code>glimpse()</code> tells us that our tibble has one column that is an integer, and three columns that are character strings. If we wanted to influence which datatype the columns (something that is not automatically assigned), we can do that by using the functions <code>as.double()</code>, <code>as.character()</code>, <code>as.integer()</code>, etc. we have seen earlier when we were talking about vectors. For example, if we wanted to modify the <code>integer</code> column as a <code>double</code>, we would type</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="introduction-to-data.html#cb92-1"></a>tibble_year2 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">month =</span> month.name,</span>
+<span id="cb92-2"><a href="introduction-to-data.html#cb92-2"></a>                       <span class="dt">abb.month =</span> month.abb,</span>
+<span id="cb92-3"><a href="introduction-to-data.html#cb92-3"></a>                       <span class="dt">month_num =</span> <span class="kw">as.double</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>),</span>
+<span id="cb92-4"><a href="introduction-to-data.html#cb92-4"></a>                       <span class="dt">season =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;Winter&quot;</span>, <span class="dv">2</span>), <span class="kw">rep</span>(<span class="st">&quot;Spring&quot;</span>, <span class="dv">3</span>), <span class="kw">rep</span>(<span class="st">&quot;Summer&quot;</span>, <span class="dv">3</span>), <span class="kw">rep</span>(<span class="st">&quot;Autumn&quot;</span>, <span class="dv">3</span>), <span class="st">&quot;Winter&quot;</span>))</span></code></pre></div>
+<div class="warning">
+<p>
+If you click on the name of the dataset in your <code>Global Environment</code> to view your dataframe, you would see no actual difference between <code>tibble_year</code> and <code>tibble_year2</code>. However, <code>glimpse()</code> would tell you.
+</p>
+<p>
+If I were a mean person, and had recoded month_num = as.character(1:12) instead, you would not see it when you visually inspect the data. What would the consequences be?
+</p>
+</div>
+<p><span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span></p>
+<div class="task">
+<p>
+<strong>Your turn</strong>
+</p>
+<p>
+Make a dataframe called <code>mydata</code> with 5 columns and 10 rows:
+</p>
+<ul>
+<li>
+column 1 is called <code>PP_ID</code> and contains participant numbers 1 to 10. Make sure this data type is <code>integer</code>.
+</li>
+<li>
+column 2 is called <code>PP_Age</code> and and contains the age of the participant. Make sure this data type is <code>double</code>.
+</li>
+<li>
+column 3 is called <code>PP_Sex</code> and contains the sex of the participant. Even PP_IDs are male, odd PP_IDs are female participants.
+</li>
+<li>
+column 4 is called <code>PP_Country</code> and contains the country participants were born in. Surprise, surprise - they were all born in Scotland!!!
+</li>
+<li>
+column 5 is called <code>PP_Consent</code> and is an overview whether participants have given their consent to participate in an experiment (TRUE) or not (FALSE). Participants 1-9 have given their consent, participant 10 has not.
+</li>
+</ul>
+</div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="introduction-to-data.html#cb93-1"></a><span class="co"># Gaby&#39;s solution:</span></span>
+<span id="cb93-2"><a href="introduction-to-data.html#cb93-2"></a>mydata &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">PP_ID =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</span>
+<span id="cb93-3"><a href="introduction-to-data.html#cb93-3"></a>                 <span class="dt">PP_Age =</span> <span class="kw">c</span>(<span class="dv">22</span>, <span class="dv">21</span>, <span class="dv">24</span>, <span class="dv">36</span>, <span class="dv">33</span>, <span class="dv">25</span>, <span class="dv">21</span>, <span class="dv">31</span>, <span class="dv">28</span>, <span class="dv">35</span>),</span>
+<span id="cb93-4"><a href="introduction-to-data.html#cb93-4"></a>                 <span class="dt">PP_Sex =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>), <span class="dv">5</span>),</span>
+<span id="cb93-5"><a href="introduction-to-data.html#cb93-5"></a>                 <span class="dt">PP_Country =</span> <span class="st">&quot;Scotland&quot;</span>,</span>
+<span id="cb93-6"><a href="introduction-to-data.html#cb93-6"></a>                 <span class="dt">PP_Consent =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="ot">TRUE</span>, <span class="dv">9</span>), <span class="ot">FALSE</span>))</span></code></pre></div>
+<div class="info">
+<p>
+But there are plenty of other ways how this could have been done. For example:
+</p>
+<ul>
+<li>
+PP_ID = seq(10) <br>
+</li>
+<li>
+PP_ID = as.integer(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) <br>
+</li>
+<li>
+PP_Age = as.double(22:31) <br>
+</li>
+<li>
+PP_Sex = c(“Female”, “Male”, “Female”, “Male”, “Female”, “Male”, “Female”, “Male”, “Female”, “Male”) <br>
+</li>
+<li>
+PP_Country = rep(“Scotland”, 10) <br>
+</li>
+<li>
+PP_Consent = c(TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE)
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="reading-in-data" class="section level2">
+<h2><span class="header-section-number">2.5</span> Reading in data</h2>
+<div id="from-pre-existing-databases" class="section level3">
+<h3><span class="header-section-number">2.5.1</span> from pre-existing databases</h3>
+<p>R comes with pre-installed datasets available for you to use and practice your skills on. If you want have an overview over all databases available type <code>data()</code> into your Console.</p>
+<p>One of those datasets is called “Motor Trend Car Road Tests” or in short <code>mtcars</code>. If you type <code>mtcars</code> into your Console, you can see what the dataset looks like.</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="introduction-to-data.html#cb94-1"></a>mtcars</span></code></pre></div>
+<pre><code>##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+## Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+## Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+## Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+## Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+## Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+## Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+## Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+## Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</code></pre>
+<p>You can look up what all the column headers mean by typing <code>?mtcars</code> into your Console, or using the help tab to search for <code>mtcars</code>.</p>
+<div class="question">
+<p>
+<code>mtcars</code> is a dataframe rather than a tibble. How do we know that?
+</p>
+</div>
+<div class="solution">
+<button>
+Answer
+</button>
+<div class="solved">
+<p>
+When we called <code>mtcars</code> it printed the whole dataframe rather than just the first 10 rows.
+</p>
+</div>
+</div>
+<p>However, we have seen what the data in <code>mtcars</code> looks now, but we would be able to work with it better if put it into our <code>Global Environment</code>. Let’s save <code>mtcars</code> as a dataframe called <code>data_mtcars</code>, and look at the first few rows which can be achieved using the <code>head()</code> function.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="introduction-to-data.html#cb96-1"></a>data_mtcars &lt;-<span class="st"> </span>mtcars <span class="co"># read in as a dataframe</span></span>
+<span id="cb96-2"><a href="introduction-to-data.html#cb96-2"></a><span class="kw">head</span>(data_mtcars)</span></code></pre></div>
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<p>Notice that we do not have a column header for the type of car. The reason is that the type of car is actually the name of the rows, rather than a column itself. As you can see in your <code>Global Environment</code>, <code>df_mtcars</code> has 32 observations, and 11 variables - car type is not one of them.</p>
+<div class="info">
+<p>
+Adding the rownames as a separate column would be rather tricky at this stage in the course (but you could try and do it after lecture 5).
+</p>
+</div>
+<p>Another interesting dataset is called <code>starwars</code>. It can be found in the package <code>dplyr</code> which is part of <code>tidyverse</code>. So, as long as you have <code>tidyverse</code> loaded into your library, <code>starwars</code> should be available to you.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="introduction-to-data.html#cb98-1"></a><span class="kw">library</span>(tidyverse) <span class="co"># if you have already done this in your Rmd, this step is superfluous</span></span>
+<span id="cb98-2"><a href="introduction-to-data.html#cb98-2"></a>starwars</span></code></pre></div>
+<pre><code>## # A tibble: 87 x 13
+##    name  height  mass hair_color skin_color eye_color birth_year gender
+##    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
+##  1 Luke~    172    77 blond      fair       blue            19   male  
+##  2 C-3PO    167    75 &lt;NA&gt;       gold       yellow         112   &lt;NA&gt;  
+##  3 R2-D2     96    32 &lt;NA&gt;       white, bl~ red             33   &lt;NA&gt;  
+##  4 Dart~    202   136 none       white      yellow          41.9 male  
+##  5 Leia~    150    49 brown      light      brown           19   female
+##  6 Owen~    178   120 brown, gr~ light      blue            52   male  
+##  7 Beru~    165    75 brown      light      blue            47   female
+##  8 R5-D4     97    32 &lt;NA&gt;       white, red red             NA   &lt;NA&gt;  
+##  9 Bigg~    183    84 black      light      brown           24   male  
+## 10 Obi-~    182    77 auburn, w~ fair       blue-gray       57   male  
+## # ... with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;,
+## #   species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>In comparison to <code>mtcars</code>, <code>starwars</code> is already a tibble (which you can see in the first line of the printout). It gives you the number of observations (87) and variables (13), the column headers, the data type of each column, and the first 10 rows of data. Again, it would be neater to work with the data if we saved the data tibble to our <code>Global Environment</code>. Let’s do that and call it <code>data_SW</code>.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="introduction-to-data.html#cb100-1"></a>data_SW &lt;-<span class="st"> </span>starwars</span></code></pre></div>
+<p>Again, you could use the very handy <code>glimpse()</code> function to see what data types the columns are.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="introduction-to-data.html#cb101-1"></a><span class="kw">glimpse</span>(data_SW)</span></code></pre></div>
+<div class="funfact">
+<p>
+There are other built in datasets available, such as <code>babynames</code>. The <code>babynames</code> dataset is located in a package called <code>babynames</code> which needs to be installed first, and then loaded into the library before you can look at the data. Do you remember how we install packages and load them into the library?
+</p>
+</div>
+<div class="solution">
+<button>
+Hint
+</button>
+<div class="solved">
+<p>
+install.packages(“babynames”) <br> library(babynames)
+</p>
+<p>
+Remember that you only have to do the <code>install.packages(“babynames”)</code> once - before you want to use <code>babynames</code> for the very first time. Once you have installed it, you can use it whenever you feel like by just loading it into the library.
+</p>
+</div>
+</div>
+</div>
+<div id="from-existing-data-files" class="section level3">
+<h3><span class="header-section-number">2.5.2</span> from existing data files</h3>
+<p>R is able to handle different types of data files. The most common one available is <code>.csv</code>. CSV stands for <strong>comma-separated values</strong>. Usually, a <code>.csv</code> file is opened with some sort of excel programme (like Microsoft Excel, LibreOffice, OpenOffice, Apple Numbers, etc.) which takes the comma separator as a mean to format everything into a nice and neat table. If you open your data in Notepad, you can actually see the structure of it.</p>
+<center>
+<img src="images/MM_csv.PNG">
+</center>
+<div class="info">
+<p>
+There are other file types out there, apart from csv, like tsv (tab-separated values), excel, SAS, or SPSS. However, these would go beyond the scope of this class. All of our data will be in a .csv format.
+</p>
+</div>
+<p>Getting the data from the csv file into your <code>Global Environment</code> in R is by using a function called <code>read_csv()</code> from the package <code>tidyverse</code>. Since we did the house-keeping (i.e. loading in the package tidyverse into the library) at the very beginning, there is no need for us to do that again.</p>
+<p>The data you just saw in the screenshot above are from <code>M&amp;Ms colours by bag</code> (<a href="http://www.randomservices.org/random/data/index.html" class="uri">http://www.randomservices.org/random/data/index.html</a>). The data table gives the color counts and net weight (in grams) for a sample of 30 bags of M&amp;M’s. The advertised net weight is 47.9 grams.</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="introduction-to-data.html#cb102-1"></a>MM_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;MM_data.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   Red = col_double(),
+##   Green = col_double(),
+##   Blue = col_double(),
+##   Orange = col_double(),
+##   Yellow = col_double(),
+##   Brown = col_double(),
+##   Weight = col_double()
+## )</code></pre>
+<p>As you can see, R is giving you a bit of an output of what it has just done - parsed some columns. The data is stored as an object in your <code>Global Environment</code> now, and we could either <code>call the data</code> (by typing <code>MM_data</code> into the <code>Console</code>) or use <code>glimpse()</code> to have a look what the data actually looks like and what data types are in each column.</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="introduction-to-data.html#cb104-1"></a>MM_data</span></code></pre></div>
+<pre><code>## # A tibble: 30 x 7
+##      Red Green  Blue Orange Yellow Brown Weight
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+##  1    15     9     3      3      9    19   49.8
+##  2     9    17    19      3      3     8   49.0
+##  3    14     8     6      8     19     4   50.4
+##  4    15     7     3      8     16     8   49.2
+##  5    10     3     7      9     22     4   47.6
+##  6    12     7     6      5     17    11   49.8
+##  7     6     7     3      6     26    10   50.2
+##  8    14    11     4      1     14    17   51.7
+##  9     4     2    10      6     18    18   48.4
+## 10     9     9     3      9      8    15   46.2
+## # ... with 20 more rows</code></pre>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="introduction-to-data.html#cb106-1"></a><span class="kw">glimpse</span>(MM_data)</span></code></pre></div>
+<pre><code>## Observations: 30
+## Variables: 7
+## $ Red    &lt;dbl&gt; 15, 9, 14, 15, 10, 12, 6, 14, 4, 9, 9, 8, 12, 9, 6, 4, ...
+## $ Green  &lt;dbl&gt; 9, 17, 8, 7, 3, 7, 7, 11, 2, 9, 11, 8, 9, 7, 6, 6, 5, 5...
+## $ Blue   &lt;dbl&gt; 3, 19, 6, 3, 7, 6, 3, 4, 10, 3, 13, 6, 13, 7, 6, 9, 11,...
+## $ Orange &lt;dbl&gt; 3, 3, 8, 8, 9, 5, 6, 1, 6, 9, 0, 5, 2, 2, 4, 4, 12, 6, ...
+## $ Yellow &lt;dbl&gt; 9, 3, 19, 16, 22, 17, 26, 14, 18, 8, 7, 11, 6, 18, 21, ...
+## $ Brown  &lt;dbl&gt; 19, 8, 4, 8, 4, 11, 10, 17, 18, 15, 18, 20, 13, 7, 13, ...
+## $ Weight &lt;dbl&gt; 49.79, 48.98, 50.40, 49.16, 47.61, 49.80, 50.23, 51.68,...</code></pre>
+<div class="info">
+<p>
+You could also have used the function <code>head()</code> to show the first 6 rows of the dataframe or could have viewed the data by clicking manually on <code>MM_data</code> in the <code>Global Environment</code>.
+</p>
+<p>
+Watch out, though!!! <code>head(</code>) can be a bit misleading in that it creates a new tibble and the output reads <code># A tibble: 6 x 7</code>. This does not mean that our <code>MM_data</code> only has 6 rows of observations!!!
+</p>
+<p>
+Viewing the data opens the data in a new tab in the <code>Source pane</code> but it does not show you the data types of the columns. You could, however, click on the wee blue arrow next to the data name.
+</p>
+</div>
+<p>Now that we have inspected the data, what does it actually tell us?</p>
+<p><span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span></p>
+<p>How many rows (or observations) does <code>MM_data</code> have? <input class='solveme nospaces' size='2' data-answer='["30"]'/> <br>
+How many columns (or variables) does <code>MM_data</code> have? <input class='solveme nospaces' size='1' data-answer='["7"]'/> <br>
+What data type are all of the columns? <select class='solveme' data-answer='["double"]'> <option></option> <option>character</option> <option>double</option> <option>integer</option> <option>logical</option></select></p>
+<div class="danger">
+<p>
+Always use read_csv() from the tidyverse package for reading in the data. There is a similar function called read.csv() from base R - <strong>DO NOT USE read.csv()</strong>. These two functions have differences in assigning datatypes to the columns and <strong>read_csv() does a better job</strong>. This applies to the homework task as well. You will not receive marks if you are using the wrong function. So double check before submitting!!!
+</p>
+</div>
+</div>
+</div>
+<div id="last-point-for-today" class="section level2">
+<h2><span class="header-section-number">2.6</span> Last point for today</h2>
+<p>Knit your L2_stub. If it knits, it is an indication that all your code chunks are running. This is important for most of the graded assessments in the future. If it runs on your computer, it will run on ours.</p>
+</div>
+<div id="summative-homework" class="section level2">
+<h2><span class="header-section-number">2.7</span> Summative Homework</h2>
+<p>The first summative assessment is compiled of 11 questions from Lectures 1 and 2. You can download the files from moodle. The folder you download is a zip folder that needs to be unzipped before you can work with it. It contains the homework submission file labelled <code>GUID_L1L2.Rmd</code> and a data file called <code>TraitJudgementData.csv</code>.</p>
+<p>Good luck.</p>
+<p>Check that your Rmd file knits into a html file before submitting. Upload your Rmd file (not the knitted html) to moodle.</p>
+
+</div>
+</div>
+<script>
+
+/* update total correct if #total_correct exists */
+update_total_correct = function() {
+  if (t = document.getElementById("total_correct")) {
+    t.innerHTML =
+      document.getElementsByClassName("correct").length + " of " +
+      document.getElementsByClassName("solveme").length + " correct";
+  }
+}
+
+/* solution button toggling function */
+b_func = function() {
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "");
+  }
+  
+  if (my_answer !== "" & real_answers.includes(my_answer)) {
+    cl.add("correct");
+  } else {
+    cl.remove("correct");
+  }
+  update_total_correct();
+}
+
+window.onload = function() {
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+  
+  /* set up solveme inputs */
+  var solveme = document.getElementsByClassName("solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off"); 
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+    
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+    
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  update_total_correct();
+}
+
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-transformation-1-basic-one-table-verbs.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

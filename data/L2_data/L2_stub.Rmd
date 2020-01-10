@@ -1,0 +1,447 @@
+---
+title: "Introduction to R"
+author: "GUID"
+date: "16/12/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Introduction to Data - Lecture 2
+
+
+## Pre-Steps
+
+Before we begin, we need to do some house-keeping. We have downloaded the folder we will be working with today, unzipped it, and made sure there were 2 files in it.
+
+We have set the working directory.
+
+Let's load in all the packages we will need for today. Doing this step right in the beginning, will save us hassle later on.
+
+```{r}
+library(tidyverse)
+```
+
+
+
+## Basic data types
+
+Remember the basic data types:
+
+| data type | description                | example                  |
+|:----------|:---------------------------|:--------------|
+| character | text string                | `"hello World!"`, `"35.2"`, `'TRUE'` |
+| double    | double precision floating point numbers | `.033`, `-2.5`            |
+| integer   | positive & negative whole numbers       | `0L`, `1L`, `365L`        |
+| logical   | Boolean operator with only two possible values  | `TRUE`, `FALSE`   |
+
+
+### Character
+
+
+
+```{r quote, eval=FALSE}
+my_quote <- 'R is Fun to learn!'
+cat(my_quote) # cat() prints the value stored in my_quote
+```
+
+
+
+```{r direct quote}
+direct_quote <- "My friend said \"R is Fun to learn\", and we all agreed."
+cat(direct_quote)
+```
+
+
+
+
+### Numeric
+
+
+```{r}
+typeof(359.1)
+typeof(5)
+typeof(45L)
+```
+
+
+### Logical
+
+You could compare if two values are equal...
+
+```{r}
+100 == 100
+```
+
+... or if they are not equal.
+
+```{r}
+100 != 100
+```
+
+We can test if one value is smaller or equal than the other...
+
+```{r}
+5 <= 9-4
+```
+
+... or if one value is larger than another.
+
+```{r}
+101 > 111
+```
+
+
+### Question Time 
+
+Fill in the answers in the dropdown boxes on the webpage. You are correct if they turn green. Or you can add answers below
+
+class(1): 
+class(1L): 
+class(1.0): 
+class("1"): 
+class(1L == 2L): 
+class(1L <= 2L): 
+class(1L <= 2L, "1"): 
+
+
+## Vectors 
+
+
+### Creating vectors and storing them in your Global Environment.
+
+
+This is a vector of datatype `double`.
+```{r}
+c(1, 2.5, 4.7)
+typeof(c(1, 2.5, 4.7))
+```
+
+This is a vector of datatype `integer`. Adding the `L` makes it an integer, but see that in the printout the `L` is actually omitted.
+
+```{r}
+c(0L, 1L, 2L, 365L)
+typeof(c(0L, 1L, 2L, 365L))
+```
+
+This is a vector of datatype `character`.
+```{r}
+c("hello", "student")
+typeof(c("hello", "student"))
+```
+
+This is a vector of datatype `logic`.
+```{r}
+c(TRUE, FALSE)
+typeof(c(TRUE, FALSE))
+```
+
+
+Use the assignment operator `<-` and a meaingful name save your vector in your `Global Environment`.
+
+```{r}
+vec_double <- c(1, 2.5, 4.7)
+typeof(vec_double)
+
+vec_integer <- c(0L, 1L, 2L, 365L)
+typeof(vec_integer)
+
+vec_character <- c("hello", "student")
+typeof(vec_character)
+
+vec_logic <- c(TRUE, FALSE)
+typeof(vec_logic)
+```
+
+
+### Question Time
+
+Now it's your turn!!! Replace the `NULL` according to the instructions below:
+
+* Create a vector of your 3 favourite movies and call it `favourite_movies`. What type of data are we expecting?
+
+* Pick a couple of your family members or friends and create a vector `years_birth` that lists their year of birth. How many elements does the vector have, and what type of data are we expecting?
+
+* Create a vector that holds all the letters of the alphabet and call it `alph`.
+
+* Create a vector with 3 elements of your name, age, and the country you are from. Store this vector under the name `this_is_me`. What type of data are we expecting?
+
+
+```{r}
+
+favourite_movies <- NULL
+years_birth <- NULL
+alph <- NULL
+this_is_me <- NULL
+
+```
+
+
+Check out the Built-in Constants in your Console. For example if you wanted to see the number of pi, you would type `pi` in your `Console`.
+
+* letters: the 26 lower-case letters of the Roman alphabet;
+* LETTERS: the 26 UPPER-case letters of the Roman alphabet;
+* month.abb: the three-letter abbreviations for the English month names;
+* month.name: the English names for the months of the year;
+* pi: the ratio of the circumference of a circle to its diameter
+
+
+
+### Converting vectors into different data types of vectors
+
+Converting a double to character
+
+```{r}
+vec_double_as_char <- as.character(vec_double)
+typeof(vec_double_as_char)
+
+```
+
+
+Converting an integer to double
+
+```{r}
+vec_integer_as_double <- as.double(vec_integer)
+typeof(vec_integer_as_double)
+```
+
+
+Trying to convert a character vector into a numeric one is not possible. Run the code chunk to see what happens.
+
+Feel free to type an explanation here.
+
+```{r}
+vec_char_as_int <- as.integer(vec_character) # same outcome if we tried as.double
+typeof(vec_char_as_int)
+```
+
+
+
+A logical vector can be converted into all other basic data types.
+
+```{r}
+vec_logic_as_int <- as.integer(vec_logic)
+vec_logic_as_int
+
+vec_logic_as_char <- as.character(vec_logic)
+vec_logic_as_char
+```
+
+
+### Question Time
+
+What data type would the vector be stored as if you combined the following elements? 
+
+1. logical and double - i.e. c(TRUE, 45)
+2. character and logical - i.e. c("Sarah", "Marc", FALSE)
+3. integer and logical - i.e. c(1:3, TRUE)
+4. logical, double, and integer - i.e. c(FALSE, 99.5, 3L)
+
+If you are unsure, try it out in your Console.
+
+Answers:
+1. 
+2. 
+3. 
+4. 
+
+
+### Adding elements to existing vectors
+
+Let's start with a vector called `friends` that has three names in it.
+```{r}
+friends <- c("Gaby", "Wil", "Greta")
+friends
+```
+
+We can now add more `friends` to our little group of `friends` by adding them either at the end, or the beginning of the vector. `friends` will now have four, and five values respectively, since we are "overwriting" our existing vector with the new one of the same name.
+
+```{r}
+friends <- c(friends, "Kate")
+friends
+
+friends <- c("Rebecca", friends)
+friends
+
+```
+
+
+Vectors also support missing data. If we wanted to add "another friend" whose name we do not know yet, we can just simply add `NA` to `friends`.
+
+```{r}
+friends <- c(friends, NA)
+friends
+
+```
+
+
+```{r}
+typeof(friends)
+length(friends)
+```
+
+Remove anyone item in the vector by indexing. Here we are keeping elements 1, 5, and anything in between.
+
+```{r}
+friends <- friends[1:5]
+friends
+```
+
+
+Just as easily, we can create vectors for numeric sequences. 
+
+```{r}
+sequence1 <- 1:10
+sequence1
+
+sequence2 <- seq(10)
+sequence2
+
+# compare whether sequence1 and sequence2 are of the same data type
+typeof(sequence1) == typeof(sequence2)
+
+# compare whether elements of sequence1 are the same as the elements in sequence2 
+sequence1 == sequence2
+```
+
+### Question Time
+
+Fill in the answers in the dropdown boxes on the webpage. You are correct if they turn green. Or add answers below.
+
+What data type is `sequence1`? 
+What data type is `sequence2`? 
+If we were to store the output of `sequence1 == sequence2` in a vector, what data type would the vector be? 
+
+
+## Tibbles
+
+### How to make a tibble from scratch
+
+We want to create a tibble that is called `tibble_year` with 4 columns:
+
+* The first column `month` lists all months of the year
+* The second column `abb_month` gives us the three-letter abbreviation of each year.
+* The third column `month_num` tells which number of the year is which month (e.g. January would be the first month of the year; December would be number 12).
+* The fourth column `season` would tell us in which season the month is (Northern hemisphere). 
+
+Remember the Built-in Constants we were talking about earlier?
+
+```{r}
+tibble_year <- tibble(month = month.name,
+                      abb.month = month.abb,
+                      month_num = 1:12,
+                      season = c(rep("Winter", 2), rep("Spring", 3), rep("Summer", 3), rep("Autumn", 3), "Winter"))
+
+tibble_year
+```
+
+
+```{r}
+tibble_year2 <- tibble(month = month.name,
+                       abb.month = month.abb,
+                       month_num = as.double(1:12),
+                       season = c(rep("Winter", 2), rep("Spring", 3), rep("Summer", 3), rep("Autumn", 3), "Winter"))
+```
+
+```{r}
+glimpse(tibble_year)
+glimpse(tibble_year2)
+```
+
+
+### Question Time
+
+Now it's your turn!!! Replace the `NULL` according to the instructions below:
+
+Make a dataframe called `mydata` with 5 columns and 10 rows:
+
+* column 1 is called `PP_ID` and contains participant numbers 1 to 10. Make sure this data type is `integer`.
+* column 2 is called `PP_Age` and and contains the age of the participant. Make sure this data type is `double`.
+* column 3 is called `PP_Sex` and contains the sex of the participant. Even PP_IDs are male, odd PP_IDs are female participants.
+* column 4 is called `PP_Country` and contains the country participants were born in. Surprise, surprise - they were all born in Scotland!!!
+* column 5 is called `PP_Consent` and is an overview whether participants have given their consent to participate in an experiment (TRUE) or not (FALSE). Participants 1-9 have given their consent, participant 10 has not.
+
+
+```{r}
+mydata <- NULL
+```
+
+
+# Reading in data
+
+## from pre-existing databases
+
+
+
+```{r}
+mtcars
+```
+
+
+Let's store `mtcars` into our `Global Environment`. Let's save `mtcars` as a dataframe called `df_mtcars`, and look at the first few rows which can be achieved using the `head()` function.
+
+```{r}
+df_mtcars <- mtcars # read in as a dataframe
+head(df_mtcars)
+```
+
+
+Another interesting dataset is called `starwars`. It can be found in the package `dplyr` which is part of `tidyverse`. So, as long as you have `tidyverse` loaded into your library, `starwars` should be available to you.
+
+```{r}
+starwars
+```
+
+`starwars` is already a tibble (which you can see in the first line of the printout).
+
+```{r}
+data_SW <- starwars
+```
+
+Again, you could use the very handy `glimpse()` function to see what data types the columns are.
+
+```{r}
+glimpse(data_SW)
+```
+
+
+
+### from existing data files
+
+Reading in a .csv file using a function called `read_csv()` from the tidyverse package. Since we did the house-keeping (i.e. loading in the package tidyverse into the library) at the very beginning, there is no need for us to do that again.
+
+M&Ms data: The data table gives the color counts and net weight (in grams) for a sample of 30 bags of M&M's. The advertised net weight is 47.9 grams.
+
+```{r}
+MM_data <- read_csv("MM_data.csv")
+```
+
+As you can see, R is giving you a bit of an output of what it has just done - parsed some columns. The data is loaded in now, and we could either call the data or use glimpse() to have a look at data types.
+
+```{r}
+MM_data
+glimpse(MM_data)
+```
+
+### Question Time
+
+Fill in the answers in the empty fields/ dropdown boxes on the webpage. You are correct if they turn green. Or you can add answers below.
+
+How many rows (or observations) does `MM_data` have? 
+How many columns (or variables) does `MM_data` have? 
+What data type are all of the columns? 
+
+
+## Summative Homework
+
+Homework 1 is compiled of 11 questions from Lectures 1 and 2. Good luck.
+
+Please check that your Rmd file knits into html file before submitting. Please upload your Rmd file (not the html) to moodle. 
+
+
+## Last point for today
+
+Knit your `L2_stub`. If it knits, it is an indication that all your code chunks are running. This is important for most of the graded assessments in the future. If it runs on your computer, it will run on ours.

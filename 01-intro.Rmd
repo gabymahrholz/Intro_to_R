@@ -8,6 +8,8 @@ By the end of this session you should be:
 2. Able to *describe R and Studio, the coding environment and the associated file types*.
 3. Able to *install, load and describe the nature of R packages** and **describe the nature and use of functions in general*.
 
+This lesson is led by [Rebecca Lai](http://www.psy.gla.ac.uk/staff/index.php?id=RL003).
+
 ## Computer Literacy Basics
 
 In order to successfully navigate this course there are a number of things that you need to know about computers more generally. This section here should be everything that you are *required* to know or learn. 
@@ -15,6 +17,8 @@ In order to successfully navigate this course there are a number of things that 
 We are aware that many people will have been using computers for many years, and in some cases many people will have grown up with them in their household. We have noticed, however, that a number of our incoming students are not familiar with many of the basic concepts that are required to be a successful coder. There is an assumption that "digital native" automatically equates to "computer literate" but in many cases we have found this assumption to be incorrect.
 
 More people than ever before are using some sort of personal computing device, but the type of use differs greatly from what we are going to be doing over the next 10 weeks. Many mobile phones, tablets and (increasingly) PC operating systems hide many of their operations from users. This can create a feeling of compentency with computers that can quickly dissolve when asked to engage with anything slightly more complex.
+
+If you already know most of this then we apologise, but there may well be people with us who don't. This is a beginner class, so we thought it prudent to start us all off on the same footing.
 
 ## R and R Studio
 
@@ -133,7 +137,7 @@ RStudio uses many different types of files, but each is a variation on a **"plai
 
 - .r: an R script
 - .Rmd: an RMarkdown document
-- .csv: **C**omma **S**eparated **V**ariable document, a common and universal type of file containing data sets.
+- .csv: **C**omma **S**eparated **V**alues file, a common and universal type of file containing data sets.
 
 ```{block, type = "danger"}
 If the file extension on a file is incorrect it may not be recognised as a file to be opened with a specific program and might not work.
@@ -338,7 +342,7 @@ As we progress through this course see if you can spot the functions, the argume
 
 This formative assignment is an important one as it will enable you to complete your future assignments. It looks long, but it is mostly screenshots to guide you through the process of installing the required software, or a short guide on how to use RStudio Cloud.
 
-### Access to RStudio
+### Access to RStudio {#accessing}
 
 Please ensure by the next class that you have access to the software so that you can practice using the formative assignments and complete the summative assignments when they are issued.
 
@@ -349,8 +353,6 @@ The first summative assignment will be issued after class next week and you will
 Unfortunately this is not as simple as installing software normally is on your computer. There are two separate things that you will need to install.
 
 ##### First: Install R
-
-###### Windows Users
 
 Follow <a href="https://www.stats.bris.ac.uk/R/">this link</a> and click on the part that says Download R 3.6.2 for Windows. You will get the following pop-up dialogue:
 
@@ -386,11 +388,7 @@ You will be told when installation is complete:
 
 <center><img src="images/install_wiz_7.png"></center>
 
-###### Mac OS Users
-
 ##### Second: Install RStudio
-
-###### Windows Users
 
 Follow <a href="https://rstudio.com/products/rstudio/download/">this link</a> to the RStudio website. Scroll down and press the button "Download" under RStudio Desktop- not the Server Option. On the next page press the button under stage 2, "Download RStudio for Windows". Your download will start and you will see the following prompt:
 
@@ -417,9 +415,6 @@ Click next and the installation will begin:
 You will then be notified when the installation is complete with this screen:
 
 <center><img src="images/install_wiz_studio_5.png"></center>
-
-
-###### Mac OS Users
 
 ##### Opening RStudio
 
@@ -489,6 +484,24 @@ Now I get a pop-up as I would when downloading any other file. To save the file 
 <center><img src="images/rstudio_cloud_download3.png"></center>
 
 The file will then be saved in the folder where your downloads are saved (usually the "Downloads" folder by default). You can then navigate to this file when browsing files to upload to Moodle.
+
+### Maximising Reproducibility and Visibility
+
+In order to set up R the way that we require, there are a few more steps. 
+
+First, open RStudio and click on the Tools menu at the top of the page and click on the part that says "Global Options":
+
+<center><img src="images/tools.png"></center>
+
+Next, a dialogue box will open. Ensure that these tick boxes and options are selected on yours and click apply:
+
+<center><img src="images/options.png"></center>
+
+Finally, go to RMarkdown and ensure that this option is unchecked:
+
+<center><img src="images/inline.png"></center>
+
+This meaning of the first part will be discussed in future lessons, and the second will mean that graphs that you make will be in the "Plots" tab to the right of the console. This means that code will not be obscured whenever you make a graph.
 
 ### Installing and Loading Tidyverse
 

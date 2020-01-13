@@ -35,7 +35,7 @@ extra_MH <- read_csv("Anx_Emp.csv")
 ```
 `r unhide()`
 
-## Group_by() and Summarise()
+## group_by() and summarise()
 
 In order to compute summary statistics such as mean, median and standard deviation, use the `summarise()` function. The first argument to this function is the object `short_MH` and the subsequent argument is the new column name and what mathematical operation you want it to contain. You can add as many summary statistics in one `summarise()` function as you want; just separate them by a comma. For example, say you wanted to work out the mean total score of depression and accompanying standard deviation for the entire sample:
 

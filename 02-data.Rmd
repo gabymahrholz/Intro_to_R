@@ -9,57 +9,6 @@
 5. import and store data
 
 
-TAKE OUT LATER ON - just examples of what boxes exist for the minute
-
-
-```{block, type = "solved"}
-
-{block, type = "solved"}
-
-```
-
-
-```{block, type = "funfact"}
-
-{block, type = "funfact"}
-
-```
-
-
-```{block, type = "question"}
-
-{block, type = "question"}
-
-```
-
-
-```{block, type = "info"}
-
-{block, type = "info"}
-
-```
-
-
-```{block, type = "danger"}
-
-{block, type = "danger"}
-
-```
-
-
-```{block, type = "warning"}
-
-{block, type = "warning"}
-
-```
-
-
-```{block, type = "task"}
-
-{block, type = "task"}
-
-```
-
 
 ## Pre-Steps
 

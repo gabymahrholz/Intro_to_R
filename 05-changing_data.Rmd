@@ -353,6 +353,33 @@ tb_cases
 `r unhide()`
 `r unhide()`
 
+Special case. Let's modify table5 a little bit by adding a new column with a value of 200 and unite that column with column `rate`
+
+```{r}
+table5_mod <- table5 %>% 
+  mutate(new = 200) %>% 
+  unite(rate, rate, new, sep = "/")
+```
+
+Now column `rate` has 3 sets of numbers, separated by two `/`. If we define we want to split the data into 2 columns, the first 2 sets of numbers are kept, and the third one is dropped with a warning.
+
+```{r}
+separate(table5_mod, rate, into = c("cases", "population"), sep = "/")
+```
+
+If we are separating the columns and wanted to keep all sets of numbers, one in each column, we would use an into argument that includes 3 new columns.
+
+```{r}
+separate(table5_mod, rate, into = c("cases", "population", "200"), sep = "/")
+```
+
+However, what if we just wanted to split the data into 2 columns, after the first `/` AND keep all sets of numbers? We would have to include an `extra` argument, and set it to `"merge"`.
+
+```{r}
+separate(table5_mod, rate, into = c("cases", "population"), sep = "/", extra = "merge")
+```
+
+
 
 ## rename()
 

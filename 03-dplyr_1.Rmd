@@ -108,7 +108,7 @@ Take 10 minutes to read the `data description` section of the Nguyen publication
 ```
 
 
-## Select()
+## select()
 
 You may not want to include every single variable in your analysis. In order to include or exclude certain variables (columns), use the `select()` function. The first argument to this function is the object you want to select variables from (i.e. our tibble called `student_MH`), and the subsequent arguments are the variables to keep.
 
@@ -196,7 +196,7 @@ While it works code-wise, and seems a much quicker approach, it is a very bad id
 
 
 
-## Arrange()
+## arrange()
 
 The `arrange()` function can reorder observations (rows) in ascending (default) or descending order. The first argument to this function is again an object (in this case the tibble `short_MH` we created in the previous section), and the subsequent arguments are the variables (columns) you want to sort by. For example, if you wanted to sort by `Gender` in **ascending** order (which is the default in `arrange()`) you would type:
 
@@ -253,7 +253,7 @@ short_MH <- arrange(short_MH, ID)
 
 
 
-## Filter()
+## filter()
 
 ### Single criterion
 
@@ -364,7 +364,7 @@ How many participants in this study were international students with a ToAS of m
 How many participants in this study were either international students OR had a ToAS of more than 72? `r fitb("223")` <br>
 
 
-## Mutate()
+## mutate()
 
 The `mutate()` function creates new variables (columns) onto the existing object. The first argument to this function is an object from your `Global Environment` (for example `short_MH` we created earlier) and the subsequent argument is the new column name and what you want it to contain. The following image was downloaded from https://www.sharpsightlabs.com/blog/mutate-in-r/
 
@@ -468,6 +468,13 @@ You could have also used the function `select()` to drop or select variable colu
 
 ## Formative Homework
 
+The folder for the formative assessment can now be downloaded from moodle.
+
+1. Load `tidyverse` into the library.
+2. Read the data from `TraitJudgementData.csv` into your `Global Environment` as an object called `traits_data`.
+3. Look at the data. Familiarise yourself with the data (see next section, and the paper in the folder), as well as the datatypes of each column.
+
+
 ### Brief introduction to the homework data
 
 For the homework assignments each week, we will be using an open access dataset into how personality is determined from voices. A full version of the paper can be found https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0204991. All data and sounds are available on OSF (osf.io/s3cxy).
@@ -489,9 +496,8 @@ Here is a brief summary overview of the columns in the `TraitJudgementData.csv`.
 |	Trait | Personality Trait participant judged the vocal stimuli on ("Trustworthiness", "Dominance", "Attractiveness") |
 |	Voice | Speaker's ID |
 | Voice_Sex | Speaker's Sex ("Female", "Male") |
-| Condition | Speaker's recording of socially relevant words (RW), socially relevant sentences (RS), socially ambiguous words (AW), and socially ambiguous sentences (AS) |
-| Rating | Participants rated each Voice in each Condition twice - ("Rating1", "Rating2") |
-| Response | Participant's Trait judgements on a scale from 1 - 500|
+| Condition | Speaker's recording of socially relevant words ("RW"), socially relevant sentences ("RS"), socially ambiguous words ("AW"), and socially ambiguous sentences ("AS") |
+| Rating | Participants rated each `Voice` in each `Condition` twice ("Rating1", "Rating2") |
+| Response | Participant's `Trait` judgements on a scale from 1 - 500|
 | Reaction | Participant's Reaction Time |
-
 

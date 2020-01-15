@@ -45,13 +45,12 @@ short_MH_ToDep
 ```
  
 
-Therefore, the mean total score of depression is 8.19 with a standard deviation of 4.95. It would be interesting to break these summary statistics down by `Gender`. This is where the `group_by()` function comes in handy. It can organise observations (rows) by variables (columns) such as `Gender`. The first argument to this function is the object you created last week (`short_MH`) and the subsequent argument is the variable you want to group by:
+Therefore, the mean total score of depression is 8.19 with a standard deviation of 4.95. It would be interesting to break these summary statistics down into subsets for example `ToDep` for the males and females separately. This is where the `group_by()` function comes in handy. It can organise observations (rows) by variables (columns) such as `Gender`. The first argument to this function is the object you created last week (`short_MH`) and the subsequent argument is the variable you want to group by:
 
 ```{r}
 short_MH_gen <- group_by(short_MH, Gender)
 
 ```
-
 
 If you view the object `short_MH_gen`, it will not look any different to the original dataset (`short_MH`). However, be aware that the underlying structure has changed. In fact, you could type `glimpse(short_MH_gen)` to double check this. 
 
@@ -84,7 +83,7 @@ short_MH_ToDep_gen
 How many males are in the dataset?  `r fitb("98")` <br>
 How many females are in the dataset?  `r fitb("170")`
 
-Finally, it is possible to add multiple grouping variables. For example, the following code groups `short_MH` by `Gender` and `Academic` level and then calculates the mean total score of depression (`ToDep`) for males and females at each academic level. 
+Finally, it is possible to add multiple grouping variables. For example, the following code groups `short_MH` by `Gender` and `Academic` level and then calculates the mean total score of depression (`ToDep`) for male and female graduates and undergraduates (4 groups). 
 
 ```{r}
 short_MH_group <- group_by(short_MH, Gender, Academic)
@@ -118,7 +117,7 @@ glimpse(short_MH_gen)
 
 ## The pipe operator (%>%)
 
-As you may have noticed, your environment pane has become increasingly cluttered. Indeed, every time you introduced a new line of code, you created a uniquely-named object (unless your original object is overwritten). This can become confusing and time-consuming. One solution is the pipe operator (`%>%`) which aims to increase efficiency and improve the readability of your code. The pipe operator (`%>%`) read as **"and then"** and allows you to chain functions together, eliminating the need to create intermediary objects. There is no limit as to how many functions you can chain together in a single pipeline.
+As you may have noticed, your environment pane has become increasingly cluttered. Indeed, every time you introduced a new line of code, you created a uniquely-named object (unless your original object is overwritten). This can become confusing and time-consuming. One solution is the pipe operator (`%>%`) which aims to increase efficiency and improve the readability of your code. The pipe operator (`%>%`) read as **"and then"** allows you to chain functions together, eliminating the need to create intermediary objects. There is no limit as to how many functions you can chain together in a single pipeline.
 
 For example, in order to `select()`, `arrange()`, `group_by()` and `summarise()` the data, you used the following code lines:
 
@@ -141,7 +140,35 @@ short_MH_ToDep_group2 <- student_MH %>%
 short_MH_ToDep_group2
 ```
 
-As you can see, `short_MH_ToDep_group2` produces the same output as `short_MH_ToDep_group`. So, pipes automatically take the output from one function and feed it directly to the next function. Without pipes, you needed to insert your chosen dataset as the first argument to every function. With pipes, you are only required to specify the original dataset (i.e `student_MH`) once at the beginning and the pipes will do the rest. 
+As you can see, `short_MH_ToDep_group2` produces the same output as `short_MH_ToDep_group`. So, pipes automatically take the output from one function and feed it directly to the next function. Without pipes, you needed to insert your chosen dataset as the first argument to every function. With pipes, you are only required to specify the original dataset (i.e  `student_MH`) once at the beginning of the pipeline. You don't need the first argument of each of the functions anymore, because the pipe will know to look at the dataset from the previous step of the pipeline.
+
+
+```{block, type="task"}
+**Your turn**
+
+Amend the previous pipeline `short_MH_ToDep_group2` so that
+
+1. `Gender` and `ToAS` are arranged in ascending order.
+2. Only those observations with total social connectedness scores (`ToSC`) of more than 24 are kept
+3. The standard deviation of values in the `ToDep` column is calculated for males and females at each academic level 
+
+Save this as an object called `short_MH_ToDep_group3` to your `Global Environment`.
+```
+
+`r hide("Solution")`
+
+```{r}
+short_MH_ToDep_group3 <- student_MH %>% 
+  select(-Region, -Stay_Cate, -Japanese_cate, -English_cate) %>%
+  arrange(Gender, ToAS) %>%
+  filter(ToSC >25) %>%
+  group_by(Gender, Academic) %>%
+  summarise(mean = mean(ToDep), sd = sd(ToDep))
+short_MH_ToDep_group3
+```
+
+`r unhide()`
+
 
 ```{block, type="funfact"}
 
@@ -188,6 +215,10 @@ data2 <- tibble(ID = 2:3,
                 X2 = c("b1", "b2"))
 ```
 
+```{block, type="info"}
+For the following examples, imagine that `X1` refers to student names and `X2` relates to student grades. Let's also imagine that `X2` includes grades for students who have since dropped the course (and thus been removed from `X1`) and that `X2` is missing some students who didn't sit the exam. 
+```
+
 
 #### inner_join()
 
@@ -202,7 +233,7 @@ inner_join(data1, data2, by="ID")
 ```
 
 
-Using an inner join would return only 1 row of observations because the only `ID` value matching in `data1` and `data2` is the row with `ID = 2`. However, we are still merging both tibbles together, meaning that all columns from `data1` and `data2` are kept (in our case `X1` and `X2`).
+Using an inner join would return only 1 row of observations because the only `ID` value matching in `data1` and `data2` is the row with `ID = 2`. However, we are still merging both tibbles together, meaning that all columns from `data1` and `data2` are kept (in our case `X1` and `X2`). In the applied example, two students (ID 3 & 4) would be dropped from the output as their `ID` is only present in one table and thus, is unsuitable for matching. The inner join is useful in this situation as it ensures that grades are only held for students who still take the course and actually sat the exam.
 
 ```{block, type="funfact"}
 `inner_join(data1, data2)` would have produced the same outcome. When the `by` statement is omitted, `data1` and `data2` are joined by ALL "overlapping" variable columns (in this case `ID`). Don't believe it? Try it out in your `Console`!
@@ -264,7 +295,7 @@ Let's try this `left_join()` function for our simple example of `data1` and `dat
 left_join(data1, data2, by="ID")
 ```
 
-Here `data1` is returned in full, and for every matching `ID` number, the value from `data2` is added for `X2`. However, `data2` does not have any value for ID = 1, hence `NA` is added in `X2`.
+Here `data1` is returned in full, and for every matching `ID` number, the value from `data2` is added for `X2`. However, `data2` does not have any value for ID = 1, hence `NA` is added in `X2`. The left join is useful if you want to simply append student names to student grades, regardless of whether students sat the exam or not. Students with `NA` values in the grade column could be offered more support and guidance in the future. 
 
 <span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span>
 
@@ -299,7 +330,7 @@ However, code-wise, you would still enter x as the first, and y as the second ar
 right_join(data1, data2, by = "ID")
 ```
 
-Here `data2` is returned in full, and for every matching `ID` number, the value from `data1` is added for `X1`. As `data1` does not have any value for ID = 3, `NA` is added in column `X1` . Notice the order of the columns, though!!! `ID`, `X1` and `X2`. That is due to the order of how they are entered into the `right_join()` function. 
+Here `data2` is returned in full, and for every matching `ID` number, the value from `data1` is added for `X1`. As `data1` does not have any value for ID = 3, `NA` is added in column `X1` . Notice the order of the columns, though!!! `ID`, `X1` and `X2`. That is due to the order of how they are entered into the `right_join()` function. That means for our student example: The right join is useful if you want to append student grades to student names, regardless of whether students dropped the course or not. In order to measure the difficulty level of your exam, you may want to calculate the average performance of all students - even those that have since dropped the course. 
 
 
 <span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span>
@@ -334,7 +365,7 @@ A full join returns all rows and all columns from both x and y, whereby x is the
 full_join(data1, data2)
 ```
 
-As you can see, `ID` values (1,2, and 3) from both dataframes are retained. ID = 3 does not exist in `data1`, and ID = 1 does not exist in `data2`, `X1` and `X2` are filled with `NA` respectively.
+As you can see, `ID` values (1,2, and 3) from both dataframes are retained. ID = 3 does not exist in `data1`, and ID = 1 does not exist in `data2`, `X1` and `X2` are filled with `NA` respectively. Since the full join is the combination of both left join and right join, it would contain all student names, regardless of whether students dropped the course or not, and all student grades regardless of whether students sat the exam or not. Thus, it can be used to tailor student support and guidance and measure the difficulty level of the exam. 
 
 
 <span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span>

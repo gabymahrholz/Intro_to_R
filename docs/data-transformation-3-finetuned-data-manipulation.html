@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Data Transformation 3: Finetuned Data Manipulation | Introduction to R</title>
   <meta name="description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Data Transformation 3: Finetuned Data Manipulation | Introduction to R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Rebecca J. Lai, Kate Haining, Greta Todorova, and Wilhelmiina Toivo" />
 
 
-<meta name="date" content="2020-01-13" />
+<meta name="date" content="2020-01-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,41 +53,68 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -302,8 +329,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="pre-steps-3" class="section level2">
 <h2><span class="header-section-number">5.1</span> Pre-steps</h2>
 <p>Before we can start to focus on some other functions that might come in handy for data manipulation, we need to make sure to load <code>tidyverse</code> into the library and read the data we will be working with today into our <code>Global Environment</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-data_SMH &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Student_Mental_Health.csv&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb213-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb213-2"><a href="data-transformation-3-finetuned-data-manipulation.html#cb213-2"></a>data_SMH &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Student_Mental_Health.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="gather-and-spread" class="section level2">
 <h2><span class="header-section-number">5.2</span> gather() and spread()</h2>
@@ -315,7 +342,7 @@ data_SMH &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span cl
 <div id="gather" class="section level3">
 <h3><span class="header-section-number">5.2.1</span> gather()</h3>
 <p>We can start this lecture by looking at a practical example in the build-in dataset <code>table1</code> to <code>table5</code>. They show the number of Tuberculosis cases documented by the World Health Organization in Afghanistan, Brazil, and China between 1999 and 2000 (the full dataset is called <code>who</code>). The data is part of the <code>tidyverse</code> package, so as long as we have <code>tidyverse</code> loaded into the library, there should not be an issue in accessing this dataset.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table1</code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb214-1"></a>table1</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -326,7 +353,7 @@ data_SMH &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span cl
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
 <p><code>table1</code> has a very tidy structure. You can see the data contains values associated with four variables (<code>country</code>, <code>year</code>, <code>cases</code>, and <code>population</code>). <code>table4a</code> however, looks a touch not right.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table4a</code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb216-1"></a>table4a</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##   country     `1999` `2000`
 ## * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
@@ -347,7 +374,7 @@ data_SMH &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span cl
 <li>We need to come up with the name of a new column in which all the case values will be stored -&gt; <code>cases</code></li>
 <li>And finally, we need to tell R which columns in <code>table4a</code> we want to turn into long format (i.e. the columns of the 7 subscales) -&gt; 1999 and 2000 (Note that “1999” and “2000” are non-syntactic names as they don’t start with a letter. The solution is to surround them in backticks.)</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gather</span>(table4a, <span class="dt">key =</span> year, <span class="dt">value =</span> cases, <span class="st">`</span><span class="dt">1999</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2000</span><span class="st">`</span>)</code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb218-1"></a><span class="kw">gather</span>(table4a, <span class="dt">key =</span> year, <span class="dt">value =</span> cases, <span class="st">`</span><span class="dt">1999</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2000</span><span class="st">`</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   country     year   cases
 ##   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;
@@ -400,11 +427,11 @@ When you are done, <code>SMH_long</code> should look like this.
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SMH_short &lt;-<span class="st"> </span><span class="kw">select</span>(data_SMH, ID, APD<span class="op">:</span>AMiscell)
-SMH_long &lt;-<span class="st"> </span>SMH_short <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">gather</span>(Subscales, Scores, APD<span class="op">:</span>AMiscell) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">arrange</span>(ID)
-SMH_long</code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb221-1"></a>SMH_short &lt;-<span class="st"> </span><span class="kw">select</span>(data_SMH, ID, APD<span class="op">:</span>AMiscell)</span>
+<span id="cb221-2"><a href="data-transformation-3-finetuned-data-manipulation.html#cb221-2"></a>SMH_long &lt;-<span class="st"> </span>SMH_short <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb221-3"><a href="data-transformation-3-finetuned-data-manipulation.html#cb221-3"></a><span class="st">  </span><span class="kw">gather</span>(Subscales, Scores, APD<span class="op">:</span>AMiscell) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb221-4"><a href="data-transformation-3-finetuned-data-manipulation.html#cb221-4"></a><span class="st">  </span><span class="kw">arrange</span>(ID)</span>
+<span id="cb221-5"><a href="data-transformation-3-finetuned-data-manipulation.html#cb221-5"></a>SMH_long</span></code></pre></div>
 <pre><code>## # A tibble: 1,876 x 3
 ##       ID Subscales Scores
 ##    &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;
@@ -446,7 +473,7 @@ And finally, we needed to tell R which columns in the dataframe <code>SMH_short<
 <div id="spread" class="section level3">
 <h3><span class="header-section-number">5.2.2</span> spread()</h3>
 <p>Now onto the reverse. <code>spread()</code> will spread the data from <code>long</code> into <code>wide format</code>. When you have observation that are scattered across multiple rows, you can use <code>spread()</code> to split rows up into separate variables. For example, <code>table2</code> has the variabes <code>cases</code> and <code>population</code> stored in one column <code>type</code>, however, they are separate variables rather than values of <code>type</code>. So best to get <code>cases</code> and <code>population</code> back into their own columns.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table2</code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb223-1"></a>table2</span></code></pre></div>
 <pre><code>## # A tibble: 12 x 4
 ##    country      year type            count
 ##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
@@ -474,7 +501,7 @@ And finally, we needed to tell R which columns in the dataframe <code>SMH_short<
 <li>We need to decide which of the columns in <code>table2</code> will become the new column headers -&gt; <code>type</code></li>
 <li>We need to decide which of the columns in <code>table2</code> has all the data in it that will become the new cell values -&gt; <code>count</code></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">spread</span>(table2, <span class="dt">key =</span> type, <span class="dt">value =</span> count)</code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb225-1"></a><span class="kw">spread</span>(table2, <span class="dt">key =</span> type, <span class="dt">value =</span> count)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -511,7 +538,7 @@ Let’s pretend that the 7 subscales in <code>SMH_long</code> are actually 7 var
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SMH_wide &lt;-<span class="st"> </span><span class="kw">spread</span>(SMH_long, Subscales, Scores)</code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb228-1"></a>SMH_wide &lt;-<span class="st"> </span><span class="kw">spread</span>(SMH_long, Subscales, Scores)</span></code></pre></div>
 <div class="solved">
 <p>
 A more detailed explanation
@@ -540,8 +567,8 @@ We needed to decide which of the columns in <code>SMH_long</code> had all the da
 <li>We need to decide which of the columns in <code>SMH_long</code> will become the new column headers -&gt; <code>Subscales</code></li>
 <li>We need to decide which of the columns in <code>SMH_long</code> has all the data in it that will become the new cell values -&gt; <code>Scores</code></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SMH_wide &lt;-<span class="st"> </span><span class="kw">spread</span>(SMH_long, Subscales, Scores)
-SMH_wide</code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb229-1"></a>SMH_wide &lt;-<span class="st"> </span><span class="kw">spread</span>(SMH_long, Subscales, Scores)</span>
+<span id="cb229-2"><a href="data-transformation-3-finetuned-data-manipulation.html#cb229-2"></a>SMH_wide</span></code></pre></div>
 <pre><code>## # A tibble: 268 x 8
 ##       ID   ACS Afear AGuilt AHome AMiscell   APD   APH
 ##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -561,7 +588,7 @@ SMH_wide</code></pre></div>
 <div id="unite-and-separate" class="section level2">
 <h2><span class="header-section-number">5.3</span> unite() and separate()</h2>
 <p>Let’s start this part of by looking at a practical example in the build-in dataset <code>table1</code> to <code>table5</code>. They show the number of Tuberculosis cases documented by the World Health Organization in Afghanistan, Brazil, and China between 1999 and 2000. The data is part of the <code>tidyverse</code> package, so as long as we have <code>tidyverse</code> loaded into the library, there should not be an issue in accessing this dataset.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table1</code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb231-1"></a>table1</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -572,7 +599,7 @@ SMH_wide</code></pre></div>
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
 <p><code>table1</code> has a very tidy structure. You can see the data contains values associated with four variables (<code>country</code>, <code>year</code>, <code>cases</code>, and <code>population</code>). <code>table5</code> however, looks a touch not right.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table5</code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb233-1"></a>table5</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country     century year  rate             
 ## * &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            
@@ -604,7 +631,7 @@ the values in column <code>year</code> are split into <code>century</code> and <
 </div>
 <p>This is where the functions <code>separate()</code> and <code>unite()</code> come in handy. We would use <code>separate()</code> to split the column <code>rate</code> back into two columns, and <code>unite()</code> (the inverse of separate) to combine <code>century</code> and <code>year</code> into a single column.</p>
 <p>The function <code>separate()</code> is structured like this</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(data, column_to_sep, <span class="dt">into =</span> <span class="kw">c</span>(new_column1, new_column2), <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb235-1"></a><span class="kw">separate</span>(data, column_to_sep, <span class="dt">into =</span> <span class="kw">c</span>(new_column1, new_column2), <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>)</span></code></pre></div>
 <p>We would need</p>
 <ul>
 <li>the data in which the column to separate is located,</li>
@@ -613,7 +640,7 @@ the values in column <code>year</code> are split into <code>century</code> and <
 <li>a separator argument.</li>
 </ul>
 <p>Let’s tackle the first problem, splitting <code>rate</code> back into two columns <code>cases</code> and <code>population</code>/</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb236-1"></a><span class="kw">separate</span>(table5, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 5
 ##   country     century year  cases  population
 ##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     
@@ -625,7 +652,7 @@ the values in column <code>year</code> are split into <code>century</code> and <
 ## 6 China       20      00    213766 1280428583</code></pre>
 <p>We have told R to separate the column <code>rate</code> (which is located in <code>table5</code>) into two new columns <code>cases</code> and <code>population</code>. The separator argument was set to a forward slash (<code>/</code>), and R will put all cell information before the <code>/</code> into <code>cases</code>, and everything after the <code>/</code> into <code>population</code>.</p>
 <p>If for some reason, you wanted to keep the original column, you can set an additional argument <code>remove</code> to <code>FALSE</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="dt">remove =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb238-1"></a><span class="kw">separate</span>(table5, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="dt">remove =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 6
 ##   country     century year  rate              cases  population
 ##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt;     
@@ -636,7 +663,7 @@ the values in column <code>year</code> are split into <code>century</code> and <
 ## 5 China       19      99    212258/1272915272 212258 1272915272
 ## 6 China       20      00    213766/1280428583 213766 1280428583</code></pre>
 <p>What if you are just interested retaining part of the data in the cell, for example you want to keep the column <code>cases</code> but not <code>population</code>. The solution is to work with an <code>NA</code> argument. Defining the new columns as <code>cases</code> and <code>NA</code> will keep everything before the separator in the column <code>cases</code>, and drops everything after the separator.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="ot">NA</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb240-1"></a><span class="kw">separate</span>(table5, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="ot">NA</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country     century year  cases 
 ##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; 
@@ -652,7 +679,7 @@ By the way, the separator argument <code>sep =</code> can be anything, for examp
 </p>
 <ul>
 <li>
-underscore (“_“),
+underscore ("_"),
 </li>
 <li>
 comma (“,”),
@@ -667,10 +694,10 @@ colon (“:”),
 forward-slash (“/”),
 </li>
 <li>
-space (&quot; “) or
+space (" ") or
 </li>
 <li>
-nothing (“”).
+nothing ("").
 </li>
 </ul>
 <p>
@@ -684,7 +711,7 @@ But watch out! When the separator is a <code>full stop</code>, you would need to
 </p>
 </div>
 <p>Let’s try that the separation by position. We will keep 4 letters from each <code>country</code> name rather than the whole word, and drop the rest.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5, country, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;country&quot;</span>, <span class="ot">NA</span>), <span class="dt">sep =</span> <span class="dv">4</span>)</code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb242-1"></a><span class="kw">separate</span>(table5, country, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;country&quot;</span>, <span class="ot">NA</span>), <span class="dt">sep =</span> <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country century year  rate             
 ##   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            
@@ -696,14 +723,14 @@ But watch out! When the separator is a <code>full stop</code>, you would need to
 ## 6 Chin    20      00    213766/1280428583</code></pre>
 <p>Yay! Notice how <code>rate</code> is back to one column with both values in each row since we haven’t stored any output in the <code>Global Environment</code>.</p>
 <p>There is only one thing left to do, and that is combining the columns <code>century</code> and <code>year</code> into a new column called <code>year</code>. Here, we can use the function <code>unite()</code> which is structured like</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unite</span>(data, new_column, col_to_unite1, col_to_unite2, <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>)</code></pre></div>
-<p>We would need the data <code>table5</code>, a new column we want to create <code>year</code>, the two columns we would like to combine (<code>century</code> and <code>year</code>), and define the separator as “nothing” since the default is sep = “_“.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unite</span>(table5, year, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb244-1"></a><span class="kw">unite</span>(data, new_column, col_to_unite1, col_to_unite2, <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>)</span></code></pre></div>
+<p>We would need the data <code>table5</code>, a new column we want to create <code>year</code>, the two columns we would like to combine (<code>century</code> and <code>year</code>), and define the separator as “nothing” since the default is sep = "_".</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb245-1"></a><span class="kw">unite</span>(table5, year, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <p>Right, let’s combine the two steps of tidying the <code>table5</code> data by creating a pipe <code>%&gt;%</code> and store the new object <code>tb_cases</code> in the <code>Global Environment</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tb_cases &lt;-<span class="st"> </span>table5 <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">unite</span>(year, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
-tb_cases</code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb246-1"></a>tb_cases &lt;-<span class="st"> </span>table5 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb246-2"><a href="data-transformation-3-finetuned-data-manipulation.html#cb246-2"></a><span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb246-3"><a href="data-transformation-3-finetuned-data-manipulation.html#cb246-3"></a><span class="st">  </span><span class="kw">unite</span>(year, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb246-4"><a href="data-transformation-3-finetuned-data-manipulation.html#cb246-4"></a>tb_cases</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country     year  cases  population
 ##   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     
@@ -727,10 +754,10 @@ Solution
 All the columns are <code>character</code> columns. For any calculation however, the columns need to be <code>numerical</code>. The quickest solution would be to add another argument <code>convert</code> to <code>separate()</code> and set it to <code>TRUE</code>.
 </p>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tb_cases &lt;-<span class="st"> </span>table5 <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">unite</span>(year, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
-tb_cases</code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb248-1"></a>tb_cases &lt;-<span class="st"> </span>table5 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb248-2"><a href="data-transformation-3-finetuned-data-manipulation.html#cb248-2"></a><span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb248-3"><a href="data-transformation-3-finetuned-data-manipulation.html#cb248-3"></a><span class="st">  </span><span class="kw">unite</span>(year, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb248-4"><a href="data-transformation-3-finetuned-data-manipulation.html#cb248-4"></a>tb_cases</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country     year   cases population
 ##   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;      &lt;int&gt;
@@ -749,9 +776,9 @@ Unfortunately, <code>unite()</code> does not have a <code>convert</code> stateme
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tb_cases &lt;-<span class="st"> </span>tb_cases <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.integer</span>(year))
-tb_cases</code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb250-1"></a>tb_cases &lt;-<span class="st"> </span>tb_cases <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb250-2"><a href="data-transformation-3-finetuned-data-manipulation.html#cb250-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.integer</span>(year))</span>
+<span id="cb250-3"><a href="data-transformation-3-finetuned-data-manipulation.html#cb250-3"></a>tb_cases</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -764,11 +791,11 @@ tb_cases</code></pre></div>
 </div>
 </div>
 <p>Special case. Let’s modify table5 a little bit by adding a new column with a value of 200 and unite that column with column <code>rate</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table5_mod &lt;-<span class="st"> </span>table5 <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">new =</span> <span class="dv">200</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">unite</span>(rate, rate, new, <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb252-1"></a>table5_mod &lt;-<span class="st"> </span>table5 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb252-2"><a href="data-transformation-3-finetuned-data-manipulation.html#cb252-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">new =</span> <span class="dv">200</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb252-3"><a href="data-transformation-3-finetuned-data-manipulation.html#cb252-3"></a><span class="st">  </span><span class="kw">unite</span>(rate, rate, new, <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</span></code></pre></div>
 <p>Now column <code>rate</code> has 3 sets of numbers, separated by two <code>/</code>. If we define we want to split the data into 2 columns, the first 2 sets of numbers are kept, and the third one is dropped with a warning.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5_mod, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb253-1"></a><span class="kw">separate</span>(table5_mod, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: Expected 2 pieces. Additional pieces discarded in 6 rows [1, 2, 3,
 ## 4, 5, 6].</code></pre>
 <pre><code>## # A tibble: 6 x 5
@@ -781,7 +808,7 @@ tb_cases</code></pre></div>
 ## 5 China       19      99    212258 1272915272
 ## 6 China       20      00    213766 1280428583</code></pre>
 <p>If we are separating the columns and wanted to keep all sets of numbers, one in each column, we would use an into argument that includes 3 new columns.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5_mod, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>, <span class="st">&quot;200&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb256-1"></a><span class="kw">separate</span>(table5_mod, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>, <span class="st">&quot;200&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 6
 ##   country     century year  cases  population `200`
 ##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;
@@ -791,8 +818,8 @@ tb_cases</code></pre></div>
 ## 4 Brazil      20      00    80488  174504898  200  
 ## 5 China       19      99    212258 1272915272 200  
 ## 6 China       20      00    213766 1280428583 200</code></pre>
-<p>However, what if we just wanted to split the data into 2 columns, after the first <code>/</code> AND keep all sets of numbers? We would have to include an <code>extra</code> argument, and set it to <code>&quot;merge&quot;</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5_mod, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="dt">extra =</span> <span class="st">&quot;merge&quot;</span>)</code></pre></div>
+<p>However, what if we just wanted to split the data into 2 columns, after the first <code>/</code> AND keep all sets of numbers? We would have to include an <code>extra</code> argument, and set it to <code>"merge"</code>.</p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb258-1"></a><span class="kw">separate</span>(table5_mod, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="dt">extra =</span> <span class="st">&quot;merge&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 5
 ##   country     century year  cases  population    
 ##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;         
@@ -806,9 +833,9 @@ tb_cases</code></pre></div>
 <div id="rename" class="section level2">
 <h2><span class="header-section-number">5.4</span> rename()</h2>
 <p><code>rename()</code> is a very useful function if we wanted to change column names. All available column names are retained, so nothing is lost. It follows a very simple pattern of</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rename</span>(data, <span class="dt">new_column_name =</span> old_column_name)</code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb260-1"></a><span class="kw">rename</span>(data, <span class="dt">new_column_name =</span> old_column_name)</span></code></pre></div>
 <p>You can rename multiple column headers by including more arguments, separarting them with a comma. Let’s take a look at a simple example in <code>table1</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table1</code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb261-1"></a>table1</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -819,8 +846,8 @@ tb_cases</code></pre></div>
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
 <p>If we wanted to change the column headers of <code>country</code> to <code>Country</code> and <code>population</code> to <code>Population</code>, we would code</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rename</span>(table1, <span class="dt">Country =</span> country,
-       <span class="dt">Population =</span> population)</code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb263-1"></a><span class="kw">rename</span>(table1, <span class="dt">Country =</span> country,</span>
+<span id="cb263-2"><a href="data-transformation-3-finetuned-data-manipulation.html#cb263-2"></a>       <span class="dt">Population =</span> population)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   Country      year  cases Population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -831,10 +858,10 @@ tb_cases</code></pre></div>
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
 <p>If you want to select a few columns and rename them in the process, you could use <code>select()</code>. The structure is the same as with <code>rename()</code>, the only difference is that the new data only retains the columns mentioned explicitly within <code>select()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(data, <span class="dt">new_column_name =</span> old_column_name)</code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb265-1"></a><span class="kw">select</span>(data, <span class="dt">new_column_name =</span> old_column_name)</span></code></pre></div>
 <p>Modifying the <code>rename()</code> example from above would lead to selecting the columns <code>country</code> and <code>population</code> from <code>table1</code> and renaming them as <code>Country</code> and <code>Population</code> at the same time.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(table1, <span class="dt">Country =</span> country,
-       <span class="dt">Population =</span> population)</code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb266-1"></a><span class="kw">select</span>(table1, <span class="dt">Country =</span> country,</span>
+<span id="cb266-2"><a href="data-transformation-3-finetuned-data-manipulation.html#cb266-2"></a>       <span class="dt">Population =</span> population)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   Country     Population
 ##   &lt;chr&gt;            &lt;int&gt;
@@ -858,18 +885,18 @@ tb_cases</code></pre></div>
 <div id="distinct" class="section level2">
 <h2><span class="header-section-number">5.7</span> distinct</h2>
 <p>The <code>distinct()</code> function is used to remove duplicate rows in your dataframe. If we are using <code>distinct()</code> without specifying any arguments, R checks the whole row and excludes any row that is exactly repeated.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_SMH_no_dup &lt;-<span class="st"> </span>data_SMH <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">distinct</span>()</code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb268-1"></a>data_SMH_no_dup &lt;-<span class="st"> </span>data_SMH <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb268-2"><a href="data-transformation-3-finetuned-data-manipulation.html#cb268-2"></a><span class="st">  </span><span class="kw">distinct</span>()</span></code></pre></div>
 <p>We can see that all rows are still there. This is not surprising, given every participant has a unique ID number. We could exclude the <code>ID</code> column to check how many full rows are exactly identical.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_SMH_no_dup &lt;-<span class="st"> </span>data_SMH <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>ID) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">distinct</span>()</code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb269-1"></a>data_SMH_no_dup &lt;-<span class="st"> </span>data_SMH <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb269-2"><a href="data-transformation-3-finetuned-data-manipulation.html#cb269-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>ID) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb269-3"><a href="data-transformation-3-finetuned-data-manipulation.html#cb269-3"></a><span class="st">  </span><span class="kw">distinct</span>()</span></code></pre></div>
 <p>We can see here that 5 rows were excluded as <code>data_SMH_no_dup</code> has 263 observations compared to 268 in <code>data_SMH</code>.</p>
 <p><code>distinct()</code> does take arguments as well, namely the variable columns you are trying to determine uniqueness for. Say we we wanted to investigate how many regions are included in <code>data_SMH</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">regions &lt;-<span class="st"> </span>data_SMH <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">distinct</span>(Region)
-
-regions</code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb270-1"></a>regions &lt;-<span class="st"> </span>data_SMH <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb270-2"><a href="data-transformation-3-finetuned-data-manipulation.html#cb270-2"></a><span class="st">  </span><span class="kw">distinct</span>(Region)</span>
+<span id="cb270-3"><a href="data-transformation-3-finetuned-data-manipulation.html#cb270-3"></a></span>
+<span id="cb270-4"><a href="data-transformation-3-finetuned-data-manipulation.html#cb270-4"></a>regions</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 1
 ##   Region
 ##   &lt;chr&gt; 
@@ -879,10 +906,10 @@ regions</code></pre></div>
 ## 4 Others
 ## 5 JAP</code></pre>
 <p>We can see that there are 5 distinct regions. But what happened to the output? Now we have an overview that people were from 5 distinct regions, but we have lost all the other data in the dataframe. One quick solution would be to use the argument <code>.keep_all</code> and set that to <code>TRUE</code> (the default here is <code>FALSE</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">regions &lt;-<span class="st"> </span>data_SMH <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">distinct</span>(Region, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>)
-
-regions</code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb272-1"></a>regions &lt;-<span class="st"> </span>data_SMH <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb272-2"><a href="data-transformation-3-finetuned-data-manipulation.html#cb272-2"></a><span class="st">  </span><span class="kw">distinct</span>(Region, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb272-3"><a href="data-transformation-3-finetuned-data-manipulation.html#cb272-3"></a></span>
+<span id="cb272-4"><a href="data-transformation-3-finetuned-data-manipulation.html#cb272-4"></a>regions</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 19
 ##      ID inter_dom Region Gender Academic   Age Stay_Cate Japanese_cate
 ##   &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;        
@@ -896,10 +923,10 @@ regions</code></pre></div>
 ## #   AGuilt &lt;dbl&gt;, AMiscell &lt;dbl&gt;, ToAS &lt;dbl&gt;</code></pre>
 <p>In the new <code>regions</code> dataframe, we still have 5 rows of observations but we kept all 19 columns. If there are multiple rows with the same input (in this case 268 people came from 5 different regions), <code>distinct()</code> only preserves the first row a new value occurs.</p>
 <p>The <code>distinct()</code> function also allows you to eliminate duplicate rows with multiple variables in the dataframe. So if we wanted to see how many different regions participants were from, but also whether they are male or female, we would type…</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">RegGen &lt;-<span class="st"> </span>data_SMH <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">distinct</span>(Region, Gender)
-
-RegGen</code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb274-1"></a>RegGen &lt;-<span class="st"> </span>data_SMH <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb274-2"><a href="data-transformation-3-finetuned-data-manipulation.html#cb274-2"></a><span class="st">  </span><span class="kw">distinct</span>(Region, Gender)</span>
+<span id="cb274-3"><a href="data-transformation-3-finetuned-data-manipulation.html#cb274-3"></a></span>
+<span id="cb274-4"><a href="data-transformation-3-finetuned-data-manipulation.html#cb274-4"></a>RegGen</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 2
 ##    Region Gender
 ##    &lt;chr&gt;  &lt;chr&gt; 
@@ -946,9 +973,9 @@ You can add as many variables as you like, however they need to be separated by 
 <div id="bonus-mutate-rownames-from-the-mtcars" class="section level2">
 <h2><span class="header-section-number">5.9</span> Bonus: mutate rownames from the mtcars</h2>
 <p>Remember, in lecture 2 when we were talking about the mtcars dataset and how the car types were not in listed as a separate column but rather rownames? Let’s just read in the data and have another quick look to jug our memories…</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_mtcars &lt;-<span class="st"> </span>mtcars
-
-<span class="kw">head</span>(df_mtcars)</code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb276-1"></a>df_mtcars &lt;-<span class="st"> </span>mtcars</span>
+<span id="cb276-2"><a href="data-transformation-3-finetuned-data-manipulation.html#cb276-2"></a></span>
+<span id="cb276-3"><a href="data-transformation-3-finetuned-data-manipulation.html#cb276-3"></a><span class="kw">head</span>(df_mtcars)</span></code></pre></div>
 <pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
 ## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
 ## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
@@ -958,10 +985,10 @@ You can add as many variables as you like, however they need to be separated by 
 ## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
 <p>You can see much better what I’m talking about when you view your <code>df_mtcars</code>.</p>
 <p>Now, that we have learnt about the <code>mutate()</code> function, we can attempt to get all of these rownames into a new column. All we have to do is combining a function called <code>rownames()</code> with <code>mutate()</code>. We also could use some more of these handy pipes <code>%&gt;%</code> you learnt about last week.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_mtcars &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Car_type =</span> <span class="kw">rownames</span>(mtcars))</code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb278-1"></a>df_mtcars &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb278-2"><a href="data-transformation-3-finetuned-data-manipulation.html#cb278-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Car_type =</span> <span class="kw">rownames</span>(mtcars))</span></code></pre></div>
 <p>In this example, we have taken the dataset <code>mtcars</code>, then added a new column to it with <code>mutate()</code> in which we wanted the new column header to be named <code>Car_type</code>. The column <code>Car_type</code> should then hold all the values that were previously listed as the rownames in the original <code>mtcars</code> data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(df_mtcars)</code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb279-1"></a><span class="kw">head</span>(df_mtcars)</span></code></pre></div>
 <pre><code>##    mpg cyl disp  hp drat    wt  qsec vs am gear carb          Car_type
 ## 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4         Mazda RX4
 ## 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4     Mazda RX4 Wag
@@ -978,12 +1005,12 @@ We can now look at the data <code>df_mtcars</code>, and see that the new column 
 <button>
 Answer
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We could use the fuction select()</span>
-df_mtcars &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Car_type =</span> <span class="kw">rownames</span>(mtcars)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(Car_type, mpg<span class="op">:</span>carb)
-
-<span class="kw">head</span>(df_mtcars)</code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="data-transformation-3-finetuned-data-manipulation.html#cb281-1"></a><span class="co"># We could use the fuction select()</span></span>
+<span id="cb281-2"><a href="data-transformation-3-finetuned-data-manipulation.html#cb281-2"></a>df_mtcars &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb281-3"><a href="data-transformation-3-finetuned-data-manipulation.html#cb281-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Car_type =</span> <span class="kw">rownames</span>(mtcars)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb281-4"><a href="data-transformation-3-finetuned-data-manipulation.html#cb281-4"></a><span class="st">  </span><span class="kw">select</span>(Car_type, mpg<span class="op">:</span>carb)</span>
+<span id="cb281-5"><a href="data-transformation-3-finetuned-data-manipulation.html#cb281-5"></a></span>
+<span id="cb281-6"><a href="data-transformation-3-finetuned-data-manipulation.html#cb281-6"></a><span class="kw">head</span>(df_mtcars)</span></code></pre></div>
 <pre><code>##            Car_type  mpg cyl disp  hp drat    wt  qsec vs am gear carb
 ## 1         Mazda RX4 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
 ## 2     Mazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
@@ -1102,7 +1129,6 @@ window.onload = function() {
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -1121,10 +1147,6 @@ gitbook.start({
 "text": null
 },
 "history": {
-"link": null,
-"text": null
-},
-"view": {
 "link": null,
 "text": null
 },

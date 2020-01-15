@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Data Transformation 1: Basic One Table Verbs | Introduction to R</title>
   <meta name="description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Data Transformation 1: Basic One Table Verbs | Introduction to R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Rebecca J. Lai, Kate Haining, Greta Todorova, and Wilhelmiina Toivo" />
 
 
-<meta name="date" content="2020-01-13" />
+<meta name="date" content="2020-01-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,41 +53,68 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -355,18 +382,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="load-tidyverse-into-the-library-1" class="section level3">
 <h3><span class="header-section-number">3.2.4</span> Load tidyverse into the library</h3>
 <p>As we will be using functions that are part of <code>tidyverse</code>, we need to load it into the library.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb108-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 </div>
 <div id="reading-in-the-data" class="section level3">
 <h3><span class="header-section-number">3.2.5</span> Reading in the data</h3>
 <p>Today, we will be using the following data file <code>Student_Mental_Health.csv</code>. This contains demographic and mental health data for 268 students at an international university in Japan. The full version of this open access dataset and accompanying publication are available at <a href="https://www.mdpi.com/2306-5729/4/3/124" class="uri">https://www.mdpi.com/2306-5729/4/3/124</a>. There is also a copy of this paper in today’s data folder.</p>
-<p>Now, you need to read the .csv file containing your data into your <code>Global Environment</code> using the function <code>read_csv()</code>. Remember to store your data in an appropriately named object (e.g. <code>student_MH</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">student_MH &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Student_Mental_Health.csv&quot;</span>)</code></pre></div>
+<p>Now, you need to read the .csv file containing your data into your <code>Global Environment</code> using the function <code>read_csv()</code>. Remember to store your data in an appropriately named object (e.g. <code>student_MH</code>).</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb109-1"></a>student_MH &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Student_Mental_Health.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="view-the-data" class="section level3">
 <h3><span class="header-section-number">3.2.6</span> View the data</h3>
 <p>Either click on <code>student_MH</code> in your <code>Global Environment</code> to open your data in a new tab on the <code>Source</code> pane or call the object in your <code>Console</code> (by typing the name of the object <code>student_MH</code>) to check that the data was correctly imported into R.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">student_MH</code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb110-1"></a>student_MH</span></code></pre></div>
 <pre><code>## # A tibble: 268 x 19
 ##       ID inter_dom Region Gender Academic   Age Stay_Cate Japanese_cate
 ##    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;        
@@ -389,7 +416,7 @@ You could also view the data by using the function <code>View()</code>. If you a
 </p>
 </div>
 <p>Remember from last week, we can also use <code>glimpse()</code> to view the columns and their datatypes.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(student_MH)</code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb112-1"></a><span class="kw">glimpse</span>(student_MH)</span></code></pre></div>
 <pre><code>## Observations: 268
 ## Variables: 19
 ## $ ID            &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1...
@@ -412,7 +439,7 @@ You could also view the data by using the function <code>View()</code>. If you a
 ## $ AMiscell      &lt;dbl&gt; 27, 10, 14, 21, 31, 29, 15, 40, 33, 17, 30, 26, ...
 ## $ ToAS          &lt;dbl&gt; 91, 39, 51, 75, 82, 83, 58, 127, 109, 51, 92, 95...</code></pre>
 <p><code>head()</code> would be helpful in displaying only the first 6 rows of the dataset, but remember not to get “tricked” by the number of observations shown in the output.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(student_MH)</code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb114-1"></a><span class="kw">head</span>(student_MH)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 19
 ##      ID inter_dom Region Gender Academic   Age Stay_Cate Japanese_cate
 ##   &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;        
@@ -426,7 +453,8 @@ You could also view the data by using the function <code>View()</code>. If you a
 ## #   APD &lt;dbl&gt;, AHome &lt;dbl&gt;, APH &lt;dbl&gt;, Afear &lt;dbl&gt;, ACS &lt;dbl&gt;,
 ## #   AGuilt &lt;dbl&gt;, AMiscell &lt;dbl&gt;, ToAS &lt;dbl&gt;</code></pre>
 <p><span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span></p>
-<p>How many rows (or observations) does <code>student_MH</code> have? <input class='solveme nospaces' size='3' data-answer='["268"]'/> <br> How many columns (or variables) does <code>student_MH</code> have? <input class='solveme nospaces' size='2' data-answer='["19"]'/> <br></p>
+<p>How many rows (or observations) does <code>student_MH</code> have? <input class='solveme nospaces' size='3' data-answer='["268"]'/> <br>
+How many columns (or variables) does <code>student_MH</code> have? <input class='solveme nospaces' size='2' data-answer='["19"]'/> <br></p>
 <div class="task">
 <p>
 Take 10 minutes to read the <code>data description</code> section of the Nguyen publication in order to familiarise yourself with the variables in your dataframe.
@@ -438,7 +466,7 @@ Take 10 minutes to read the <code>data description</code> section of the Nguyen 
 <h2><span class="header-section-number">3.3</span> select()</h2>
 <p>You may not want to include every single variable in your analysis. In order to include or exclude certain variables (columns), use the <code>select()</code> function. The first argument to this function is the object you want to select variables from (i.e. our tibble called <code>student_MH</code>), and the subsequent arguments are the variables to keep.</p>
 <p>For example, if you wanted to keep all variables except from <code>ID</code>, you could type:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(student_MH, inter_dom, Region, Gender, Academic, Age, Stay_Cate, Japanese_cate, English_cate, ToDep, ToSC, APD, AHome, APH, Afear, ACS, AGuilt, AMiscell, ToAS)</code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb116-1"></a><span class="kw">select</span>(student_MH, inter_dom, Region, Gender, Academic, Age, Stay_Cate, Japanese_cate, English_cate, ToDep, ToSC, APD, AHome, APH, Afear, ACS, AGuilt, AMiscell, ToAS)</span></code></pre></div>
 <pre><code>## # A tibble: 268 x 18
 ##    inter_dom Region Gender Academic   Age Stay_Cate Japanese_cate
 ##    &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;        
@@ -459,7 +487,7 @@ Take 10 minutes to read the <code>data description</code> section of the Nguyen 
 <ol style="list-style-type: decimal">
 <li>We could use the colon operator <code>:</code>. Similar to last week where we used the colon operator for numerical sequences, we can use it here for selecting a sequence of column names. Here, it reads as “take object <code>student_HM</code>, and select columns <code>inter_dom</code>, <code>ToAS</code>, and everything in between”.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(student_MH, inter_dom<span class="op">:</span>ToAS)</code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb118-1"></a><span class="kw">select</span>(student_MH, inter_dom<span class="op">:</span>ToAS)</span></code></pre></div>
 <pre><code>## # A tibble: 268 x 18
 ##    inter_dom Region Gender Academic   Age Stay_Cate Japanese_cate
 ##    &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;        
@@ -479,7 +507,7 @@ Take 10 minutes to read the <code>data description</code> section of the Nguyen 
 <ol start="2" style="list-style-type: decimal">
 <li>We could use “negative selection”, i.e. select the variable we wanted to drop by adding a <code>minus</code> in front of it.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(student_MH, <span class="op">-</span>ID)</code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb120-1"></a><span class="kw">select</span>(student_MH, <span class="op">-</span>ID)</span></code></pre></div>
 <pre><code>## # A tibble: 268 x 18
 ##    inter_dom Region Gender Academic   Age Stay_Cate Japanese_cate
 ##    &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;        
@@ -497,7 +525,7 @@ Take 10 minutes to read the <code>data description</code> section of the Nguyen 
 ## #   ToDep &lt;dbl&gt;, ToSC &lt;dbl&gt;, APD &lt;dbl&gt;, AHome &lt;dbl&gt;, APH &lt;dbl&gt;,
 ## #   Afear &lt;dbl&gt;, ACS &lt;dbl&gt;, AGuilt &lt;dbl&gt;, AMiscell &lt;dbl&gt;, ToAS &lt;dbl&gt;</code></pre>
 <p>We also have the option of “de-selecting” more than one variable. Let’s say, we had no interest in any of the seven subscales for <code>ToAS</code>, we could exclude them by combining the colon operator <code>:</code> with the <code>minus</code>. Watch out that you include the <code>minus</code> in front of both reference columns.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(student_MH, <span class="op">-</span>APD<span class="op">:-</span>AMiscell)</code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb122-1"></a><span class="kw">select</span>(student_MH, <span class="op">-</span>APD<span class="op">:-</span>AMiscell)</span></code></pre></div>
 <pre><code>## # A tibble: 268 x 12
 ##       ID inter_dom Region Gender Academic   Age Stay_Cate Japanese_cate
 ##    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;        
@@ -514,7 +542,7 @@ Take 10 minutes to read the <code>data description</code> section of the Nguyen 
 ## # ... with 258 more rows, and 4 more variables: English_cate &lt;chr&gt;,
 ## #   ToDep &lt;dbl&gt;, ToSC &lt;dbl&gt;, ToAS &lt;dbl&gt;</code></pre>
 <p>This only works, because they are all next to each other in the tibble. If we wanted to exclude columns <code>ID</code>, <code>Academic</code>, and <code>ToAS</code> that are not neighbouring each other, we would need to list the arguments separately, and insert a <code>minus</code> before each variable name.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(student_MH, <span class="op">-</span>ID, <span class="op">-</span>Academic, <span class="op">-</span>ToAS)</code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb124-1"></a><span class="kw">select</span>(student_MH, <span class="op">-</span>ID, <span class="op">-</span>Academic, <span class="op">-</span>ToAS)</span></code></pre></div>
 <pre><code>## # A tibble: 268 x 16
 ##    inter_dom Region Gender   Age Stay_Cate Japanese_cate English_cate ToDep
 ##    &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;         &lt;chr&gt;        &lt;dbl&gt;
@@ -553,8 +581,8 @@ Create a tibble called <code>short_MH</code> that keeps all variables/columns fr
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Kate&#39;s solution:</span>
-short_MH &lt;-<span class="st"> </span><span class="kw">select</span>(student_MH, <span class="op">-</span>Region, <span class="op">-</span>Stay_Cate, <span class="op">-</span>Japanese_cate, <span class="op">-</span>English_cate)</code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb126-1"></a><span class="co"># Kate&#39;s solution:</span></span>
+<span id="cb126-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb126-2"></a>short_MH &lt;-<span class="st"> </span><span class="kw">select</span>(student_MH, <span class="op">-</span>Region, <span class="op">-</span>Stay_Cate, <span class="op">-</span>Japanese_cate, <span class="op">-</span>English_cate)</span></code></pre></div>
 <div class="info">
 <p>
 But there are plenty of other ways how this could have been done. For example: <br>
@@ -598,8 +626,8 @@ While it works code-wise, and seems a much quicker approach, it is a very bad id
 <div id="arrange" class="section level2">
 <h2><span class="header-section-number">3.4</span> arrange()</h2>
 <p>The <code>arrange()</code> function can reorder observations (rows) in ascending (default) or descending order. The first argument to this function is again an object (in this case the tibble <code>short_MH</code> we created in the previous section), and the subsequent arguments are the variables (columns) you want to sort by. For example, if you wanted to sort by <code>Gender</code> in <strong>ascending</strong> order (which is the default in <code>arrange()</code>) you would type:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">short_MH &lt;-<span class="st"> </span><span class="kw">arrange</span>(short_MH, Gender)
-short_MH</code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb127-1"></a>short_MH &lt;-<span class="st"> </span><span class="kw">arrange</span>(short_MH, Gender)</span>
+<span id="cb127-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb127-2"></a>short_MH</span></code></pre></div>
 <pre><code>## # A tibble: 268 x 15
 ##       ID inter_dom Gender Academic   Age ToDep  ToSC   APD AHome   APH
 ##    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -621,8 +649,8 @@ Since you have assigned this code to the same object as before (i.e. short_MH),
 </p>
 </div>
 <p>Notice how the <code>Gender</code> column is now organised in alphabetical order i.e. females followed by males. Suppose you wanted to reverse this order, displaying males before females, you would need to wrap the name of the variable in the <code>desc()</code> function (i.e. for <strong>descending</strong>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">short_MH &lt;-<span class="st"> </span><span class="kw">arrange</span>(short_MH, <span class="kw">desc</span>(Gender))
-short_MH</code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb129-1"></a>short_MH &lt;-<span class="st"> </span><span class="kw">arrange</span>(short_MH, <span class="kw">desc</span>(Gender))</span>
+<span id="cb129-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb129-2"></a>short_MH</span></code></pre></div>
 <pre><code>## # A tibble: 268 x 15
 ##       ID inter_dom Gender Academic   Age ToDep  ToSC   APD AHome   APH
 ##    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -639,8 +667,8 @@ short_MH</code></pre></div>
 ## # ... with 258 more rows, and 5 more variables: Afear &lt;dbl&gt;, ACS &lt;dbl&gt;,
 ## #   AGuilt &lt;dbl&gt;, AMiscell &lt;dbl&gt;, ToAS &lt;dbl&gt;</code></pre>
 <p>You can also sort by more than one column. For example, you could sort by <code>Gender</code> and <code>ToAS</code> (total acculturative stress score) in ascending order:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">short_MH &lt;-<span class="st"> </span><span class="kw">arrange</span>(short_MH, Gender, ToAS)
-<span class="kw">glimpse</span>(short_MH)</code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb131-1"></a>short_MH &lt;-<span class="st"> </span><span class="kw">arrange</span>(short_MH, Gender, ToAS)</span>
+<span id="cb131-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb131-2"></a><span class="kw">glimpse</span>(short_MH)</span></code></pre></div>
 <pre><code>## Observations: 268
 ## Variables: 15
 ## $ ID        &lt;dbl&gt; 45, 100, 101, 146, 206, 209, 241, 262, 187, 203, 248...
@@ -659,8 +687,8 @@ short_MH</code></pre></div>
 ## $ AMiscell  &lt;dbl&gt; 10, 10, 10, 10, 10, 10, 10, 10, 11, 10, 11, 11, 10, ...
 ## $ ToAS      &lt;dbl&gt; 36, 36, 36, 36, 36, 36, 36, 36, 37, 37, 37, 39, 40, ...</code></pre>
 <p>Or descending order:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">short_MH &lt;-<span class="st"> </span><span class="kw">arrange</span>(short_MH, <span class="kw">desc</span>(Gender), <span class="kw">desc</span>(ToAS))
-<span class="kw">glimpse</span>(short_MH)</code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb133-1"></a>short_MH &lt;-<span class="st"> </span><span class="kw">arrange</span>(short_MH, <span class="kw">desc</span>(Gender), <span class="kw">desc</span>(ToAS))</span>
+<span id="cb133-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb133-2"></a><span class="kw">glimpse</span>(short_MH)</span></code></pre></div>
 <pre><code>## Observations: 268
 ## Variables: 15
 ## $ ID        &lt;dbl&gt; 188, 24, 231, 252, 142, 113, 62, 96, 190, 219, 23, 4...
@@ -691,7 +719,7 @@ Hmmm, I wish we hadn’t overwritten our original data <code>short_MH</code> rep
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">short_MH &lt;-<span class="st"> </span><span class="kw">arrange</span>(short_MH, ID)</code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb135-1"></a>short_MH &lt;-<span class="st"> </span><span class="kw">arrange</span>(short_MH, ID)</span></code></pre></div>
 </div>
 </div>
 <div id="filter" class="section level2">
@@ -699,8 +727,8 @@ Solution
 <div id="single-criterion" class="section level3">
 <h3><span class="header-section-number">3.5.1</span> Single criterion</h3>
 <p>In order to include or exclude certain observations (rows), use the <code>filter()</code> function. The first argument to this function is an object (in this case the tibble <code>short_MH</code> we created earlier) and the subsequent argument is the criteria you wish to filter on. For example, if you want only those observations with total acculturative stress scores of more than 72:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">short_MH72 &lt;-<span class="st"> </span><span class="kw">filter</span>(short_MH, ToAS <span class="op">&gt;</span><span class="st"> </span><span class="dv">72</span>)
-<span class="kw">glimpse</span>(short_MH72)</code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb136-1"></a>short_MH72 &lt;-<span class="st"> </span><span class="kw">filter</span>(short_MH, ToAS <span class="op">&gt;</span><span class="st"> </span><span class="dv">72</span>)</span>
+<span id="cb136-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb136-2"></a><span class="kw">glimpse</span>(short_MH72)</span></code></pre></div>
 <pre><code>## Observations: 131
 ## Variables: 15
 ## $ ID        &lt;dbl&gt; 1, 4, 5, 6, 8, 9, 11, 12, 15, 16, 23, 24, 25, 27, 28...
@@ -752,12 +780,12 @@ Remember the relational operators that returned logical values of either <code>T
 </div>
 <p>Relational operators (such as <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, and <code>&gt;=</code>) compare two numerical expressions and return a Boolean variable: a variable whose value is either 0 (<code>FALSE</code>) or 1 (<code>TRUE</code>). So, essentially, <code>filter()</code> includes any observations (rows) for which the expression evaluates to <code>TRUE</code>, and excludes any for which it evaluates to <code>FALSE</code>. In the previous example, <code>filter()</code> sifted through 268 observations, keeping rows containing total acculturative stress scores more than 72 and rejecting those with scores less than or equal to 72.</p>
 <p>This works as well for columns of the data type <code>character</code>. If you want only those observations for international students (as opposed to domestic students), you could use the equivalence operator <code>==</code>. Be aware that a single equals sign (<code>=</code>) is used to assign a value to a variable whereas a double equals sign (<code>==</code>) is used to check whether two values are equal.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">short_MH_inter &lt;-<span class="st"> </span><span class="kw">filter</span>(short_MH, inter_dom <span class="op">==</span><span class="st"> &quot;Inter&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb138-1"></a>short_MH_inter &lt;-<span class="st"> </span><span class="kw">filter</span>(short_MH, inter_dom <span class="op">==</span><span class="st"> &quot;Inter&quot;</span>)</span></code></pre></div>
 <p>Here, the <code>filter()</code> function compares every single value in the column <code>inter_dom</code> of the data object <code>short_HM</code> with the character string written on the right-hand side of the equation (“Inter”).</p>
 <p>Another way to produce the exact same outcome, would be to exclude domestic students using the ‘not equals’ operator <code>!=</code>. Here <code>filter()</code> keeps every row in which the value does not read “Dom”.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">short_MH_inter2 &lt;-<span class="st"> </span><span class="kw">filter</span>(short_MH, inter_dom <span class="op">!=</span><span class="st"> &quot;Dom&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb139-1"></a>short_MH_inter2 &lt;-<span class="st"> </span><span class="kw">filter</span>(short_MH, inter_dom <span class="op">!=</span><span class="st"> &quot;Dom&quot;</span>)</span></code></pre></div>
 <p>You can view <code>short_MH_inter</code> and <code>short_MH_inter2</code> in a tab, use <code>glimpse()</code>, or call the variable in the <code>Console</code> to check that are actually identical.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(short_MH_inter)</code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb140-1"></a><span class="kw">glimpse</span>(short_MH_inter)</span></code></pre></div>
 <pre><code>## Observations: 201
 ## Variables: 15
 ## $ ID        &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1...
@@ -775,7 +803,7 @@ Remember the relational operators that returned logical values of either <code>T
 ## $ AGuilt    &lt;dbl&gt; 2, 2, 3, 4, 4, 3, 2, 6, 6, 2, 6, 4, 2, 7, 8, 2, 5, 2...
 ## $ AMiscell  &lt;dbl&gt; 27, 10, 14, 21, 31, 29, 15, 40, 33, 17, 30, 26, 17, ...
 ## $ ToAS      &lt;dbl&gt; 91, 39, 51, 75, 82, 83, 58, 127, 109, 51, 92, 95, 54...</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(short_MH_inter2)</code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb142-1"></a><span class="kw">glimpse</span>(short_MH_inter2)</span></code></pre></div>
 <pre><code>## Observations: 201
 ## Variables: 15
 ## $ ID        &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1...
@@ -815,8 +843,8 @@ Remember the relational operators that returned logical values of either <code>T
 <p><br></p>
 <p><strong>What does that mean for our student mental health data?</strong></p>
 <p>For example, to filter rows containing only international students who have a total acculturative stress score of more than 72, you would code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">short_MH72_inter &lt;-<span class="st"> </span><span class="kw">filter</span>(short_MH, inter_dom <span class="op">==</span><span class="st"> &quot;Inter&quot;</span>, ToAS <span class="op">&gt;</span><span class="st"> </span><span class="dv">72</span>)
-<span class="kw">glimpse</span>(short_MH72_inter)</code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb144-1"></a>short_MH72_inter &lt;-<span class="st"> </span><span class="kw">filter</span>(short_MH, inter_dom <span class="op">==</span><span class="st"> &quot;Inter&quot;</span>, ToAS <span class="op">&gt;</span><span class="st"> </span><span class="dv">72</span>)</span>
+<span id="cb144-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb144-2"></a><span class="kw">glimpse</span>(short_MH72_inter)</span></code></pre></div>
 <pre><code>## Observations: 109
 ## Variables: 15
 ## $ ID        &lt;dbl&gt; 1, 4, 5, 6, 8, 9, 11, 12, 15, 16, 23, 24, 25, 27, 28...
@@ -840,8 +868,8 @@ You could have also used the logical operator <code>&amp;</code> (AND) instead o
 </p>
 </div>
 <p>If we wanted to filter the data <code>short_MH</code> for either international students <strong>OR</strong> students with total acculturative stress scores of more than 72, we could use the logical operator <code>|</code> (OR).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">short_MH72_inter_or &lt;-<span class="st"> </span><span class="kw">filter</span>(short_MH, inter_dom <span class="op">==</span><span class="st"> &quot;Inter&quot;</span> <span class="op">|</span><span class="st"> </span>ToAS <span class="op">&gt;</span><span class="st"> </span><span class="dv">72</span>)
-<span class="kw">glimpse</span>(short_MH72_inter_or)</code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb146-1"></a>short_MH72_inter_or &lt;-<span class="st"> </span><span class="kw">filter</span>(short_MH, inter_dom <span class="op">==</span><span class="st"> &quot;Inter&quot;</span> <span class="op">|</span><span class="st"> </span>ToAS <span class="op">&gt;</span><span class="st"> </span><span class="dv">72</span>)</span>
+<span id="cb146-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb146-2"></a><span class="kw">glimpse</span>(short_MH72_inter_or)</span></code></pre></div>
 <pre><code>## Observations: 223
 ## Variables: 15
 ## $ ID        &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1...
@@ -861,7 +889,11 @@ You could have also used the logical operator <code>&amp;</code> (AND) instead o
 ## $ ToAS      &lt;dbl&gt; 91, 39, 51, 75, 82, 83, 58, 127, 109, 51, 92, 95, 54...</code></pre>
 <p>As you will have noticed, <code>short_MH72_inter_or</code> has now observations for participants that are either international students, or students with a ToAS of larger than 72. Undoubtedly, some will fall into both categories, however, participants that fit neither criterion are excluded.</p>
 <p><span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span></p>
-<p>How many rows (or observations) does the object <code>short_MH72</code> contain? <input class='solveme nospaces' size='3' data-answer='["131"]'/><br> How many participants in this study were international students? <input class='solveme nospaces' size='3' data-answer='["201"]'/> <br> How many observations would the code <code>filter(short_MH, inter_dom == &quot;inter&quot;)</code> return? <input class='solveme nospaces' size='1' data-answer='["0"]'/> <br> How many participants in this study were international students with a ToAS of more than 72? <input class='solveme nospaces' size='3' data-answer='["109"]'/> <br> How many participants in this study were either international students OR had a ToAS of more than 72? <input class='solveme nospaces' size='3' data-answer='["223"]'/> <br></p>
+<p>How many rows (or observations) does the object <code>short_MH72</code> contain? <input class='solveme nospaces' size='3' data-answer='["131"]'/><br>
+How many participants in this study were international students? <input class='solveme nospaces' size='3' data-answer='["201"]'/> <br>
+How many observations would the code <code>filter(short_MH, inter_dom == "inter")</code> return? <input class='solveme nospaces' size='1' data-answer='["0"]'/> <br>
+How many participants in this study were international students with a ToAS of more than 72? <input class='solveme nospaces' size='3' data-answer='["109"]'/> <br>
+How many participants in this study were either international students OR had a ToAS of more than 72? <input class='solveme nospaces' size='3' data-answer='["223"]'/> <br></p>
 </div>
 </div>
 <div id="mutate" class="section level2">
@@ -871,8 +903,8 @@ You could have also used the logical operator <code>&amp;</code> (AND) instead o
 <img src="images/mutate.png" height= "350">
 </center>
 <p>Let’s apply this to this to our <code>short_MH</code> data tibble. Say we wanted to create a new column <code>Age_double</code> that shows us the age of our participants if they are twice as old as they are now. We will save this as a new object <code>short_MH_ext</code> to our <code>Global Environment</code> rather than overwriting <code>short_MH</code> so that we can compare <code>short_MH</code> with the extended <code>short_MH_ext</code> later on.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">short_MH_ext &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH, <span class="dt">Age_double =</span> Age<span class="op">*</span><span class="dv">2</span>)
-<span class="kw">glimpse</span>(short_MH_ext)</code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb148-1"></a>short_MH_ext &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH, <span class="dt">Age_double =</span> Age<span class="op">*</span><span class="dv">2</span>)</span>
+<span id="cb148-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb148-2"></a><span class="kw">glimpse</span>(short_MH_ext)</span></code></pre></div>
 <pre><code>## Observations: 268
 ## Variables: 16
 ## $ ID         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ...
@@ -893,8 +925,8 @@ You could have also used the logical operator <code>&amp;</code> (AND) instead o
 ## $ Age_double &lt;dbl&gt; 48, 56, 50, 58, 56, 48, 46, 60, 50, 62, 56, 62, 58,...</code></pre>
 <p>As we can see, <code>short_MH_ext</code> has one column more than <code>short_MH</code>. So <code>mutate()</code> took the value in the cells for each row of the variable <code>Age</code>, mutiplied it by 2, and added it to the new column <code>Age_double</code>.</p>
 <p>Importantly, new variables will overwrite existing variables if column headings are identical. So if we wanted to halve the values in column <code>Age_double</code> and store them in a column <code>Age_double</code>, the original <code>Age_double</code> would be overwritten.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">short_MH_ext &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH_ext, <span class="dt">Age_double =</span> Age_double<span class="op">/</span><span class="dv">2</span>)
-<span class="kw">glimpse</span>(short_MH_ext)</code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb150-1"></a>short_MH_ext &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH_ext, <span class="dt">Age_double =</span> Age_double<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb150-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb150-2"></a><span class="kw">glimpse</span>(short_MH_ext)</span></code></pre></div>
 <pre><code>## Observations: 268
 ## Variables: 16
 ## $ ID         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ...
@@ -920,8 +952,8 @@ The main take-away message here is to always check your data after manipulation 
 </p>
 </div>
 <p>No need to keep column <code>Age_double</code> anymore; we could just drop it. And we are back to 15 variable columns.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">short_MH_ext &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH_ext, <span class="dt">Age_double =</span> <span class="ot">NULL</span>)
-<span class="kw">glimpse</span>(short_MH_ext)</code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb152-1"></a>short_MH_ext &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH_ext, <span class="dt">Age_double =</span> <span class="ot">NULL</span>)</span>
+<span id="cb152-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb152-2"></a><span class="kw">glimpse</span>(short_MH_ext)</span></code></pre></div>
 <pre><code>## Observations: 268
 ## Variables: 15
 ## $ ID        &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1...
@@ -940,15 +972,16 @@ The main take-away message here is to always check your data after manipulation 
 ## $ AMiscell  &lt;dbl&gt; 27, 10, 14, 21, 31, 29, 15, 40, 33, 17, 30, 26, 17, ...
 ## $ ToAS      &lt;dbl&gt; 91, 39, 51, 75, 82, 83, 58, 127, 109, 51, 92, 95, 54...</code></pre>
 <p>If you want to add more than 2 columns, you can do that in a single <code>mutate()</code> statement. You can also add variables that are not numerical values, such as <code>character</code> or <code>logical</code>.</p>
-<p>Let’s have a look at the column <code>ToDep</code>. According to the PHQ, the maximum score for that measure is 27, and patients having a score of 20 or above count as severely depressed. More information can be found on <a href="https://www.ncor.org.uk/wp-content/uploads/2012/12/Patient-Health-Questionnaire.pdf" class="uri">https://www.ncor.org.uk/wp-content/uploads/2012/12/Patient-Health-Questionnaire.pdf</a></p>
+<p>Let’s have a look at the column <code>ToDep</code>. According to the PHQ, the maximum score for that measure is 27, and patients having a score of 20 or above count as severely depressed. More information can be found on
+<a href="https://www.ncor.org.uk/wp-content/uploads/2012/12/Patient-Health-Questionnaire.pdf" class="uri">https://www.ncor.org.uk/wp-content/uploads/2012/12/Patient-Health-Questionnaire.pdf</a></p>
 <p>Say we wanted to add two columns to <code>short_MH_ext</code>.</p>
 <ul>
 <li>Column 1 is called <code>max_PHQ</code> and contains the maximum score of 27 that can be achieved in the Patient Health Questionnaire</li>
 <li>Column 2 is called <code>Dep_Severe</code> and is of datatype <code>logical</code>. It contains a comparison of the value in <code>ToDep</code> with the cut off score of 20. Values 20 and above should read <code>TRUE</code>, all other values <code>FALSE</code>.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">short_MH_ext &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH_ext, <span class="dt">max_PHQ =</span> <span class="dv">27</span>,
-                       <span class="dt">Dep_Severe =</span> ToDep <span class="op">&gt;=</span><span class="st"> </span><span class="dv">20</span>)
-<span class="kw">glimpse</span>(short_MH_ext)</code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb154-1"></a>short_MH_ext &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH_ext, <span class="dt">max_PHQ =</span> <span class="dv">27</span>,</span>
+<span id="cb154-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb154-2"></a>                       <span class="dt">Dep_Severe =</span> ToDep <span class="op">&gt;=</span><span class="st"> </span><span class="dv">20</span>)</span>
+<span id="cb154-3"><a href="data-transformation-1-basic-one-table-verbs.html#cb154-3"></a><span class="kw">glimpse</span>(short_MH_ext)</span></code></pre></div>
 <pre><code>## Observations: 268
 ## Variables: 17
 ## $ ID         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ...
@@ -973,7 +1006,7 @@ The main take-away message here is to always check your data after manipulation 
 For column <code>max_PHQ</code>, we would not have to repeat the number 27 268 times. As it’s the same number for all cells, mentioning it once sets all the values in the column to that particular number (similar to “Scotland” last week when we were creating tibbles).
 </p>
 <p>
-<code>Dep_Severe = ToDep &gt;= 20</code> might look a bit alien to you, but remember that a single equals sign (<code>=</code>) is used to assign a value to a variable whereas the relational operator (<code>&gt;=</code>) is used to check whether two values are equal. These can actually co-exist in one statement. Here R reads the expression as: “compare for each row whether the cell value in <code>ToDep</code> is <code>equal or larger than</code> 20. If yes, put <code>TRUE</code> in the new column <code>Dep_Severe</code>; if not, put <code>FALSE</code>.
+<code>Dep_Severe = ToDep &gt;= 20</code> might look a bit alien to you, but remember that a single equals sign (<code>=</code>) is used to assign a value to a variable whereas the relational operator (<code>&gt;=</code>) is used to check whether two values are equal. These can actually co-exist in one statement. Here R reads the expression as: "compare for each row whether the cell value in <code>ToDep</code> is <code>equal or larger than</code> 20. If yes, put <code>TRUE</code> in the new column <code>Dep_Severe</code>; if not, put <code>FALSE</code>.
 </p>
 </div>
 <p>There are 8 students in this data set who would categorise as severely depressed.</p>
@@ -994,9 +1027,9 @@ Add a second new column that is called <code>correct</code> that evaluates wheth
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">short_MH_ext &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH_ext, <span class="dt">Total_Score =</span> APD <span class="op">+</span><span class="st"> </span>AHome <span class="op">+</span><span class="st"> </span>APH <span class="op">+</span><span class="st"> </span>Afear <span class="op">+</span><span class="st"> </span>ACS <span class="op">+</span><span class="st"> </span>AGuilt <span class="op">+</span><span class="st"> </span>AMiscell,
-                       <span class="dt">Correct =</span> Total_Score <span class="op">==</span><span class="st"> </span>ToAS)
-<span class="kw">glimpse</span>(short_MH_ext)</code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb156-1"></a>short_MH_ext &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH_ext, <span class="dt">Total_Score =</span> APD <span class="op">+</span><span class="st"> </span>AHome <span class="op">+</span><span class="st"> </span>APH <span class="op">+</span><span class="st"> </span>Afear <span class="op">+</span><span class="st"> </span>ACS <span class="op">+</span><span class="st"> </span>AGuilt <span class="op">+</span><span class="st"> </span>AMiscell,</span>
+<span id="cb156-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb156-2"></a>                       <span class="dt">Correct =</span> Total_Score <span class="op">==</span><span class="st"> </span>ToAS)</span>
+<span id="cb156-3"><a href="data-transformation-1-basic-one-table-verbs.html#cb156-3"></a><span class="kw">glimpse</span>(short_MH_ext)</span></code></pre></div>
 <pre><code>## Observations: 268
 ## Variables: 19
 ## $ ID          &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,...
@@ -1031,9 +1064,9 @@ Although the last examples are useful to illustrate how <code>mutate()</code> wo
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">short_MH_ext2 &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH_ext, <span class="dt">Total_Score =</span> <span class="ot">NULL</span>,
-                       <span class="dt">Correct =</span> <span class="ot">NULL</span>)
-<span class="kw">glimpse</span>(short_MH_ext2)</code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb158-1"></a>short_MH_ext2 &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH_ext, <span class="dt">Total_Score =</span> <span class="ot">NULL</span>,</span>
+<span id="cb158-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb158-2"></a>                       <span class="dt">Correct =</span> <span class="ot">NULL</span>)</span>
+<span id="cb158-3"><a href="data-transformation-1-basic-one-table-verbs.html#cb158-3"></a><span class="kw">glimpse</span>(short_MH_ext2)</span></code></pre></div>
 <pre><code>## Observations: 268
 ## Variables: 17
 ## $ ID         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ...
@@ -1084,8 +1117,8 @@ select(short_MH_ext, -Total_Score, -Correct)
 <p>Here is a brief summary overview of the columns in the <code>TraitJudgementData.csv</code>.</p>
 <table>
 <colgroup>
-<col width="19%" />
-<col width="80%" />
+<col width="18%" />
+<col width="81%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1248,7 +1281,6 @@ window.onload = function() {
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -1267,10 +1299,6 @@ gitbook.start({
 "text": null
 },
 "history": {
-"link": null,
-"text": null
-},
-"view": {
 "link": null,
 "text": null
 },

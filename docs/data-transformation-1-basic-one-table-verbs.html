@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Rebecca J. Lai, Kate Haining, Greta Todorova, and Wilhelmiina Toivo" />
 
 
-<meta name="date" content="2020-01-15" />
+<meta name="date" content="2020-01-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -139,6 +139,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-assessments"><i class="fa fa-check"></i>About the Assessments</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#formative-assessments"><i class="fa fa-check"></i>Formative Assessments</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#summative-assessments"><i class="fa fa-check"></i>Summative Assessments</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#late-submissions"><i class="fa fa-check"></i>Late submissions</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-submit-your-assessments"><i class="fa fa-check"></i>How to Submit Your Assessments</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#assistance"><i class="fa fa-check"></i>Assistance</a></li>
@@ -894,6 +895,28 @@ How many participants in this study were international students? <input class='s
 How many observations would the code <code>filter(short_MH, inter_dom == "inter")</code> return? <input class='solveme nospaces' size='1' data-answer='["0"]'/> <br>
 How many participants in this study were international students with a ToAS of more than 72? <input class='solveme nospaces' size='3' data-answer='["109"]'/> <br>
 How many participants in this study were either international students OR had a ToAS of more than 72? <input class='solveme nospaces' size='3' data-answer='["223"]'/> <br></p>
+<p><br></p>
+<p>If you need to filter through many <strong>different values from the same column</strong>, you can use the match operator <code>%in%</code>. It returns a logical value of <code>TRUE</code> when it detects a match and <code>FALSE</code> if not. Let’s make that a bit more applicable. Say we wanted to make a tibble called <code>short_MH_age</code> that takes the data <code>short_MH</code> and only keeps information from students when their <code>Age</code> is either 17, 20, 25, or 30.</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb148-1"></a>short_MH_age &lt;-<span class="st"> </span><span class="kw">filter</span>(short_MH, Age <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">17</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">30</span>))</span></code></pre></div>
+<div class="funfact">
+<p>
+You could use the OR operator here as well, but it would be pretty tedious to type out.
+</p>
+</div>
+<div class="task">
+<p>
+<strong>Your turn</strong>
+</p>
+<p>
+Make a tibble called <code>short_MH_ToDep</code> that list every participant from <code>short_MH</code> with a <code>ToDep</code> score of 0, 5, 8, 15, 17, and 25.
+</p>
+</div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb149-1"></a>short_MH_ToDep &lt;-<span class="st"> </span><span class="kw">filter</span>(short_MH, ToDep <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">17</span>, <span class="dv">25</span>))</span></code></pre></div>
+</div>
 </div>
 </div>
 <div id="mutate" class="section level2">
@@ -903,8 +926,8 @@ How many participants in this study were either international students OR had a 
 <img src="images/mutate.png" height= "350">
 </center>
 <p>Let’s apply this to this to our <code>short_MH</code> data tibble. Say we wanted to create a new column <code>Age_double</code> that shows us the age of our participants if they are twice as old as they are now. We will save this as a new object <code>short_MH_ext</code> to our <code>Global Environment</code> rather than overwriting <code>short_MH</code> so that we can compare <code>short_MH</code> with the extended <code>short_MH_ext</code> later on.</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb148-1"></a>short_MH_ext &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH, <span class="dt">Age_double =</span> Age<span class="op">*</span><span class="dv">2</span>)</span>
-<span id="cb148-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb148-2"></a><span class="kw">glimpse</span>(short_MH_ext)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb150-1"></a>short_MH_ext &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH, <span class="dt">Age_double =</span> Age<span class="op">*</span><span class="dv">2</span>)</span>
+<span id="cb150-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb150-2"></a><span class="kw">glimpse</span>(short_MH_ext)</span></code></pre></div>
 <pre><code>## Observations: 268
 ## Variables: 16
 ## $ ID         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ...
@@ -925,8 +948,8 @@ How many participants in this study were either international students OR had a 
 ## $ Age_double &lt;dbl&gt; 48, 56, 50, 58, 56, 48, 46, 60, 50, 62, 56, 62, 58,...</code></pre>
 <p>As we can see, <code>short_MH_ext</code> has one column more than <code>short_MH</code>. So <code>mutate()</code> took the value in the cells for each row of the variable <code>Age</code>, mutiplied it by 2, and added it to the new column <code>Age_double</code>.</p>
 <p>Importantly, new variables will overwrite existing variables if column headings are identical. So if we wanted to halve the values in column <code>Age_double</code> and store them in a column <code>Age_double</code>, the original <code>Age_double</code> would be overwritten.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb150-1"></a>short_MH_ext &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH_ext, <span class="dt">Age_double =</span> Age_double<span class="op">/</span><span class="dv">2</span>)</span>
-<span id="cb150-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb150-2"></a><span class="kw">glimpse</span>(short_MH_ext)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb152-1"></a>short_MH_ext &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH_ext, <span class="dt">Age_double =</span> Age_double<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb152-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb152-2"></a><span class="kw">glimpse</span>(short_MH_ext)</span></code></pre></div>
 <pre><code>## Observations: 268
 ## Variables: 16
 ## $ ID         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ...
@@ -952,8 +975,8 @@ The main take-away message here is to always check your data after manipulation 
 </p>
 </div>
 <p>No need to keep column <code>Age_double</code> anymore; we could just drop it. And we are back to 15 variable columns.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb152-1"></a>short_MH_ext &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH_ext, <span class="dt">Age_double =</span> <span class="ot">NULL</span>)</span>
-<span id="cb152-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb152-2"></a><span class="kw">glimpse</span>(short_MH_ext)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb154-1"></a>short_MH_ext &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH_ext, <span class="dt">Age_double =</span> <span class="ot">NULL</span>)</span>
+<span id="cb154-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb154-2"></a><span class="kw">glimpse</span>(short_MH_ext)</span></code></pre></div>
 <pre><code>## Observations: 268
 ## Variables: 15
 ## $ ID        &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1...
@@ -979,9 +1002,9 @@ The main take-away message here is to always check your data after manipulation 
 <li>Column 1 is called <code>max_PHQ</code> and contains the maximum score of 27 that can be achieved in the Patient Health Questionnaire</li>
 <li>Column 2 is called <code>Dep_Severe</code> and is of datatype <code>logical</code>. It contains a comparison of the value in <code>ToDep</code> with the cut off score of 20. Values 20 and above should read <code>TRUE</code>, all other values <code>FALSE</code>.</li>
 </ul>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb154-1"></a>short_MH_ext &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH_ext, <span class="dt">max_PHQ =</span> <span class="dv">27</span>,</span>
-<span id="cb154-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb154-2"></a>                       <span class="dt">Dep_Severe =</span> ToDep <span class="op">&gt;=</span><span class="st"> </span><span class="dv">20</span>)</span>
-<span id="cb154-3"><a href="data-transformation-1-basic-one-table-verbs.html#cb154-3"></a><span class="kw">glimpse</span>(short_MH_ext)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb156-1"></a>short_MH_ext &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH_ext, <span class="dt">max_PHQ =</span> <span class="dv">27</span>,</span>
+<span id="cb156-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb156-2"></a>                       <span class="dt">Dep_Severe =</span> ToDep <span class="op">&gt;=</span><span class="st"> </span><span class="dv">20</span>)</span>
+<span id="cb156-3"><a href="data-transformation-1-basic-one-table-verbs.html#cb156-3"></a><span class="kw">glimpse</span>(short_MH_ext)</span></code></pre></div>
 <pre><code>## Observations: 268
 ## Variables: 17
 ## $ ID         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ...
@@ -1027,9 +1050,9 @@ Add a second new column that is called <code>correct</code> that evaluates wheth
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb156-1"></a>short_MH_ext &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH_ext, <span class="dt">Total_Score =</span> APD <span class="op">+</span><span class="st"> </span>AHome <span class="op">+</span><span class="st"> </span>APH <span class="op">+</span><span class="st"> </span>Afear <span class="op">+</span><span class="st"> </span>ACS <span class="op">+</span><span class="st"> </span>AGuilt <span class="op">+</span><span class="st"> </span>AMiscell,</span>
-<span id="cb156-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb156-2"></a>                       <span class="dt">Correct =</span> Total_Score <span class="op">==</span><span class="st"> </span>ToAS)</span>
-<span id="cb156-3"><a href="data-transformation-1-basic-one-table-verbs.html#cb156-3"></a><span class="kw">glimpse</span>(short_MH_ext)</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb158-1"></a>short_MH_ext &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH_ext, <span class="dt">Total_Score =</span> APD <span class="op">+</span><span class="st"> </span>AHome <span class="op">+</span><span class="st"> </span>APH <span class="op">+</span><span class="st"> </span>Afear <span class="op">+</span><span class="st"> </span>ACS <span class="op">+</span><span class="st"> </span>AGuilt <span class="op">+</span><span class="st"> </span>AMiscell,</span>
+<span id="cb158-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb158-2"></a>                       <span class="dt">Correct =</span> Total_Score <span class="op">==</span><span class="st"> </span>ToAS)</span>
+<span id="cb158-3"><a href="data-transformation-1-basic-one-table-verbs.html#cb158-3"></a><span class="kw">glimpse</span>(short_MH_ext)</span></code></pre></div>
 <pre><code>## Observations: 268
 ## Variables: 19
 ## $ ID          &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,...
@@ -1064,9 +1087,9 @@ Although the last examples are useful to illustrate how <code>mutate()</code> wo
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb158-1"></a>short_MH_ext2 &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH_ext, <span class="dt">Total_Score =</span> <span class="ot">NULL</span>,</span>
-<span id="cb158-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb158-2"></a>                       <span class="dt">Correct =</span> <span class="ot">NULL</span>)</span>
-<span id="cb158-3"><a href="data-transformation-1-basic-one-table-verbs.html#cb158-3"></a><span class="kw">glimpse</span>(short_MH_ext2)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="data-transformation-1-basic-one-table-verbs.html#cb160-1"></a>short_MH_ext2 &lt;-<span class="st"> </span><span class="kw">mutate</span>(short_MH_ext, <span class="dt">Total_Score =</span> <span class="ot">NULL</span>,</span>
+<span id="cb160-2"><a href="data-transformation-1-basic-one-table-verbs.html#cb160-2"></a>                       <span class="dt">Correct =</span> <span class="ot">NULL</span>)</span>
+<span id="cb160-3"><a href="data-transformation-1-basic-one-table-verbs.html#cb160-3"></a><span class="kw">glimpse</span>(short_MH_ext2)</span></code></pre></div>
 <pre><code>## Observations: 268
 ## Variables: 17
 ## $ ID         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ...

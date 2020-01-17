@@ -8,6 +8,7 @@
 4. create a data table from scratch
 5. import and store data
 
+This lesson is led by [Gaby Mahrholz](http://www.psy.gla.ac.uk/staff/index.php?id=GM005).
 
 
 ## Pre-Steps
@@ -669,7 +670,7 @@ Always use read_csv() from the tidyverse package for reading in the data. There 
 
 ## Last point for today 
 
-Knit your L2_stub. If it knits, it is an indication that all your code chunks are running. This is important for most of the graded assessments in the future. If it runs on your computer, it will run on ours.
+Restart R and clear your workspace. Knit your `L2_stub`. If it knits, it is an indication that all your code chunks are running. This is important for most of the graded assessments in the future. If it runs on your computer, it will run on ours.
 
 ## Summative Homework
 

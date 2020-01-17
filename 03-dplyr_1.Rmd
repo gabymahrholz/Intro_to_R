@@ -363,6 +363,30 @@ How many observations would the code `filter(short_MH, inter_dom == "inter")` re
 How many participants in this study were international students with a ToAS of more than 72? `r fitb("109")` <br>
 How many participants in this study were either international students OR had a ToAS of more than 72? `r fitb("223")` <br>
 
+<br>
+
+If you need to filter through many **different values from the same column**, you can use the match operator `%in%`. It returns a logical value of `TRUE` when it detects a match and `FALSE` if not. Let's make that a bit more applicable. Say we wanted to make a tibble called `short_MH_age` that takes the data `short_MH` and only keeps information from students when their `Age` is either 17, 20, 25, or 30. 
+
+```{r}
+short_MH_age <- filter(short_MH, Age %in% c(17, 20, 25, 30))
+```
+
+```{block, type="funfact"}
+You could use the OR operator here as well, but it would be pretty tedious to type out.
+```
+
+```{block, type="task"}
+**Your turn**
+
+Make a tibble called `short_MH_ToDep` that list every participant from `short_MH` with a `ToDep` score of 0, 5, 8, 15, 17, and 25.
+```
+
+`r hide("Solution")`
+```{r}
+short_MH_ToDep <- filter(short_MH, ToDep %in% c(0, 5, 8, 15, 17, 25))
+
+```
+`r unhide()`
 
 ## mutate()
 

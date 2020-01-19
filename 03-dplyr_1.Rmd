@@ -401,7 +401,7 @@ short_MH_ext <- mutate(short_MH, Age_double = Age*2)
 glimpse(short_MH_ext)
 ```
 
-As we can see, `short_MH_ext` has one column more than `short_MH`. So `mutate()` took the value in the cells for each row of the variable `Age`, mutiplied it by 2, and added it to the new column `Age_double`.
+As we can see, `short_MH_ext` has one column more than `short_MH`. So `mutate()` took the value in the cells for each row of the variable `Age`, multiplied it by 2, and added it to the new column `Age_double`.
 
 Importantly, new variables will overwrite existing variables if column headings are identical. So if we wanted to halve the values in column `Age_double` and store them in a column `Age_double`, the original `Age_double` would be overwritten.
 
@@ -414,7 +414,7 @@ So now, `short_MH_ext` did not gain a column (it still contains 16 variables), a
 
 
 ```{block, type="info"}
-The main take-away message here is to always check your data after manipulation if the outcome is really what you would expected. If you don't inspect and acidentally overwrite columns, you would not notice any difference.
+The main take-away message here is to always check your data after manipulation if the outcome is really what you would expected. If you don't inspect and accidentally overwrite columns, you would not notice any difference.
 ```
 
 

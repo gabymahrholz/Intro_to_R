@@ -356,7 +356,7 @@ We should receive 267 observations and 17 columns. Since the second (right) tabl
 
 #### full_join()
 
-A full join returns all rows and all columns from both x and y, whereby x is the first (left) table and y is the second (right) table. NA values fill unmatched rows. 
+A full join returns all rows and all columns from both x and y, whereby x is the first (left) table and y is the second (right) table. `NA` values fill unmatched rows. 
 
 <center> <img src="images/full_join1.png"> </center>
 

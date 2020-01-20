@@ -17,7 +17,7 @@ Before we begin, we need to do some house-keeping.
 
 ### Downloading materials
 
-First, we need to download the materials we are working with today. You can find them <a href="data\L2_data.zip" download>here</a> or on moodle. It's a zip folder that contains an Rmd file called `L2_stub` and a data file in .csv format forlater. `L2_stub` has all the code chunks listed for today's lesson. You are more than welcome to add notes and comments to the Rmd (white chunks), however there is no need to copy any code.
+First, we need to download the materials we are working with today. You can find them on moodle. It's a zip folder that contains an Rmd file called `L2_stub` and a data file in .csv format for later. `L2_stub` has all the code chunks listed for today's lesson. You are more than welcome to add notes and comments to the Rmd (white chunks), however there is no need to copy any code.
 
 
 ### Unzipping the zip folder
@@ -33,7 +33,7 @@ Check the unzipped folder contains the `L2_stub.Rmd` and a data file called `MM_
 
 It is always good practice to set your working directory to the folder you are working with. This can be done in 2 ways:
 
-1. In the menu, go to **Session > Set Working Directory > Choose Directory** (Crtl + Shift + H also works as key short cut in a Windows environment). Then select the folder containing the data file and click 'open'. You might not see any files in the folder you are selecting - that is fine.
+1. In the menu, go to **Session > Set Working Directory > Choose Directory** (Ctrl + Shift + H also works as key short cut in a Windows environment). Then select the folder containing the data file and click 'open'. You might not see any files in the folder you are selecting - that is fine.
 
 2. In the `Files pane`, you could navigate to today's folder, and once there click on **More > Set As Working Directory**. 
 

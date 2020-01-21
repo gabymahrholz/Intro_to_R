@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Rebecca J. Lai, Kate Haining, Greta Todorova, and Wilhelmiina Toivo" />
 
 
-<meta name="date" content="2020-01-20" />
+<meta name="date" content="2020-01-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -735,13 +735,13 @@ double
 <span id="cb88-2"><a href="introduction-to-data.html#cb88-2"></a><span class="kw">library</span>(tidyverse)</span>
 <span id="cb88-3"><a href="introduction-to-data.html#cb88-3"></a></span>
 <span id="cb88-4"><a href="introduction-to-data.html#cb88-4"></a>tibble_year &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">month =</span> month.name,</span>
-<span id="cb88-5"><a href="introduction-to-data.html#cb88-5"></a>                      <span class="dt">abb.month =</span> month.abb,</span>
+<span id="cb88-5"><a href="introduction-to-data.html#cb88-5"></a>                      <span class="dt">abb_month =</span> month.abb,</span>
 <span id="cb88-6"><a href="introduction-to-data.html#cb88-6"></a>                      <span class="dt">month_num =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>,</span>
 <span id="cb88-7"><a href="introduction-to-data.html#cb88-7"></a>                      <span class="dt">season =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;Winter&quot;</span>, <span class="dv">2</span>), <span class="kw">rep</span>(<span class="st">&quot;Spring&quot;</span>, <span class="dv">3</span>), <span class="kw">rep</span>(<span class="st">&quot;Summer&quot;</span>, <span class="dv">3</span>), <span class="kw">rep</span>(<span class="st">&quot;Autumn&quot;</span>, <span class="dv">3</span>), <span class="st">&quot;Winter&quot;</span>))</span>
 <span id="cb88-8"><a href="introduction-to-data.html#cb88-8"></a></span>
 <span id="cb88-9"><a href="introduction-to-data.html#cb88-9"></a>tibble_year</span></code></pre></div>
 <pre><code>## # A tibble: 12 x 4
-##    month     abb.month month_num season
+##    month     abb_month month_num season
 ##    &lt;chr&gt;     &lt;chr&gt;         &lt;int&gt; &lt;chr&gt; 
 ##  1 January   Jan               1 Winter
 ##  2 February  Feb               2 Winter
@@ -766,12 +766,12 @@ Here, we used the built-in replication function <code>rep()</code> to build the 
 <pre><code>## Observations: 12
 ## Variables: 4
 ## $ month     &lt;chr&gt; &quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;Jun...
-## $ abb.month &lt;chr&gt; &quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;, &quot;Jul&quot;, &quot;Au...
+## $ abb_month &lt;chr&gt; &quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;, &quot;Jul&quot;, &quot;Au...
 ## $ month_num &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
 ## $ season    &lt;chr&gt; &quot;Winter&quot;, &quot;Winter&quot;, &quot;Spring&quot;, &quot;Spring&quot;, &quot;Spring&quot;, &quot;S...</code></pre>
 <p><code>glimpse()</code> tells us that our tibble has one column that is an integer, and three columns that are character strings. If we wanted to influence which datatype the columns (something that is not automatically assigned), we can do that by using the functions <code>as.double()</code>, <code>as.character()</code>, <code>as.integer()</code>, etc. we have seen earlier when we were talking about vectors. For example, if we wanted to modify the <code>integer</code> column as a <code>double</code>, we would type</p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="introduction-to-data.html#cb92-1"></a>tibble_year2 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">month =</span> month.name,</span>
-<span id="cb92-2"><a href="introduction-to-data.html#cb92-2"></a>                       <span class="dt">abb.month =</span> month.abb,</span>
+<span id="cb92-2"><a href="introduction-to-data.html#cb92-2"></a>                       <span class="dt">abb_month =</span> month.abb,</span>
 <span id="cb92-3"><a href="introduction-to-data.html#cb92-3"></a>                       <span class="dt">month_num =</span> <span class="kw">as.double</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>),</span>
 <span id="cb92-4"><a href="introduction-to-data.html#cb92-4"></a>                       <span class="dt">season =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;Winter&quot;</span>, <span class="dv">2</span>), <span class="kw">rep</span>(<span class="st">&quot;Spring&quot;</span>, <span class="dv">3</span>), <span class="kw">rep</span>(<span class="st">&quot;Summer&quot;</span>, <span class="dv">3</span>), <span class="kw">rep</span>(<span class="st">&quot;Autumn&quot;</span>, <span class="dv">3</span>), <span class="st">&quot;Winter&quot;</span>))</span></code></pre></div>
 <div class="warning">
@@ -788,7 +788,7 @@ If I were a mean person, and had recoded month_num = as.character(1:12) instead,
 <strong>Your turn</strong>
 </p>
 <p>
-Make a dataframe called <code>mydata</code> with 5 columns and 10 rows:
+Make a tibble called <code>mydata</code> with 5 columns and 10 rows:
 </p>
 <ul>
 <li>

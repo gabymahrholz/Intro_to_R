@@ -464,7 +464,7 @@ Remember the Built-in Constants we were talking about earlier?
 library(tidyverse)
 
 tibble_year <- tibble(month = month.name,
-                      abb.month = month.abb,
+                      abb_month = month.abb,
                       month_num = 1:12,
                       season = c(rep("Winter", 2), rep("Spring", 3), rep("Summer", 3), rep("Autumn", 3), "Winter"))
 
@@ -490,7 +490,7 @@ glimpse(tibble_year)
 
 ```{r}
 tibble_year2 <- tibble(month = month.name,
-                       abb.month = month.abb,
+                       abb_month = month.abb,
                        month_num = as.double(1:12),
                        season = c(rep("Winter", 2), rep("Spring", 3), rep("Summer", 3), rep("Autumn", 3), "Winter"))
 ```
@@ -510,7 +510,7 @@ If I were a mean person, and had recoded month_num = as.character(1:12) instead,
 
 **Your turn**
 
-Make a dataframe called `mydata` with 5 columns and 10 rows:
+Make a tibble called `mydata` with 5 columns and 10 rows:
 
 * column 1 is called `PP_ID` and contains participant numbers 1 to 10. Make sure this data type is `integer`.
 * column 2 is called `PP_Age` and and contains the age of the participant. Make sure this data type is `double`.

@@ -9,7 +9,7 @@ Be able to use the following dplyr one-table verbs:
 * filter()
 * mutate()
 
-
+This lesson is led by [Kate Haining](http://www.psy.gla.ac.uk/staff/index.php?id=KH001).
 
 ## Data Wrangling
 

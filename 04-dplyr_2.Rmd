@@ -1,4 +1,4 @@
-# Data Transformation 2: Two Table Verbs
+# Data Transformation 2: More One and Two Table Verbs
 
 ## Intended Learning Outcomes {-}
 
@@ -14,7 +14,10 @@
 * Mutating joins: `left_join()`, `right_join()`, `full_join()`, `inner_join()`
 * Binding joins: `bind_rows()`, `bind_cols()`
 
-First, we will cover the remaining 'one-table verbs' - `group_by()` and `summarise()` - and introduce the pipe operator. 
+
+This lesson is led by [Kate Haining](http://www.psy.gla.ac.uk/staff/index.php?id=KH001).
+
+
 
 ##	Pre-Steps
 
@@ -530,7 +533,7 @@ Garrick Aden-Buie created some amazing gganimation gif to illustrate how the joi
 
 ## Summative Homework
 
-The second summative assessment is available on moodle now.
+The second summative assignment is available on moodle now.
 
 Good luck.
 

@@ -1,3 +1,14 @@
-# Recap 2: Before the Final Assessment
+# Recap: Before the final assessment
 
-## Intended Learning Outcomes
+## Outline for today
+
+This lecture is structured a bit differently. First 30 min is time for you to ask any questions you have, clarify whatever you want to have clarified, etc.
+
+Then we will have an in-class practice exam that is structured fairly similar to the homework.
+
+Think about it: Either they do it themselves for 1 hour, and then we'll go through possible solutions at the end, or run each question with guidance, as in how would you answer it, give you 5 min to think about it, then we'll discuss.
+
+I like the idea of pair-programming (or pairs and a group of 3): give them a task to discuss and do together for a short time, then go over it as a class and discuss everyone's thinking before repeating the process for the rest of the questions. All the time making sure they are taking notes/commenting their code and the code they get from the answer - Rebecca
+
+
+## In-class practice exam

@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Data Transformation 3: Tidy Data | Introduction to R</title>
+  <meta name="description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Data Transformation 3: Tidy Data | Introduction to R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Data Transformation 3: Tidy Data | Introduction to R" />
+  
+  <meta name="twitter:description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
+  
+
+<meta name="author" content="Gaby Mahrholz, Rebecca J. Lai, Kate Haining, Greta Todorova, and Wilhelmiina Toivo" />
+
+
+<meta name="date" content="2020-02-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-transformation-2-more-one-and-two-table-verbs.html"/>
+<link rel="next" href="data-transformation-4-finetuned-data-manipulation.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this course</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#intended-learning-outcomes"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-will-i-need-to-complete-this-course"><i class="fa fa-check"></i>What will I need to complete this course?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-assessments"><i class="fa fa-check"></i>About the Assessments</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#formative-assessments"><i class="fa fa-check"></i>Formative Assessments</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#summative-assessments"><i class="fa fa-check"></i>Summative Assessments</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#late-submissions"><i class="fa fa-check"></i>Late submissions</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-submit-your-assessments"><i class="fa fa-check"></i>How to Submit Your Assessments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#assistance"><i class="fa fa-check"></i>Assistance</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-are-these-materials-open"><i class="fa fa-check"></i>Why are these materials open?</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#intended-learning-outcomes-1"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#computer-literacy-basics"><i class="fa fa-check"></i><b>1.1</b> Computer Literacy Basics</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#r-and-r-studio"><i class="fa fa-check"></i><b>1.2</b> R and R Studio</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction.html"><a href="introduction.html#r"><i class="fa fa-check"></i><b>1.2.1</b> R</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduction.html"><a href="introduction.html#rstudio-ide"><i class="fa fa-check"></i><b>1.2.2</b> RStudio IDE</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#r-r-studio-and-associated-file-types"><i class="fa fa-check"></i><b>1.3</b> R, R Studio and Associated File Types</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction.html"><a href="introduction.html#file-structuredirectories"><i class="fa fa-check"></i><b>1.3.1</b> File Structure/Directories</a></li>
+<li class="chapter" data-level="1.3.2" data-path="introduction.html"><a href="introduction.html#file-extensions"><i class="fa fa-check"></i><b>1.3.2</b> File Extensions</a></li>
+<li class="chapter" data-level="1.3.3" data-path="introduction.html"><a href="introduction.html#zip-files"><i class="fa fa-check"></i><b>1.3.3</b> .zip Files</a></li>
+<li class="chapter" data-level="1.3.4" data-path="introduction.html"><a href="introduction.html#rstudio-specific-files"><i class="fa fa-check"></i><b>1.3.4</b> RStudio Specific Files</a></li>
+<li class="chapter" data-level="1.3.5" data-path="introduction.html"><a href="introduction.html#r-files"><i class="fa fa-check"></i><b>1.3.5</b> .r Files</a></li>
+<li class="chapter" data-level="1.3.6" data-path="introduction.html"><a href="introduction.html#rmd-files"><i class="fa fa-check"></i><b>1.3.6</b> .Rmd files</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#comments"><i class="fa fa-check"></i><b>1.4</b> Comments</a></li>
+<li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#saving-your-file"><i class="fa fa-check"></i><b>1.5</b> Saving your file</a></li>
+<li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#sessions"><i class="fa fa-check"></i><b>1.6</b> Sessions</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="introduction.html"><a href="introduction.html#what-is-a-session-in-r"><i class="fa fa-check"></i><b>1.6.1</b> What is a session in R?</a></li>
+<li class="chapter" data-level="1.6.2" data-path="introduction.html"><a href="introduction.html#restarting-your-current-session"><i class="fa fa-check"></i><b>1.6.2</b> Restarting Your Current Session</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#packages"><i class="fa fa-check"></i><b>1.7</b> Packages</a><ul>
+<li class="chapter" data-level="1.7.1" data-path="introduction.html"><a href="introduction.html#installing-packages"><i class="fa fa-check"></i><b>1.7.1</b> Installing Packages</a></li>
+<li class="chapter" data-level="1.7.2" data-path="introduction.html"><a href="introduction.html#load-tidyverse"><i class="fa fa-check"></i><b>1.7.2</b> Loading Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="introduction.html"><a href="introduction.html#functions"><i class="fa fa-check"></i><b>1.8</b> Functions</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="introduction.html"><a href="introduction.html#what-is-a-function"><i class="fa fa-check"></i><b>1.8.1</b> What is a function?</a></li>
+<li class="chapter" data-level="1.8.2" data-path="introduction.html"><a href="introduction.html#the-anatomy-of-a-function-names-and-arguments"><i class="fa fa-check"></i><b>1.8.2</b> The Anatomy of a Function: names and arguments</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="introduction.html"><a href="introduction.html#formative-assignment"><i class="fa fa-check"></i><b>1.9</b> Formative Assignment</a><ul>
+<li class="chapter" data-level="1.9.1" data-path="introduction.html"><a href="introduction.html#accessing"><i class="fa fa-check"></i><b>1.9.1</b> Access to RStudio</a></li>
+<li class="chapter" data-level="1.9.2" data-path="introduction.html"><a href="introduction.html#maximising-reproducibility-and-visibility"><i class="fa fa-check"></i><b>1.9.2</b> Maximising Reproducibility and Visibility</a></li>
+<li class="chapter" data-level="1.9.3" data-path="introduction.html"><a href="introduction.html#installing-and-loading-tidyverse"><i class="fa fa-check"></i><b>1.9.3</b> Installing and Loading Tidyverse</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-data.html"><a href="introduction-to-data.html"><i class="fa fa-check"></i><b>2</b> Introduction to Data</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-data.html"><a href="introduction-to-data.html#intended-learning-outcomes-2"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="2.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#pre-steps"><i class="fa fa-check"></i><b>2.1</b> Pre-Steps</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#downloading-materials"><i class="fa fa-check"></i><b>2.1.1</b> Downloading materials</a></li>
+<li class="chapter" data-level="2.1.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#unzipping-the-zip-folder"><i class="fa fa-check"></i><b>2.1.2</b> Unzipping the zip folder</a></li>
+<li class="chapter" data-level="2.1.3" data-path="introduction-to-data.html"><a href="introduction-to-data.html#setting-the-working-directory"><i class="fa fa-check"></i><b>2.1.3</b> Setting the working directory</a></li>
+<li class="chapter" data-level="2.1.4" data-path="introduction-to-data.html"><a href="introduction-to-data.html#load-tidyverse-into-the-library"><i class="fa fa-check"></i><b>2.1.4</b> Load tidyverse into the library</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#basic-data-types"><i class="fa fa-check"></i><b>2.2</b> Basic data types</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#character"><i class="fa fa-check"></i><b>2.2.1</b> Character</a></li>
+<li class="chapter" data-level="2.2.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#numeric"><i class="fa fa-check"></i><b>2.2.2</b> Numeric</a></li>
+<li class="chapter" data-level="2.2.3" data-path="introduction-to-data.html"><a href="introduction-to-data.html#logical"><i class="fa fa-check"></i><b>2.2.3</b> Logical</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-data.html"><a href="introduction-to-data.html#vectors"><i class="fa fa-check"></i><b>2.3</b> Vectors</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#creating-vectors"><i class="fa fa-check"></i><b>2.3.1</b> Creating vectors</a></li>
+<li class="chapter" data-level="2.3.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#converting-vectors-into-different-data-types-of-vectors-aka-funky-things-we-can-do"><i class="fa fa-check"></i><b>2.3.2</b> Converting vectors into different data types of vectors aka funky things we can do</a></li>
+<li class="chapter" data-level="2.3.3" data-path="introduction-to-data.html"><a href="introduction-to-data.html#adding-elements-to-existing-vectors"><i class="fa fa-check"></i><b>2.3.3</b> Adding elements to existing vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-data.html"><a href="introduction-to-data.html#tibble---the-new-way-of-creating-a-dataframe"><i class="fa fa-check"></i><b>2.4</b> Tibble - the new way of creating a dataframe</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#what-the-heck-is-a-tibble-do-you-mean-table"><i class="fa fa-check"></i><b>2.4.1</b> What the heck is a tibble? Do you mean table?</a></li>
+<li class="chapter" data-level="2.4.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#how-to-make-a-tibble-from-scratch"><i class="fa fa-check"></i><b>2.4.2</b> How to make a tibble from scratch</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-data.html"><a href="introduction-to-data.html#reading-in-data"><i class="fa fa-check"></i><b>2.5</b> Reading in data</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#from-pre-existing-databases"><i class="fa fa-check"></i><b>2.5.1</b> from pre-existing databases</a></li>
+<li class="chapter" data-level="2.5.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#from-existing-data-files"><i class="fa fa-check"></i><b>2.5.2</b> from existing data files</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-data.html"><a href="introduction-to-data.html#last-point-for-today"><i class="fa fa-check"></i><b>2.6</b> Last point for today</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-data.html"><a href="introduction-to-data.html#summative-homework"><i class="fa fa-check"></i><b>2.7</b> Summative Homework</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html"><i class="fa fa-check"></i><b>3</b> Data Transformation 1: Basic One Table Verbs</a><ul>
+<li class="chapter" data-level="" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#intended-learning-outcomes-3"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="3.1" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#data-wrangling"><i class="fa fa-check"></i><b>3.1</b> Data Wrangling</a></li>
+<li class="chapter" data-level="3.2" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#pre-steps-1"><i class="fa fa-check"></i><b>3.2</b> Pre-Steps</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#downloading-materials-1"><i class="fa fa-check"></i><b>3.2.1</b> Downloading materials</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#unzipping-the-zip-folder-1"><i class="fa fa-check"></i><b>3.2.2</b> Unzipping the zip folder</a></li>
+<li class="chapter" data-level="3.2.3" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#setting-the-working-directory-1"><i class="fa fa-check"></i><b>3.2.3</b> Setting the working directory</a></li>
+<li class="chapter" data-level="3.2.4" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#load-tidyverse-into-the-library-1"><i class="fa fa-check"></i><b>3.2.4</b> Load tidyverse into the library</a></li>
+<li class="chapter" data-level="3.2.5" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#reading-in-the-data"><i class="fa fa-check"></i><b>3.2.5</b> Reading in the data</a></li>
+<li class="chapter" data-level="3.2.6" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#view-the-data"><i class="fa fa-check"></i><b>3.2.6</b> View the data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#select"><i class="fa fa-check"></i><b>3.3</b> select()</a></li>
+<li class="chapter" data-level="3.4" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#arrange"><i class="fa fa-check"></i><b>3.4</b> arrange()</a></li>
+<li class="chapter" data-level="3.5" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#filter"><i class="fa fa-check"></i><b>3.5</b> filter()</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#single-criterion"><i class="fa fa-check"></i><b>3.5.1</b> Single criterion</a></li>
+<li class="chapter" data-level="3.5.2" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#multiple-criteria"><i class="fa fa-check"></i><b>3.5.2</b> Multiple criteria</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#mutate"><i class="fa fa-check"></i><b>3.6</b> mutate()</a></li>
+<li class="chapter" data-level="3.7" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#formative-homework"><i class="fa fa-check"></i><b>3.7</b> Formative Homework</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="data-transformation-1-basic-one-table-verbs.html"><a href="data-transformation-1-basic-one-table-verbs.html#brief-introduction-to-the-homework-data"><i class="fa fa-check"></i><b>3.7.1</b> Brief introduction to the homework data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-transformation-2-more-one-and-two-table-verbs.html"><a href="data-transformation-2-more-one-and-two-table-verbs.html"><i class="fa fa-check"></i><b>4</b> Data Transformation 2: More One and Two Table Verbs</a><ul>
+<li class="chapter" data-level="" data-path="data-transformation-2-more-one-and-two-table-verbs.html"><a href="data-transformation-2-more-one-and-two-table-verbs.html#intended-learning-outcomes-4"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="4.1" data-path="data-transformation-2-more-one-and-two-table-verbs.html"><a href="data-transformation-2-more-one-and-two-table-verbs.html#pre-steps-2"><i class="fa fa-check"></i><b>4.1</b> Pre-Steps</a></li>
+<li class="chapter" data-level="4.2" data-path="data-transformation-2-more-one-and-two-table-verbs.html"><a href="data-transformation-2-more-one-and-two-table-verbs.html#group_by-and-summarise"><i class="fa fa-check"></i><b>4.2</b> group_by() and summarise()</a></li>
+<li class="chapter" data-level="4.3" data-path="data-transformation-2-more-one-and-two-table-verbs.html"><a href="data-transformation-2-more-one-and-two-table-verbs.html#the-pipe-operator"><i class="fa fa-check"></i><b>4.3</b> The pipe operator (%&gt;%)</a></li>
+<li class="chapter" data-level="4.4" data-path="data-transformation-2-more-one-and-two-table-verbs.html"><a href="data-transformation-2-more-one-and-two-table-verbs.html#two-table-verbs"><i class="fa fa-check"></i><b>4.4</b> Two-Table Verbs</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="data-transformation-2-more-one-and-two-table-verbs.html"><a href="data-transformation-2-more-one-and-two-table-verbs.html#mutating-join-verbs"><i class="fa fa-check"></i><b>4.4.1</b> Mutating Join Verbs</a></li>
+<li class="chapter" data-level="4.4.2" data-path="data-transformation-2-more-one-and-two-table-verbs.html"><a href="data-transformation-2-more-one-and-two-table-verbs.html#binding-join-verbs"><i class="fa fa-check"></i><b>4.4.2</b> Binding Join Verbs</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-transformation-2-more-one-and-two-table-verbs.html"><a href="data-transformation-2-more-one-and-two-table-verbs.html#additional-information"><i class="fa fa-check"></i><b>4.5</b> Additional information</a></li>
+<li class="chapter" data-level="4.6" data-path="data-transformation-2-more-one-and-two-table-verbs.html"><a href="data-transformation-2-more-one-and-two-table-verbs.html#summative-homework-1"><i class="fa fa-check"></i><b>4.6</b> Summative Homework</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html"><i class="fa fa-check"></i><b>5</b> Data Transformation 3: Tidy Data</a><ul>
+<li class="chapter" data-level="" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#intended-learning-outcomes-5"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="5.1" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#pre-steps-3"><i class="fa fa-check"></i><b>5.1</b> Pre-steps</a></li>
+<li class="chapter" data-level="5.2" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#tidy-data"><i class="fa fa-check"></i><b>5.2</b> Tidy data</a></li>
+<li class="chapter" data-level="5.3" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#gather-and-spread"><i class="fa fa-check"></i><b>5.3</b> gather() and spread()</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#gather"><i class="fa fa-check"></i><b>5.3.1</b> gather()</a></li>
+<li class="chapter" data-level="5.3.2" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#spread"><i class="fa fa-check"></i><b>5.3.2</b> spread()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#unite-and-separate"><i class="fa fa-check"></i><b>5.4</b> unite() and separate()</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#separate"><i class="fa fa-check"></i><b>5.4.1</b> separate()</a></li>
+<li class="chapter" data-level="5.4.2" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#unite"><i class="fa fa-check"></i><b>5.4.2</b> unite()</a></li>
+<li class="chapter" data-level="5.4.3" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#separating-by-position"><i class="fa fa-check"></i><b>5.4.3</b> separating by position</a></li>
+<li class="chapter" data-level="5.4.4" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#separating-more-than-2-columns"><i class="fa fa-check"></i><b>5.4.4</b> separating more than 2 columns</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#bonus-materials-mutate-rownames-from-the-mtcars"><i class="fa fa-check"></i><b>5.5</b> Bonus materials: mutate rownames from the mtcars</a></li>
+<li class="chapter" data-level="5.6" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#additional-information-1"><i class="fa fa-check"></i><b>5.6</b> Additional information</a></li>
+<li class="chapter" data-level="5.7" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#formative-homework-1"><i class="fa fa-check"></i><b>5.7</b> Formative Homework</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-transformation-4-finetuned-data-manipulation.html"><a href="data-transformation-4-finetuned-data-manipulation.html"><i class="fa fa-check"></i><b>6</b> Data Transformation 4: Finetuned Data Manipulation</a><ul>
+<li class="chapter" data-level="" data-path="data-transformation-4-finetuned-data-manipulation.html"><a href="data-transformation-4-finetuned-data-manipulation.html#intended-learning-outcomes-6"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="6.1" data-path="data-transformation-4-finetuned-data-manipulation.html"><a href="data-transformation-4-finetuned-data-manipulation.html#pre-steps-4"><i class="fa fa-check"></i><b>6.1</b> Pre-steps</a></li>
+<li class="chapter" data-level="6.2" data-path="data-transformation-4-finetuned-data-manipulation.html"><a href="data-transformation-4-finetuned-data-manipulation.html#rename"><i class="fa fa-check"></i><b>6.2</b> rename()</a></li>
+<li class="chapter" data-level="6.3" data-path="data-transformation-4-finetuned-data-manipulation.html"><a href="data-transformation-4-finetuned-data-manipulation.html#conditional-statements"><i class="fa fa-check"></i><b>6.3</b> Conditional statements</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="data-transformation-4-finetuned-data-manipulation.html"><a href="data-transformation-4-finetuned-data-manipulation.html#recode"><i class="fa fa-check"></i><b>6.3.1</b> recode()</a></li>
+<li class="chapter" data-level="6.3.2" data-path="data-transformation-4-finetuned-data-manipulation.html"><a href="data-transformation-4-finetuned-data-manipulation.html#ifelse"><i class="fa fa-check"></i><b>6.3.2</b> ifelse()</a></li>
+<li class="chapter" data-level="6.3.3" data-path="data-transformation-4-finetuned-data-manipulation.html"><a href="data-transformation-4-finetuned-data-manipulation.html#case_when"><i class="fa fa-check"></i><b>6.3.3</b> case_when()</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="data-transformation-4-finetuned-data-manipulation.html"><a href="data-transformation-4-finetuned-data-manipulation.html#distinct"><i class="fa fa-check"></i><b>6.4</b> distinct</a></li>
+<li class="chapter" data-level="6.5" data-path="data-transformation-4-finetuned-data-manipulation.html"><a href="data-transformation-4-finetuned-data-manipulation.html#summative-homework-2"><i class="fa fa-check"></i><b>6.5</b> Summative Homework</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html"><i class="fa fa-check"></i><b>7</b> Data Visualisation 1</a><ul>
+<li class="chapter" data-level="" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#intended-learning-outcomes-7"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html"><i class="fa fa-check"></i><b>8</b> Data Visualisation 2</a><ul>
+<li class="chapter" data-level="" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#intended-learning-outcomes-8"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>9</b> Errors</a><ul>
+<li class="chapter" data-level="9.1" data-path="errors.html"><a href="errors.html#under-construction"><i class="fa fa-check"></i><b>9.1</b> Under Construction</a></li>
+<li class="chapter" data-level="" data-path="errors.html"><a href="errors.html#intended-learning-outcomes-9"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="9.2" data-path="errors.html"><a href="errors.html#errors-how-to-avoid-some-and-live-through-the-rest"><i class="fa fa-check"></i><b>9.2</b> Errors: How to avoid some and live through the rest</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="errors.html"><a href="errors.html#debugging"><i class="fa fa-check"></i><b>9.2.1</b> Debugging</a></li>
+<li class="chapter" data-level="9.2.2" data-path="errors.html"><a href="errors.html#debugging-questions"><i class="fa fa-check"></i><b>9.2.2</b> Debugging Questions</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="errors.html"><a href="errors.html#seeking-help"><i class="fa fa-check"></i><b>9.3</b> Seeking Help</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="errors.html"><a href="errors.html#searching-for-help-online"><i class="fa fa-check"></i><b>9.3.1</b> Searching for Help Online</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="errors.html"><a href="errors.html#custom-functions"><i class="fa fa-check"></i><b>9.4</b> Custom Functions</a></li>
+<li class="chapter" data-level="9.5" data-path="errors.html"><a href="errors.html#living-through-errors-how-reproducible-code-enables-science-to-self-correct"><i class="fa fa-check"></i><b>9.5</b> Living Through Errors: How reproducible code enables science to self-correct</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html"><i class="fa fa-check"></i><b>10</b> Recap: Before the final assessment</a><ul>
+<li class="chapter" data-level="10.1" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#outline-for-today"><i class="fa fa-check"></i><b>10.1</b> Outline for today</a></li>
+<li class="chapter" data-level="10.2" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#in-class-practice-exam"><i class="fa fa-check"></i><b>10.2</b> In-class practice exam</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html"><i class="fa fa-check"></i>Appendices</a><ul>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#changing-the-appearance-of-rmarkdown"><i class="fa fa-check"></i>Changing the Appearance of RMarkdown</a></li>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#source-materials"><i class="fa fa-check"></i>Source Materials</a></li>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#further-reading"><i class="fa fa-check"></i>Further Reading</a><ul>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#statistics"><i class="fa fa-check"></i>Statistics</a></li>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#more-advanced-use-of-r"><i class="fa fa-check"></i>More Advanced Use of R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>11</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-transformation-3-tidy-data" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Data Transformation 3: Tidy Data</h1>
+<div id="intended-learning-outcomes-5" class="section level2 unnumbered">
+<h2>Intended Learning Outcomes</h2>
+<p>The whole purpose of the next two lecture is to tidy up dataframe and expose you to a bunch of useful functions that would make your daily life easier when dealing with your own data. By the end of today, you will know</p>
+<ol style="list-style-type: decimal">
+<li>How to rearrange data from long format into to wide format and vice versa</li>
+<li>How to combine and separate columns</li>
+</ol>
+</div>
+<div id="pre-steps-3" class="section level2">
+<h2><span class="header-section-number">5.1</span> Pre-steps</h2>
+<p>Before we can start to focus on some other functions that might come in handy for data manipulation, we need to make sure to load <code>tidyverse</code> into the library and read the data we will be working with today into our <code>Global Environment</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+data_SMH &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Student_Mental_Health.csv&quot;</span>)</code></pre></div>
+</div>
+<div id="tidy-data" class="section level2">
+<h2><span class="header-section-number">5.2</span> Tidy data</h2>
+<p>Write a wee bit here why tidy data is necessary</p>
+</div>
+<div id="gather-and-spread" class="section level2">
+<h2><span class="header-section-number">5.3</span> gather() and spread()</h2>
+<p><code>gather()</code> and <code>spread()</code> are part of <code>tidyr</code> (also part of the tidyverse package) and help you to rearrange the shape of your data. To get your data into long format, you would use <code>gather()</code>; if you wanted to get your data from long to wide format, you would need <code>spread()</code>. Here is a nice gif animation by Garrick Aden-Buie () that shows you how <code>gather()</code> and <code>spread()</code> work.</p>
+<center>
+<img src="images/tidyr-spread-gather.gif" >
+</center>
+<p>The catch is that you need to know what kind of statistics you want to run, and how your data needs to be structured in order for you to achieve that. We cannot tell you that in this mere 10 week introduction course, however, we can give you the tools to prepare you as best as we can for what’s out there.</p>
+<div id="gather" class="section level3">
+<h3><span class="header-section-number">5.3.1</span> gather()</h3>
+<p>We can start this lecture by looking at a practical example in the build-in dataset <code>table1</code> to <code>table5</code>. They show the number of Tuberculosis cases documented by the World Health Organization in Afghanistan, Brazil, and China between 1999 and 2000 (the full dataset is called <code>who</code>). The data is part of the <code>tidyverse</code> package, so as long as we have <code>tidyverse</code> loaded into the library, there should not be an issue in accessing this dataset.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table1</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<p><code>table1</code> has a very tidy structure. You can see the data contains values associated with four variables (<code>country</code>, <code>year</code>, <code>cases</code>, and <code>population</code>). <code>table4a</code> however, looks a touch not right.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table4a</code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   country     `1999` `2000`
+## * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
+## 1 Afghanistan    745   2666
+## 2 Brazil       37737  80488
+## 3 China       212258 213766</code></pre>
+<p>Somehow the values for the columns <code>year</code> and <code>cases</code> are missing and instead we find two separate columns for <code>1999</code> and <code>2000</code> that have all <code>cases</code> values listed. This is a problem as <code>1999</code> and <code>2000</code> are actual values and not variables.</p>
+<p>Currently the data is in what is called a <code>wide format</code>. The function <code>gather()</code> comes in handy when we want to get the data back into the shape of a <code>long format</code> like in <code>table1</code>. <code>gather()</code> is structured like:</p>
+<p><br></p>
+<center>
+<img src="images/gather.PNG" >
+</center>
+<p><br></p>
+<p>Let’s apply this formula to <code>table4a</code></p>
+<ul>
+<li>We need a dataframe that we want to modify -&gt; <code>table4a</code></li>
+<li>We need to come up with the name of a new column in which the values of 1999 and 2000 will be stored -&gt; <code>year</code></li>
+<li>We need to come up with the name of a new column in which all the case values will be stored -&gt; <code>cases</code></li>
+<li>And finally, we need to tell R which columns in <code>table4a</code> we want to turn into long format (i.e. the columns of the 7 subscales) -&gt; 1999 and 2000 (Note that “1999” and “2000” are non-syntactic names as they don’t start with a letter. The solution is to surround them in backticks.)</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gather</span>(table4a, <span class="dt">key =</span> year, <span class="dt">value =</span> cases, <span class="st">`</span><span class="dt">1999</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2000</span><span class="st">`</span>)</code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   country     year   cases
+##   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;
+## 1 Afghanistan 1999     745
+## 2 Brazil      1999   37737
+## 3 China       1999  212258
+## 4 Afghanistan 2000    2666
+## 5 Brazil      2000   80488
+## 6 China       2000  213766</code></pre>
+<div class="funfact">
+<p>
+Here we have only 2 columns to reshape <code>1999</code> and <code>2000</code>. We could have written <code>gather(table4a, year, cases, `1999`, `2000`)</code>.
+</p>
+</div>
+<div class="task">
+<p>
+<strong>Your turn</strong>
+</p>
+<p>
+Use the <code>gather()</code> function with the student mental health data <code>data_SMH</code> to reshape it from wide format into long format.
+</p>
+<p>
+Step 1: Only work with a selection of columns from <code>data_SMH</code> to see better what is going on. Create a new object <code>SMH_short</code> that shows only <code>ID</code>, and the 7 subscales of <code>ToAS</code> (<code>APD:AMiscell</code>).
+</p>
+<p>
+Step 2: use <code>gather()</code> according to the formula above so that the 7 subscales <code>APD:AMiscell</code> of <code>SMH_short</code> are gathered in one column named <code>Subscales</code> and their values in another column <code>Scores</code>. Store results in the <code>Global Environment</code> as <code>SMH_long</code>.
+</p>
+<p>
+Step 3: <code>arrange()</code> the data <code>SMH_long</code> by the column <code>ID</code>. Store the results as <code>SMH_long</code>. You can either overwrite <code>SMH_long</code> from Step 2 or use a pipe (<code>%&gt;%</code>).
+</p>
+<p>
+When you are done, <code>SMH_long</code> should look like this.
+</p>
+</div>
+<pre><code>## # A tibble: 1,876 x 3
+##       ID Subscales Scores
+##    &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;
+##  1     1 APD           23
+##  2     1 AHome          9
+##  3     1 APH           11
+##  4     1 Afear          8
+##  5     1 ACS           11
+##  6     1 AGuilt         2
+##  7     1 AMiscell      27
+##  8     2 APD            8
+##  9     2 AHome          7
+## 10     2 APH            5
+## # ... with 1,866 more rows</code></pre>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SMH_short &lt;-<span class="st"> </span><span class="kw">select</span>(data_SMH, ID, APD<span class="op">:</span>AMiscell)
+SMH_long &lt;-<span class="st"> </span>SMH_short <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(Subscales, Scores, APD<span class="op">:</span>AMiscell) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(ID)</code></pre></div>
+<div class="solved">
+<p>
+A more detailed explanation:
+</p>
+<ul>
+<li>
+We needed a dataframe that we want to modify -&gt; <code>SMH_short</code>
+</li>
+<li>
+We needed to come up with the name of a new column in which all the column headers of the 7 subscales will be stored -&gt; <code>Subscales</code>
+</li>
+<li>
+We needed to come up with the name of a new column in which all the cell values of the 7 subscales will be stored -&gt; <code>Scores</code>
+</li>
+<li>
+And finally, we needed to tell R which columns in the dataframe <code>SMH_short</code> we wanted to turn into long format (i.e. the columns of the 7 subscales) -&gt; <code>APD:AMiscell</code>
+</li>
+</ul>
+<p>
+<code>SMH_short</code> has 268 observations and 8 variables, whereas the rearranged <code>SMH_long</code> has 1876 observations and 3 columns - <code>ID</code> (which was there before) and the two new columns <code>Subscales</code> and <code>Scores</code> we created within <code>gather()</code>. After sorting it by <code>ID</code> we can see that each of the 268 participants have now 7 rows of observation - one for each subscale.
+</p>
+</div>
+</div>
+</div>
+<div id="spread" class="section level3">
+<h3><span class="header-section-number">5.3.2</span> spread()</h3>
+<p>Now onto the reverse. <code>spread()</code> will spread the data from <code>long</code> into <code>wide format</code>. When you have observations that are scattered across multiple rows, you can use <code>spread()</code> to split those rows up into separate variables. For example, <code>table2</code> has the variabes <code>cases</code> and <code>population</code> stored in one column <code>type</code>, however, they are separate variables rather than values of <code>type</code>. So best to get <code>cases</code> and <code>population</code> back into their own columns.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table2</code></pre></div>
+<pre><code>## # A tibble: 12 x 4
+##    country      year type            count
+##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
+##  1 Afghanistan  1999 cases             745
+##  2 Afghanistan  1999 population   19987071
+##  3 Afghanistan  2000 cases            2666
+##  4 Afghanistan  2000 population   20595360
+##  5 Brazil       1999 cases           37737
+##  6 Brazil       1999 population  172006362
+##  7 Brazil       2000 cases           80488
+##  8 Brazil       2000 population  174504898
+##  9 China        1999 cases          212258
+## 10 China        1999 population 1272915272
+## 11 China        2000 cases          213766
+## 12 China        2000 population 1280428583</code></pre>
+<p>Take a look how <code>spread()</code> achieves that.</p>
+<p><br></p>
+<center>
+<img src="images/spread.PNG" >
+</center>
+<p><br></p>
+<p>Let’s apply the formula above to <code>table2</code>:</p>
+<ul>
+<li>We need a dataframe that we want to modify -&gt; <code>table2</code></li>
+<li>We need to decide which of the columns in <code>table2</code> will become the new column headers -&gt; <code>type</code></li>
+<li>We need to decide which of the columns in <code>table2</code> has all the data in it that will become the new cell values -&gt; <code>count</code></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">spread</span>(table2, <span class="dt">key =</span> type, <span class="dt">value =</span> count)</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<p>Voila, <code>cases</code> and <code>population</code> are in their own columns.</p>
+<div class="task">
+<p>
+<strong>Your turn</strong>
+</p>
+<p>
+Let’s pretend that the 7 subscales in <code>SMH_long</code> are actually 7 variables. Use <code>spread()</code> to achieve that. Store your results in the <code>Global Environment</code> as <code>SMH_wide</code>. When you are done, your results should look like this.
+</p>
+</div>
+<pre><code>## # A tibble: 268 x 8
+##       ID   ACS Afear AGuilt AHome AMiscell   APD   APH
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1     1    11     8      2     9       27    23    11
+##  2     2     3     4      2     7       10     8     5
+##  3     3     4     6      3     4       14    13     7
+##  4     4     6     8      4    10       21    16    10
+##  5     5     7     8      4    12       31    15     5
+##  6     6     7     8      3     8       29    18    10
+##  7     7     3     5      2     6       15    17    10
+##  8     8    11    15      6    20       40    16    19
+##  9     9    10    13      6    12       33    22    13
+## 10    10     3    12      2     4       17     8     5
+## # ... with 258 more rows</code></pre>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SMH_wide &lt;-<span class="st"> </span><span class="kw">spread</span>(SMH_long, Subscales, Scores)</code></pre></div>
+<div class="solved">
+<p>
+A more detailed explanation
+</p>
+<ul>
+<li>
+We needed a dataframe that we want to modify -&gt; <code>SMH_long</code>
+</li>
+<li>
+We needed to decide which of the columns in <code>SMH_long</code> would become the new column headers -&gt; <code>Subscales</code>
+</li>
+<li>
+We needed to decide which of the columns in <code>SMH_long</code> had all the data in it that would become the new cell values -&gt; <code>Scores</code>
+</li>
+</ul>
+</div>
+<p>Now the 7 subscales are back in separate columns each.</p>
+</div>
+<div class="info">
+<p>
+Most of the time, data isn’t collected in a way that is useful for us (or R). It can happen that the data for the whole experiment is stored in a 2-column format. For example, some online platforms would give you a column in which all your dependent variables are stored, and another one that recorded the responses of the participants to that variable. That wouldn’t be a very useful format to analyse anything really.
+</p>
+</div>
+</div>
+</div>
+<div id="unite-and-separate" class="section level2">
+<h2><span class="header-section-number">5.4</span> unite() and separate()</h2>
+<p>Let’s start this part of by looking at a practical example in the build-in dataset <code>table1</code> to <code>table5</code>. They show the number of Tuberculosis cases documented by the World Health Organization in Afghanistan, Brazil, and China between 1999 and 2000. The data is part of the <code>tidyverse</code> package, so as long as we have <code>tidyverse</code> loaded into the library, there should not be an issue in accessing this dataset.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table1</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<p><code>table1</code> has a very tidy structure. You can see the data contains values associated with four variables (<code>country</code>, <code>year</code>, <code>cases</code>, and <code>population</code>). <code>table5</code> however, looks a touch not right.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table5</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country     century year  rate             
+## * &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            
+## 1 Afghanistan 19      99    745/19987071     
+## 2 Afghanistan 20      00    2666/20595360    
+## 3 Brazil      19      99    37737/172006362  
+## 4 Brazil      20      00    80488/174504898  
+## 5 China       19      99    212258/1272915272
+## 6 China       20      00    213766/1280428583</code></pre>
+<div class="task">
+<p>
+Take 2 min with the person next to you to discuss what is wrong with this tibble.
+</p>
+</div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="solved">
+<ol style="list-style-type: decimal">
+<li>
+column <code>rate</code> holds the values for <code>cases</code> and <code>population</code> in one cell, separated by a <code>/</code>
+</li>
+<li>
+the values in column <code>year</code> are split into <code>century</code> and <code>year</code>
+</li>
+</ol>
+</div>
+</div>
+<p>This is where the functions <code>separate()</code> and <code>unite()</code> come in handy. We would use <code>separate()</code> to split the column <code>rate</code> back into two columns, and <code>unite()</code> (the inverse of separate) to combine <code>century</code> and <code>year</code> into a single column.</p>
+<div id="separate" class="section level3">
+<h3><span class="header-section-number">5.4.1</span> separate()</h3>
+<p>The function <code>separate()</code> is structured like this</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(data, column_to_sep, <span class="dt">into =</span> <span class="kw">c</span>(new_column1, new_column2), <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>)</code></pre></div>
+<p>We would need</p>
+<ul>
+<li>the data in which the column to separate is located,</li>
+<li>the actual colum we want to separate,</li>
+<li>the into argument telling into how many columns we want to separate the old column and what we want to call these new columns, and</li>
+<li>a separator argument.</li>
+</ul>
+<p>Let’s tackle the first problem, splitting <code>rate</code> back into two columns <code>cases</code> and <code>population</code>/</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</code></pre></div>
+<pre><code>## # A tibble: 6 x 5
+##   country     century year  cases  population
+##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     
+## 1 Afghanistan 19      99    745    19987071  
+## 2 Afghanistan 20      00    2666   20595360  
+## 3 Brazil      19      99    37737  172006362 
+## 4 Brazil      20      00    80488  174504898 
+## 5 China       19      99    212258 1272915272
+## 6 China       20      00    213766 1280428583</code></pre>
+<p>We have told R to separate the column <code>rate</code> (which is located in <code>table5</code>) into two new columns <code>cases</code> and <code>population</code>. The separator argument was set to a forward slash (<code>/</code>), and R will put all cell information before the <code>/</code> into <code>cases</code>, and everything after the <code>/</code> into <code>population</code>. <code>/</code> will not appear in either column <code>cases</code> or <code>population</code>.</p>
+<div class="info">
+<p>
+By the way, the separator argument <code>sep =</code> can be any non-alphanumeric character, for example:
+</p>
+<ul>
+<li>
+underscore (“_“),
+</li>
+<li>
+comma (“,”),
+</li>
+<li>
+semi-colon (“;”),
+</li>
+<li>
+colon (“:”),
+</li>
+<li>
+forward-slash (“/”),
+</li>
+<li>
+space (&quot; “) or
+</li>
+<li>
+nothing (“”).
+</li>
+</ul>
+<p>
+But watch out! When the separator is a <code>full stop</code>, you would need to add a double backward slash in front of it (<code>sep = “\\.”</code>).
+</p>
+</div>
+<p>If for some reason, you wanted to keep the original column, you can set an additional argument <code>remove</code> to <code>FALSE</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="dt">remove =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<pre><code>## # A tibble: 6 x 6
+##   country     century year  rate              cases  population
+##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt;     
+## 1 Afghanistan 19      99    745/19987071      745    19987071  
+## 2 Afghanistan 20      00    2666/20595360     2666   20595360  
+## 3 Brazil      19      99    37737/172006362   37737  172006362 
+## 4 Brazil      20      00    80488/174504898   80488  174504898 
+## 5 China       19      99    212258/1272915272 212258 1272915272
+## 6 China       20      00    213766/1280428583 213766 1280428583</code></pre>
+<p>What if we were just interested retaining part of the data in the cell, for example keeping the column <code>cases</code> but not <code>population</code>. The solution would be to work with an <code>NA</code> argument. Defining the new columns as <code>cases</code> and <code>NA</code> will keep everything before the separator in the column <code>cases</code>, and drops everything after the separator.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="ot">NA</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country     century year  cases 
+##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; 
+## 1 Afghanistan 19      99    745   
+## 2 Afghanistan 20      00    2666  
+## 3 Brazil      19      99    37737 
+## 4 Brazil      20      00    80488 
+## 5 China       19      99    212258
+## 6 China       20      00    213766</code></pre>
+<div class="task">
+<p>
+Separate the column <code>rate</code> in <code>table5</code> to keep only the values after the separator in a column called <code>population</code>. Drop the values in front of the separator.
+</p>
+</div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country     century year  population
+##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;     
+## 1 Afghanistan 19      99    19987071  
+## 2 Afghanistan 20      00    20595360  
+## 3 Brazil      19      99    172006362 
+## 4 Brazil      20      00    174504898 
+## 5 China       19      99    1272915272
+## 6 China       20      00    1280428583</code></pre>
+</div>
+</div>
+<div id="unite" class="section level3">
+<h3><span class="header-section-number">5.4.2</span> unite()</h3>
+<p>To tidy up <code>table5</code>, there is only one thing left to do, namely combining the columns <code>century</code> and <code>year</code> into a new column called <code>year</code>. Here, we can use the function <code>unite()</code> which is structured like</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unite</span>(data, new_column_name, col_to_unite1, col_to_unite2, <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>)</code></pre></div>
+<p>We would need the data <code>table5</code>, a new column we want to create <code>year</code>, the two columns we would like to combine (<code>century</code> and <code>year</code>), and define the separator as “nothing” since the default is sep = “_“.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unite</span>(table5, year, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   country     year  rate             
+##   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;            
+## 1 Afghanistan 1999  745/19987071     
+## 2 Afghanistan 2000  2666/20595360    
+## 3 Brazil      1999  37737/172006362  
+## 4 Brazil      2000  80488/174504898  
+## 5 China       1999  212258/1272915272
+## 6 China       2000  213766/1280428583</code></pre>
+<p>Yay! Notice how <code>rate</code> is back to one column with both values in each row since we haven’t stored any output in the <code>Global Environment</code>.</p>
+<p>Right, let’s combine the two steps of tidying the <code>table5</code> data by creating a pipe <code>%&gt;%</code> and store the new object <code>tb_cases</code> in the <code>Global Environment</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tb_cases &lt;-<span class="st"> </span>table5 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">unite</span>(year, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
+tb_cases</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country     year  cases  population
+##   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     
+## 1 Afghanistan 1999  745    19987071  
+## 2 Afghanistan 2000  2666   20595360  
+## 3 Brazil      1999  37737  172006362 
+## 4 Brazil      2000  80488  174504898 
+## 5 China       1999  212258 1272915272
+## 6 China       2000  213766 1280428583</code></pre>
+<div class="question">
+<p>
+There is still a tiny bit off in the tibble above. Can you spot what it is? * Hint: Think about if you wanted to sum up all the TB cases occured in the 3 countries within the years 1999, and 2000.
+</p>
+</div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="solved">
+<p>
+All the columns are <code>character</code> columns. For any calculation however, the columns need to be <code>numerical</code>. We could use the converting function <code>as.integer()</code>.
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tb_cases_converted &lt;-<span class="st"> </span>tb_cases <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.integer</span>(year),
+    <span class="dt">cases =</span> <span class="kw">as.integer</span>(cases),
+    <span class="dt">population =</span> <span class="kw">as.integer</span>(population))
+tb_cases_converted</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+</div>
+<p>The slightly quicker and perhaps more elegant solution would be to add another argument <code>convert</code> to <code>separate()</code> and set it to <code>TRUE</code>. Unfortunately, <code>unite()</code> does not have a <code>convert</code> statement available. So for that part, we would have to use another step in the pipe converting the <code>year</code> column from <code>character</code> to <code>integer</code>, just as we did in lecture 2.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tb_cases &lt;-<span class="st"> </span>table5 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">unite</span>(year, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.integer</span>(year))
+tb_cases</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+</div>
+<div id="separating-by-position" class="section level3">
+<h3><span class="header-section-number">5.4.3</span> separating by position</h3>
+<p>It is also possible to separate by position. <code>sep = 2</code> would split the column between the second and third character/ number etc.</p>
+<p>Let’s try that the separation by position. We will keep 4 letters from each <code>country</code> name rather than the whole word, and drop the rest.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5, country, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;country&quot;</span>, <span class="ot">NA</span>), <span class="dt">sep =</span> <span class="dv">4</span>)</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country century year  rate             
+##   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            
+## 1 Afgh    19      99    745/19987071     
+## 2 Afgh    20      00    2666/20595360    
+## 3 Braz    19      99    37737/172006362  
+## 4 Braz    20      00    80488/174504898  
+## 5 Chin    19      99    212258/1272915272
+## 6 Chin    20      00    213766/1280428583</code></pre>
+</div>
+<div id="separating-more-than-2-columns" class="section level3">
+<h3><span class="header-section-number">5.4.4</span> separating more than 2 columns</h3>
+<p>Special case. Let’s modify <code>table5</code> a little bit by adding a new column with a value of 200 and unite that column with column <code>rate</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table5_mod &lt;-<span class="st"> </span>table5 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">new =</span> <span class="dv">200</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">unite</span>(rate, rate, new, <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</code></pre></div>
+<p>Now column <code>rate</code> has 3 sets of numbers, separated by two <code>/</code>. If we define we want to split the data into 2 columns, the first 2 sets of numbers are kept, and the third one is dropped with a warning.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5_mod, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</code></pre></div>
+<pre><code>## Warning: Expected 2 pieces. Additional pieces discarded in 6 rows [1, 2, 3,
+## 4, 5, 6].</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##   country     century year  cases  population
+##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     
+## 1 Afghanistan 19      99    745    19987071  
+## 2 Afghanistan 20      00    2666   20595360  
+## 3 Brazil      19      99    37737  172006362 
+## 4 Brazil      20      00    80488  174504898 
+## 5 China       19      99    212258 1272915272
+## 6 China       20      00    213766 1280428583</code></pre>
+<p>If we are separating the columns and wanted to keep all sets of numbers, one in each column, we would use an into argument that includes 3 new columns.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5_mod, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>, <span class="st">&quot;200&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</code></pre></div>
+<pre><code>## # A tibble: 6 x 6
+##   country     century year  cases  population `200`
+##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;
+## 1 Afghanistan 19      99    745    19987071   200  
+## 2 Afghanistan 20      00    2666   20595360   200  
+## 3 Brazil      19      99    37737  172006362  200  
+## 4 Brazil      20      00    80488  174504898  200  
+## 5 China       19      99    212258 1272915272 200  
+## 6 China       20      00    213766 1280428583 200</code></pre>
+<div class="funfact">
+<p>
+Technically, you would not need a separator argument in the case above, as <code>separate()</code> splits the data whenever it detects a non-alphanumeric character (i.e. a character that isn’t a number or letter). Saying that, the separator argument is needed when your column contains non-alphanumeric characters as part of your cell values.
+</p>
+</div>
+<p>If the values in <code>population</code> and <code>200</code> (separated by a <code>/</code>) were some sort of <code>ID_code</code>, <strong>AND</strong> we wanted to split the data into 2 columns, after the first <code>/</code> only, we would have to include an <code>extra</code> argument, and set it to <code>&quot;merge&quot;</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5_mod, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;ID_code&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="dt">extra =</span> <span class="st">&quot;merge&quot;</span>)</code></pre></div>
+<pre><code>## # A tibble: 6 x 5
+##   country     century year  cases  ID_code       
+##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;         
+## 1 Afghanistan 19      99    745    19987071/200  
+## 2 Afghanistan 20      00    2666   20595360/200  
+## 3 Brazil      19      99    37737  172006362/200 
+## 4 Brazil      20      00    80488  174504898/200 
+## 5 China       19      99    212258 1272915272/200
+## 6 China       20      00    213766 1280428583/200</code></pre>
+</div>
+</div>
+<div id="bonus-materials-mutate-rownames-from-the-mtcars" class="section level2">
+<h2><span class="header-section-number">5.5</span> Bonus materials: mutate rownames from the mtcars</h2>
+<p>Remember, in lecture 2 when we were talking about the mtcars dataset and how the car types were not in listed as a separate column but rather rownames? Let’s just read in the data and have another quick look to jug our memories…</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_mtcars &lt;-<span class="st"> </span>mtcars
+
+<span class="kw">head</span>(df_mtcars)</code></pre></div>
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<p>You can see much better what I’m talking about when you view your <code>df_mtcars</code>.</p>
+<p>Now, that we have learnt about the <code>mutate()</code> function, we can attempt to get all of these rownames into a new column. All we have to do is combining a function called <code>rownames()</code> with <code>mutate()</code>. We also could use some more of these handy pipes <code>%&gt;%</code> you learnt about last week.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_mtcars &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Car_type =</span> <span class="kw">rownames</span>(mtcars))</code></pre></div>
+<p>In this example, we have taken the dataset <code>mtcars</code>, then added a new column called <code>Car_type</code> with <code>mutate()</code>. The column <code>Car_type</code> should then hold all the values that were previously listed as the rownames in the original <code>mtcars</code> data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(df_mtcars)</code></pre></div>
+<pre><code>##    mpg cyl disp  hp drat    wt  qsec vs am gear carb          Car_type
+## 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4         Mazda RX4
+## 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4     Mazda RX4 Wag
+## 3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1        Datsun 710
+## 4 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1    Hornet 4 Drive
+## 5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2 Hornet Sportabout
+## 6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1           Valiant</code></pre>
+<div class="question">
+<p>
+We can now look at the data <code>df_mtcars</code>, and see that the new column was added at the end of the dataset. What would we have to do to make <code>Car_type</code> the first column in the dataframe?
+</p>
+</div>
+<div class="solution">
+<button>
+Answer
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We could use the fuction select()</span>
+df_mtcars &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Car_type =</span> <span class="kw">rownames</span>(mtcars)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(Car_type, mpg<span class="op">:</span>carb)
+
+<span class="kw">head</span>(df_mtcars)</code></pre></div>
+<pre><code>##            Car_type  mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## 1         Mazda RX4 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## 2     Mazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## 3        Datsun 710 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## 4    Hornet 4 Drive 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## 5 Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## 6           Valiant 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+</div>
+</div>
+<div id="additional-information-1" class="section level2">
+<h2><span class="header-section-number">5.6</span> Additional information</h2>
+<p>More information on stuff we covered today and beyond can be found here:</p>
+<ul>
+<li><a href="https://r4ds.had.co.nz" class="uri">https://r4ds.had.co.nz</a> “R 4 Data Science” by Garrett Grolemund and Hadley Wickham is the official guidebook for R</li>
+<li><a href="https://suzan.rbind.io/categories/tutorial/" class="uri">https://suzan.rbind.io/categories/tutorial/</a> She has some pretty cool tutorials on data wrangling</li>
+</ul>
+</div>
+<div id="formative-homework-1" class="section level2">
+<h2><span class="header-section-number">5.7</span> Formative Homework</h2>
+<p>The formative assessment can now be downloaded from moodle. There is no need to submit your answers to moodle.</p>
+
+</div>
+</div>
+<script>
+
+/* update total correct if #total_correct exists */
+update_total_correct = function() {
+  if (t = document.getElementById("total_correct")) {
+    t.innerHTML =
+      document.getElementsByClassName("correct").length + " of " +
+      document.getElementsByClassName("solveme").length + " correct";
+  }
+}
+
+/* solution button toggling function */
+b_func = function() {
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "");
+  }
+  
+  if (my_answer !== "" & real_answers.includes(my_answer)) {
+    cl.add("correct");
+  } else {
+    cl.remove("correct");
+  }
+  update_total_correct();
+}
+
+window.onload = function() {
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+  
+  /* set up solveme inputs */
+  var solveme = document.getElementsByClassName("solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off"); 
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+    
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+    
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  update_total_correct();
+}
+
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-transformation-2-more-one-and-two-table-verbs.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-transformation-4-finetuned-data-manipulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

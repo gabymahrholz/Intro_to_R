@@ -1,15 +1,11 @@
-# Data Transformation 3: Finetuned Data Manipulation
+# Data Transformation 3: Tidy Data
 
 ## Intended Learning Outcomes {-}
 
-The whole purpose of this lecture is to tidy up dataframe and expose you to a bunch of useful functions that would make your daily life easier when dealing with your own data. By the end of today, you will know
+The whole purpose of the next two lecture is to tidy up dataframe and expose you to a bunch of useful functions that would make your daily life easier when dealing with your own data. By the end of today, you will know
 
 1. How to rearrange data from long format into to wide format and vice versa
 2. How to combine and separate columns
-3. How to rename column headers
-4. How to recode cell values based on conditions
-5. How to obtain unique values from your data
-
 
 
 ## Pre-steps
@@ -22,6 +18,9 @@ data_SMH <- read_csv("Student_Mental_Health.csv")
 
 ```
 
+## Tidy data
+
+Write a wee bit here why tidy data is necessary
 
 ## gather() and spread()
 
@@ -216,6 +215,8 @@ Take 2 min with the person next to you to discuss what is wrong with this tibble
 
 This is where the functions `separate()` and `unite()` come in handy. We would use `separate()` to split the column `rate` back into two columns, and `unite()` (the inverse of separate) to combine `century` and `year` into a single column.
 
+### separate()
+
 The function `separate()` is structured like this
 
 ```{r, eval=FALSE}
@@ -237,22 +238,8 @@ separate(table5, rate, into = c("cases", "population"), sep = "/")
 
 We have told R to separate the column `rate` (which is located in `table5`) into two new columns `cases` and `population`. The separator argument was set to a forward slash (`/`), and R will put all cell information before the `/` into `cases`, and everything after the `/` into `population`. `/` will not appear in either column `cases` or `population`.
 
-
-If for some reason, you wanted to keep the original column, you can set an additional argument `remove` to `FALSE`.
-
-```{r}
-separate(table5, rate, into = c("cases", "population"), sep = "/", remove = FALSE)
-```
-
-What if you are just interested retaining part of the data in the cell, for example you want to keep the column `cases` but not `population`. The solution is to work with an `NA` argument. Defining the new columns as `cases` and `NA` will keep everything before the separator in the column `cases`, and drops everything after the separator.
-
-```{r}
-separate(table5, rate, into = c("cases", NA), sep = "/")
-```
-
-
 ```{block, type="info"}
-By the way, the separator argument `sep = ` can be anything, for example an 
+By the way, the separator argument `sep = ` can be any non-alphanumeric character, for example:
 
 * underscore ("_"), 
 * comma (","), 
@@ -262,25 +249,39 @@ By the way, the separator argument `sep = ` can be anything, for example an
 * space (" ") or 
 * nothing ("").
 
-It is also possible to separate by position. `sep = 2` would split the column between the second and third character/ number etc.
-
-Technically, you would not need a separator argument in the case above, as `separate()` splits the data whenever it detects a non-alphanumeric character (i.e. a character that isn't a number or letter). Saying that, the separator argument is needed when your column contains non-alphanumeric characters as part of your cell values.
-
-
 But watch out! When the separator is a `full stop`, you would need to add a double backward slash in front of it (``sep = "\\\\."``).
 ```
 
 
-Let's try that the separation by position. We will keep 4 letters from each `country` name rather than the whole word, and drop the rest.
+If for some reason, you wanted to keep the original column, you can set an additional argument `remove` to `FALSE`.
 
 ```{r}
-separate(table5, country, into = c("country", NA), sep = 4)
+separate(table5, rate, into = c("cases", "population"), sep = "/", remove = FALSE)
 ```
 
-Yay! Notice how `rate` is back to one column with both values in each row since we haven't stored any output in the `Global Environment`.
+What if we were just interested retaining part of the data in the cell, for example keeping the column `cases` but not `population`. The solution would be to work with an `NA` argument. Defining the new columns as `cases` and `NA` will keep everything before the separator in the column `cases`, and drops everything after the separator.
+
+```{r}
+separate(table5, rate, into = c("cases", NA), sep = "/")
+```
+
+```{block, type="task"}
+**Your turn**
+
+Separate the column `rate` in `table5` to keep only the values after the separator in a column called `population`. Drop the values in front of the separator.
+```
 
 
-There is only one thing left to do, and that is combining the columns `century` and `year` into a new column called `year`. Here, we can use the function `unite()` which is structured like
+`r hide("Solution")`
+```{r}
+separate(table5, rate, into = c(NA, "population"), sep = "/")
+```
+`r unhide()`
+
+
+### unite()
+
+To tidy up `table5`, there is only one thing left to do, namely combining the columns `century` and `year` into a new column called `year`. Here, we can use the function `unite()` which is structured like
 
 ```{r, eval=FALSE}
 unite(data, new_column_name, col_to_unite1, col_to_unite2, sep = "_")
@@ -288,9 +289,10 @@ unite(data, new_column_name, col_to_unite1, col_to_unite2, sep = "_")
 
 We would need the data `table5`, a new column we want to create `year`, the two columns we would like to combine (`century` and `year`), and define the separator as "nothing" since the default is sep = "_".
 
-```{r, eval=FALSE}
+```{r}
 unite(table5, year, century, year, sep = "")
 ```
+Yay! Notice how `rate` is back to one column with both values in each row since we haven't stored any output in the `Global Environment`.
 
 
 Right, let's combine the two steps of tidying the `table5` data by creating a pipe `%>%` and store the new object `tb_cases` in the `Global Environment`.
@@ -309,30 +311,49 @@ There is still a tiny bit off in the tibble above. Can you spot what it is? * Hi
 
 `r hide("Solution")`
 ```{block, type="solved"}
-All the columns are `character` columns. For any calculation however, the columns need to be `numerical`. The quickest solution would be to add another argument `convert` to `separate()` and set it to `TRUE`.
+All the columns are `character` columns. For any calculation however, the columns need to be `numerical`. We could use the converting function `as.integer()`.
 ```
+
+```{r}
+tb_cases_converted <- tb_cases %>% 
+  mutate(year = as.integer(year),
+    cases = as.integer(cases),
+    population = as.integer(population))
+tb_cases_converted
+```
+
+`r unhide()`
+
+The slightly quicker and perhaps more elegant solution would be to add another argument `convert` to `separate()` and set it to `TRUE`. Unfortunately, `unite()` does not have a `convert` statement available. So for that part, we would have to use another step in the pipe converting the `year` column from `character` to `integer`, just as we did in lecture 2.
+
 
 ```{r}
 tb_cases <- table5 %>% 
   separate(rate, into = c("cases", "population"), sep = "/", convert = TRUE) %>% 
-  unite(year, century, year, sep = "")
-tb_cases
-```
-
-```{block, type="question"}
-Unfortunately, `unite()` does not have a `convert` statement available. If you wanted to set column `year` as an `interger`, you would have to `mutate` the column. How would you do this?
-```
-
-`r hide("Solution")`
-```{r}
-tb_cases <- tb_cases %>% 
+  unite(year, century, year, sep = "") %>% 
   mutate(year = as.integer(year))
 tb_cases
 ```
-`r unhide()`
-`r unhide()`
 
-Special case. Let's modify `table5` a little bit by adding a new column with a value of 200 and unite that column with column `rate`
+
+
+
+### separating by position
+
+It is also possible to separate by position. `sep = 2` would split the column between the second and third character/ number etc.
+
+Let's try that the separation by position. We will keep 4 letters from each `country` name rather than the whole word, and drop the rest.
+
+```{r}
+separate(table5, country, into = c("country", NA), sep = 4)
+```
+
+
+
+
+### separating more than 2 columns
+
+Special case. Let's modify `table5` a little bit by adding a new column with a value of 200 and unite that column with column `rate`.
 
 ```{r}
 table5_mod <- table5 %>% 
@@ -352,349 +373,22 @@ If we are separating the columns and wanted to keep all sets of numbers, one in 
 separate(table5_mod, rate, into = c("cases", "population", "200"), sep = "/")
 ```
 
-However, what if we just wanted to split the data into 2 columns, after the first `/` **AND** keep all sets of numbers? We would have to include an `extra` argument, and set it to `"merge"`.
+```{block, type="funfact"}
+Technically, you would not need a separator argument in the case above, as `separate()` splits the data whenever it detects a non-alphanumeric character (i.e. a character that isn't a number or letter). Saying that, the separator argument is needed when your column contains non-alphanumeric characters as part of your cell values.
+```
+
+If the values in `population` and `200` (separated by a `/`) were some sort of `ID_code`, **AND** we wanted to split the data into 2 columns, after the first `/` only, we would have to include an `extra` argument, and set it to `"merge"`.
 
 ```{r}
-separate(table5_mod, rate, into = c("cases", "population"), sep = "/", extra = "merge")
+separate(table5_mod, rate, into = c("cases", "ID_code"), sep = "/", extra = "merge")
 ```
 
 
 
-## rename()
 
-`rename()` is a very useful function if we wanted to change column names. All available column names are retained, so nothing is lost. It follows a very simple pattern of
 
-```{r, eval=FALSE}
-rename(data, new_column_name = old_column_name)
-```
 
-You can rename multiple column headers by including more arguments, separarting them with a comma. Let's take a look at a simple example in `table1`.
-
-```{r}
-table1
-```
-
-If we wanted to change the column headers of `country` to `Country` and `population` to `Population`, we would code
-
-```{r}
-rename(table1, Country = country,
-       Population = population)
-```
-
-If you want to select a few columns and rename them in the process, you could use `select()`. The structure is the same as with `rename()`, the only difference is that the new data only retains the columns mentioned explicitly within `select()`.
-
-```{r, eval=FALSE}
-select(data, new_column_name = old_column_name)
-```
-
-Modifying the `rename()` example from above would lead to selecting **only** the columns `country` and `population` from `table1` and renaming them as `Country` and `Population` at the same time.
-
-```{r}
-select(table1, Country = country,
-       Population = population)
-```
-
-
-## Conditional statements
-
-Conditional statements are used when you want to create an output value that is conditioned on an evaluation.
-
-Here, we are showing you how to use them in combination with `mutate()` by either modifying the values within one column, or by adding a new column.
-
-Let's create some fake data for this. 40 participants (17 male, 20 female, 3 other), they are between 16 and 40 years of age, they study at 4 different institutions (University of Glasgow, University of Strathclyde, Glasgow Caledonian University, University of the West of Scotland), and we had them complete an R assignment and recorded their grade points.
-
-```{r}
-set.seed(999) #so we all get the same data
-fake_data <- tibble(PP_ID = 1:40,
-                    Sex = c(rep(1,17), rep(2,20), rep(3,3)),
-                    Age = sample(16:40, 40, replace = TRUE),
-                    Institution = sample(c(rep(1,10), rep(2,8), rep(3,10), rep(4,10), rep(99,2))),
-                    Grade_points = sample(c(0,9:22), 40, replace = TRUE))
-glimpse(fake_data)
-
-```
-
-Now, the data doesn't look very readable at the moment. If we pass this data set onto a fellow researcher, they would ask us how the columns `Sex` and `Institution` are coded.
-
-Best would be to adjust the values to make that clearer. There are the options of using the function `recode()`, an `ifelse` statement or `case_when()`.
-
-
-### recode()
-
-Can be used for character, numeric, and factors columns.
-
-The structure for `recode()` is:
-
-```{r, eval=FALSE}
-recode(variable_to_recode, old_value = new_value)
-```
-
-This is a bit tricky to remember as it doesn't follow the usual tidyverse logic. In `select()`, `rename()`, and `mutate()` for example it is the other way around `new_thing = old_thing` or `new_thing = something_computational`)
-
-In combination with `mutate()`, the structure looks as follows:
-
-```{r, eval=FALSE}
-mutate(data, new_column_name = recode(variable_to_recode, old_value = new_value))
-```
-
-What is a bit unusual in this structure is that we need a new column name within the `mutate()` function but also a reference column within `recode()` on which the conditional recoding is based upon.
-
-The new column name within `mutate()` can either be an entirely new column name, or if it is an existing column name that original column would be overwritten by the new values we recode.
-
-So, let's turn to our `fake_data`, and apply that logic for recoding the values of the column `Sex` where 1 = "Male", 2 = "Female", and 3 = "Other". We will add a new column `Sex_char` onto our `fake_data`.
-
-The only tricky thing to remember here is that recoding numeric values requires backticks (if the numbers are on the left side of the equation).
-
-```{r}
-fake_data <- mutate(fake_data, Sex_char = recode(Sex, `1` = "Male", `2` = "Female", `3` = "Other"))
-glimpse(fake_data)
-```
-
-```{block, type="warning"}
-If you forget to recode one condition (for example ``\`3\` = "Other"``), values for 3 would be displayed as `NA` in the new column. This becomes more important when you decide to overwrite an existing column.
-```
-
-
-
-```{block, type="task"}
-**Your turn**
-
-The next variable to recode is `Institution`:
-
-* 1 = University of Glasgow, 
-* 2 = University of Strathclyde, 
-* 3 = Glasgow Caledonian University, 
-* 4 = University of the West of Scotland
-
-In the questionnaire, two participants forgot to indicate which university they are studying at (coded as 99), but fortunately we know that they are at the University of Strathclyde (the test was distributed to 10 students at each institution, however, Strathclyde only has 8 responses).
-
-Add a new column `Institution_char` to `fake_data` that holds the recoded values above.
-```
-
-
-`r hide("Solution")`
-```{r}
-fake_data <- mutate(fake_data, Institution_char = recode(Institution, 
-                                                         `1` = "University of Glasgow", 
-                                                         `2` = "University of Strathclyde", 
-                                                         `3` = "Glasgow Caledonian University", 
-                                                         `4` = "University of the West of Scotland", 
-                                                         `99` = "University of Strathclyde"))
-glimpse(fake_data)
-```
-`r unhide()`
-
-An alternative to recode is `ifelse()`. Let's see how `Sex` and `Institution` could have been recoded using `ifelse()`.
-
-
-
-### ifelse()
-
-`ifelse()` is a good option when dealing with character or numeric input but struggles with dates and factors. None of the columns in `fake_data` are dates or factors, so we can easily use `ifelse()` for recoding variables.
-
-The generic structure for `ifelse()` is:
-
-```{r, eval=FALSE}
-ifelse(test, yes, no)
-```
-
-* test: is an expression to test that creates an output of `TRUE` or `FALSE`
-* yes: if test has a `TRUE` outcome, this is what would be coded in the new column
-* no: if test has a `FALSE` outcome, this is what would be coded in the new column
-
-The interpretation of `ifelse()` is: if the test expression is `TRUE`, write the value of yes, otherwise no.
-
-In combination with `mutate()`, the structure looks as follows:
-
-```{r, eval=FALSE}
-mutate(data, new_column_name = ifelse(test, yes, no))
-```
-
-How would we apply that to recoding `Sex`? We would want the expression to test whether the Sex column holds a value of 1, then a new column should code it as "Male", otherwise as "Female". Let's add a new column `Sex_ifelse` to `fake_data`
-
-```{r}
-fake_data <- mutate(fake_data, Sex_ifelse = ifelse(Sex == 1, "Male", "Female"))
-glimpse(fake_data)
-```
-
-AHHHH!!! But what about the 3 participants that chose option 3? They are now coded as "Female". hmmm. One way to get around that would be a nested `ifelse()` statement. Instead of replacing the no argument (`FALSE` evaluation) with "Female", we could include a second `ifelse()` statement.
-
-```{r}
-fake_data <- mutate(fake_data, Sex_ifelse = ifelse(Sex == 1, "Male",
-                                                   ifelse(Sex == 2, "Female", "Other")))
-```
-
-Now everything is coded as it should be.
-
-
-```{block, type="task"}
-**Your turn**
-
-Recode `Institution` using `ifelse()`. Add a new column `Institution_ifelse` to `fake_data`. A quick reminder of the `Institution` values:
-
-* 1 = "University of Glasgow", 
-* 2 and 99 = "University of Strathclyde", 
-* 3 = "Glasgow Caledonian University", and
-* 4 = "University of the West of Scotland"
-```
-
-
-`r hide("Solution")`
-```{r}
-fake_data <- mutate(fake_data, Institution_ifelse = ifelse(Institution == 1, "University of Glasgow", 
-                                                           ifelse(Institution == 3, "Glasgow Caledonian University", 
-                                                                  ifelse(Institution ==  4, "University of the West of Scotland", "University of Strathclyde"))))
-glimpse(fake_data)
-```
-`r unhide()`
-
-
-It does look a bit convoluted, and there is definitely the need to count opening and closing brackets, but it gets us the output we wanted. Before showing you how this can be coded in a slightly neater way with `case_when()`, I'd like to highlight one advantage `ifelse()` has over `recode()`, namely that the test expression can evaluate more complex "things" as long as they return a logical value. For example, if we wanted to add a column `Pass_Fail` to `fake_data`, that holds values of "Pass" for grade points above 9, and "Fail" for values of 9 and below, we would code
-
-
-```{r}
-fake_data <- mutate(fake_data, Pass_Fail = ifelse(Grade_points > 9, "Pass", "Fail"))
-glimpse(fake_data)
-```
-
-We could also add a column `Grade` to `fake_data` that tells us the primary band the students got in their test. `Grade_points` between 18 and 22 result in A, 15 to 17 = B, 12 to 14 = C, 9 to 11 = D, 6 - 8 = E, 3 to 5 = F, 1 and 2 = G, and 0 = H. Here we can use the `%in%` operator.
-
-```{r}
-fake_data <- mutate(fake_data, Grade = ifelse(Grade_points %in% 18:22, "A",
-                                              ifelse(Grade_points %in% 15:17, "B",
-                                                     ifelse(Grade_points %in% 12:14, "C",
-                                                            ifelse(Grade_points %in% 9:11, "D",
-                                                                   ifelse(Grade_points %in% 6:8, "E",
-                                                                          ifelse(Grade_points %in% 3:5, "F",
-                                                                                 ifelse(Grade_points %in% 1:2, "G","H"))))))))
-glimpse(fake_data)
-```
-
-
-### case_when()
-
-`case_when()` vectorises multiple `ifelse()` statements, and might potentially be a touch easier to digest visually than `ifelse()`.
-
-There are few guidelines to follow when using `case_when()`:
-
-* A sequence of two-sided formulas is needed. 
-* The left hand side (LHS) determines which values match this case. The right hand side (RHS) provides the replacement value.
-* The LHS must evaluate to a logical vector. The RHS does not need to be logical, but all RHSs must evaluate to the same type of vector.
-
-Let's apply this to recoding the values in the column `Institution`. Combining `case_when()` with `mutate()`, we will add another column called `Institution_case_when` to `fake_data`.
-
-```{r}
-fake_data <- mutate(fake_data, Institution_case_when = case_when(
-  Institution == 1 ~ "University of Glasgow",
-  Institution == 3 ~ "Glasgow Caledonian University",
-  Institution == 4 ~ "University of the West of Scotland",
-  TRUE ~ "University of Strathclyde"
-  )
-)
-glimpse(fake_data)
-```
-
-The `TRUE` statement at the end is similar to the the "else" in the `ifelse()` function. A further similarity between the two is that arguments are evaluated in order, so you must proceed from the most specific to the most general.
-
-
-```{block, type="task"}
-**Your turn**
-
-Add a column `Grade_case_when` into `fake_data` using a combination of `mutate()` and `case_when()`, that recodes grade points to primary bands. Quick reminder:
-
-* grade points 18 - 22 = A,
-* 15 to 17 = B, 
-* 12 to 14 = C, 
-* 9 to 11 = D, 
-* 6 - 8 = E, 
-* 3 to 5 = F, 
-* 1 and 2 = G, and 
-* 0 = H.
-```
-
-
-`r hide("Solution")`
-```{r}
-fake_data <- mutate(fake_data, Grade_case_when = case_when(
-  Grade_points %in% 18:22 ~ "A",
-  Grade_points %in% 15:17 ~ "B",
-  Grade_points %in% 12:14 ~ "C",
-  Grade_points %in% 9:11 ~ "D",
-  Grade_points %in% 6:8 ~ "E",
-  Grade_points %in% 3:5 ~ "F",
-  Grade_points %in% 1:2 ~ "G",
-  TRUE ~ "H"
-  )
-)
-glimpse(fake_data)
-```
-`r unhide()`
-
-
-
-
-## distinct
-
-The `distinct()` function is used to remove duplicate rows in your dataframe. If we are using `distinct()` without specifying any arguments, R checks the whole row and excludes any row that is exactly repeated.
-
-```{r}
-fake_data_no_dup <- fake_data %>% 
-  distinct()
-```
-
-We can see that all rows are still there. This is not surprising, given every participant has a unique ID number. However, `distinct()` does take arguments as well, namely the variable columns you are trying to determine uniqueness for. Say we we wanted to see how many different institutions we have data from.
-
-
-```{r}
-institution_distinct <- fake_data %>% 
-  distinct(Institution_char)
-institution_distinct
-```
-
-We can see that there are 4 distinct institutions. But what happened to the output? We still have the output from the column we specified but all other information is gone. One quick solution would be to use the argument `.keep_all` and set that to `TRUE` (the default here is `FALSE`).
-
-
-```{r}
-institution_distinct <- fake_data %>% 
-  distinct(Institution_char, .keep_all = TRUE)
-institution_distinct
-```
-
-In the new `institution_distinct` dataframe, we still have 4 institutions listed but we kept all 13 columns. If there are multiple rows with the same input (in this case 40 participants from 4 different institutions), `distinct()` only preserves the first row a new value occurs.
-
-The `distinct()` function also allows you to eliminate duplicate rows with multiple variables in the dataframe. So if we wanted to see where participants were studying but also the different sexes taking part in the study, we would code...
-
-```{r}
-institution_sex_distinct <- fake_data %>% 
-  distinct(Institution_char, Sex_char, .keep_all = TRUE)
-institution_sex_distinct
-```
-
-`institution_sex_distinct` has 10 observations, so that means, we have at least 1 male and 1 female participant from each of the 4 institutions. Additionally, Strathclyde and Glasgow have participants classifying as neither male nor female (here coded as "Other"). 
-
-```{block, type="question"}
-You can see they are not sorted by either of the column. Why is that?
-```
-
-`r hide("Solution")`
-```{block, type="solved"}
-The values are sorted by occurence. R goes throgh the tibble row by row to determine whether the values are distinct from the ones in the row before. So if you look at your original dataframe `fake_data`, you can see the first row is a male participant from Glasgow Caledonian University. The participant in row 2 is from the University of Glasgow, but so is participant 3 (which means he is not listed in the distinct tibble). The next unique value would be detected in row 4, then in row 7, then in row 18, 20, 22, 23, 38, and 39.
-```
-`r unhide()`
-
-
-
-
-## Additional information
-
-More information on stuff we covered today and beyond can be found here:
-
-* https://r4ds.had.co.nz "R 4 Data Science" by Garrett Grolemund and Hadley Wickham is the official guidebook for R
-* https://suzan.rbind.io/categories/tutorial/ She has some pretty cool tutorials on data wrangling
-
-
-
-## Bonus: mutate rownames from the mtcars
+## Bonus materials: mutate rownames from the mtcars
 
 Remember, in lecture 2 when we were talking about the mtcars dataset and how the car types were not in listed as a separate column but rather rownames? Let's just read in the data and have another quick look to jug our memories...
 
@@ -714,7 +408,7 @@ df_mtcars <- mtcars %>%
   mutate(Car_type = rownames(mtcars))
 ```
 
-In this example, we have taken the dataset `mtcars`, then added a new column to it with `mutate()` in which we wanted the new column header to be named `Car_type`. The column `Car_type` should then hold all the values that were previously listed as the rownames in the original `mtcars` data.
+In this example, we have taken the dataset `mtcars`, then added a new column called `Car_type` with `mutate()`. The column `Car_type` should then hold all the values that were previously listed as the rownames in the original `mtcars` data.
 
 ```{r}
 head(df_mtcars)
@@ -735,6 +429,17 @@ df_mtcars <- mtcars %>%
 head(df_mtcars)
 ```
 `r unhide()`
+
+
+
+
+
+## Additional information
+
+More information on stuff we covered today and beyond can be found here:
+
+* https://r4ds.had.co.nz "R 4 Data Science" by Garrett Grolemund and Hadley Wickham is the official guidebook for R
+* https://suzan.rbind.io/categories/tutorial/ She has some pretty cool tutorials on data wrangling
 
 
 

@@ -295,7 +295,7 @@ glimpse(fake_data)
 `r unhide()`
 
 
-## distinct
+## distinct()
 
 The `distinct()` function is used to remove duplicate rows in your dataframe. If we are using `distinct()` without specifying any arguments, R checks the whole row and excludes any row that is exactly repeated.
 

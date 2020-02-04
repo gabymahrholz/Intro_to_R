@@ -1,0 +1,370 @@
+---
+title: "Introduction to R"
+author: "GUID"
+date: "18/01/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Data Transformation - Lecture 3
+
+
+## Data Wrangling
+
+Wickham 6 verbs:
+
+| dplyr function | description  |
+|:----------|:---------------------------|
+| select() | Include or exclude certain variables (columns)  |
+| arrange() | Reorder observations (rows) |
+| filter() | Include or exclude certain observations (rows) |
+|	mutate() | Create new variables (columns) and preserve existing ones |
+|	group_by() | Organise observations (rows) by variables (columns) |
+|	summarise() | Compute summary statistics for selected variables (columns) |
+
+
+## Pre-Steps
+
+Before we begin, we need to do some house-keeping. We have downloaded the folder we will be working with today, unzipped it, and made sure there were 2 files in it.
+
+We have set the working directory.
+
+Let's load in all the packages we will need for today. Doing this step right in the beginning, will save us hassle later on.
+
+```{r}
+library(tidyverse)
+```
+
+### Read in the data
+
+Now, you need to read the file `Student_Mental_Health.csv` containing your data into your `Global Environment` using the function `read_csv()`. Remember to store your data in an appropriately named object (e.g. `student_MH`).  
+
+```{r}
+student_MH <- read_csv("Student_Mental_Health.csv")
+```
+
+
+
+### View the data
+
+Click on `student_MH` in your `Global Environment` to open your data in a new tab on the `Source` pane or call the object in your `Console` (by typing the name of the object `student_MH`) to check that the data was correctly imported into R.
+
+```{r}
+student_MH
+```
+
+
+### Check data types
+
+Remember from last week, we can also use `glimpse()` to view the columns and their datatypes.
+
+```{r}
+glimpse(student_MH)
+```
+
+`head()` would be helpful in displaying only the first 6 rows of the dataset, but remember not to get "tricked" by the number of observations shown in the output.
+
+```{r}
+head(student_MH)
+```
+
+
+#### Question Time
+
+Fill in the answers in the empty fields/ dropdown boxes on the webpage. You are correct if they turn green. Or you can add answers below.
+
+How many rows (or observations) does `student_MH` have? 
+How many columns (or variables) does `student_MH` have? 
+
+
+
+## select()
+
+Selects columns.
+
+For example, if you wanted to keep all variables except from `ID`, you could type:
+
+```{r}
+select(student_MH, inter_dom, Region, Gender, Academic, Age, Stay_Cate, Japanese_cate, English_cate, ToDep, ToSC, APD, AHome, APH, Afear, ACS, AGuilt, AMiscell, ToAS)
+```
+
+Alternative 1: colon operator
+
+```{r}
+select(student_MH, inter_dom:ToAS)
+```
+
+Alternative 2: negative selection
+
+```{r}
+select(student_MH, -ID)
+```
+
+"de-selecting" more than one variable (neighbour columns).
+
+```{r}
+select(student_MH, -APD:-AMiscell)
+```
+
+"de-selecting" more than one variable (non-neighbour columns).
+
+```{r}
+select(student_MH, -ID, -Academic, -ToAS)
+```
+
+"de-selecting" more than one variable (non-neighbour columns) - alternative solution.
+```{r}
+select(student_MH, -c(ID, Academic, ToAS))
+```
+
+
+Remember, if you don't save this data to an object (e.g. the original dataframe `student_MH` or under a new name), it won't be saved. We have not saved any of the previous tasks to the `Global Environment`, so there should still be only one object, e.g. the tibble named `student_MH`.
+
+
+### Question Time
+
+Create a tibble called `short_MH` that keeps all variables/columns from the data `student_MH` except from `Region`, `Stay_Cate`, `Japanese_cate` and `English_cate`. Your new object `short_MH` should appear in your `Global Environment`.
+
+```{r}
+short_MH <- NULL
+
+```
+
+
+
+## arrange()
+
+used for sorting observations (rows) in ascending (default) or descending order. 
+
+Sorting by `Gender`:
+
+```{r}
+short_MH <- arrange(short_MH, Gender)
+short_MH
+```
+
+
+
+```{r}
+short_MH <- arrange(short_MH, desc(Gender))
+short_MH
+```
+
+
+You can also sort by more than one column. For example, you could sort by `Gender` and `ToAS` (total acculturative stress score) in ascending order: 
+
+```{r}
+short_MH <- arrange(short_MH, Gender, ToAS)
+glimpse(short_MH)
+```
+
+Or descending order:
+
+```{r}
+short_MH <- arrange(short_MH, desc(Gender), desc(ToAS))
+glimpse(short_MH)
+```
+
+
+### Question Time
+
+Hmmm, I wish we hadn't overwritten our original data `short_MH` repeatedly. Arrange the rows back to the way they were (i.e. sort by `ID`). 
+
+```{r}
+short_MH <- NULL
+
+```
+
+
+
+## filter()
+
+Used to include or exclude certain observations (rows)
+
+### Single criterion
+
+keep observations with  total acculturative stress scores of more than 72: 
+
+```{r}
+short_MH72 <- filter(short_MH, ToAS > 72)
+glimpse(short_MH72)
+```
+
+Questions:
+
+1. Notice how we saved the new data under a different object name (`short_MH72`). When using `filter()`, you should never replace/ overwrite your original data unless you know exactly what you are doing. What could be the consequences?
+
+2. By the way, what do symbols such `>` and `>=` remind you of??? (hint: something we covered last week?)
+
+
+Type your answers here:
+
+
+
+
+Using `filter()` to keep data only from international students.
+
+```{r}
+short_MH_inter <- filter(short_MH, inter_dom == "Inter")
+```
+
+
+Using `filter()` to exclude everyone who is a domestic student.
+
+```{r}
+short_MH_inter2 <- filter(short_MH, inter_dom != "Dom")
+```
+
+You can view `short_MH_inter` and `short_MH_inter2` in a tab, use `glimpse()`, or call the variable in the `Console` to check that  are actually identical. (here it works because we only have two labels in the `inter_dom` column)
+
+```{r}
+glimpse(short_MH_inter)
+glimpse(short_MH_inter2)
+```
+
+
+
+### Multiple criteria
+
+Filter with `AND` means all criteria listed have to be fulfilled.
+Filter with `OR` means either criterion must be fulfilled.
+
+
+
+For example, to filter rows containing only international students who have a total acculturative stress score of more than 72, you would code:
+
+```{r}
+short_MH72_inter <- filter(short_MH, inter_dom == "Inter", ToAS > 72)
+glimpse(short_MH72_inter)
+```
+
+Using the `&` gets the same result 
+
+```{r}
+short_MH72_inter2 <- filter(short_MH, inter_dom == "Inter" & ToAS > 72)
+glimpse(short_MH72_inter2)
+```
+
+
+
+If we wanted to filter the data `short_MH` for either international students **OR** students with total acculturative stress scores of more than 72, we could use the logical operator `|` (OR).
+
+```{r}
+short_MH72_inter_or <- filter(short_MH, inter_dom == "Inter" | ToAS > 72)
+glimpse(short_MH72_inter_or)
+```
+
+
+As you will have noticed, `short_MH72_inter_or` has now observations for participants that are either international students, or students with a ToAS of larger than 72. Undoubtedly, some will fall into both categories, however, participants that fit neither criterion are excluded.
+
+
+
+### Question Time
+
+Fill in the answers in the empty fields/ dropdown boxes on the webpage. You are correct if they turn green. Or you can add answers below.
+
+* How many rows (or observations) does the object `short_MH72` contain?
+* How many participants in this study were international students?
+* How many observations would the code `filter(short_MH, inter_dom == "inter")` return?
+* How many participants in this study were international students with a ToAS of more than 72?
+* How many participants in this study were either international students OR had a ToAS of more than 72?
+
+
+Using the match operator `%in%` to filter through many different values from the same column.
+
+Say we wanted to make a tibble called `short_MH_age` that takes the data `short_MH` and only keeps information from students when their `Age` is either 17, 20, 25, or 30. 
+
+```{r}
+short_MH_age <- filter(short_MH, Age %in% c(17, 20, 25, 30))
+```
+
+
+**Your turn**
+
+Make a tibble called `short_MH_ToDep` that list every participant from `short_MH` with a `ToDep` score of 0, 5, 8, 15, 17, and 25.
+
+```{r}
+short_MH_ToDep <- NULL
+```
+
+
+
+
+## mutate()
+
+The `mutate()` function creates new variables (columns) onto the existing object. 
+
+For example, add a new column `Age_double` onto `short_MH` that shows us the age of our participants if they are twice as old as they are now. Save this as a new object `short_MH_ext` to the `Global Environment`.
+
+```{r}
+short_MH_ext <- mutate(short_MH, Age_double = Age*2)
+glimpse(short_MH_ext)
+```
+
+
+Importantly, new variables will overwrite existing variables if column headings are identical. So if we wanted to halve the values in column `Age_double` and store them in a column `Age_double`, the original `Age_double` would be overwritten.
+
+```{r}
+short_MH_ext <- mutate(short_MH_ext, Age_double = Age_double/2)
+glimpse(short_MH_ext)
+```
+
+So now, `short_MH_ext` did not gain a column (it still contains 16 variables), and `Age_double` has now the same values as column `Age`. 
+
+
+
+The main take-away message here is to always check your data after manipulation if the outcome is really what you would expected. If you don't inspect and accidentally overwrite columns, you would not notice any difference.
+
+
+Drop column `Age_double`:
+
+```{r}
+short_MH_ext <- mutate(short_MH_ext, Age_double = NULL)
+glimpse(short_MH_ext)
+```
+
+You can add more than one column within the same `mutate()` statement.
+
+Add two columns to `short_MH_ext`.
+
+* Column 1 is called `max_PHQ` and contains the maximum score of 27 that can be achieved in the Patient Health Questionnaire
+* Column 2 is called `Dep_Severe` and is of datatype `logical`. It contains a comparison of the value in `ToDep` with the cut off score of 20. Values 20 and above should read `TRUE`, all other values `FALSE`.
+
+```{r}
+short_MH_ext <- mutate(short_MH_ext, max_PHQ = 27,
+                       Dep_Severe = ToDep >= 20)
+glimpse(short_MH_ext)
+```
+
+
+There are 8 students in this data set who would categorise as severely depressed.
+
+
+**Your turn**
+
+* Add a new column to `short_MH_ext` that is called `Total_Score` that adds together the seven subscales for each observation (row). *Hint: APD + AHome + ... + AMiscell would do the trick. If we have done it correctly, `Total_Score` should have the same values as `ToAS`.
+* Add a second new column that is called `correct` that evaluates whether `Total_Score` and `ToAS` are identical columns.
+
+
+```{r}
+short_MH_ext <- NULL
+glimpse(short_MH_ext)
+```
+
+
+
+**Follow-up Question**
+
+Although the last examples are useful to illustrate how `mutate()` works, you do not need two identical columns. Using one of today's dplyr functions, remove the columns `Total_Score` and `Correct` from the dataset `short_MH_ext`. Save this as a new object `short_MH_ext2` to your `Global Environment`.
+
+
+```{r}
+short_MH_ext2 <- NULL
+glimpse(short_MH_ext2)
+```
+
+

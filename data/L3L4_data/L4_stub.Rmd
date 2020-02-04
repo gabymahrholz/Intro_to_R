@@ -1,0 +1,375 @@
+---
+title: "Introduction to R"
+author: "GUID"
+date: "18/01/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Data Transformation - Lecture 4
+
+
+##	Pre-Steps
+
+1. Set your working directory to the `L3L4_data` folder we were working with last week and that contains the data files `Student_Mental_Health.csv` and `Anx_Emp.csv`.
+2. Open the `L4_stub` file.
+3. Load `tidyverse` into the library.
+4. Read the data from `Student_Mental_Health.csv` into your `Global Environment` as `student_MH`.
+5. Deselect  the columns `Region`, `Stay_Cate`, `Japanese_cate`, and `English_cate`. Store this data as an object `short_MH`.
+6. Read the data from `Anx_Emp.csv` into your `Global Environment` as `extra_MH`. This data will be needed for the two-table verbs later on. `Anx_Emp.csv` contains fake data relating to 267 students in the previous data file (`short_MH`). The column `GAD7` refers to students' scores on the Generalized Anxiety Disorder 7-item (GAD-7) questionnaire and the column `Employment` outlines the students' employment status i.e. part-time, full-time or unemployed.
+
+
+```{r, message=FALSE}
+library(tidyverse)
+student_MH <- read_csv("Student_Mental_Health.csv")
+short_MH <- select(student_MH, -Region, -Stay_Cate, -Japanese_cate, -English_cate)
+extra_MH <- read_csv("Anx_Emp.csv")
+```
+
+
+
+## group_by() and summarise()
+
+Compute summary statistics with the `summarise()` function. You want to work out the mean total score of depression and accompanying standard deviation for the entire sample:
+
+```{r}
+short_MH_ToDep <- summarise(short_MH, mean = mean(ToDep), sd = sd(ToDep))
+short_MH_ToDep
+```
+ 
+
+`group_by()` splits data up into subsets. Here we are grouping by gender
+
+```{r}
+short_MH_gen <- group_by(short_MH, Gender)
+
+```
+
+If you view the object `short_MH_gen`, it will not look any different to the original dataset (`short_MH`). However, be aware that the underlying structure has changed. In fact, you could type `glimpse(short_MH_gen)` to double check this. 
+
+```{r}
+glimpse(short_MH_gen)
+```
+
+
+You can now feed this grouped dataset (`short_MH_gen`) into the previous code line to obtain summary statistics by `Gender`:
+
+```{r}
+short_MH_ToDep_gen <- summarise(short_MH_gen, mean = mean(ToDep), sd = sd(ToDep))
+short_MH_ToDep_gen
+```
+ 
+
+### Question Time
+
+Fill in the answers in the empty fields/ dropdown boxes on the webpage. You are correct if they turn green. Or you can add answers below.
+
+* What gender has the highest mean total score of depression? 
+
+
+
+You might also want to calculate and display the number of males and females in the dataset. This can be achieved by adding the summary function `n()` to your previous code line:
+
+```{r}
+short_MH_ToDep_gen <- summarise(short_MH_gen, n = n(), mean = mean(ToDep), sd = sd(ToDep))
+short_MH_ToDep_gen
+```
+
+### Question Time
+
+Fill in the answers in the empty fields/ dropdown boxes on the webpage. You are correct if they turn green. Or you can add answers below.
+
+* How many males are in the dataset?  
+* How many females are in the dataset?
+
+
+
+Add multiple grouping variables. For example grouping by `Gender` and `Academic` level calculates the mean total score of depression (`ToDep`) for male and female graduates and undergraduates (4 groups). 
+
+```{r}
+short_MH_group <- group_by(short_MH, Gender, Academic)
+short_MH_ToDep_group <- summarise(short_MH_group, mean = mean(ToDep))
+short_MH_ToDep_group
+```
+ 
+
+### Question Time
+
+Fill in the answers in the empty fields/ dropdown boxes on the webpage. You are correct if they turn green. Or you can add answers below.
+
+* Which group appears to be most resilient to depression?
+
+
+
+Remove missing values by adding the argument `na.rm = TRUE` to calculation functions like `mean()`, `median()` or `sd()`. For example, the previous code line would read:
+
+```{r}
+short_MH_ToDep_group <- summarise(short_MH_group, mean = mean(ToDep, na.rm = TRUE))
+```
+
+
+
+If you need to return the data to a non-grouped form, use the `ungroup()` function.
+
+```{r}
+glimpse(short_MH_gen)
+short_MH_gen <- ungroup(short_MH_gen)
+glimpse(short_MH_gen)
+```
+
+
+
+## The pipe operator (%>%)
+
+Chain functions together in pipes.
+
+For example, in order to `select()`, `arrange()`, `group_by()` and `summarise()` the data, you used the following code lines:
+
+```{r}
+short_MH <- select(student_MH, -Region, -Stay_Cate, -Japanese_cate, -English_cate)
+short_MH_arr <- arrange(short_MH, desc(Gender), desc(ToAS))
+short_MH_group <- group_by(short_MH_arr, Gender, Academic)
+short_MH_ToDep_group <- summarise(short_MH_group, mean = mean(ToDep))
+short_MH_ToDep_group
+```
+
+However, utilisation of the pipe operator (`%>%`) can simplify this process and create only one object (`short_MH_ToDep_group2`) as shown:
+
+```{r}
+short_MH_ToDep_group2 <- student_MH %>% 
+  select(-Region, -Stay_Cate, -Japanese_cate, -English_cate) %>%
+  arrange(desc(Gender), desc(ToAS)) %>%
+  group_by(Gender, Academic) %>%
+  summarise(mean = mean(ToDep))
+short_MH_ToDep_group2
+```
+
+
+**Your turn**
+
+Amend the previous pipeline `short_MH_ToDep_group2` so that
+
+1. `Gender` and `ToAS` are arranged in ascending order.
+2. Only those observations with total social connectedness scores (`ToSC`) of more than 24 are kept
+3. The standard deviation of values in the `ToDep` column is calculated for males and females at each academic level 
+
+Save this as an object called `short_MH_ToDep_group3` to your `Global Environment`.
+
+
+```{r}
+short_MH_ToDep_group3 <- NULL
+```
+
+
+
+## Two-Table Verbs
+
+###	Mutating Join Verbs
+
+Mutating join verbs: `inner_join()`, `left_join()`, `right_join()`, and `full_join()`.
+
+Mutating joins have the following basic syntax:
+
+Easy example:
+
+```{r}
+data1 <- tibble(ID = 1:2,
+                X1 = c("a1", "a2"))
+data2 <- tibble(ID = 2:3,
+                X2 = c("b1", "b2"))
+```
+
+
+
+
+#### inner_join()
+
+`inner_join()` returns all rows from two dataframes for which the values in column specified in the by statement overlap. Merging `data1` and `data2` by `inner_join()` would return only 1 row of observations because the only `ID` value matching in `data1` and `data2` is the row with `ID = 2`.
+
+```{r}
+inner_join(data1, data2, by="ID")
+```
+
+
+**Question**
+
+Fill in the answers in the empty fields/ dropdown boxes on the webpage. You are correct if they turn green. Or you can add answers below.
+
+* How many rows (or observations) does `short_MH` have? 
+* How many columns (or variables) does `short_MH` have?
+* How many rows (or observations) does `extra_MH` have?
+* How many columns (or variables) does `extra_MH` have? 
+
+
+**Your turn**
+
+Now join `short_MH` and `extra_MH` using `inner_join()`. Save your results in the `Global Environment` as an object called `MH_inner`. How many rows and columns do you think `MH_inner` should have?
+
+
+```{r}
+MH_inner <- NULL
+glimpse(MH_inner)
+```
+
+
+
+#### left_join()
+
+`left_join()` retains the complete first (left) dataframe and adds values from the second (right) dataframe that have matching values in the column specified in the by statement. Rows in the left table with no match in the right table will have missing values (`NA`) in the new columns. 
+
+
+```{r}
+left_join(data1, data2, by="ID")
+```
+
+
+**Your turn**
+
+Combine `short_MH` and `extra_MH` using `left_join()`. Save your results in the `Global Environment` as an object called `MH_left`. How many rows and columns are you expecting for `MH_left`?
+
+
+```{r}
+MH_left <- NULL
+glimpse(MH_left)
+```
+
+
+
+
+#### right_join()
+
+`right_join()` retains the complete second (right) dataframe and adds values from the first (left) dataframe that have matching values in the column specified in the by statement. Rows in the right table with no match in the left table will have missing values (`NA`) in the new columns.
+
+
+```{r}
+right_join(data1, data2, by = "ID")
+```
+
+
+**Your turn**
+
+combine `short_MH` and `extra_MH` using `right_join()`. Save your results in the `Global Environment` as an object called `MH_right`. How many rows and columns should `MH_right` have?
+
+```{r}
+MH_right <- NULL
+glimpse(MH_right)
+```
+
+
+
+
+#### full_join()
+
+`full_join()` returns all rows and all columns from both dataframes. `NA` values fill unmatched rows. 
+
+```{r}
+full_join(data1, data2)
+```
+
+
+
+**Your turn**
+
+combine `short_MH` and `extra_MH` using `full_join()`. Save your results in the `Global Environment` as an object called `MH_full`. How many rows and columns are you expecting for `MH_right`?
+
+
+```{r}
+MH_full <- NULL
+glimpse(MH_full)
+```
+
+
+
+**Hypothetical scenario**
+
+In the case of the student mental health data, we have seen that `inner_join()` and `right_join()` as well as `left(join)` and `full_join()` produce the same results. Can you think of a way how you would have to modify `short_MH` and/or `extra_MH` to produce different results for `inner_join()`/ `right_join()` or `left(join)`/`full_join()`?
+
+
+Type your answer here:
+
+
+
+
+###	Binding Join Verbs
+
+`bind_rows()` and `bind_cols()` for combining tables by row and column respectively. When row binding, missing columns are replaced by `NA` values. When column binding, if the tables do not match by appropriate dimensions, an error will result. 
+
+
+```{r}
+bind_rows(data1, data2)
+```
+
+`bind_rows()` takes `data2` and puts it underneath `data1`. Notice that the binding does not "care" that we have now two rows representing ID = 2. Since `X1` and `X2` do not exist in `data1` and `data2` respectively, `NA` are added.
+
+
+```{r}
+bind_cols(data1, data2)
+```
+
+`bind_cols()` takes `data2` and puts it right next to `data1`. Since the column name `ID` has already been taken, column 3 gets called `ID1`.
+
+
+In the case when the dimension between the dataframes do not match, `bind_rows()` would still work, whereas `bind_cols()` would produce an error message.
+
+```{r}
+data3 <- tibble(ID = 3:5,
+                X3 = c("c1", "c2", "c3"))
+
+bind_rows(data1, data2, data3)
+```
+
+```{r, eval=FALSE}
+bind_cols(data1, data3) # error
+```
+
+
+**Your turn**
+
+You have finally found the missing data corresponding to `ID` number 3. This subject has a GAD7 score of 4 and is employed part-time. Store this information in a tibble called `new_participant` and bind it to the `extra_MH` dataset using `bind_rows()`. Store this merged output to your `Global Environment` as a new object called `extra_MH_final`. 
+
+```{r}
+new_participant <- NULL
+extra_MH_final <- NULL
+```
+
+
+
+**Follow-up Question**
+
+The dataset `extra_MH_final` now contains the same number of observations (rows) as `short_MH`. Use `bind_cols()` to merge these two datasets together in a tibble called `MH_final`. How many rows and columns are you expecting for `MH_final` to have and why?
+
+```{r}
+MH_final <- NULL
+```
+
+Fill in the answers in the empty fields/ dropdown boxes on the webpage. You are correct if they turn green. Or you can add answers below.
+
+* Rows (or observations):
+* Columns (or variables):
+
+
+
+
+**Follow-up Question 2**
+
+Using your knowledge of one-table verbs, exclude the column `ID1`, overwriting the object `MH_final`.
+
+```{r}
+MH_final <- NULL
+```
+
+
+
+**Follow-up Question 3**
+
+Rather than using `bind_cols()` and `select()`, can you think of a different way how you could have merged `short_MH` and `extra_MH_final`?
+
+
+```{r}
+MH_final <- NULL
+```
+

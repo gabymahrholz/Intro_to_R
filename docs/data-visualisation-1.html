@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Data Visualisation 1 | Introduction to R</title>
   <meta name="description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Data Visualisation 1 | Introduction to R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Rebecca J. Lai, Kate Haining, Greta Todorova, and Wilhelmiina Toivo" />
 
 
-<meta name="date" content="2020-02-02" />
+<meta name="date" content="2020-02-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,41 +53,68 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -224,11 +251,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.3.1" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#gather"><i class="fa fa-check"></i><b>5.3.1</b> gather()</a></li>
 <li class="chapter" data-level="5.3.2" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#spread"><i class="fa fa-check"></i><b>5.3.2</b> spread()</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#unite-and-separate"><i class="fa fa-check"></i><b>5.4</b> unite() and separate()</a><ul>
+<li class="chapter" data-level="5.4" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#separate-and-unite"><i class="fa fa-check"></i><b>5.4</b> separate() and unite()</a><ul>
 <li class="chapter" data-level="5.4.1" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#separate"><i class="fa fa-check"></i><b>5.4.1</b> separate()</a></li>
-<li class="chapter" data-level="5.4.2" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#unite"><i class="fa fa-check"></i><b>5.4.2</b> unite()</a></li>
-<li class="chapter" data-level="5.4.3" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#separating-by-position"><i class="fa fa-check"></i><b>5.4.3</b> separating by position</a></li>
-<li class="chapter" data-level="5.4.4" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#separating-more-than-2-columns"><i class="fa fa-check"></i><b>5.4.4</b> separating more than 2 columns</a></li>
+<li class="chapter" data-level="5.4.2" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#additional-arguments-for-separate"><i class="fa fa-check"></i><b>5.4.2</b> additional arguments for separate()</a></li>
+<li class="chapter" data-level="5.4.3" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#unite"><i class="fa fa-check"></i><b>5.4.3</b> unite()</a></li>
+<li class="chapter" data-level="5.4.4" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#additional-arguments-for-unite"><i class="fa fa-check"></i><b>5.4.4</b> additional arguments for unite()</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#bonus-materials-mutate-rownames-from-the-mtcars"><i class="fa fa-check"></i><b>5.5</b> Bonus materials: mutate rownames from the mtcars</a></li>
 <li class="chapter" data-level="5.6" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#additional-information-1"><i class="fa fa-check"></i><b>5.6</b> Additional information</a></li>
@@ -243,18 +270,50 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.3.2" data-path="data-transformation-4-finetuned-data-manipulation.html"><a href="data-transformation-4-finetuned-data-manipulation.html#ifelse"><i class="fa fa-check"></i><b>6.3.2</b> ifelse()</a></li>
 <li class="chapter" data-level="6.3.3" data-path="data-transformation-4-finetuned-data-manipulation.html"><a href="data-transformation-4-finetuned-data-manipulation.html#case_when"><i class="fa fa-check"></i><b>6.3.3</b> case_when()</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="data-transformation-4-finetuned-data-manipulation.html"><a href="data-transformation-4-finetuned-data-manipulation.html#distinct"><i class="fa fa-check"></i><b>6.4</b> distinct</a></li>
+<li class="chapter" data-level="6.4" data-path="data-transformation-4-finetuned-data-manipulation.html"><a href="data-transformation-4-finetuned-data-manipulation.html#distinct"><i class="fa fa-check"></i><b>6.4</b> distinct()</a></li>
 <li class="chapter" data-level="6.5" data-path="data-transformation-4-finetuned-data-manipulation.html"><a href="data-transformation-4-finetuned-data-manipulation.html#summative-homework-2"><i class="fa fa-check"></i><b>6.5</b> Summative Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html"><i class="fa fa-check"></i><b>7</b> Data Visualisation 1</a><ul>
 <li class="chapter" data-level="" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#intended-learning-outcomes-7"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="7.1" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#pre-steps-5"><i class="fa fa-check"></i><b>7.1</b> Pre-steps</a></li>
+<li class="chapter" data-level="7.2" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#introduction-to-the-data"><i class="fa fa-check"></i><b>7.2</b> Introduction to the data</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#some-warm-up-tasks"><i class="fa fa-check"></i><b>7.2.1</b> Some warm-up tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#the-package-ggplot2"><i class="fa fa-check"></i><b>7.3</b> The package GGPLOT2</a></li>
+<li class="chapter" data-level="7.4" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#layering"><i class="fa fa-check"></i><b>7.4</b> Layering</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#layer-1"><i class="fa fa-check"></i><b>7.4.1</b> Layer 1</a></li>
+<li class="chapter" data-level="7.4.2" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#layer-2-and-onwards"><i class="fa fa-check"></i><b>7.4.2</b> Layer 2 and onwards</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#how-do-we-choose-the-type-of-plot"><i class="fa fa-check"></i><b>7.5</b> How do we choose the type of plot?</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#types-of-data"><i class="fa fa-check"></i><b>7.5.1</b> Types of data</a></li>
+<li class="chapter" data-level="7.5.2" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#number-of-variables"><i class="fa fa-check"></i><b>7.5.2</b> Number of variables</a></li>
+<li class="chapter" data-level="7.5.3" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#groupings"><i class="fa fa-check"></i><b>7.5.3</b> Groupings</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#now-lets-have-a-look-at-different-plots-with-more-complexity"><i class="fa fa-check"></i><b>7.6</b> Now lets have a look at different plots with more complexity</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#other-plots"><i class="fa fa-check"></i><b>7.6.1</b> Other plots</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#formative-homework-2"><i class="fa fa-check"></i><b>7.7</b> Formative Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html"><i class="fa fa-check"></i><b>8</b> Data Visualisation 2</a><ul>
-<li class="chapter" data-level="" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#intended-learning-outcomes-8"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="8.1" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#pre-steps-6"><i class="fa fa-check"></i><b>8.1</b> Pre-steps</a></li>
+<li class="chapter" data-level="8.2" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#re-introduction-to-the-data"><i class="fa fa-check"></i><b>8.2</b> Re-introduction to the data</a></li>
+<li class="chapter" data-level="8.3" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#create-multiple-plots-in-one"><i class="fa fa-check"></i><b>8.3</b> Create multiple plots in one</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#select-the-data-before-hand-and-create-different-plots."><i class="fa fa-check"></i><b>8.3.1</b> Select the data before hand and create different plots.</a></li>
+<li class="chapter" data-level="8.3.2" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#facets"><i class="fa fa-check"></i><b>8.3.2</b> Facets</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#global-and-local-aesthetics"><i class="fa fa-check"></i><b>8.4</b> Global and Local aesthetics</a></li>
+<li class="chapter" data-level="8.5" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#themes-making-your-plots-pretty-looking-the-way-you-want-them-to"><i class="fa fa-check"></i><b>8.5</b> Themes: Making your plots pretty: looking the way you want them to</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#ready-made-themes"><i class="fa fa-check"></i><b>8.5.1</b> Ready made themes</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#adding-axes-titles-and-headings"><i class="fa fa-check"></i><b>8.6</b> Adding Axes titles and headings</a></li>
+<li class="chapter" data-level="8.7" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#changing-colours"><i class="fa fa-check"></i><b>8.7</b> Changing colours</a></li>
+<li class="chapter" data-level="8.8" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#legends"><i class="fa fa-check"></i><b>8.8</b> Legends</a></li>
+<li class="chapter" data-level="8.9" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#changing-axes-ticks"><i class="fa fa-check"></i><b>8.9</b> Changing axes ticks</a></li>
+<li class="chapter" data-level="8.10" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#summative-homework-3"><i class="fa fa-check"></i><b>8.10</b> Summative Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>9</b> Errors</a><ul>
 <li class="chapter" data-level="9.1" data-path="errors.html"><a href="errors.html#under-construction"><i class="fa fa-check"></i><b>9.1</b> Under Construction</a></li>
-<li class="chapter" data-level="" data-path="errors.html"><a href="errors.html#intended-learning-outcomes-9"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="errors.html"><a href="errors.html#intended-learning-outcomes-8"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
 <li class="chapter" data-level="9.2" data-path="errors.html"><a href="errors.html#errors-how-to-avoid-some-and-live-through-the-rest"><i class="fa fa-check"></i><b>9.2</b> Errors: How to avoid some and live through the rest</a><ul>
 <li class="chapter" data-level="9.2.1" data-path="errors.html"><a href="errors.html#debugging"><i class="fa fa-check"></i><b>9.2.1</b> Debugging</a></li>
 <li class="chapter" data-level="9.2.2" data-path="errors.html"><a href="errors.html#debugging-questions"><i class="fa fa-check"></i><b>9.2.2</b> Debugging Questions</a></li>
@@ -301,6 +360,409 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 7</span> Data Visualisation 1</h1>
 <div id="intended-learning-outcomes-7" class="section level2 unnumbered">
 <h2>Intended Learning Outcomes</h2>
+</div>
+<div id="pre-steps-5" class="section level2">
+<h2><span class="header-section-number">7.1</span> Pre-steps</h2>
+<p>We will be working with <code>ggplot2</code> today which is part of <code>tidyverse</code>. Load <code>tidyverse</code> into the library and read the data we will be working with today into our <code>Global Environment</code>.</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="data-visualisation-1.html#cb315-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb315-2"><a href="data-visualisation-1.html#cb315-2"></a>migration_scot &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;free_movement_uk.csv&quot;</span>) <span class="co">#downloaded from the Scottish Government Stats website</span></span></code></pre></div>
+</div>
+<div id="introduction-to-the-data" class="section level2">
+<h2><span class="header-section-number">7.2</span> Introduction to the data</h2>
+<p>This data is provided freely from the Scottish Government, and it introduces the flow of people at different ages and sex into and out of the Scotland. We have several variables to work with:</p>
+<table>
+<colgroup>
+<col width="23%" />
+<col width="76%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Variable</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">FeatureCode</td>
+<td align="left">codes given by the Scottish Governemnt</td>
+</tr>
+<tr class="even">
+<td align="left">DateCode</td>
+<td align="left">Year of data collected</td>
+</tr>
+<tr class="odd">
+<td align="left">Measurement</td>
+<td align="left">what type of measurment it is (Here we have only counts)</td>
+</tr>
+<tr class="even">
+<td align="left">Units</td>
+<td align="left">units(here we have only people)</td>
+</tr>
+<tr class="odd">
+<td align="left">Value</td>
+<td align="left">The actual counts</td>
+</tr>
+<tr class="even">
+<td align="left">Age</td>
+<td align="left">Age of the counted people (Separate age, and total)</td>
+</tr>
+<tr class="odd">
+<td align="left">Sex</td>
+<td align="left">sex of the counted people (separate sex and total)</td>
+</tr>
+<tr class="even">
+<td align="left">Migration Source</td>
+<td align="left">Where or from the people are comming from ( Overseas, RUK)</td>
+</tr>
+<tr class="odd">
+<td align="left">Migration Type</td>
+<td align="left">whether people are comming or leavin ( In or OUT and Net)</td>
+</tr>
+</tbody>
+</table>
+<p>The data is a bit messy so lets clean it a little bit before we can work with it.</p>
+<div id="some-warm-up-tasks" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> Some warm-up tasks</h3>
+<ol style="list-style-type: decimal">
+<li>Keep only the total number of people by age (‘All’)</li>
+<li>Keep only the necessary variable - DateCode, Value, Sex, Age, ‘Migration Source’ &amp; ‘Migration Type’</li>
+<li>Filter the data , and keep only 2016</li>
+<li>Keep only the information about the number of people that have came in and left scotland ( we do not want to know about the net value)</li>
+</ol>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="data-visualisation-1.html#cb316-1"></a>traffic_scot &lt;-<span class="st"> </span>migration_scot <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb316-2"><a href="data-visualisation-1.html#cb316-2"></a><span class="st">  </span><span class="kw">filter</span>(Age <span class="op">==</span><span class="st"> &#39;All&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb316-3"><a href="data-visualisation-1.html#cb316-3"></a><span class="st">  </span><span class="kw">select</span>(DateCode, Value, Sex, <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb316-4"><a href="data-visualisation-1.html#cb316-4"></a><span class="st">  </span><span class="kw">filter</span>(DateCode <span class="op">==</span><span class="st"> &#39;2016&#39;</span>, <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span><span class="op">!=</span><span class="st">&#39;Net&#39;</span>, Sex <span class="op">!=</span><span class="st"> &#39;All&#39;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="the-package-ggplot2" class="section level2">
+<h2><span class="header-section-number">7.3</span> The package GGPLOT2</h2>
+<p>We use the <code>ggplot2</code> package due to its ease of layering and variety.</p>
+<p>The <code>ggplot2</code> package allows us to create beautiful and various plots, that can show us much more than just the simplicities of the base R plots.</p>
+</div>
+<div id="layering" class="section level2">
+<h2><span class="header-section-number">7.4</span> Layering</h2>
+<p>Plots created with ggplot work by using layers.</p>
+<p>In the simplest form we have two layers.</p>
+<ul>
+<li>Layer1: what data are we going to use</li>
+<li>Layer2: how do we want it to look</li>
+</ul>
+<p>Layer 1: ggplot(data, aes(x,y, …)) +
+Layer 2: geom_something(…)</p>
+<div id="layer-1" class="section level3">
+<h3><span class="header-section-number">7.4.1</span> Layer 1</h3>
+<p>Plots always start with <em>ggplot()</em>. This initialises the plot. It is used to tell <em>R</em> what data we are going to use. We can also set the aesthetics of the plot which will be used to specify the axes we are going to use, any groupings, varialbes we are going to colour based on, etc. Unless specifically overwritten in the following layers, all the data information you give in this firts layer will be inheritted in everythiing else you do.</p>
+<p>For now we are going to stick with one global specifcation - i.e. we are going to specify all our data in this first layer.</p>
+<p>If you run just the first command, R is going to show you the first layer - i.e. a blank screen</p>
+<p>Let’s try it quickly. Uncomment the comand bellow and see what appears in the ‘Plots’ section.</p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="data-visualisation-1.html#cb317-1"></a><span class="kw">ggplot</span>()</span></code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-243-1.png" width="672" /></p>
+<p>Now let’s add some information. Lats give the data and the axes. From our data w ewant to put sex on the x axis and value on the y axis.</p>
+<p>What’s the difference?</p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="data-visualisation-1.html#cb318-1"></a><span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value))</span></code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-244-1.png" width="672" /></p>
+<div class="question">
+<p>
+What is the dfference between the above two lines? What does the first layer give you?
+</p>
+</div>
+</div>
+<div id="layer-2-and-onwards" class="section level3">
+<h3><span class="header-section-number">7.4.2</span> Layer 2 and onwards</h3>
+<p>From the second layer onwards, we are specifying how we want our plot to look like. From the type of graph, to the titles and colours. For now we are going to stick with the basics.</p>
+</div>
+</div>
+<div id="how-do-we-choose-the-type-of-plot" class="section level2">
+<h2><span class="header-section-number">7.5</span> How do we choose the type of plot?</h2>
+<p>There are numerous plots we can choose, and we are going to try several today.</p>
+<p>Before plotting we need to know what types of data we want to portray.</p>
+<p>Depending on whether our data is discrete or continuous will change what type of plot is most appropriate.</p>
+<div id="types-of-data" class="section level3">
+<h3><span class="header-section-number">7.5.1</span> Types of data</h3>
+<div id="continuous" class="section level4">
+<h4><span class="header-section-number">7.5.1.1</span> Continuous</h4>
+<p>Continuous data is that which there are not bounds and the distance between any two consecutivepoints is equivalent to the distance between any other two consecutive points - i.e. the difference between 1 and 2 is the same as the difference between 3 and 4, 5 and 6 etc.</p>
+</div>
+<div id="discrete" class="section level4">
+<h4><span class="header-section-number">7.5.1.2</span> Discrete</h4>
+<p>Discrete data simply put, groups data. The data in each group or category vary solely on one characteristick and usually those characteristics can not be ranked - i.e. sex, race, nationality etc.</p>
+</div>
+</div>
+<div id="number-of-variables" class="section level3">
+<h3><span class="header-section-number">7.5.2</span> Number of variables</h3>
+<p>Next we need to know the relationship between how many variables do we want to show. in a 2D plot we can usually graphically show between 1 and 3 variables with ease. After that more than 2 dimensions are necessary.</p>
+<div class="info">
+<p>
+<strong>Tip</strong>: Most of the time, if you cannot represent a graph in 2D then you are probably trying to show too much, and you should reconsider splitting the graphs
+</p>
+</div>
+<div class="task">
+<p>
+See the five plots below. What type of data are used? How many variables do we need?
+</p>
+</div>
+<p><img src="density.png" height="250" /></p>
+<p><input class='solveme nospaces' size='40' data-answer='["2 variables, 1 continuous, 1 categorical"]'/> <br></p>
+<p><img src="box.png" height="250" />
+<input class='solveme nospaces' size='36' data-answer='["3 vriables, 2 discrete, 1 continuous"]'/> <br></p>
+<p><img src="bar.png" height="250" />
+<input class='solveme nospaces' size='37' data-answer='["2 variables, 1 discrete, 1 continuous"]'/> <br></p>
+<p><img src="line.png" height="250" />
+<input class='solveme nospaces' size='25' data-answer='["2 variables, 2 continuous"]'/> <br></p>
+<p><img src="line_sex.png" height="250" />
+<input class='solveme nospaces' size='37' data-answer='["3 variables, 2 continuous, 1 discrete"]'/> <br></p>
+<p>Let’s get back to our free movement data.</p>
+<div class="question">
+<p>
+What types of data are we trying to plot? Continuous or Discrete, or both?
+</p>
+</div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="solved">
+<p>
+We are using both Continous (Value or count of people) and Discrete (sex).
+</p>
+</div>
+</div>
+<div class="question">
+<p>
+How many variabes have we chosen so far?
+</p>
+</div>
+<p><input class='solveme nospaces' size='1' data-answer='["2"]'/> <br></p>
+<p>Create a column or a bar plot to show the data use <code>geom_col()</code>. How does the data look like?</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="data-visualisation-1.html#cb319-1"></a><span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>()</span></code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-251-1.png" width="672" /></p>
+<div class="question">
+<p>
+Do we need to use another variable to clarify the situation? If yes, which one?
+</p>
+</div>
+<p><input class='solveme nospaces' size='14' data-answer='["Migration Type"]'/> <br></p>
+<div class="solution">
+<button>
+Explanation
+</button>
+<div class="solved">
+<p>
+If you worked in the emigration office, you would want to know how many people left and how many people came in. Knowing how many people moved about is not particularly informative. in what ways can we differentiate the males and females who came in and who went out of Scotland?
+</p>
+</div>
+</div>
+</div>
+<div id="groupings" class="section level3">
+<h3><span class="header-section-number">7.5.3</span> Groupings</h3>
+<p>When we want to group data to provide a better representation, we can usually use colour, shapes etc. Most of the time this will depend on the type of graph we want to use. If we are using line graphs, then colours are usually best. If we are using dot plots then we can use the shape as well as the colours to differentiate the different groups.</p>
+<p>Let’s first look at colour.</p>
+<p>Depending on the type of graph colouring in can be done either with colour or with fill. For our column plots we use fill.</p>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="data-visualisation-1.html#cb320-1"></a><span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value, <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>)</span></code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-254-1.png" width="672" />
+Let’s decompose the code above:</p>
+<p>We have our data and our two variables. They are the same as before. This time we are saying that we want the data to be separated even further by Migration Type.</p>
+<div class="task">
+<p>
+Simple task:
+</p>
+<ol style="list-style-type: decimal">
+<li>
+Remove <code>position =‘dodge’</code> from the geom and describe what happens.
+</li>
+</ol>
+</div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="data-visualisation-1.html#cb321-1"></a><span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value, <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>()</span></code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-256-1.png" width="672" /></p>
+<p>Answer: <input class='solveme nospaces' size='3' data-answer='["xyz"]'/></p>
+<p>We have also added <code>position = 'dodge'</code> in the <code>geom_col()</code>. This makes sure that any groupings we create and create new columns are then presented separately.</p>
+<div class="task">
+<p>
+Simple task: 1. Use <code>position = ‘fill’</code> and describe what happens.
+</p>
+</div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="data-visualisation-1.html#cb322-1"></a><span class="co">#create your plot here</span></span>
+<span id="cb322-2"><a href="data-visualisation-1.html#cb322-2"></a><span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value, <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;fill&#39;</span>)</span></code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-258-1.png" width="672" /></p>
+<p>Answer: <input class='solveme nospaces' size='3' data-answer='["xyz"]'/></p>
+<p>The argument <code>position</code> is an argument specific for the <code>geom_col</code>. It is just one example of an additional argument that helps us to represent the ata better. These types of arguments allow for better control over the plots that we create.</p>
+<p>Geoms in <code>ggplot2</code> have a large slecetion of arguments to allow you to adjust your visualisations. This is what makes it one of the most preffered visualisation packages by the R community.</p>
+<div id="more-groupings" class="section level4">
+<h4><span class="header-section-number">7.5.3.1</span> More groupings</h4>
+<p>Now lets consider that we want to know whether the individuals are moving to/from Overseas or RUK as well as all the information we have so far. Should we create more groups? LEt’s try.</p>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="data-visualisation-1.html#cb323-1"></a><span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value, <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">shade =</span><span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>)</span></code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-259-1.png" width="672" /></p>
+<p>Here I have used the argument <code>colour</code> to give different borders to the migration sources. As you can see this makes it much more difficult to see. NExt week we will work on separating the plots.</p>
+<div class="question">
+<p>
+Would you think there is a better way to represent the data?
+</p>
+</div>
+<p><input class='solveme nospaces' size='3' data-answer='["xyz"]'/> <br></p>
+</div>
+</div>
+</div>
+<div id="now-lets-have-a-look-at-different-plots-with-more-complexity" class="section level2">
+<h2><span class="header-section-number">7.6</span> Now lets have a look at different plots with more complexity</h2>
+Imagine you want to see the difference in the number of people comming in and out of Scottland from both the RUK and Oveseas throughout the years.
+<div class="question">
+<p>
+What Variables would you use?
+</p>
+</div>
+<p><input class='solveme nospaces' size='3' data-answer='["xyz"]'/> <br></p>
+<div class="solution">
+<button>
+Solution
+</button>
+<p>DateCode, Migration Type and Migration Source, Value</p>
+</div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="data-visualisation-1.html#cb324-1"></a><span class="co">#first lests get the data we will need</span></span>
+<span id="cb324-2"><a href="data-visualisation-1.html#cb324-2"></a><span class="co"># We want our chosen variables, and the overall data for the rest </span></span>
+<span id="cb324-3"><a href="data-visualisation-1.html#cb324-3"></a></span>
+<span id="cb324-4"><a href="data-visualisation-1.html#cb324-4"></a>traffic_scot2&lt;-<span class="st"> </span>migration_scot <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb324-5"><a href="data-visualisation-1.html#cb324-5"></a><span class="st">  </span><span class="kw">filter</span>(Age <span class="op">==</span><span class="st"> &#39;All&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb324-6"><a href="data-visualisation-1.html#cb324-6"></a><span class="st">  </span><span class="kw">select</span>(DateCode, Value, Sex, <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb324-7"><a href="data-visualisation-1.html#cb324-7"></a><span class="st">  </span><span class="kw">filter</span>(<span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span><span class="op">!=</span><span class="st">&#39;Net&#39;</span>, Sex <span class="op">==</span><span class="st"> &#39;All&#39;</span>)</span></code></pre></div>
+<div class="question">
+<p>
+What type of data are these variables?
+</p>
+</div>
+<p>DateCode: <select class='solveme' data-answer='["continuous"]'> <option></option> <option>continuous</option> <option>categorical</option></select>
+Value: <select class='solveme' data-answer='["continuous"]'> <option></option> <option>continuous</option> <option>categorical</option></select>
+Sex: <select class='solveme' data-answer='["categorical"]'> <option></option> <option>continuous</option> <option>categorical</option></select>
+Migration Source:<select class='solveme' data-answer='["categorical"]'> <option></option> <option>continuous</option> <option>categorical</option></select>
+Migration Type:<select class='solveme' data-answer='["categorical"]'> <option></option> <option>continuous</option> <option>categorical</option></select></p>
+<p>So we need to use a different type of plot - one that can portray continuous data well enough.</p>
+<p>Good way to portay data like this are point graphs and line graphs.</p>
+<p>We have several varialbes again. It will help if we separate them with different aesthetics.</p>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="data-visualisation-1.html#cb325-1"></a><span class="kw">ggplot</span>(traffic_scot2, <span class="kw">aes</span>(DateCode, Value, <span class="dt">shape =</span> <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>, <span class="dt">colour =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb325-2"><a href="data-visualisation-1.html#cb325-2"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-264-1.png" width="672" /></p>
+<p>This seems difficult to look at. Let’s make it easier by adding a line that conects the data. We can do this by addind another <em>Layer</em>.</p>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="data-visualisation-1.html#cb326-1"></a><span class="kw">ggplot</span>(traffic_scot2, <span class="kw">aes</span>(DateCode, Value, <span class="dt">shape =</span> <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>, <span class="dt">colour =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb326-2"><a href="data-visualisation-1.html#cb326-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb326-3"><a href="data-visualisation-1.html#cb326-3"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-265-1.png" width="672" /></p>
+<div class="question">
+<p>
+Question: How do we know that the line graph is going to connect the Migration Type and not the Migration Source?
+</p>
+</div>
+<p><input class='solveme nospaces' size='3' data-answer='["xyz"]'/> <br></p>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="solved">
+<p>
+If we look up <code>geom_point</code> and <code>geom_line</code> we can see the type of aesthetics that they take. Look them up in the Help or by using <code>?geom_point()</code>. There you will find a section caled aesthetics, which willtell you which aesthetics each of them can have. Because lines cannot use an aesthetic of shape, it will only inherit the colour aesthetic from ggplot.
+</p>
+</div>
+</div>
+<div class="info">
+<p>
+Dot plots are excellent representation of the data as they show us where every data point is. In this way no data can hide behind a bar chart.
+</p>
+</div>
+<div id="other-plots" class="section level3">
+<h3><span class="header-section-number">7.6.1</span> Other plots</h3>
+<p>Let’s make some more plots.</p>
+<p><em>Violin plots and Box plots</em>
+We need a continuous variable and a categorical variable for both of them.</p>
+<p>Lets get back to the original data and plot the distribution of all females entering and leaving Scotland from overseas.</p>
+<p>For this we need to tidy the data into what we need.</p>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="data-visualisation-1.html#cb327-1"></a>boxes &lt;-<span class="st"> </span>migration_scot <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb327-2"><a href="data-visualisation-1.html#cb327-2"></a><span class="st">  </span><span class="kw">filter</span>(Sex <span class="op">==</span><span class="st"> &#39;Female&#39;</span>, <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span> <span class="op">==</span><span class="st"> &#39;To-from Overseas&#39;</span>, Age <span class="op">==</span><span class="st"> &#39;All&#39;</span>, <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span> <span class="op">!=</span><span class="st"> &#39;Net&#39;</span>)</span>
+<span id="cb327-3"><a href="data-visualisation-1.html#cb327-3"></a></span>
+<span id="cb327-4"><a href="data-visualisation-1.html#cb327-4"></a><span class="co"># make box plots</span></span>
+<span id="cb327-5"><a href="data-visualisation-1.html#cb327-5"></a><span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-269-1.png" width="672" /></p>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="data-visualisation-1.html#cb328-1"></a><span class="co">#make violin plots</span></span>
+<span id="cb328-2"><a href="data-visualisation-1.html#cb328-2"></a></span>
+<span id="cb328-3"><a href="data-visualisation-1.html#cb328-3"></a><span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_violin</span>()</span></code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-269-2.png" width="672" /></p>
+<div class="info">
+<p>
+These plots show us the distribution of females entering and leaving Scotland. What we can tell that throughout the years, we havent have less than 12000 women coming to Scotland and no more than 16000 women leaving. These types of plots also tell us where the bulk of the data is. We can see from the violin plots that the most common number amount of females comming into Scotland throughout the years is between 22000 and 18000. Boxplots on the otherhand tell you where the middle 50% of the data is.
+</p>
+</div>
+<div class="task">
+<p>
+<strong>Your turn</strong>
+</p>
+<p>
+Using the data for this class follow the instructions.
+</p>
+<ol style="list-style-type: decimal">
+<li>
+Select two different years.
+</li>
+<li>
+Select two different age groups.
+</li>
+<li>
+Select the total for both sex ( i.e. ‘all’).
+</li>
+<li>
+Select migration In and Out of Scotland.
+</li>
+<li>
+Pick whether you are going to look at ‘To-from Resdt of UK’ or ’ To-from Overseas’.
+</li>
+<li>
+Plot the overall people, regardless of age and year, that have moved into and left Scotland.
+</li>
+<li>
+Plot the differences between the two years you have selected, regardless of age.
+</li>
+<li>
+Plot the differences between the two ages, regardless of year.
+</li>
+<li>
+Pick any variables and create a plot that tells a story.
+</li>
+</ol>
+</div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="data-visualisation-1.html#cb329-1"></a><span class="co">#Example answer </span></span>
+<span id="cb329-2"><a href="data-visualisation-1.html#cb329-2"></a></span>
+<span id="cb329-3"><a href="data-visualisation-1.html#cb329-3"></a>traffic_scot &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;free_movement_uk.csv&quot;</span>) <span class="co">#download from the Scottish Government Stats website</span></span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   FeatureCode = col_character(),
+##   DateCode = col_double(),
+##   Measurement = col_character(),
+##   Units = col_character(),
+##   Value = col_double(),
+##   Age = col_character(),
+##   Sex = col_character(),
+##   `Migration Source` = col_character(),
+##   `Migration Type` = col_character()
+## )</code></pre>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="data-visualisation-1.html#cb331-1"></a>formative &lt;-<span class="st"> </span>traffic_scot <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb331-2"><a href="data-visualisation-1.html#cb331-2"></a><span class="st">  </span><span class="kw">filter</span>(Age <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;21 years&#39;</span>, <span class="st">&#39;41 years&#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb331-3"><a href="data-visualisation-1.html#cb331-3"></a><span class="st">  </span><span class="kw">select</span>(DateCode, Value, Age, Sex, <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb331-4"><a href="data-visualisation-1.html#cb331-4"></a><span class="st">  </span><span class="kw">filter</span>(DateCode <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;2013&#39;</span>, <span class="st">&#39;2018&#39;</span>), </span>
+<span id="cb331-5"><a href="data-visualisation-1.html#cb331-5"></a>         <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span><span class="op">!=</span><span class="st">&#39;Net&#39;</span>, </span>
+<span id="cb331-6"><a href="data-visualisation-1.html#cb331-6"></a>         <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span><span class="op">==</span><span class="st">&#39;To-from Overseas&#39;</span>, </span>
+<span id="cb331-7"><a href="data-visualisation-1.html#cb331-7"></a>         Sex <span class="op">==</span><span class="st"> &#39;All&#39;</span>)</span>
+<span id="cb331-8"><a href="data-visualisation-1.html#cb331-8"></a></span>
+<span id="cb331-9"><a href="data-visualisation-1.html#cb331-9"></a></span>
+<span id="cb331-10"><a href="data-visualisation-1.html#cb331-10"></a>q6 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(formative, <span class="kw">aes</span>(<span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, Value)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>()</span>
+<span id="cb331-11"><a href="data-visualisation-1.html#cb331-11"></a>q6</span></code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-272-1.png" width="672" /></p>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="data-visualisation-1.html#cb332-1"></a>q7 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(formative, <span class="kw">aes</span>(<span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, Value, <span class="dt">fill =</span> <span class="kw">as.character</span>(DateCode))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>)</span>
+<span id="cb332-2"><a href="data-visualisation-1.html#cb332-2"></a>q7 </span></code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-272-2.png" width="672" /></p>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="data-visualisation-1.html#cb333-1"></a>q8 &lt;-<span class="kw">ggplot</span>(formative, <span class="kw">aes</span>(<span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, Value, <span class="dt">fill =</span> Age)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>)</span>
+<span id="cb333-2"><a href="data-visualisation-1.html#cb333-2"></a>q8</span></code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-272-3.png" width="672" /></p>
+</div>
+</div>
+<div id="formative-homework-2" class="section level2">
+<h2><span class="header-section-number">7.7</span> Formative Homework</h2>
 
 </div>
 </div>
@@ -408,7 +870,6 @@ window.onload = function() {
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -427,10 +888,6 @@ gitbook.start({
 "text": null
 },
 "history": {
-"link": null,
-"text": null
-},
-"view": {
 "link": null,
 "text": null
 },

@@ -1,0 +1,263 @@
+---
+title: "Lecture 8 Vizualisations"
+author: "Greta Todorova"
+date: "03/02/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Data Visualisation 2
+
+
+```{r warning=FALSE, echo=FALSE}
+library(tidyverse)
+```
+
+
+##Re-introduction to the data
+
+This data is provided freely from the Scottish Government, and it introduces the flow of people at different ages and sex into and out of the Scotland. We have several variables to work with:
+
+FeatureCode =  codes given by the Scottish Governemnt
+  DateCode = Year of data collected
+  Measurement = what type of measurment it is (Here we have only counts)
+  Units = units(here we have only people)
+  Value = The actual counts
+  Age = Age of the counted people (Separate age, and total)
+  Sex = sex of the counted people (separate sex and total)
+  `Migration Source` = Where or from the people are comming from ( Overseas, RUK)
+  `Migration Type` = whether people are comming or leavin ( In or OUT and Net)
+
+
+```{r}
+migration_scot <- read_csv("free_movement_uk.csv") #download from the Scottish Government Stats website
+
+
+traffic_scot <- migration_scot %>% filter( Age == 'All') %>% 
+  select(DateCode, Value, Sex, `Migration Source`, `Migration Type`) %>% 
+  filter(DateCode == '2016', `Migration Type`!='Net', Sex != 'All')
+```
+
+
+## Create multiple plots in one
+
+Sometimes we have way too many varables and they are all important. But you should always avoid having too busy plots. They get too confusing, and it is easier for people to misinterpret them.
+
+There are two ways to create mltiple plots.
+
+### Select the data before hand and create different plots.
+
+
+
+Simple Task: 
+  1. Select only data relevant for movement to and from the rest of the UK
+
+
+
+```{r}
+rest_of_uk <- NULL
+
+```
+
+
+ 2. Plot only this data
+
+
+```{r}
+
+ggplot(NULL) + NULL
+
+```
+ 
+
+
+ 3. Now plot only the data for the  movement to and from Overseas
+
+ 
+```{r}
+overseas <- NULL
+
+ggplot(NULL) + NULL
+
+```
+ 
+ This becomes very cumborsome when we have more than one variable. Imagine you have data for 10 different countries. Can you imagine doing these plots by hand. And even more, when you have to arrange them on a page to show how things differ. Instead we can use _facets_.
+ 
+### Facets
+
+Facets allow us to create separate plots without manually separating the data. Moreover we can specify how we want to put the plots in a grid: do we want them side by side or one on top of each other, etc. 
+ 
+We can use several facet functions. 
+ - `facet_grid(variable_to_split_by)` allows to structure rows and coumns of graphs based on a third variable
+ `facet_grid(.~variable)` creates columns - i.e. side by side panels
+ `facet_grid(variable~.)` creates rows - i.e. one on top of the other
+ `facet_grid(variable1~variable2)` creates rows based on variable1 and columns based on variable1  
+ `facet_wrap(variable)` creates a grid with rectangular slots for the plots based on your variables
+ 
+```{r}
+
+ggplot(traffic_scot, aes(x = Sex, y = Value, fill = `Migration Type`)) + 
+  geom_col(position = 'dodge') +
+  facet_grid(.~`Migration Source`)
+
+```
+
+
+## Global and Local aesthetics
+so far we have been working with Global definition of the aesthetics. This allows us to specify the axes and the groupings only once. 
+
+Sometimes, we want to use multiple data and put multiple plots on top of each other. For these occasions we can specify the aesthetics at a local level - i.e. in the geoms
+
+If you remember from last week, we specified both the colour and the shape in our `ggplot()` when we were making the line graph. The `geom_line()` inherited the colour but not the shape argument. If we howevver have two geoms that share the same characteristics but we do not want to have the same colours we can move them to each of the geom instead of specifying them in `ggplot()`
+
+Let's redo the violins and boxplots from last week and put them together. This time we will give them some colour. We will colour the violings and make the boxplots transparent.
+
+```{r}
+boxes <- migration_scot %>% 
+  filter(Sex == 'Female', `Migration Source` == 'To-from Overseas', Age == 'All', `Migration Type` != 'Net')
+
+
+
+#make violin plots
+
+ggplot(boxes, aes(x = `Migration Type`, y = Value)) + 
+  geom_violin(aes(fill = `Migration Type`)) + 
+  geom_boxplot(aes(alpha = 0.5))
+
+```
+
+because `alpha` (the transparency argument) is an argument for both box plots and violins, and so is `fill`, if we had put them in the `ggplot()` layer they would both be inheritted by the two geoms.
+
+#Themes: Making your plots pretty: looking the way you want them to
+
+The great thing about making your own plots in R is that you can make it look the way you want it to look. Even better, if you are writing a paper, graphs are easy to adjust to match journal's criteria. We are going to adjust the look of our graph.
+
+## Ready made themes
+
+ggplot comes withsevral ready made themes. Some of them are: 
+
+theme_bw(): a white background with major axes and border.
+theme_minimal(): a white background with major axes
+and  more. Just use the cheetsheet for visualisations with ggplot for some more example.
+
+```{r}
+ggplot(boxes, aes(x = `Migration Type`, y = Value)) + 
+  geom_violin(aes(fill = `Migration Type`)) + 
+  geom_boxplot(aes(alpha = 0.5))
+```
+
+
+## Adding Axes titles and headings
+
+Next off lets add some titles and better labels with `labs()`
+
+```{r}
+ggplot(boxes, aes(x = `Migration Type`, y = Value)) + 
+  geom_violin(aes(fill = `Migration Type`)) + 
+  geom_boxplot(aes(alpha = 0.5)) +
+  theme_?()+
+  labs(NULL)
+```
+
+Sometimes wee need the titles to be specific size. We can change all of that in an additional `theme()` layer. We specify the argument we want to change and what we need to change. In our case we want to change the size of the text of the x axis title to size of 12pt, and the graph title to 20pt. But let's pretend we do not want the y axis title, we can also specify this in the `theme()` layer. We do this by specifying `element_text()` and `element_blank()`. Simply, for that element of the plot, what do we want to change - text and to make it blank.
+
+```{r}
+ggplot(boxes, aes(x = `Migration Type`, y = Value)) + 
+  geom_violin(aes(fill = `Migration Type`)) + 
+  geom_boxplot(aes(alpha = 0.5)) +
+  theme_?()+
+  labs(NULL) +
+  theme(
+    axis.title.x = element_text(NULL),
+    title = element_text(NULL),
+    axis.title.y = element_blank()
+  )
+```
+
+
+
+## Changing colours
+
+
+We can rely on the colour schemes automatically, or we can manually specify colours. To change any of the colours we need to specify which scale we are changing. This is done by specifying the aesthetic i.e. `scale_fill_manual()`. instead of using names, you can use any hex colour you want.
+
+```{r}
+ggplot(boxes, aes(x = `Migration Type`, y = Value)) + 
+  geom_violin(aes(fill = `Migration Type`)) + 
+  geom_boxplot(aes(alpha = 0.5)) +
+  scale_fill_manual(NULL) +
+  theme_?()+
+  labs(NULL) +
+  theme(
+    axis.title.x = element_text(NULL),
+    title = element_text(NULL),
+    axis.title.y = element_blank()
+  )
+```
+
+## Legends
+
+Now let's change the legend labels and hide the legend associated with the box plots. Let's also move the legent to the bottom of the graph. We do this in the `theme()` layer as well. However because we have more than one legend, everything we do will be applied to both legends. This is a good idea for consistency. But when we want to hide one of the legends, we have to specify that in the geom itself using the argument `show.legend`.
+
+```{r}
+ggplot(boxes, aes(x = `Migration Type`, y = Value)) + 
+  geom_violin(aes(fill = `Migration Type`)) + 
+  geom_boxplot(aes(alpha = 0.5), show.legend = FALSE) +
+  scale_fill_manual(values = c('#127d69', '#cedc00'),
+                    labels = c('Comming to Scotland','Leaving Scotland')) +
+  theme_bw() +
+  labs(title = 'Female migration to and from\nOverseas into Scotland', x = 'Migration direction', y = 'Number of people') +
+  theme(
+    axis.title.x = element_text(size = 12),
+    title = element_text(size = 20),
+    axis.title.y = element_blank(),
+    legend.position = 'bottom',
+    legend.title = element_text(size = 10)
+  )
+```
+
+
+## Changing axes ticks
+
+Now however we also need to change what is stated on our x axis to match the legend. We use `scale_x_discrete()` to give new names in graph, so that we do not have to change our dataset. 
+
+```{r}
+ggplot(boxes, aes(x = `Migration Type`, y = Value)) + 
+  geom_violin(aes(fill = `Migration Type`)) + 
+  geom_boxplot(aes(alpha = 0.5), show.legend = FALSE) +
+  scale_fill_manual(values = c('#127d69', '#cedc00'),
+                    labels = c('Comming to Scotland','Leaving Scotland')) +
+  scale_x_discrete(labels = c('In' = 'Comming to Scotland', 'Out' = 'Leaving Scotland')) +
+  theme_bw() +
+  labs(title = 'Female migration to and from\nOverseas into Scotland', x = 'Migration direction', y = 'Number of people') +
+  theme(
+    axis.title.x = element_text(size = 12),
+    title = element_text(size = 20),
+    axis.title.y = element_blank(),
+    legend.position = 'bottom',
+    legend.title = element_text(size = 10)
+  )
+```
+
+Lets also say that we are plotting data which is continous but we want to show each of the values. For example we have years and we want to show every year. Ggplot will try and skip some of the years to make the graph look neater. There are several ways we can change that. We can either make the variable into a factor or a character so that ggplot will be forced to look at it as a discrete variable or we can change the ticks of the x axis by giving them limits and skipping length.
+
+```{r}
+ggplot(boxes, aes(x = `Migration Type`, y = Value)) + 
+  geom_violin(aes(fill = `Migration Type`)) + 
+  geom_boxplot(aes(alpha = 0.5), show.legend = FALSE) +
+  scale_fill_manual(values = c('#127d69', '#cedc00'),
+                    labels = c('Comming to Scotland','Leaving Scotland')) +
+  scale_x_discrete(labels = c('In' = 'Comming to Scotland', 'Out' = 'Leaving Scotland')) +
+  theme_bw() +
+  labs(title = 'Female migration to and from\nOverseas into Scotland', x = 'Migration direction', y = 'Number of people') +
+  theme(
+    axis.title.x = element_text(size = 12),
+    title = element_text(size = 20),
+    axis.title.y = element_blank(),
+    legend.position = 'bottom',
+    legend.title = element_text(size = 10)
+  )
+```

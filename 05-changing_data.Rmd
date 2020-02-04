@@ -7,28 +7,43 @@ The whole purpose of the next two lecture is to tidy up dataframe and expose you
 1. How to rearrange data from long format into to wide format and vice versa
 2. How to combine and separate columns
 
+This lesson is led by [Gaby Mahrholz](http://www.psy.gla.ac.uk/staff/index.php?id=GM005).
 
 ## Pre-steps
 
-Before we can start to focus on some other functions that might come in handy for data manipulation, we need to make sure to load `tidyverse` into the library and read the data we will be working with today into our `Global Environment`. 
+All the functions for tidying data are within `tidyverse` so we need to make sure to load it into the library. Today's lecture will make use of built-in dataframes which means we do not have to load any data into our `Global Environment` for the minute.
 
 ```{r, message=FALSE}
 library(tidyverse)
-data_SMH <- read_csv("Student_Mental_Health.csv")
-
 ```
+
 
 ## Tidy data
 
-Write a wee bit here why tidy data is necessary
+*"Happy families are all alike; every unhappy family is unhappy in its own way."* -- Leo Tolstoy
+
+*"Tidy datasets are all alike, but every messy dataset is messy in its own way."* -- Hadley Wickham
+
+
+In this chapter, you will learn a consistent way to organise your data in R. Hadley Wickham and Garrett Grolemund call this **tidy data**. In most cases, data does not come in a tidy format. Researchers spend most of their time getting the data into the shape it needs to be for a particular analysis. The tools we introduce you to this week and next should form the basics for data wrangling. The idea is that tidy datasets are easier to work with in the long run.
+
+There are three interrelated rules which make a dataset tidy:
+
+1. Each variable must have its own column.
+2. Each observation must have its own row.
+3. Each value must have its own cell.
+
+
+If you want to know more about tidy data, Hadley Wickham's paper can be found on https://vita.had.co.nz/papers/tidy-data.pdf or check out chapter 12 in the book R for Data Science (https://r4ds.had.co.nz/tidy-data.html).
+
+
 
 ## gather() and spread()
 
-`gather()` and `spread()` are part of `tidyr` (also part of the tidyverse package) and help you to rearrange the shape of your data. To get your data into long format, you would use `gather()`; if you wanted to get your data from long to wide format, you would need `spread()`. Here is a nice gif animation by Garrick Aden-Buie () that shows you how `gather()` and `spread()` work.
+`gather()` and `spread()` are part of `tidyr` (also part of the tidyverse package) and help you to rearrange the shape of your data. To get your data into long format, you would use `gather()`; if you wanted to get your data from long to wide format, you would need `spread()`. Here is a nice gif animation by Garrick Aden-Buie (https://www.garrickadenbuie.com/project/tidyexplain/#spread-and-gather) that shows you how `gather()` and `spread()` work.
 
 <center> <img src="images/tidyr-spread-gather.gif" > </center>
 
-The catch is that you need to know what kind of statistics you want to run, and how your data needs to be structured in order for you to achieve that. We cannot tell you that in this mere 10 week introduction course, however, we can give you the tools to prepare you as best as we can for what's out there.
 
 
 ### gather()
@@ -39,15 +54,25 @@ We can start this lecture by looking at a practical example in the build-in data
 table1
 ```
 
-`table1` has a very tidy structure. You can see the data contains values associated with four variables (`country`, `year`, `cases`, and `population`). `table4a` however, looks a touch not right.
+`table1` has a very tidy structure as it follows the three priciples above - each variable is its own column, each observation is its own row, and each value is its own cell. 
+
+<center> <img src="images/tidy_1.png" > </center>
+
+You can see the data contains values associated with four variables (`country`, `year`, `cases`, and `population`). `table4a` however, looks a touch not right.
 
 ```{r}
 table4a
 ```
 
-Somehow the values for the columns `year` and `cases` are missing and instead we find two separate columns for `1999` and `2000` that have all `cases` values listed. This is a problem as `1999` and `2000` are actual values and not variables.
+<center> <img src="images/tidy_4a_1.png" > </center>
 
-Currently the data is in what is called a `wide format`. The function `gather()` comes in handy when we want to get the data back into the shape of a `long format` like in `table1`. `gather()` is structured like:
+Somehow the values for the columns `year` and `cases` are missing and instead we find two separate columns for `1999` and `2000` that have all `cases` values listed. This is a problem as `1999` and `2000` are actual values and not variables. What we want to do, is gather `1999` and `2000` in one column `year` and respective values into a second column called `cases`.
+
+
+<center> <img src="images/tidy_4a.png" > </center>
+
+
+Currently the data is in what is called a `wide format`. The function `gather()` comes in handy when we want to get the data into the shape of a `long format` like in `table1`. `gather()` is structured like:
 
 <br>
 
@@ -73,58 +98,36 @@ gather(table4a, key = year, value = cases, `1999`:`2000`)
 Here we have only 2 columns to reshape `1999` and `2000`. We could have written ``gather(table4a, year, cases, \`1999\`, \`2000\`)``.
 ```
 
-
 ```{block, type="task"}
 **Your turn**
 
-Use the `gather()` function with the student mental health data `data_SMH` to reshape it from wide format into long format.
-
-Step 1: Only work with a selection of columns from `data_SMH` to see better what is going on. Create a new object `SMH_short` that shows only `ID`, and the 7 subscales of `ToAS` (`APD:AMiscell`).
-
-Step 2: use `gather()` according to the formula above so that the 7 subscales `APD:AMiscell` of `SMH_short` are gathered in one column named `Subscales` and their values in another column `Scores`. Store results in the `Global Environment` as `SMH_long`.
-
-Step 3: `arrange()` the data `SMH_long` by the column `ID`. Store the results as `SMH_long`. You can either overwrite `SMH_long` from Step 2 or use a pipe (`%>%`).
-
-When you are done, `SMH_long` should look like this.
-
-```
-
-```{r, echo=FALSE}
-data_SMH %>% 
-  select(ID, APD:AMiscell) %>% 
-  gather(Subscales, Scores, APD:AMiscell) %>% 
-  arrange(ID)
+Look at `table4b`. There are two separate columns `1999` and `2000` with population values for Afghanistan, Brazil, and China. Use the `gather()` function on `table4b` to reshape it from wide format into long format.
 ```
 
 `r hide("Solution")`
 ```{r}
-SMH_short <- select(data_SMH, ID, APD:AMiscell)
-SMH_long <- SMH_short %>% 
-  gather(Subscales, Scores, APD:AMiscell) %>% 
-  arrange(ID)
+gather(table4b, key = year, value = population, `1999`:`2000`)
 ```
-
-```{block, type="solved"}
-A more detailed explanation:
-
-* We needed a dataframe that we want to modify -> `SMH_short` 
-* We needed to come up with the name of a new column in which all the column headers of the 7 subscales will be stored -> `Subscales`
-* We needed to come up with the name of a new column in which all the cell values of the 7 subscales will be stored -> `Scores`
-* And finally, we needed to tell R which columns in the dataframe `SMH_short` we wanted to turn into long format (i.e. the columns of the 7 subscales) -> `APD:AMiscell`
-
-`SMH_short` has 268 observations and 8 variables, whereas the rearranged `SMH_long` has 1876 observations and 3 columns - `ID` (which was there before) and the two new columns `Subscales` and `Scores` we created within `gather()`. After sorting it by `ID` we can see that each of the 268 participants have now 7 rows of observation - one for each subscale.
-```
-
 `r unhide()`
+
+
 
 ### spread()
 
 
-Now onto the reverse. `spread()` will spread the data from `long` into `wide format`. When you have observations that are scattered across multiple rows, you can use `spread()` to split those rows up into separate variables. For example, `table2` has the variabes `cases` and `population` stored in one column `type`, however, they are separate variables rather than values of `type`. So best to get `cases` and `population` back into their own columns.
+Now onto the reverse. `spread()` will spread the data from `long` into `wide format`. When you have observations that are scattered across multiple rows, you can use `spread()` to split those rows up into separate variables. Let's take a look at `table2`.
 
 ```{r}
 table2
 ```
+
+
+<center> <img src="images/tidy_2_1.png" > </center>
+
+`table2` has the variabes `cases` and `population` stored in one column `type` and their respective values in `count`. However, `cases` and `population` are separate variables rather than values of `type`. So best to get them spread out into their own columns as shown in the image below.
+
+
+<center> <img src="images/tidy_2.png" > </center>
 
 
 Take a look how `spread()` achieves that.
@@ -148,95 +151,87 @@ spread(table2, key = type, value = count)
 
 Voila, `cases` and `population` are in their own columns.
 
+Let me modify `table1` a tiny bit.
+
+```{r}
+table1_mod <- table1 %>% 
+  mutate(percent = cases/ population * 100) %>% 
+  gather(variable, values, cases:percent)
+```
+
+
+```{r, echo=FALSE}
+kable(table1_mod)
+```
+
+
 ```{block, type="task"}
 **Your turn**
 
-Let's pretend that the 7 subscales in `SMH_long` are actually 7 variables. Use `spread()` to achieve that. Store your results in the `Global Environment` as `SMH_wide`. When you are done, your results should look like this.
-```
+In the modified table above `table1_mod`, we added a `percent` column to see how much percentage of the population had Tuberculosis in 1999 and 2000 in each of the countries Afghanistan, Brazil, and China. But somehow, all numerical information has ended up in 1 column (values).
 
-```{r, echo=FALSE}
-spread(SMH_long, Subscales, Scores)
+Your task is to spread the data back out, so that cases, population, and percentage values are in their own columns, titled as `cases`, `population`, and `percent` respectively. Store the new object in the `Global Environment` as `table1_mod_corrected`.
+
 ```
 
 
 `r hide("Solution")`
 ```{r}
-SMH_wide <- spread(SMH_long, Subscales, Scores)
+table1_mod_corrected <- spread(table1_mod, key = variable, value = values)
+
+table1_mod_corrected
 ```
 
 
-```{block, type="solved"}
-A more detailed explanation
-
-* We needed a dataframe that we want to modify -> `SMH_long` 
-* We needed to decide which of the columns in `SMH_long` would become the new column headers -> `Subscales`
-* We needed to decide which of the columns in `SMH_long` had all the data in it that would become the new cell values -> `Scores`
-
-```
-
-Now the 7 subscales are back in separate columns each.
 
 `r unhide()`
 
 
-```{block, type="info"}
-Most of the time, data isn't collected in a way that is useful for us (or R). It can happen that the data for the whole experiment is stored in a 2-column format. For example, some online platforms would give you a column in which all your dependent variables are stored, and another one that recorded the responses of the participants to that variable. That wouldn't be a very useful format to analyse anything really.
-```
 
 
+## separate() and unite()
 
-## unite() and separate()
-
-Let's start this part of by looking at a practical example in the build-in dataset `table1` to `table5`. They show the number of Tuberculosis cases documented by the World Health Organization in Afghanistan, Brazil, and China between 1999 and 2000. The data is part of the `tidyverse` package, so as long as we have `tidyverse` loaded into the library, there should not be an issue in accessing this dataset.
-
-```{r}
-table1
-```
-
-`table1` has a very tidy structure. You can see the data contains values associated with four variables (`country`, `year`, `cases`, and `population`). `table5` however, looks a touch not right.
-
-
-```{r}
-table5
-```
-
-```{block, type="task"}
-
-Take 2 min with the person next to you to discuss what is wrong with this tibble.
-```
-
-`r hide("Solution")`
-
-```{block, type="solved"}
-1. column `rate` holds the values for `cases` and `population` in one cell, separated by a `/`
-2. the values in column `year` are split into `century` and `year`
-```
-`r unhide()`
-
-This is where the functions `separate()` and `unite()` come in handy. We would use `separate()` to split the column `rate` back into two columns, and `unite()` (the inverse of separate) to combine `century` and `year` into a single column.
+`separate()` turns a single character column into multiple columns, whereas `unite()` combines the values of multiple columns into one column.
 
 ### separate()
 
-The function `separate()` is structured like this
+Take a look at `table3`. 
 
-```{r, eval=FALSE}
-separate(data, column_to_sep, into = c(new_column1, new_column2), sep = " ")
+
+```{r}
+table3
 ```
+
+In `table3`, two out of three principles of tidy data are violated. There are multiple values stored in column `rate` (rule 3) but these multiple values also belong to two different variables - `cases` and `population` respectively (rule 1).
+
+<center> <img src="images/tidy_3_1.png" > </center>
+
+
+Here, we would use `separate()` to split the column `rate` into two columns `cases` and `population`. 
+
+<center> <img src="images/tidy_3.png" > </center>
+
+The function `separate()` is structured like this:
+
+<br>
+
+<center> <img src="images/separate.png" > </center>
+
+<br>
 
 We would need
 
-* the data in which the column to separate is located,
-* the actual colum we want to separate,
-* the into argument telling into how many columns we want to separate the old column and what we want to call these new columns, and
-* a separator argument.
+* the data in which the column to separate is located -> `table3`,
+* the actual colum we want to separate -> `rate`,
+* the into argument asking into how many columns we want to separate the old column and what we want to call these new columns -> `c("cases", "population")`, and
+* a separator argument -> `"/"`.
 
-Let's tackle the first problem, splitting `rate` back into two columns `cases` and `population`/
 
 ```{r}
-separate(table5, rate, into = c("cases", "population"), sep = "/")
+separate(table3, rate, into = c("cases", "population"), sep = "/")
 ```
 
-We have told R to separate the column `rate` (which is located in `table5`) into two new columns `cases` and `population`. The separator argument was set to a forward slash (`/`), and R will put all cell information before the `/` into `cases`, and everything after the `/` into `population`. `/` will not appear in either column `cases` or `population`.
+R has put all cell information before the `/` into a column we named `cases`, and everything after the `/` into the column we decided to call `population`. `/` will not appear in either column `cases` or `population`. The data is now in a tidy format.
 
 ```{block, type="info"}
 By the way, the separator argument `sep = ` can be any non-alphanumeric character, for example:
@@ -252,61 +247,135 @@ By the way, the separator argument `sep = ` can be any non-alphanumeric characte
 But watch out! When the separator is a `full stop`, you would need to add a double backward slash in front of it (``sep = "\\\\."``).
 ```
 
+### additional arguments for separate()
+
+#### Retaining the original column
 
 If for some reason, you wanted to keep the original column, you can set an additional argument `remove` to `FALSE`.
 
 ```{r}
-separate(table5, rate, into = c("cases", "population"), sep = "/", remove = FALSE)
+separate(table3, rate, into = c("cases", "population"), sep = "/", remove = FALSE)
 ```
+
+#### Dropping parts of the original column
 
 What if we were just interested retaining part of the data in the cell, for example keeping the column `cases` but not `population`. The solution would be to work with an `NA` argument. Defining the new columns as `cases` and `NA` will keep everything before the separator in the column `cases`, and drops everything after the separator.
 
 ```{r}
-separate(table5, rate, into = c("cases", NA), sep = "/")
+separate(table3, rate, into = c("cases", NA), sep = "/")
 ```
 
 ```{block, type="task"}
 **Your turn**
 
-Separate the column `rate` in `table5` to keep only the values after the separator in a column called `population`. Drop the values in front of the separator.
+Separate the column `rate` in `table3` to keep only the values after the separator in a column called `population`. Drop the values in front of the separator. Retain the column `rate` as well.
 ```
 
 
 `r hide("Solution")`
 ```{r}
-separate(table5, rate, into = c(NA, "population"), sep = "/")
+separate(table3, rate, into = c(NA, "population"), sep = "/", remove = FALSE)
 ```
 `r unhide()`
 
 
+#### Separating by position
+
+It is also possible to separate by position. `sep = 2` would split the column between the second and third character/ number etc.
+
+Let's try that the separation by position. We will keep 4 letters from each `country` name rather than the whole word, and drop the rest.
+
+```{r}
+separate(table3, country, into = c("country", NA), sep = 4)
+```
+
+
+#### Separating into more than 2 columns
+
+Special case. Let's modify `table3` a little bit by adding a new column with a value of 200 and unite that column with column `rate`.
+
+```{r}
+table3_mod <- table3 %>% 
+  mutate(new = 200) %>% 
+  unite(rate, rate, new, sep = "/")
+```
+
+Now column `rate` has 3 sets of numbers, separated by two `/`. If we define we want to split the data into 2 columns, the first 2 sets of numbers are kept, and the third one is dropped with a warning.
+
+```{r}
+separate(table3_mod, rate, into = c("cases", "population"), sep = "/")
+```
+
+If we are separating the columns and wanted to keep all sets of numbers, one in each column, we would use an into argument that includes 3 new columns.
+
+```{r}
+separate(table3_mod, rate, into = c("cases", "population", "200"), sep = "/")
+```
+
+```{block, type="funfact"}
+Technically, you would not need a separator argument in the case above, as `separate()` splits the data whenever it detects a non-alphanumeric character (i.e. a character that isn't a number or letter). Saying that, the separator argument is needed when your column contains non-alphanumeric characters as part of your cell values.
+```
+
+If the values in `population` and `200` (separated by a `/`) were some sort of `ID_code`, **AND** we wanted to split the data into 2 columns, after the first `/` only, we would have to include an `extra` argument, and set it to `"merge"`.
+
+```{r}
+separate(table3_mod, rate, into = c("cases", "ID_code"), sep = "/", extra = "merge")
+```
+
+
 ### unite()
 
-To tidy up `table5`, there is only one thing left to do, namely combining the columns `century` and `year` into a new column called `year`. Here, we can use the function `unite()` which is structured like
+Take a look at `table5`. 
 
-```{r, eval=FALSE}
-unite(data, new_column_name, col_to_unite1, col_to_unite2, sep = "_")
+```{r}
+table5
 ```
+
+
+Here the values in column `year` are split into `century` and `year` which is not very useful. Best to merge the 2 columns together as shown in the image below.
+
+<center> <img src="images/tidy_5.png" > </center>
+
+
+`unite()` (the inverse of separate) can help to combine the values of `century` and `year` into a single column. It is used less frequently than it's counterpart, but is still a useful function to know.
+
+The function `unite()` is structured like this:
+
+<br>
+
+<center> <img src="images/unite.png" > </center>
+
+<br>
+
+
 
 We would need the data `table5`, a new column we want to create `year`, the two columns we would like to combine (`century` and `year`), and define the separator as "nothing" since the default is sep = "_".
 
 ```{r}
 unite(table5, year, century, year, sep = "")
 ```
-Yay! Notice how `rate` is back to one column with both values in each row since we haven't stored any output in the `Global Environment`.
+Yay! The data of `table5` is in a tidier format now (let's ignore the column `rate` for the minute as we already know how to fix that)
 
 
-Right, let's combine the two steps of tidying the `table5` data by creating a pipe `%>%` and store the new object `tb_cases` in the `Global Environment`.
 
+
+```{block, type="task"}
+**Your turn**
+
+Let's combine the two steps of tidying `table5` in a single pipe `%>%` - separate the `rate` column into `cases` and `population`, and unite the columns `year` and `century` into a new column `year`. Store the new object as `tb_cases` in the `Global Environment`.
+```
+
+`r hide("Solution")`
 ```{r}
 tb_cases <- table5 %>% 
   separate(rate, into = c("cases", "population"), sep = "/") %>% 
   unite(year, century, year, sep = "")
 tb_cases
 ```
-
+`r unhide()`
 
 ```{block, type="question"}
-There is still a tiny bit off in the tibble above. Can you spot what it is? * Hint: Think about if you wanted to sum up all the TB cases occured in the 3 countries within the years 1999, and 2000.
+There is still a tiny bit off in the `tb_cases`. Can you spot what it is? * Hint: Think about if you wanted to sum up all the TB cases occured in the 3 countries within the years 1999, and 2000.
 ```
 
 `r hide("Solution")`
@@ -324,7 +393,9 @@ tb_cases_converted
 
 `r unhide()`
 
-The slightly quicker and perhaps more elegant solution would be to add another argument `convert` to `separate()` and set it to `TRUE`. Unfortunately, `unite()` does not have a `convert` statement available. So for that part, we would have to use another step in the pipe converting the `year` column from `character` to `integer`, just as we did in lecture 2.
+### additional arguments for unite()
+
+The slightly quicker and perhaps more elegant solution would be to add another argument `convert` to `separate()` and set it to `TRUE`. Unfortunately, `unite()` does not have a `convert` statement available. So for that part, we would have to use another step in the pipe converting the `year` column from `character` to `integer`, just as we did in lecture 2. And we can do that in a single pipe.
 
 
 ```{r}
@@ -335,57 +406,32 @@ tb_cases <- table5 %>%
 tb_cases
 ```
 
-
-
-
-### separating by position
-
-It is also possible to separate by position. `sep = 2` would split the column between the second and third character/ number etc.
-
-Let's try that the separation by position. We will keep 4 letters from each `country` name rather than the whole word, and drop the rest.
+Similarly to `separate()`, unite also comes with a remove statement, so if you wanted to keep the original columns before merging them together, you would code
 
 ```{r}
-separate(table5, country, into = c("country", NA), sep = 4)
+unite(table5, year_combined, century, year, sep = "", remove = FALSE)
 ```
 
-
-
-
-### separating more than 2 columns
-
-Special case. Let's modify `table5` a little bit by adding a new column with a value of 200 and unite that column with column `rate`.
+`unite()` also comes with an `na.rm` statement that will remove missing values prior to uniting the values of a column (actually, the values have to be a "character" column). Let me modify `table5` a wee bit to make that point.
 
 ```{r}
 table5_mod <- table5 %>% 
-  mutate(new = 200) %>% 
-  unite(rate, rate, new, sep = "/")
+  mutate(new = rep(c("200", NA), 3))
+
+table5_mod
 ```
 
-Now column `rate` has 3 sets of numbers, separated by two `/`. If we define we want to split the data into 2 columns, the first 2 sets of numbers are kept, and the third one is dropped with a warning.
+If we wanted to combine the values of `rate` and `new`, we would code
 
 ```{r}
-separate(table5_mod, rate, into = c("cases", "population"), sep = "/")
+unite(table5_mod, rate, rate, new, sep = "/")
 ```
 
-If we are separating the columns and wanted to keep all sets of numbers, one in each column, we would use an into argument that includes 3 new columns.
+See how R adds the missing values onto rate, which we do not want. To avoid that happening, we can use the `na.rm` statement which removes missing values in columns of data type character before merging the columns.
 
 ```{r}
-separate(table5_mod, rate, into = c("cases", "population", "200"), sep = "/")
+unite(table5_mod, rate, rate, new, sep = "/", na.rm = TRUE)
 ```
-
-```{block, type="funfact"}
-Technically, you would not need a separator argument in the case above, as `separate()` splits the data whenever it detects a non-alphanumeric character (i.e. a character that isn't a number or letter). Saying that, the separator argument is needed when your column contains non-alphanumeric characters as part of your cell values.
-```
-
-If the values in `population` and `200` (separated by a `/`) were some sort of `ID_code`, **AND** we wanted to split the data into 2 columns, after the first `/` only, we would have to include an `extra` argument, and set it to `"merge"`.
-
-```{r}
-separate(table5_mod, rate, into = c("cases", "ID_code"), sep = "/", extra = "merge")
-```
-
-
-
-
 
 
 ## Bonus materials: mutate rownames from the mtcars

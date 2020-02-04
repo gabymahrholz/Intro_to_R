@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Data Transformation 3: Tidy Data | Introduction to R</title>
   <meta name="description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Data Transformation 3: Tidy Data | Introduction to R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Rebecca J. Lai, Kate Haining, Greta Todorova, and Wilhelmiina Toivo" />
 
 
-<meta name="date" content="2020-02-02" />
+<meta name="date" content="2020-02-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,41 +53,68 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -224,11 +251,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.3.1" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#gather"><i class="fa fa-check"></i><b>5.3.1</b> gather()</a></li>
 <li class="chapter" data-level="5.3.2" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#spread"><i class="fa fa-check"></i><b>5.3.2</b> spread()</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#unite-and-separate"><i class="fa fa-check"></i><b>5.4</b> unite() and separate()</a><ul>
+<li class="chapter" data-level="5.4" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#separate-and-unite"><i class="fa fa-check"></i><b>5.4</b> separate() and unite()</a><ul>
 <li class="chapter" data-level="5.4.1" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#separate"><i class="fa fa-check"></i><b>5.4.1</b> separate()</a></li>
-<li class="chapter" data-level="5.4.2" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#unite"><i class="fa fa-check"></i><b>5.4.2</b> unite()</a></li>
-<li class="chapter" data-level="5.4.3" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#separating-by-position"><i class="fa fa-check"></i><b>5.4.3</b> separating by position</a></li>
-<li class="chapter" data-level="5.4.4" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#separating-more-than-2-columns"><i class="fa fa-check"></i><b>5.4.4</b> separating more than 2 columns</a></li>
+<li class="chapter" data-level="5.4.2" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#additional-arguments-for-separate"><i class="fa fa-check"></i><b>5.4.2</b> additional arguments for separate()</a></li>
+<li class="chapter" data-level="5.4.3" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#unite"><i class="fa fa-check"></i><b>5.4.3</b> unite()</a></li>
+<li class="chapter" data-level="5.4.4" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#additional-arguments-for-unite"><i class="fa fa-check"></i><b>5.4.4</b> additional arguments for unite()</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#bonus-materials-mutate-rownames-from-the-mtcars"><i class="fa fa-check"></i><b>5.5</b> Bonus materials: mutate rownames from the mtcars</a></li>
 <li class="chapter" data-level="5.6" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#additional-information-1"><i class="fa fa-check"></i><b>5.6</b> Additional information</a></li>
@@ -243,18 +270,50 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.3.2" data-path="data-transformation-4-finetuned-data-manipulation.html"><a href="data-transformation-4-finetuned-data-manipulation.html#ifelse"><i class="fa fa-check"></i><b>6.3.2</b> ifelse()</a></li>
 <li class="chapter" data-level="6.3.3" data-path="data-transformation-4-finetuned-data-manipulation.html"><a href="data-transformation-4-finetuned-data-manipulation.html#case_when"><i class="fa fa-check"></i><b>6.3.3</b> case_when()</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="data-transformation-4-finetuned-data-manipulation.html"><a href="data-transformation-4-finetuned-data-manipulation.html#distinct"><i class="fa fa-check"></i><b>6.4</b> distinct</a></li>
+<li class="chapter" data-level="6.4" data-path="data-transformation-4-finetuned-data-manipulation.html"><a href="data-transformation-4-finetuned-data-manipulation.html#distinct"><i class="fa fa-check"></i><b>6.4</b> distinct()</a></li>
 <li class="chapter" data-level="6.5" data-path="data-transformation-4-finetuned-data-manipulation.html"><a href="data-transformation-4-finetuned-data-manipulation.html#summative-homework-2"><i class="fa fa-check"></i><b>6.5</b> Summative Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html"><i class="fa fa-check"></i><b>7</b> Data Visualisation 1</a><ul>
 <li class="chapter" data-level="" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#intended-learning-outcomes-7"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="7.1" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#pre-steps-5"><i class="fa fa-check"></i><b>7.1</b> Pre-steps</a></li>
+<li class="chapter" data-level="7.2" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#introduction-to-the-data"><i class="fa fa-check"></i><b>7.2</b> Introduction to the data</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#some-warm-up-tasks"><i class="fa fa-check"></i><b>7.2.1</b> Some warm-up tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#the-package-ggplot2"><i class="fa fa-check"></i><b>7.3</b> The package GGPLOT2</a></li>
+<li class="chapter" data-level="7.4" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#layering"><i class="fa fa-check"></i><b>7.4</b> Layering</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#layer-1"><i class="fa fa-check"></i><b>7.4.1</b> Layer 1</a></li>
+<li class="chapter" data-level="7.4.2" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#layer-2-and-onwards"><i class="fa fa-check"></i><b>7.4.2</b> Layer 2 and onwards</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#how-do-we-choose-the-type-of-plot"><i class="fa fa-check"></i><b>7.5</b> How do we choose the type of plot?</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#types-of-data"><i class="fa fa-check"></i><b>7.5.1</b> Types of data</a></li>
+<li class="chapter" data-level="7.5.2" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#number-of-variables"><i class="fa fa-check"></i><b>7.5.2</b> Number of variables</a></li>
+<li class="chapter" data-level="7.5.3" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#groupings"><i class="fa fa-check"></i><b>7.5.3</b> Groupings</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#now-lets-have-a-look-at-different-plots-with-more-complexity"><i class="fa fa-check"></i><b>7.6</b> Now lets have a look at different plots with more complexity</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#other-plots"><i class="fa fa-check"></i><b>7.6.1</b> Other plots</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#formative-homework-2"><i class="fa fa-check"></i><b>7.7</b> Formative Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html"><i class="fa fa-check"></i><b>8</b> Data Visualisation 2</a><ul>
-<li class="chapter" data-level="" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#intended-learning-outcomes-8"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="8.1" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#pre-steps-6"><i class="fa fa-check"></i><b>8.1</b> Pre-steps</a></li>
+<li class="chapter" data-level="8.2" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#re-introduction-to-the-data"><i class="fa fa-check"></i><b>8.2</b> Re-introduction to the data</a></li>
+<li class="chapter" data-level="8.3" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#create-multiple-plots-in-one"><i class="fa fa-check"></i><b>8.3</b> Create multiple plots in one</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#select-the-data-before-hand-and-create-different-plots."><i class="fa fa-check"></i><b>8.3.1</b> Select the data before hand and create different plots.</a></li>
+<li class="chapter" data-level="8.3.2" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#facets"><i class="fa fa-check"></i><b>8.3.2</b> Facets</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#global-and-local-aesthetics"><i class="fa fa-check"></i><b>8.4</b> Global and Local aesthetics</a></li>
+<li class="chapter" data-level="8.5" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#themes-making-your-plots-pretty-looking-the-way-you-want-them-to"><i class="fa fa-check"></i><b>8.5</b> Themes: Making your plots pretty: looking the way you want them to</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#ready-made-themes"><i class="fa fa-check"></i><b>8.5.1</b> Ready made themes</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#adding-axes-titles-and-headings"><i class="fa fa-check"></i><b>8.6</b> Adding Axes titles and headings</a></li>
+<li class="chapter" data-level="8.7" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#changing-colours"><i class="fa fa-check"></i><b>8.7</b> Changing colours</a></li>
+<li class="chapter" data-level="8.8" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#legends"><i class="fa fa-check"></i><b>8.8</b> Legends</a></li>
+<li class="chapter" data-level="8.9" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#changing-axes-ticks"><i class="fa fa-check"></i><b>8.9</b> Changing axes ticks</a></li>
+<li class="chapter" data-level="8.10" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#summative-homework-3"><i class="fa fa-check"></i><b>8.10</b> Summative Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>9</b> Errors</a><ul>
 <li class="chapter" data-level="9.1" data-path="errors.html"><a href="errors.html#under-construction"><i class="fa fa-check"></i><b>9.1</b> Under Construction</a></li>
-<li class="chapter" data-level="" data-path="errors.html"><a href="errors.html#intended-learning-outcomes-9"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="errors.html"><a href="errors.html#intended-learning-outcomes-8"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
 <li class="chapter" data-level="9.2" data-path="errors.html"><a href="errors.html#errors-how-to-avoid-some-and-live-through-the-rest"><i class="fa fa-check"></i><b>9.2</b> Errors: How to avoid some and live through the rest</a><ul>
 <li class="chapter" data-level="9.2.1" data-path="errors.html"><a href="errors.html#debugging"><i class="fa fa-check"></i><b>9.2.1</b> Debugging</a></li>
 <li class="chapter" data-level="9.2.2" data-path="errors.html"><a href="errors.html#debugging-questions"><i class="fa fa-check"></i><b>9.2.2</b> Debugging Questions</a></li>
@@ -306,28 +365,36 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>How to rearrange data from long format into to wide format and vice versa</li>
 <li>How to combine and separate columns</li>
 </ol>
+<p>This lesson is led by <a href="http://www.psy.gla.ac.uk/staff/index.php?id=GM005">Gaby Mahrholz</a>.</p>
 </div>
 <div id="pre-steps-3" class="section level2">
 <h2><span class="header-section-number">5.1</span> Pre-steps</h2>
-<p>Before we can start to focus on some other functions that might come in handy for data manipulation, we need to make sure to load <code>tidyverse</code> into the library and read the data we will be working with today into our <code>Global Environment</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-data_SMH &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Student_Mental_Health.csv&quot;</span>)</code></pre></div>
+<p>All the functions for tidying data are within <code>tidyverse</code> so we need to make sure to load it into the library. Today’s lecture will make use of built-in dataframes which means we do not have to load any data into our <code>Global Environment</code> for the minute.</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="data-transformation-3-tidy-data.html#cb215-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 </div>
 <div id="tidy-data" class="section level2">
 <h2><span class="header-section-number">5.2</span> Tidy data</h2>
-<p>Write a wee bit here why tidy data is necessary</p>
+<p><em>“Happy families are all alike; every unhappy family is unhappy in its own way.”</em> – Leo Tolstoy</p>
+<p><em>“Tidy datasets are all alike, but every messy dataset is messy in its own way.”</em> – Hadley Wickham</p>
+<p>In this chapter, you will learn a consistent way to organise your data in R. Hadley Wickham and Garrett Grolemund call this <strong>tidy data</strong>. In most cases, data does not come in a tidy format. Researchers spend most of their time getting the data into the shape it needs to be for a particular analysis. The tools we introduce you to this week and next should form the basics for data wrangling. The idea is that tidy datasets are easier to work with in the long run.</p>
+<p>There are three interrelated rules which make a dataset tidy:</p>
+<ol style="list-style-type: decimal">
+<li>Each variable must have its own column.</li>
+<li>Each observation must have its own row.</li>
+<li>Each value must have its own cell.</li>
+</ol>
+<p>If you want to know more about tidy data, Hadley Wickham’s paper can be found on <a href="https://vita.had.co.nz/papers/tidy-data.pdf" class="uri">https://vita.had.co.nz/papers/tidy-data.pdf</a> or check out chapter 12 in the book R for Data Science (<a href="https://r4ds.had.co.nz/tidy-data.html" class="uri">https://r4ds.had.co.nz/tidy-data.html</a>).</p>
 </div>
 <div id="gather-and-spread" class="section level2">
 <h2><span class="header-section-number">5.3</span> gather() and spread()</h2>
-<p><code>gather()</code> and <code>spread()</code> are part of <code>tidyr</code> (also part of the tidyverse package) and help you to rearrange the shape of your data. To get your data into long format, you would use <code>gather()</code>; if you wanted to get your data from long to wide format, you would need <code>spread()</code>. Here is a nice gif animation by Garrick Aden-Buie () that shows you how <code>gather()</code> and <code>spread()</code> work.</p>
+<p><code>gather()</code> and <code>spread()</code> are part of <code>tidyr</code> (also part of the tidyverse package) and help you to rearrange the shape of your data. To get your data into long format, you would use <code>gather()</code>; if you wanted to get your data from long to wide format, you would need <code>spread()</code>. Here is a nice gif animation by Garrick Aden-Buie (<a href="https://www.garrickadenbuie.com/project/tidyexplain/#spread-and-gather" class="uri">https://www.garrickadenbuie.com/project/tidyexplain/#spread-and-gather</a>) that shows you how <code>gather()</code> and <code>spread()</code> work.</p>
 <center>
 <img src="images/tidyr-spread-gather.gif" >
 </center>
-<p>The catch is that you need to know what kind of statistics you want to run, and how your data needs to be structured in order for you to achieve that. We cannot tell you that in this mere 10 week introduction course, however, we can give you the tools to prepare you as best as we can for what’s out there.</p>
 <div id="gather" class="section level3">
 <h3><span class="header-section-number">5.3.1</span> gather()</h3>
 <p>We can start this lecture by looking at a practical example in the build-in dataset <code>table1</code> to <code>table5</code>. They show the number of Tuberculosis cases documented by the World Health Organization in Afghanistan, Brazil, and China between 1999 and 2000 (the full dataset is called <code>who</code>). The data is part of the <code>tidyverse</code> package, so as long as we have <code>tidyverse</code> loaded into the library, there should not be an issue in accessing this dataset.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table1</code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="data-transformation-3-tidy-data.html#cb216-1"></a>table1</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -337,16 +404,26 @@ data_SMH &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span cl
 ## 4 Brazil       2000  80488  174504898
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
-<p><code>table1</code> has a very tidy structure. You can see the data contains values associated with four variables (<code>country</code>, <code>year</code>, <code>cases</code>, and <code>population</code>). <code>table4a</code> however, looks a touch not right.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table4a</code></pre></div>
+<p><code>table1</code> has a very tidy structure as it follows the three priciples above - each variable is its own column, each observation is its own row, and each value is its own cell.</p>
+<center>
+<img src="images/tidy_1.png" >
+</center>
+<p>You can see the data contains values associated with four variables (<code>country</code>, <code>year</code>, <code>cases</code>, and <code>population</code>). <code>table4a</code> however, looks a touch not right.</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="data-transformation-3-tidy-data.html#cb218-1"></a>table4a</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##   country     `1999` `2000`
 ## * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
 ## 1 Afghanistan    745   2666
 ## 2 Brazil       37737  80488
 ## 3 China       212258 213766</code></pre>
-<p>Somehow the values for the columns <code>year</code> and <code>cases</code> are missing and instead we find two separate columns for <code>1999</code> and <code>2000</code> that have all <code>cases</code> values listed. This is a problem as <code>1999</code> and <code>2000</code> are actual values and not variables.</p>
-<p>Currently the data is in what is called a <code>wide format</code>. The function <code>gather()</code> comes in handy when we want to get the data back into the shape of a <code>long format</code> like in <code>table1</code>. <code>gather()</code> is structured like:</p>
+<center>
+<img src="images/tidy_4a_1.png" >
+</center>
+<p>Somehow the values for the columns <code>year</code> and <code>cases</code> are missing and instead we find two separate columns for <code>1999</code> and <code>2000</code> that have all <code>cases</code> values listed. This is a problem as <code>1999</code> and <code>2000</code> are actual values and not variables. What we want to do, is gather <code>1999</code> and <code>2000</code> in one column <code>year</code> and respective values into a second column called <code>cases</code>.</p>
+<center>
+<img src="images/tidy_4a.png" >
+</center>
+<p>Currently the data is in what is called a <code>wide format</code>. The function <code>gather()</code> comes in handy when we want to get the data into the shape of a <code>long format</code> like in <code>table1</code>. <code>gather()</code> is structured like:</p>
 <p><br></p>
 <center>
 <img src="images/gather.PNG" >
@@ -359,7 +436,7 @@ data_SMH &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span cl
 <li>We need to come up with the name of a new column in which all the case values will be stored -&gt; <code>cases</code></li>
 <li>And finally, we need to tell R which columns in <code>table4a</code> we want to turn into long format (i.e. the columns of the 7 subscales) -&gt; 1999 and 2000 (Note that “1999” and “2000” are non-syntactic names as they don’t start with a letter. The solution is to surround them in backticks.)</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gather</span>(table4a, <span class="dt">key =</span> year, <span class="dt">value =</span> cases, <span class="st">`</span><span class="dt">1999</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2000</span><span class="st">`</span>)</code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="data-transformation-3-tidy-data.html#cb220-1"></a><span class="kw">gather</span>(table4a, <span class="dt">key =</span> year, <span class="dt">value =</span> cases, <span class="st">`</span><span class="dt">1999</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2000</span><span class="st">`</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   country     year   cases
 ##   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;
@@ -379,71 +456,29 @@ Here we have only 2 columns to reshape <code>1999</code> and <code>2000</code>. 
 <strong>Your turn</strong>
 </p>
 <p>
-Use the <code>gather()</code> function with the student mental health data <code>data_SMH</code> to reshape it from wide format into long format.
-</p>
-<p>
-Step 1: Only work with a selection of columns from <code>data_SMH</code> to see better what is going on. Create a new object <code>SMH_short</code> that shows only <code>ID</code>, and the 7 subscales of <code>ToAS</code> (<code>APD:AMiscell</code>).
-</p>
-<p>
-Step 2: use <code>gather()</code> according to the formula above so that the 7 subscales <code>APD:AMiscell</code> of <code>SMH_short</code> are gathered in one column named <code>Subscales</code> and their values in another column <code>Scores</code>. Store results in the <code>Global Environment</code> as <code>SMH_long</code>.
-</p>
-<p>
-Step 3: <code>arrange()</code> the data <code>SMH_long</code> by the column <code>ID</code>. Store the results as <code>SMH_long</code>. You can either overwrite <code>SMH_long</code> from Step 2 or use a pipe (<code>%&gt;%</code>).
-</p>
-<p>
-When you are done, <code>SMH_long</code> should look like this.
+Look at <code>table4b</code>. There are two separate columns <code>1999</code> and <code>2000</code> with population values for Afghanistan, Brazil, and China. Use the <code>gather()</code> function on <code>table4b</code> to reshape it from wide format into long format.
 </p>
 </div>
-<pre><code>## # A tibble: 1,876 x 3
-##       ID Subscales Scores
-##    &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;
-##  1     1 APD           23
-##  2     1 AHome          9
-##  3     1 APH           11
-##  4     1 Afear          8
-##  5     1 ACS           11
-##  6     1 AGuilt         2
-##  7     1 AMiscell      27
-##  8     2 APD            8
-##  9     2 AHome          7
-## 10     2 APH            5
-## # ... with 1,866 more rows</code></pre>
 <div class="solution">
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SMH_short &lt;-<span class="st"> </span><span class="kw">select</span>(data_SMH, ID, APD<span class="op">:</span>AMiscell)
-SMH_long &lt;-<span class="st"> </span>SMH_short <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">gather</span>(Subscales, Scores, APD<span class="op">:</span>AMiscell) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">arrange</span>(ID)</code></pre></div>
-<div class="solved">
-<p>
-A more detailed explanation:
-</p>
-<ul>
-<li>
-We needed a dataframe that we want to modify -&gt; <code>SMH_short</code>
-</li>
-<li>
-We needed to come up with the name of a new column in which all the column headers of the 7 subscales will be stored -&gt; <code>Subscales</code>
-</li>
-<li>
-We needed to come up with the name of a new column in which all the cell values of the 7 subscales will be stored -&gt; <code>Scores</code>
-</li>
-<li>
-And finally, we needed to tell R which columns in the dataframe <code>SMH_short</code> we wanted to turn into long format (i.e. the columns of the 7 subscales) -&gt; <code>APD:AMiscell</code>
-</li>
-</ul>
-<p>
-<code>SMH_short</code> has 268 observations and 8 variables, whereas the rearranged <code>SMH_long</code> has 1876 observations and 3 columns - <code>ID</code> (which was there before) and the two new columns <code>Subscales</code> and <code>Scores</code> we created within <code>gather()</code>. After sorting it by <code>ID</code> we can see that each of the 268 participants have now 7 rows of observation - one for each subscale.
-</p>
-</div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="data-transformation-3-tidy-data.html#cb222-1"></a><span class="kw">gather</span>(table4b, <span class="dt">key =</span> year, <span class="dt">value =</span> population, <span class="st">`</span><span class="dt">1999</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2000</span><span class="st">`</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   country     year  population
+##   &lt;chr&gt;       &lt;chr&gt;      &lt;int&gt;
+## 1 Afghanistan 1999    19987071
+## 2 Brazil      1999   172006362
+## 3 China       1999  1272915272
+## 4 Afghanistan 2000    20595360
+## 5 Brazil      2000   174504898
+## 6 China       2000  1280428583</code></pre>
 </div>
 </div>
 <div id="spread" class="section level3">
 <h3><span class="header-section-number">5.3.2</span> spread()</h3>
-<p>Now onto the reverse. <code>spread()</code> will spread the data from <code>long</code> into <code>wide format</code>. When you have observations that are scattered across multiple rows, you can use <code>spread()</code> to split those rows up into separate variables. For example, <code>table2</code> has the variabes <code>cases</code> and <code>population</code> stored in one column <code>type</code>, however, they are separate variables rather than values of <code>type</code>. So best to get <code>cases</code> and <code>population</code> back into their own columns.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table2</code></pre></div>
+<p>Now onto the reverse. <code>spread()</code> will spread the data from <code>long</code> into <code>wide format</code>. When you have observations that are scattered across multiple rows, you can use <code>spread()</code> to split those rows up into separate variables. Let’s take a look at <code>table2</code>.</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="data-transformation-3-tidy-data.html#cb224-1"></a>table2</span></code></pre></div>
 <pre><code>## # A tibble: 12 x 4
 ##    country      year type            count
 ##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
@@ -459,6 +494,13 @@ And finally, we needed to tell R which columns in the dataframe <code>SMH_short<
 ## 10 China        1999 population 1272915272
 ## 11 China        2000 cases          213766
 ## 12 China        2000 population 1280428583</code></pre>
+<center>
+<img src="images/tidy_2_1.png" >
+</center>
+<p><code>table2</code> has the variabes <code>cases</code> and <code>population</code> stored in one column <code>type</code> and their respective values in <code>count</code>. However, <code>cases</code> and <code>population</code> are separate variables rather than values of <code>type</code>. So best to get them spread out into their own columns as shown in the image below.</p>
+<center>
+<img src="images/tidy_2.png" >
+</center>
 <p>Take a look how <code>spread()</code> achieves that.</p>
 <p><br></p>
 <center>
@@ -471,7 +513,7 @@ And finally, we needed to tell R which columns in the dataframe <code>SMH_short<
 <li>We need to decide which of the columns in <code>table2</code> will become the new column headers -&gt; <code>type</code></li>
 <li>We need to decide which of the columns in <code>table2</code> has all the data in it that will become the new cell values -&gt; <code>count</code></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">spread</span>(table2, <span class="dt">key =</span> type, <span class="dt">value =</span> count)</code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="data-transformation-3-tidy-data.html#cb226-1"></a><span class="kw">spread</span>(table2, <span class="dt">key =</span> type, <span class="dt">value =</span> count)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -482,133 +524,215 @@ And finally, we needed to tell R which columns in the dataframe <code>SMH_short<
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
 <p>Voila, <code>cases</code> and <code>population</code> are in their own columns.</p>
+<p>Let me modify <code>table1</code> a tiny bit.</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="data-transformation-3-tidy-data.html#cb228-1"></a>table1_mod &lt;-<span class="st"> </span>table1 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb228-2"><a href="data-transformation-3-tidy-data.html#cb228-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">percent =</span> cases<span class="op">/</span><span class="st"> </span>population <span class="op">*</span><span class="st"> </span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb228-3"><a href="data-transformation-3-tidy-data.html#cb228-3"></a><span class="st">  </span><span class="kw">gather</span>(variable, values, cases<span class="op">:</span>percent)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">country</th>
+<th align="right">year</th>
+<th align="left">variable</th>
+<th align="right">values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="right">1999</td>
+<td align="left">cases</td>
+<td align="right">7.450000e+02</td>
+</tr>
+<tr class="even">
+<td align="left">Afghanistan</td>
+<td align="right">2000</td>
+<td align="left">cases</td>
+<td align="right">2.666000e+03</td>
+</tr>
+<tr class="odd">
+<td align="left">Brazil</td>
+<td align="right">1999</td>
+<td align="left">cases</td>
+<td align="right">3.773700e+04</td>
+</tr>
+<tr class="even">
+<td align="left">Brazil</td>
+<td align="right">2000</td>
+<td align="left">cases</td>
+<td align="right">8.048800e+04</td>
+</tr>
+<tr class="odd">
+<td align="left">China</td>
+<td align="right">1999</td>
+<td align="left">cases</td>
+<td align="right">2.122580e+05</td>
+</tr>
+<tr class="even">
+<td align="left">China</td>
+<td align="right">2000</td>
+<td align="left">cases</td>
+<td align="right">2.137660e+05</td>
+</tr>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="right">1999</td>
+<td align="left">population</td>
+<td align="right">1.998707e+07</td>
+</tr>
+<tr class="even">
+<td align="left">Afghanistan</td>
+<td align="right">2000</td>
+<td align="left">population</td>
+<td align="right">2.059536e+07</td>
+</tr>
+<tr class="odd">
+<td align="left">Brazil</td>
+<td align="right">1999</td>
+<td align="left">population</td>
+<td align="right">1.720064e+08</td>
+</tr>
+<tr class="even">
+<td align="left">Brazil</td>
+<td align="right">2000</td>
+<td align="left">population</td>
+<td align="right">1.745049e+08</td>
+</tr>
+<tr class="odd">
+<td align="left">China</td>
+<td align="right">1999</td>
+<td align="left">population</td>
+<td align="right">1.272915e+09</td>
+</tr>
+<tr class="even">
+<td align="left">China</td>
+<td align="right">2000</td>
+<td align="left">population</td>
+<td align="right">1.280429e+09</td>
+</tr>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="right">1999</td>
+<td align="left">percent</td>
+<td align="right">3.727400e-03</td>
+</tr>
+<tr class="even">
+<td align="left">Afghanistan</td>
+<td align="right">2000</td>
+<td align="left">percent</td>
+<td align="right">1.294470e-02</td>
+</tr>
+<tr class="odd">
+<td align="left">Brazil</td>
+<td align="right">1999</td>
+<td align="left">percent</td>
+<td align="right">2.193930e-02</td>
+</tr>
+<tr class="even">
+<td align="left">Brazil</td>
+<td align="right">2000</td>
+<td align="left">percent</td>
+<td align="right">4.612360e-02</td>
+</tr>
+<tr class="odd">
+<td align="left">China</td>
+<td align="right">1999</td>
+<td align="left">percent</td>
+<td align="right">1.667500e-02</td>
+</tr>
+<tr class="even">
+<td align="left">China</td>
+<td align="right">2000</td>
+<td align="left">percent</td>
+<td align="right">1.669490e-02</td>
+</tr>
+</tbody>
+</table>
 <div class="task">
 <p>
 <strong>Your turn</strong>
 </p>
 <p>
-Let’s pretend that the 7 subscales in <code>SMH_long</code> are actually 7 variables. Use <code>spread()</code> to achieve that. Store your results in the <code>Global Environment</code> as <code>SMH_wide</code>. When you are done, your results should look like this.
+In the modified table above <code>table1_mod</code>, we added a <code>percent</code> column to see how much percentage of the population had Tuberculosis in 1999 and 2000 in each of the countries Afghanistan, Brazil, and China. But somehow, all numerical information has ended up in 1 column (values).
 </p>
-</div>
-<pre><code>## # A tibble: 268 x 8
-##       ID   ACS Afear AGuilt AHome AMiscell   APD   APH
-##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1     1    11     8      2     9       27    23    11
-##  2     2     3     4      2     7       10     8     5
-##  3     3     4     6      3     4       14    13     7
-##  4     4     6     8      4    10       21    16    10
-##  5     5     7     8      4    12       31    15     5
-##  6     6     7     8      3     8       29    18    10
-##  7     7     3     5      2     6       15    17    10
-##  8     8    11    15      6    20       40    16    19
-##  9     9    10    13      6    12       33    22    13
-## 10    10     3    12      2     4       17     8     5
-## # ... with 258 more rows</code></pre>
-<div class="solution">
-<button>
-Solution
-</button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SMH_wide &lt;-<span class="st"> </span><span class="kw">spread</span>(SMH_long, Subscales, Scores)</code></pre></div>
-<div class="solved">
 <p>
-A more detailed explanation
-</p>
-<ul>
-<li>
-We needed a dataframe that we want to modify -&gt; <code>SMH_long</code>
-</li>
-<li>
-We needed to decide which of the columns in <code>SMH_long</code> would become the new column headers -&gt; <code>Subscales</code>
-</li>
-<li>
-We needed to decide which of the columns in <code>SMH_long</code> had all the data in it that would become the new cell values -&gt; <code>Scores</code>
-</li>
-</ul>
-</div>
-<p>Now the 7 subscales are back in separate columns each.</p>
-</div>
-<div class="info">
-<p>
-Most of the time, data isn’t collected in a way that is useful for us (or R). It can happen that the data for the whole experiment is stored in a 2-column format. For example, some online platforms would give you a column in which all your dependent variables are stored, and another one that recorded the responses of the participants to that variable. That wouldn’t be a very useful format to analyse anything really.
-</p>
-</div>
-</div>
-</div>
-<div id="unite-and-separate" class="section level2">
-<h2><span class="header-section-number">5.4</span> unite() and separate()</h2>
-<p>Let’s start this part of by looking at a practical example in the build-in dataset <code>table1</code> to <code>table5</code>. They show the number of Tuberculosis cases documented by the World Health Organization in Afghanistan, Brazil, and China between 1999 and 2000. The data is part of the <code>tidyverse</code> package, so as long as we have <code>tidyverse</code> loaded into the library, there should not be an issue in accessing this dataset.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table1</code></pre></div>
-<pre><code>## # A tibble: 6 x 4
-##   country      year  cases population
-##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
-## 1 Afghanistan  1999    745   19987071
-## 2 Afghanistan  2000   2666   20595360
-## 3 Brazil       1999  37737  172006362
-## 4 Brazil       2000  80488  174504898
-## 5 China        1999 212258 1272915272
-## 6 China        2000 213766 1280428583</code></pre>
-<p><code>table1</code> has a very tidy structure. You can see the data contains values associated with four variables (<code>country</code>, <code>year</code>, <code>cases</code>, and <code>population</code>). <code>table5</code> however, looks a touch not right.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table5</code></pre></div>
-<pre><code>## # A tibble: 6 x 4
-##   country     century year  rate             
-## * &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            
-## 1 Afghanistan 19      99    745/19987071     
-## 2 Afghanistan 20      00    2666/20595360    
-## 3 Brazil      19      99    37737/172006362  
-## 4 Brazil      20      00    80488/174504898  
-## 5 China       19      99    212258/1272915272
-## 6 China       20      00    213766/1280428583</code></pre>
-<div class="task">
-<p>
-Take 2 min with the person next to you to discuss what is wrong with this tibble.
+Your task is to spread the data back out, so that cases, population, and percentage values are in their own columns, titled as <code>cases</code>, <code>population</code>, and <code>percent</code> respectively. Store the new object in the <code>Global Environment</code> as <code>table1_mod_corrected</code>.
 </p>
 </div>
 <div class="solution">
 <button>
 Solution
 </button>
-<div class="solved">
-<ol style="list-style-type: decimal">
-<li>
-column <code>rate</code> holds the values for <code>cases</code> and <code>population</code> in one cell, separated by a <code>/</code>
-</li>
-<li>
-the values in column <code>year</code> are split into <code>century</code> and <code>year</code>
-</li>
-</ol>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="data-transformation-3-tidy-data.html#cb229-1"></a>table1_mod_corrected &lt;-<span class="st"> </span><span class="kw">spread</span>(table1_mod, <span class="dt">key =</span> variable, <span class="dt">value =</span> values)</span>
+<span id="cb229-2"><a href="data-transformation-3-tidy-data.html#cb229-2"></a></span>
+<span id="cb229-3"><a href="data-transformation-3-tidy-data.html#cb229-3"></a>table1_mod_corrected</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 5
+##   country      year  cases percent population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
+## 1 Afghanistan  1999    745 0.00373   19987071
+## 2 Afghanistan  2000   2666 0.0129    20595360
+## 3 Brazil       1999  37737 0.0219   172006362
+## 4 Brazil       2000  80488 0.0461   174504898
+## 5 China        1999 212258 0.0167  1272915272
+## 6 China        2000 213766 0.0167  1280428583</code></pre>
 </div>
 </div>
-<p>This is where the functions <code>separate()</code> and <code>unite()</code> come in handy. We would use <code>separate()</code> to split the column <code>rate</code> back into two columns, and <code>unite()</code> (the inverse of separate) to combine <code>century</code> and <code>year</code> into a single column.</p>
+</div>
+<div id="separate-and-unite" class="section level2">
+<h2><span class="header-section-number">5.4</span> separate() and unite()</h2>
+<p><code>separate()</code> turns a single character column into multiple columns, whereas <code>unite()</code> combines the values of multiple columns into one column.</p>
 <div id="separate" class="section level3">
 <h3><span class="header-section-number">5.4.1</span> separate()</h3>
-<p>The function <code>separate()</code> is structured like this</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(data, column_to_sep, <span class="dt">into =</span> <span class="kw">c</span>(new_column1, new_column2), <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>)</code></pre></div>
+<p>Take a look at <code>table3</code>.</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="data-transformation-3-tidy-data.html#cb231-1"></a>table3</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   country      year rate             
+## * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            
+## 1 Afghanistan  1999 745/19987071     
+## 2 Afghanistan  2000 2666/20595360    
+## 3 Brazil       1999 37737/172006362  
+## 4 Brazil       2000 80488/174504898  
+## 5 China        1999 212258/1272915272
+## 6 China        2000 213766/1280428583</code></pre>
+<p>In <code>table3</code>, two out of three principles of tidy data are violated. There are multiple values stored in column <code>rate</code> (rule 3) but these multiple values also belong to two different variables - <code>cases</code> and <code>population</code> respectively (rule 1).</p>
+<center>
+<img src="images/tidy_3_1.png" >
+</center>
+<p>Here, we would use <code>separate()</code> to split the column <code>rate</code> into two columns <code>cases</code> and <code>population</code>.</p>
+<center>
+<img src="images/tidy_3.png" >
+</center>
+<p>The function <code>separate()</code> is structured like this:</p>
+<p><br></p>
+<center>
+<img src="images/separate.PNG" >
+</center>
+<p><br></p>
 <p>We would need</p>
 <ul>
-<li>the data in which the column to separate is located,</li>
-<li>the actual colum we want to separate,</li>
-<li>the into argument telling into how many columns we want to separate the old column and what we want to call these new columns, and</li>
-<li>a separator argument.</li>
+<li>the data in which the column to separate is located -&gt; <code>table3</code>,</li>
+<li>the actual colum we want to separate -&gt; <code>rate</code>,</li>
+<li>the into argument asking into how many columns we want to separate the old column and what we want to call these new columns -&gt; <code>c("cases", "population")</code>, and</li>
+<li>a separator argument -&gt; <code>"/"</code>.</li>
 </ul>
-<p>Let’s tackle the first problem, splitting <code>rate</code> back into two columns <code>cases</code> and <code>population</code>/</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</code></pre></div>
-<pre><code>## # A tibble: 6 x 5
-##   country     century year  cases  population
-##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     
-## 1 Afghanistan 19      99    745    19987071  
-## 2 Afghanistan 20      00    2666   20595360  
-## 3 Brazil      19      99    37737  172006362 
-## 4 Brazil      20      00    80488  174504898 
-## 5 China       19      99    212258 1272915272
-## 6 China       20      00    213766 1280428583</code></pre>
-<p>We have told R to separate the column <code>rate</code> (which is located in <code>table5</code>) into two new columns <code>cases</code> and <code>population</code>. The separator argument was set to a forward slash (<code>/</code>), and R will put all cell information before the <code>/</code> into <code>cases</code>, and everything after the <code>/</code> into <code>population</code>. <code>/</code> will not appear in either column <code>cases</code> or <code>population</code>.</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="data-transformation-3-tidy-data.html#cb233-1"></a><span class="kw">separate</span>(table3, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country      year cases  population
+##   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     
+## 1 Afghanistan  1999 745    19987071  
+## 2 Afghanistan  2000 2666   20595360  
+## 3 Brazil       1999 37737  172006362 
+## 4 Brazil       2000 80488  174504898 
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<p>R has put all cell information before the <code>/</code> into a column we named <code>cases</code>, and everything after the <code>/</code> into the column we decided to call <code>population</code>. <code>/</code> will not appear in either column <code>cases</code> or <code>population</code>. The data is now in a tidy format.</p>
 <div class="info">
 <p>
 By the way, the separator argument <code>sep =</code> can be any non-alphanumeric character, for example:
 </p>
 <ul>
 <li>
-underscore (“_“),
+underscore ("_"),
 </li>
 <li>
 comma (“,”),
@@ -623,65 +747,159 @@ colon (“:”),
 forward-slash (“/”),
 </li>
 <li>
-space (&quot; “) or
+space (" ") or
 </li>
 <li>
-nothing (“”).
+nothing ("").
 </li>
 </ul>
 <p>
 But watch out! When the separator is a <code>full stop</code>, you would need to add a double backward slash in front of it (<code>sep = “\\.”</code>).
 </p>
 </div>
+</div>
+<div id="additional-arguments-for-separate" class="section level3">
+<h3><span class="header-section-number">5.4.2</span> additional arguments for separate()</h3>
+<div id="retaining-the-original-column" class="section level4">
+<h4><span class="header-section-number">5.4.2.1</span> Retaining the original column</h4>
 <p>If for some reason, you wanted to keep the original column, you can set an additional argument <code>remove</code> to <code>FALSE</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="dt">remove =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<pre><code>## # A tibble: 6 x 6
-##   country     century year  rate              cases  population
-##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt;     
-## 1 Afghanistan 19      99    745/19987071      745    19987071  
-## 2 Afghanistan 20      00    2666/20595360     2666   20595360  
-## 3 Brazil      19      99    37737/172006362   37737  172006362 
-## 4 Brazil      20      00    80488/174504898   80488  174504898 
-## 5 China       19      99    212258/1272915272 212258 1272915272
-## 6 China       20      00    213766/1280428583 213766 1280428583</code></pre>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="data-transformation-3-tidy-data.html#cb235-1"></a><span class="kw">separate</span>(table3, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="dt">remove =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 5
+##   country      year rate              cases  population
+##   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt;     
+## 1 Afghanistan  1999 745/19987071      745    19987071  
+## 2 Afghanistan  2000 2666/20595360     2666   20595360  
+## 3 Brazil       1999 37737/172006362   37737  172006362 
+## 4 Brazil       2000 80488/174504898   80488  174504898 
+## 5 China        1999 212258/1272915272 212258 1272915272
+## 6 China        2000 213766/1280428583 213766 1280428583</code></pre>
+</div>
+<div id="dropping-parts-of-the-original-column" class="section level4">
+<h4><span class="header-section-number">5.4.2.2</span> Dropping parts of the original column</h4>
 <p>What if we were just interested retaining part of the data in the cell, for example keeping the column <code>cases</code> but not <code>population</code>. The solution would be to work with an <code>NA</code> argument. Defining the new columns as <code>cases</code> and <code>NA</code> will keep everything before the separator in the column <code>cases</code>, and drops everything after the separator.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="ot">NA</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</code></pre></div>
-<pre><code>## # A tibble: 6 x 4
-##   country     century year  cases 
-##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; 
-## 1 Afghanistan 19      99    745   
-## 2 Afghanistan 20      00    2666  
-## 3 Brazil      19      99    37737 
-## 4 Brazil      20      00    80488 
-## 5 China       19      99    212258
-## 6 China       20      00    213766</code></pre>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="data-transformation-3-tidy-data.html#cb237-1"></a><span class="kw">separate</span>(table3, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="ot">NA</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   country      year cases 
+##   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt; 
+## 1 Afghanistan  1999 745   
+## 2 Afghanistan  2000 2666  
+## 3 Brazil       1999 37737 
+## 4 Brazil       2000 80488 
+## 5 China        1999 212258
+## 6 China        2000 213766</code></pre>
 <div class="task">
 <p>
-Separate the column <code>rate</code> in <code>table5</code> to keep only the values after the separator in a column called <code>population</code>. Drop the values in front of the separator.
+<strong>Your turn</strong>
+</p>
+<p>
+Separate the column <code>rate</code> in <code>table3</code> to keep only the values after the separator in a column called <code>population</code>. Drop the values in front of the separator. Retain the column <code>rate</code> as well.
 </p>
 </div>
 <div class="solution">
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="data-transformation-3-tidy-data.html#cb239-1"></a><span class="kw">separate</span>(table3, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="dt">remove =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
-##   country     century year  population
-##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;     
-## 1 Afghanistan 19      99    19987071  
-## 2 Afghanistan 20      00    20595360  
-## 3 Brazil      19      99    172006362 
-## 4 Brazil      20      00    174504898 
-## 5 China       19      99    1272915272
-## 6 China       20      00    1280428583</code></pre>
+##   country      year rate              population
+##   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;             &lt;chr&gt;     
+## 1 Afghanistan  1999 745/19987071      19987071  
+## 2 Afghanistan  2000 2666/20595360     20595360  
+## 3 Brazil       1999 37737/172006362   172006362 
+## 4 Brazil       2000 80488/174504898   174504898 
+## 5 China        1999 212258/1272915272 1272915272
+## 6 China        2000 213766/1280428583 1280428583</code></pre>
+</div>
+</div>
+<div id="separating-by-position" class="section level4">
+<h4><span class="header-section-number">5.4.2.3</span> Separating by position</h4>
+<p>It is also possible to separate by position. <code>sep = 2</code> would split the column between the second and third character/ number etc.</p>
+<p>Let’s try that the separation by position. We will keep 4 letters from each <code>country</code> name rather than the whole word, and drop the rest.</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="data-transformation-3-tidy-data.html#cb241-1"></a><span class="kw">separate</span>(table3, country, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;country&quot;</span>, <span class="ot">NA</span>), <span class="dt">sep =</span> <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   country  year rate             
+##   &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;            
+## 1 Afgh     1999 745/19987071     
+## 2 Afgh     2000 2666/20595360    
+## 3 Braz     1999 37737/172006362  
+## 4 Braz     2000 80488/174504898  
+## 5 Chin     1999 212258/1272915272
+## 6 Chin     2000 213766/1280428583</code></pre>
+</div>
+<div id="separating-into-more-than-2-columns" class="section level4">
+<h4><span class="header-section-number">5.4.2.4</span> Separating into more than 2 columns</h4>
+<p>Special case. Let’s modify <code>table3</code> a little bit by adding a new column with a value of 200 and unite that column with column <code>rate</code>.</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="data-transformation-3-tidy-data.html#cb243-1"></a>table3_mod &lt;-<span class="st"> </span>table3 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb243-2"><a href="data-transformation-3-tidy-data.html#cb243-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">new =</span> <span class="dv">200</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb243-3"><a href="data-transformation-3-tidy-data.html#cb243-3"></a><span class="st">  </span><span class="kw">unite</span>(rate, rate, new, <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</span></code></pre></div>
+<p>Now column <code>rate</code> has 3 sets of numbers, separated by two <code>/</code>. If we define we want to split the data into 2 columns, the first 2 sets of numbers are kept, and the third one is dropped with a warning.</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="data-transformation-3-tidy-data.html#cb244-1"></a><span class="kw">separate</span>(table3_mod, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Expected 2 pieces. Additional pieces discarded in 6 rows [1, 2, 3,
+## 4, 5, 6].</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   country      year cases  population
+##   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     
+## 1 Afghanistan  1999 745    19987071  
+## 2 Afghanistan  2000 2666   20595360  
+## 3 Brazil       1999 37737  172006362 
+## 4 Brazil       2000 80488  174504898 
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<p>If we are separating the columns and wanted to keep all sets of numbers, one in each column, we would use an into argument that includes 3 new columns.</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="data-transformation-3-tidy-data.html#cb247-1"></a><span class="kw">separate</span>(table3_mod, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>, <span class="st">&quot;200&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 5
+##   country      year cases  population `200`
+##   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;
+## 1 Afghanistan  1999 745    19987071   200  
+## 2 Afghanistan  2000 2666   20595360   200  
+## 3 Brazil       1999 37737  172006362  200  
+## 4 Brazil       2000 80488  174504898  200  
+## 5 China        1999 212258 1272915272 200  
+## 6 China        2000 213766 1280428583 200</code></pre>
+<div class="funfact">
+<p>
+Technically, you would not need a separator argument in the case above, as <code>separate()</code> splits the data whenever it detects a non-alphanumeric character (i.e. a character that isn’t a number or letter). Saying that, the separator argument is needed when your column contains non-alphanumeric characters as part of your cell values.
+</p>
+</div>
+<p>If the values in <code>population</code> and <code>200</code> (separated by a <code>/</code>) were some sort of <code>ID_code</code>, <strong>AND</strong> we wanted to split the data into 2 columns, after the first <code>/</code> only, we would have to include an <code>extra</code> argument, and set it to <code>"merge"</code>.</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="data-transformation-3-tidy-data.html#cb249-1"></a><span class="kw">separate</span>(table3_mod, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;ID_code&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="dt">extra =</span> <span class="st">&quot;merge&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country      year cases  ID_code       
+##   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;         
+## 1 Afghanistan  1999 745    19987071/200  
+## 2 Afghanistan  2000 2666   20595360/200  
+## 3 Brazil       1999 37737  172006362/200 
+## 4 Brazil       2000 80488  174504898/200 
+## 5 China        1999 212258 1272915272/200
+## 6 China        2000 213766 1280428583/200</code></pre>
 </div>
 </div>
 <div id="unite" class="section level3">
-<h3><span class="header-section-number">5.4.2</span> unite()</h3>
-<p>To tidy up <code>table5</code>, there is only one thing left to do, namely combining the columns <code>century</code> and <code>year</code> into a new column called <code>year</code>. Here, we can use the function <code>unite()</code> which is structured like</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unite</span>(data, new_column_name, col_to_unite1, col_to_unite2, <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>)</code></pre></div>
-<p>We would need the data <code>table5</code>, a new column we want to create <code>year</code>, the two columns we would like to combine (<code>century</code> and <code>year</code>), and define the separator as “nothing” since the default is sep = “_“.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unite</span>(table5, year, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</code></pre></div>
+<h3><span class="header-section-number">5.4.3</span> unite()</h3>
+<p>Take a look at <code>table5</code>.</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="data-transformation-3-tidy-data.html#cb251-1"></a>table5</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country     century year  rate             
+## * &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            
+## 1 Afghanistan 19      99    745/19987071     
+## 2 Afghanistan 20      00    2666/20595360    
+## 3 Brazil      19      99    37737/172006362  
+## 4 Brazil      20      00    80488/174504898  
+## 5 China       19      99    212258/1272915272
+## 6 China       20      00    213766/1280428583</code></pre>
+<p>Here the values in column <code>year</code> are split into <code>century</code> and <code>year</code> which is not very useful. Best to merge the 2 columns together as shown in the image below.</p>
+<center>
+<img src="images/tidy_5.png" >
+</center>
+<p><code>unite()</code> (the inverse of separate) can help to combine the values of <code>century</code> and <code>year</code> into a single column. It is used less frequently than it’s counterpart, but is still a useful function to know.</p>
+<p>The function <code>unite()</code> is structured like this:</p>
+<p><br></p>
+<center>
+<img src="images/unite.PNG" >
+</center>
+<p><br></p>
+<p>We would need the data <code>table5</code>, a new column we want to create <code>year</code>, the two columns we would like to combine (<code>century</code> and <code>year</code>), and define the separator as “nothing” since the default is sep = "_".</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="data-transformation-3-tidy-data.html#cb253-1"></a><span class="kw">unite</span>(table5, year, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   country     year  rate             
 ##   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;            
@@ -691,12 +909,23 @@ Solution
 ## 4 Brazil      2000  80488/174504898  
 ## 5 China       1999  212258/1272915272
 ## 6 China       2000  213766/1280428583</code></pre>
-<p>Yay! Notice how <code>rate</code> is back to one column with both values in each row since we haven’t stored any output in the <code>Global Environment</code>.</p>
-<p>Right, let’s combine the two steps of tidying the <code>table5</code> data by creating a pipe <code>%&gt;%</code> and store the new object <code>tb_cases</code> in the <code>Global Environment</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tb_cases &lt;-<span class="st"> </span>table5 <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">unite</span>(year, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
-tb_cases</code></pre></div>
+<p>Yay! The data of <code>table5</code> is in a tidier format now (let’s ignore the column <code>rate</code> for the minute as we already know how to fix that)</p>
+<div class="task">
+<p>
+<strong>Your turn</strong>
+</p>
+<p>
+Let’s combine the two steps of tidying <code>table5</code> in a single pipe <code>%&gt;%</code> - separate the <code>rate</code> column into <code>cases</code> and <code>population</code>, and unite the columns <code>year</code> and <code>century</code> into a new column <code>year</code>. Store the new object as <code>tb_cases</code> in the <code>Global Environment</code>.
+</p>
+</div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="data-transformation-3-tidy-data.html#cb255-1"></a>tb_cases &lt;-<span class="st"> </span>table5 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb255-2"><a href="data-transformation-3-tidy-data.html#cb255-2"></a><span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb255-3"><a href="data-transformation-3-tidy-data.html#cb255-3"></a><span class="st">  </span><span class="kw">unite</span>(year, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb255-4"><a href="data-transformation-3-tidy-data.html#cb255-4"></a>tb_cases</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country     year  cases  population
 ##   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     
@@ -706,9 +935,10 @@ tb_cases</code></pre></div>
 ## 4 Brazil      2000  80488  174504898 
 ## 5 China       1999  212258 1272915272
 ## 6 China       2000  213766 1280428583</code></pre>
+</div>
 <div class="question">
 <p>
-There is still a tiny bit off in the tibble above. Can you spot what it is? * Hint: Think about if you wanted to sum up all the TB cases occured in the 3 countries within the years 1999, and 2000.
+There is still a tiny bit off in the <code>tb_cases</code>. Can you spot what it is? * Hint: Think about if you wanted to sum up all the TB cases occured in the 3 countries within the years 1999, and 2000.
 </p>
 </div>
 <div class="solution">
@@ -720,11 +950,11 @@ Solution
 All the columns are <code>character</code> columns. For any calculation however, the columns need to be <code>numerical</code>. We could use the converting function <code>as.integer()</code>.
 </p>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tb_cases_converted &lt;-<span class="st"> </span>tb_cases <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.integer</span>(year),
-    <span class="dt">cases =</span> <span class="kw">as.integer</span>(cases),
-    <span class="dt">population =</span> <span class="kw">as.integer</span>(population))
-tb_cases_converted</code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="data-transformation-3-tidy-data.html#cb257-1"></a>tb_cases_converted &lt;-<span class="st"> </span>tb_cases <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb257-2"><a href="data-transformation-3-tidy-data.html#cb257-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.integer</span>(year),</span>
+<span id="cb257-3"><a href="data-transformation-3-tidy-data.html#cb257-3"></a>    <span class="dt">cases =</span> <span class="kw">as.integer</span>(cases),</span>
+<span id="cb257-4"><a href="data-transformation-3-tidy-data.html#cb257-4"></a>    <span class="dt">population =</span> <span class="kw">as.integer</span>(population))</span>
+<span id="cb257-5"><a href="data-transformation-3-tidy-data.html#cb257-5"></a>tb_cases_converted</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -735,12 +965,15 @@ tb_cases_converted</code></pre></div>
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
 </div>
-<p>The slightly quicker and perhaps more elegant solution would be to add another argument <code>convert</code> to <code>separate()</code> and set it to <code>TRUE</code>. Unfortunately, <code>unite()</code> does not have a <code>convert</code> statement available. So for that part, we would have to use another step in the pipe converting the <code>year</code> column from <code>character</code> to <code>integer</code>, just as we did in lecture 2.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tb_cases &lt;-<span class="st"> </span>table5 <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">unite</span>(year, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.integer</span>(year))
-tb_cases</code></pre></div>
+</div>
+<div id="additional-arguments-for-unite" class="section level3">
+<h3><span class="header-section-number">5.4.4</span> additional arguments for unite()</h3>
+<p>The slightly quicker and perhaps more elegant solution would be to add another argument <code>convert</code> to <code>separate()</code> and set it to <code>TRUE</code>. Unfortunately, <code>unite()</code> does not have a <code>convert</code> statement available. So for that part, we would have to use another step in the pipe converting the <code>year</code> column from <code>character</code> to <code>integer</code>, just as we did in lecture 2. And we can do that in a single pipe.</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="data-transformation-3-tidy-data.html#cb259-1"></a>tb_cases &lt;-<span class="st"> </span>table5 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb259-2"><a href="data-transformation-3-tidy-data.html#cb259-2"></a><span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb259-3"><a href="data-transformation-3-tidy-data.html#cb259-3"></a><span class="st">  </span><span class="kw">unite</span>(year, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb259-4"><a href="data-transformation-3-tidy-data.html#cb259-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.integer</span>(year))</span>
+<span id="cb259-5"><a href="data-transformation-3-tidy-data.html#cb259-5"></a>tb_cases</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -750,76 +983,61 @@ tb_cases</code></pre></div>
 ## 4 Brazil       2000  80488  174504898
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
-</div>
-<div id="separating-by-position" class="section level3">
-<h3><span class="header-section-number">5.4.3</span> separating by position</h3>
-<p>It is also possible to separate by position. <code>sep = 2</code> would split the column between the second and third character/ number etc.</p>
-<p>Let’s try that the separation by position. We will keep 4 letters from each <code>country</code> name rather than the whole word, and drop the rest.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5, country, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;country&quot;</span>, <span class="ot">NA</span>), <span class="dt">sep =</span> <span class="dv">4</span>)</code></pre></div>
+<p>Similarly to <code>separate()</code>, unite also comes with a remove statement, so if you wanted to keep the original columns before merging them together, you would code</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="data-transformation-3-tidy-data.html#cb261-1"></a><span class="kw">unite</span>(table5, year_combined, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>, <span class="dt">remove =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 5
+##   country     year_combined century year  rate             
+##   &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            
+## 1 Afghanistan 1999          19      99    745/19987071     
+## 2 Afghanistan 2000          20      00    2666/20595360    
+## 3 Brazil      1999          19      99    37737/172006362  
+## 4 Brazil      2000          20      00    80488/174504898  
+## 5 China       1999          19      99    212258/1272915272
+## 6 China       2000          20      00    213766/1280428583</code></pre>
+<p><code>unite()</code> also comes with an <code>na.rm</code> statement that will remove missing values prior to uniting the values of a column (actually, the values have to be a “character” column). Let me modify <code>table5</code> a wee bit to make that point.</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="data-transformation-3-tidy-data.html#cb263-1"></a>table5_mod &lt;-<span class="st"> </span>table5 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb263-2"><a href="data-transformation-3-tidy-data.html#cb263-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">new =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;200&quot;</span>, <span class="ot">NA</span>), <span class="dv">3</span>))</span>
+<span id="cb263-3"><a href="data-transformation-3-tidy-data.html#cb263-3"></a></span>
+<span id="cb263-4"><a href="data-transformation-3-tidy-data.html#cb263-4"></a>table5_mod</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 5
+##   country     century year  rate              new  
+##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;             &lt;chr&gt;
+## 1 Afghanistan 19      99    745/19987071      200  
+## 2 Afghanistan 20      00    2666/20595360     &lt;NA&gt; 
+## 3 Brazil      19      99    37737/172006362   200  
+## 4 Brazil      20      00    80488/174504898   &lt;NA&gt; 
+## 5 China       19      99    212258/1272915272 200  
+## 6 China       20      00    213766/1280428583 &lt;NA&gt;</code></pre>
+<p>If we wanted to combine the values of <code>rate</code> and <code>new</code>, we would code</p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="data-transformation-3-tidy-data.html#cb265-1"></a><span class="kw">unite</span>(table5_mod, rate, rate, new, <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
-##   country century year  rate             
-##   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            
-## 1 Afgh    19      99    745/19987071     
-## 2 Afgh    20      00    2666/20595360    
-## 3 Braz    19      99    37737/172006362  
-## 4 Braz    20      00    80488/174504898  
-## 5 Chin    19      99    212258/1272915272
-## 6 Chin    20      00    213766/1280428583</code></pre>
-</div>
-<div id="separating-more-than-2-columns" class="section level3">
-<h3><span class="header-section-number">5.4.4</span> separating more than 2 columns</h3>
-<p>Special case. Let’s modify <code>table5</code> a little bit by adding a new column with a value of 200 and unite that column with column <code>rate</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table5_mod &lt;-<span class="st"> </span>table5 <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">new =</span> <span class="dv">200</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">unite</span>(rate, rate, new, <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</code></pre></div>
-<p>Now column <code>rate</code> has 3 sets of numbers, separated by two <code>/</code>. If we define we want to split the data into 2 columns, the first 2 sets of numbers are kept, and the third one is dropped with a warning.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5_mod, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</code></pre></div>
-<pre><code>## Warning: Expected 2 pieces. Additional pieces discarded in 6 rows [1, 2, 3,
-## 4, 5, 6].</code></pre>
-<pre><code>## # A tibble: 6 x 5
-##   country     century year  cases  population
-##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     
-## 1 Afghanistan 19      99    745    19987071  
-## 2 Afghanistan 20      00    2666   20595360  
-## 3 Brazil      19      99    37737  172006362 
-## 4 Brazil      20      00    80488  174504898 
-## 5 China       19      99    212258 1272915272
-## 6 China       20      00    213766 1280428583</code></pre>
-<p>If we are separating the columns and wanted to keep all sets of numbers, one in each column, we would use an into argument that includes 3 new columns.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5_mod, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>, <span class="st">&quot;200&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</code></pre></div>
-<pre><code>## # A tibble: 6 x 6
-##   country     century year  cases  population `200`
-##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;
-## 1 Afghanistan 19      99    745    19987071   200  
-## 2 Afghanistan 20      00    2666   20595360   200  
-## 3 Brazil      19      99    37737  172006362  200  
-## 4 Brazil      20      00    80488  174504898  200  
-## 5 China       19      99    212258 1272915272 200  
-## 6 China       20      00    213766 1280428583 200</code></pre>
-<div class="funfact">
-<p>
-Technically, you would not need a separator argument in the case above, as <code>separate()</code> splits the data whenever it detects a non-alphanumeric character (i.e. a character that isn’t a number or letter). Saying that, the separator argument is needed when your column contains non-alphanumeric characters as part of your cell values.
-</p>
-</div>
-<p>If the values in <code>population</code> and <code>200</code> (separated by a <code>/</code>) were some sort of <code>ID_code</code>, <strong>AND</strong> we wanted to split the data into 2 columns, after the first <code>/</code> only, we would have to include an <code>extra</code> argument, and set it to <code>&quot;merge&quot;</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table5_mod, rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;ID_code&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="dt">extra =</span> <span class="st">&quot;merge&quot;</span>)</code></pre></div>
-<pre><code>## # A tibble: 6 x 5
-##   country     century year  cases  ID_code       
-##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;         
-## 1 Afghanistan 19      99    745    19987071/200  
-## 2 Afghanistan 20      00    2666   20595360/200  
-## 3 Brazil      19      99    37737  172006362/200 
-## 4 Brazil      20      00    80488  174504898/200 
-## 5 China       19      99    212258 1272915272/200
-## 6 China       20      00    213766 1280428583/200</code></pre>
+##   country     century year  rate                 
+##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;                
+## 1 Afghanistan 19      99    745/19987071/200     
+## 2 Afghanistan 20      00    2666/20595360/NA     
+## 3 Brazil      19      99    37737/172006362/200  
+## 4 Brazil      20      00    80488/174504898/NA   
+## 5 China       19      99    212258/1272915272/200
+## 6 China       20      00    213766/1280428583/NA</code></pre>
+<p>See how R adds the missing values onto rate, which we do not want. To avoid that happening, we can use the <code>na.rm</code> statement which removes missing values in columns of data type character before merging the columns.</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="data-transformation-3-tidy-data.html#cb267-1"></a><span class="kw">unite</span>(table5_mod, rate, rate, new, <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country     century year  rate                 
+##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;                
+## 1 Afghanistan 19      99    745/19987071/200     
+## 2 Afghanistan 20      00    2666/20595360        
+## 3 Brazil      19      99    37737/172006362/200  
+## 4 Brazil      20      00    80488/174504898      
+## 5 China       19      99    212258/1272915272/200
+## 6 China       20      00    213766/1280428583</code></pre>
 </div>
 </div>
 <div id="bonus-materials-mutate-rownames-from-the-mtcars" class="section level2">
 <h2><span class="header-section-number">5.5</span> Bonus materials: mutate rownames from the mtcars</h2>
 <p>Remember, in lecture 2 when we were talking about the mtcars dataset and how the car types were not in listed as a separate column but rather rownames? Let’s just read in the data and have another quick look to jug our memories…</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_mtcars &lt;-<span class="st"> </span>mtcars
-
-<span class="kw">head</span>(df_mtcars)</code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="data-transformation-3-tidy-data.html#cb269-1"></a>df_mtcars &lt;-<span class="st"> </span>mtcars</span>
+<span id="cb269-2"><a href="data-transformation-3-tidy-data.html#cb269-2"></a></span>
+<span id="cb269-3"><a href="data-transformation-3-tidy-data.html#cb269-3"></a><span class="kw">head</span>(df_mtcars)</span></code></pre></div>
 <pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
 ## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
 ## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
@@ -829,10 +1047,10 @@ Technically, you would not need a separator argument in the case above, as <code
 ## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
 <p>You can see much better what I’m talking about when you view your <code>df_mtcars</code>.</p>
 <p>Now, that we have learnt about the <code>mutate()</code> function, we can attempt to get all of these rownames into a new column. All we have to do is combining a function called <code>rownames()</code> with <code>mutate()</code>. We also could use some more of these handy pipes <code>%&gt;%</code> you learnt about last week.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_mtcars &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Car_type =</span> <span class="kw">rownames</span>(mtcars))</code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="data-transformation-3-tidy-data.html#cb271-1"></a>df_mtcars &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb271-2"><a href="data-transformation-3-tidy-data.html#cb271-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Car_type =</span> <span class="kw">rownames</span>(mtcars))</span></code></pre></div>
 <p>In this example, we have taken the dataset <code>mtcars</code>, then added a new column called <code>Car_type</code> with <code>mutate()</code>. The column <code>Car_type</code> should then hold all the values that were previously listed as the rownames in the original <code>mtcars</code> data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(df_mtcars)</code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="data-transformation-3-tidy-data.html#cb272-1"></a><span class="kw">head</span>(df_mtcars)</span></code></pre></div>
 <pre><code>##    mpg cyl disp  hp drat    wt  qsec vs am gear carb          Car_type
 ## 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4         Mazda RX4
 ## 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4     Mazda RX4 Wag
@@ -849,12 +1067,12 @@ We can now look at the data <code>df_mtcars</code>, and see that the new column 
 <button>
 Answer
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We could use the fuction select()</span>
-df_mtcars &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Car_type =</span> <span class="kw">rownames</span>(mtcars)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(Car_type, mpg<span class="op">:</span>carb)
-
-<span class="kw">head</span>(df_mtcars)</code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="data-transformation-3-tidy-data.html#cb274-1"></a><span class="co"># We could use the fuction select()</span></span>
+<span id="cb274-2"><a href="data-transformation-3-tidy-data.html#cb274-2"></a>df_mtcars &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb274-3"><a href="data-transformation-3-tidy-data.html#cb274-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Car_type =</span> <span class="kw">rownames</span>(mtcars)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb274-4"><a href="data-transformation-3-tidy-data.html#cb274-4"></a><span class="st">  </span><span class="kw">select</span>(Car_type, mpg<span class="op">:</span>carb)</span>
+<span id="cb274-5"><a href="data-transformation-3-tidy-data.html#cb274-5"></a></span>
+<span id="cb274-6"><a href="data-transformation-3-tidy-data.html#cb274-6"></a><span class="kw">head</span>(df_mtcars)</span></code></pre></div>
 <pre><code>##            Car_type  mpg cyl disp  hp drat    wt  qsec vs am gear carb
 ## 1         Mazda RX4 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
 ## 2     Mazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
@@ -982,7 +1200,6 @@ window.onload = function() {
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -1001,10 +1218,6 @@ gitbook.start({
 "text": null
 },
 "history": {
-"link": null,
-"text": null
-},
-"view": {
 "link": null,
 "text": null
 },

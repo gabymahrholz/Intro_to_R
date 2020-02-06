@@ -403,7 +403,7 @@ tb_cases
 
 
 ```{block, type="info"}
-The year column is still a `character` column. In this case, it does not matter too much, as 1999 and 2000 are levels of the column `year` and very unlikely to be involved in any calculations. In case, we are dealing with actual numerical value and have the need to convert the data type, we need to use the function `as.integer()` as unite does not have a `convert` argument available.
+The year column is still a `character` column. In this case, it does not matter too much, as 1999 and 2000 are levels of the column `year` and very unlikely to be involved in any calculations. In case we are dealing with actual numerical value and have the need to convert the data type, we need to use the function `as.integer()` as unite does not have a `convert` argument available.
 ```
 
 ```{r}

@@ -1,4 +1,4 @@
-# Data Transformation 4: Finetuned Data Manipulation 
+# Data Transformation 4: Fine-tuned Data Manipulation 
 
 ## Intended Learning Outcomes {-}
 
@@ -27,7 +27,7 @@ library(tidyverse)
 rename(data, new_column_name = old_column_name)
 ```
 
-You can rename multiple column headers by including more arguments, separarting them with a comma. Let's take a look at a simple example in `table1`.
+You can rename multiple column headers by including more arguments, separating them with a comma. Let's take a look at a simple example in `table1`.
 
 ```{r}
 table1
@@ -179,7 +179,7 @@ fake_data <- mutate(fake_data, Sex_ifelse = ifelse(Sex == 1, "Male", "Female"))
 glimpse(fake_data)
 ```
 
-AHHHH!!! But what about the 3 participants that chose option 3? They are now coded as "Female". hmmm. One way to get around that would be a nested `ifelse()` statement. Instead of replacing the no argument (`FALSE` evaluation) with "Female", we could include a second `ifelse()` statement.
+AHHHH!!! But what about the 3 participants that chose option 3? They are now coded as "Female". Hmmm. One way to get around that would be a nested `ifelse()` statement. Instead of replacing the no argument (`FALSE` evaluation) with "Female", we could include a second `ifelse()` statement.
 
 ```{r}
 fake_data <- mutate(fake_data, Sex_ifelse = ifelse(Sex == 1, "Male",
@@ -340,7 +340,7 @@ You can see they are not sorted by either of the column. Why is that?
 
 `r hide("Solution")`
 ```{block, type="solved"}
-The values are sorted by occurence. R goes throgh the tibble row by row to determine whether the values are distinct from the ones in the row before. So if you look at your original dataframe `fake_data`, you can see the first row is a male participant from Glasgow Caledonian University. The participant in row 2 is from the University of Glasgow, but so is participant 3 (which means he is not listed in the distinct tibble). The next unique value would be detected in row 4, then in row 7, then in row 18, 20, 22, 23, 38, and 39.
+The values are sorted by occurrence. R goes through the tibble row by row to determine whether the values are distinct from the ones in the row before. So if you look at your original dataframe `fake_data`, you can see the first row is a male participant from Glasgow Caledonian University. The participant in row 2 is from the University of Glasgow, but so is participant 3 (which means he is not listed in the distinct tibble). The next unique value would be detected in row 4, then in row 7, then in row 18, 20, 22, 23, 38, and 39.
 ```
 `r unhide()`
 

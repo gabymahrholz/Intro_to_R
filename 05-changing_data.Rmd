@@ -54,7 +54,7 @@ We can start this lecture by looking at a practical example in the build-in data
 table1
 ```
 
-`table1` has a very tidy structure as it follows the three priciples above - each variable is its own column, each observation is its own row, and each value is its own cell. 
+`table1` has a very tidy structure as it follows the three principles above - each variable is its own column, each observation is its own row, and each value is its own cell. 
 
 <center> <img src="images/tidy_1.png" > </center>
 
@@ -124,7 +124,7 @@ table2
 
 <center> <img src="images/tidy_2_1.png" > </center>
 
-`table2` has the variabes `cases` and `population` stored in one column `type` and their respective values in `count`. However, `cases` and `population` are separate variables rather than values of `type`. So best to get them spread out into their own columns as shown in the image below.
+`table2` has the variables `cases` and `population` stored in one column `type` and their respective values in `count`. However, `cases` and `population` are separate variables rather than values of `type`. So best to get them spread out into their own columns as shown in the image below.
 
 
 <center> <img src="images/tidy_2.png" > </center>
@@ -170,19 +170,20 @@ kable(table1_mod)
 
 In the modified table above `table1_mod`, we added a `percent` column to see how much percentage of the population had Tuberculosis in 1999 and 2000 in each of the countries Afghanistan, Brazil, and China. But somehow, all numerical information has ended up in 1 column (values).
 
-Your task is to spread the data back out, so that cases, population, and percentage values are in their own columns, titled as `cases`, `population`, and `percent` respectively. Store the new object in the `Global Environment` as `table1_mod_corrected`.
+Your task is to spread the data back out, so that cases, population, and percentage values are in their own columns, titled as `cases`, `population`, and `percent` respectively. Store the new object in the `Global Environment` as `table1_mod_corrected`. When you are done, `table1_mod_corrected` should look like this...
 
 ```
+
+```{r, echo=FALSE}
+kable(spread(table1_mod, key = variable, value = values))
+```
+
 
 
 `r hide("Solution")`
 ```{r}
 table1_mod_corrected <- spread(table1_mod, key = variable, value = values)
-
-table1_mod_corrected
 ```
-
-
 
 `r unhide()`
 
@@ -222,7 +223,7 @@ The function `separate()` is structured like this:
 We would need
 
 * the data in which the column to separate is located -> `table3`,
-* the actual colum we want to separate -> `rate`,
+* the actual column we want to separate -> `rate`,
 * the into argument asking into how many columns we want to separate the old column and what we want to call these new columns -> `c("cases", "population")`, and
 * a separator argument -> `"/"`.
 
@@ -300,7 +301,7 @@ table3_mod <- table3 %>%
   unite(rate, rate, new, sep = "/")
 ```
 
-Now column `rate` has 3 sets of numbers, separated by two `/`. If we define we want to split the data into 2 columns, the first 2 sets of numbers are kept, and the third one is dropped with a warning.
+Now column `rate` has 3 sets of numbers, separated by two `/`. If we define we want to split the data into 2 columns, the first 2 sets of numbers are kept, and the third one is dropped with a warning. The code is still executed but the warning indicates that it might not have gone as planned. Hence, it is always good to check that the data object in the `Global Environment` looks exactly as what you have intended.
 
 ```{r}
 separate(table3_mod, rate, into = c("cases", "population"), sep = "/")
@@ -320,6 +321,34 @@ If the values in `population` and `200` (separated by a `/`) were some sort of `
 
 ```{r}
 separate(table3_mod, rate, into = c("cases", "ID_code"), sep = "/", extra = "merge")
+```
+
+
+```{block, type="question"}
+There is still a tiny bit off in the `tb_cases`. Can you spot what it is? * Hint: Think about if you wanted to sum up all the TB cases occurred in the 3 countries within the years 1999, and 2000.
+```
+
+
+`r hide("Solution")`
+```{block, type="solved"}
+The new columns `ID_code` and `cases` are `character` columns. Whilst this is fine for `ID_code`, it is less beneficial for `cases.` If we wanted to sum up the cases column, values would need to be `numerical`. We could use the converting function `as.integer()`.
+```
+
+```{r}
+table3_mod %>% 
+  separate(rate, into = c("cases", "ID_code"), sep = "/", extra = "merge") %>% 
+  mutate(cases = as.integer(cases))
+```
+
+`r unhide()`
+
+#### Converting data types
+
+The slightly quicker and perhaps more elegant solution would be to add another argument `convert` to `separate()` and set it to `TRUE`. This will convert `cases` to `integer` and leave `ID_code` as `character` due to the non-numerical `/`.
+
+```{r}
+table3_mod %>% 
+  separate(rate, into = c("cases", "ID_code"), sep = "/", extra = "merge", convert = TRUE)
 ```
 
 
@@ -357,60 +386,44 @@ unite(table5, year, century, year, sep = "")
 Yay! The data of `table5` is in a tidier format now (let's ignore the column `rate` for the minute as we already know how to fix that)
 
 
-
-
 ```{block, type="task"}
 **Your turn**
 
-Let's combine the two steps of tidying `table5` in a single pipe `%>%` - separate the `rate` column into `cases` and `population`, and unite the columns `year` and `century` into a new column `year`. Store the new object as `tb_cases` in the `Global Environment`.
+Let's combine the two steps of tidying `table5` in a single pipe `%>%` - separate the `rate` column into `cases` and `population`, and unite the columns `year` and `century` into a new column `year`. Store the new object as `tb_cases` in the `Global Environment`. Make sure, the columns `cases` and `population` are `integer` values.
 ```
 
 `r hide("Solution")`
 ```{r}
 tb_cases <- table5 %>% 
-  separate(rate, into = c("cases", "population"), sep = "/") %>% 
+  separate(rate, into = c("cases", "population"), sep = "/", convert = TRUE) %>% 
   unite(year, century, year, sep = "")
 tb_cases
 ```
 `r unhide()`
 
-```{block, type="question"}
-There is still a tiny bit off in the `tb_cases`. Can you spot what it is? * Hint: Think about if you wanted to sum up all the TB cases occured in the 3 countries within the years 1999, and 2000.
-```
 
-`r hide("Solution")`
-```{block, type="solved"}
-All the columns are `character` columns. For any calculation however, the columns need to be `numerical`. We could use the converting function `as.integer()`.
+```{block, type="info"}
+The year column is still a `character` column. In this case, it does not matter too much, as 1999 and 2000 are levels of the column `year` and very unlikely to be involved in any calculations. In case, we are dealing with actual numerical value and have the need to convert the data type, we need to use the function `as.integer()` as unite does not have a `convert` argument available.
 ```
 
 ```{r}
 tb_cases_converted <- tb_cases %>% 
-  mutate(year = as.integer(year),
-    cases = as.integer(cases),
-    population = as.integer(population))
+  mutate(year = as.integer(year))
 tb_cases_converted
 ```
 
-`r unhide()`
 
 ### additional arguments for unite()
 
-The slightly quicker and perhaps more elegant solution would be to add another argument `convert` to `separate()` and set it to `TRUE`. Unfortunately, `unite()` does not have a `convert` statement available. So for that part, we would have to use another step in the pipe converting the `year` column from `character` to `integer`, just as we did in lecture 2. And we can do that in a single pipe.
-
-
-```{r}
-tb_cases <- table5 %>% 
-  separate(rate, into = c("cases", "population"), sep = "/", convert = TRUE) %>% 
-  unite(year, century, year, sep = "") %>% 
-  mutate(year = as.integer(year))
-tb_cases
-```
+#### Retaining the original column
 
 Similarly to `separate()`, unite also comes with a remove statement, so if you wanted to keep the original columns before merging them together, you would code
 
 ```{r}
 unite(table5, year_combined, century, year, sep = "", remove = FALSE)
 ```
+
+#### Removing missing values before uniting columns
 
 `unite()` also comes with an `na.rm` statement that will remove missing values prior to uniting the values of a column (actually, the values have to be a "character" column). Let me modify `table5` a wee bit to make that point.
 
@@ -434,9 +447,9 @@ unite(table5_mod, rate, rate, new, sep = "/", na.rm = TRUE)
 ```
 
 
-## Bonus materials: mutate rownames from the mtcars
+## Bonus materials: mutate row names from the mtcars
 
-Remember, in lecture 2 when we were talking about the mtcars dataset and how the car types were not in listed as a separate column but rather rownames? Let's just read in the data and have another quick look to jug our memories...
+Remember, in lecture 2 when we were talking about the mtcars dataset and how the car types were not in listed as a separate column but rather row names? Let's just read in the data and have another quick look to jog our memories...
 
 ```{r}
 df_mtcars <- mtcars
@@ -447,14 +460,14 @@ head(df_mtcars)
 You can see much better what I'm talking about when you view your `df_mtcars`.
 
 
-Now, that we have learnt about the `mutate()` function, we can attempt to get all of these rownames into a new column. All we have to do is combining a function called `rownames()` with `mutate()`. We also could use some more of these handy pipes `%>%` you learnt about last week.
+Now, that we have learnt about the `mutate()` function, we can attempt to get all of these row names into a new column. All we have to do is combining a function called `rownames()` with `mutate()`. We also could use some more of these handy pipes `%>%` you learnt about last week.
 
 ```{r}
 df_mtcars <- mtcars %>% 
   mutate(Car_type = rownames(mtcars))
 ```
 
-In this example, we have taken the dataset `mtcars`, then added a new column called `Car_type` with `mutate()`. The column `Car_type` should then hold all the values that were previously listed as the rownames in the original `mtcars` data.
+In this example, we have taken the dataset `mtcars`, then added a new column called `Car_type` with `mutate()`. The column `Car_type` should then hold all the values that were previously listed as the row names in the original `mtcars` data.
 
 ```{r}
 head(df_mtcars)

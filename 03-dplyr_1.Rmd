@@ -53,7 +53,7 @@ Set that folder as your working directory for today. The files in the folders sh
 
 As we will be using functions that are part of `tidyverse`, we need to load it into the library.
 
-```{r, message=FALSE}
+```{r L3, message=FALSE}
 library(tidyverse)
 ```
 

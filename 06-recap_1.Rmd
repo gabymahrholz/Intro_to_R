@@ -14,7 +14,7 @@ This lesson is led by [Gaby Mahrholz](http://www.psy.gla.ac.uk/staff/index.php?i
 
 Before we can start to focus on some other functions that might come in handy for data manipulation, we need to make sure to load `tidyverse` into the library. 
 
-```{r, message=FALSE}
+```{r L6, message=FALSE}
 library(tidyverse)
 ```
 

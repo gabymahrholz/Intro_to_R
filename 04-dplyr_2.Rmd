@@ -30,7 +30,7 @@ This lesson is led by [Kate Haining](http://www.psy.gla.ac.uk/staff/index.php?id
 
 
 `r hide("Solution")`
-```{r, message=FALSE}
+```{r L4, message=FALSE}
 library(tidyverse)
 student_MH <- read_csv("Student_Mental_Health.csv")
 short_MH <- select(student_MH, -Region, -Stay_Cate, -Japanese_cate, -English_cate)

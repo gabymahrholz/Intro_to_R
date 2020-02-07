@@ -44,7 +44,7 @@ Whichever way you prefer is fine. The files `L2_stub` and `MM_data.csv` should n
 
 We will be using a few functions today that are part of the `tidyverse` package compilation. Let's load tidyverse in the library now, so we do not have to worry about it later on.
 
-```{r}
+```{r L2}
 library(tidyverse)
 ```
 

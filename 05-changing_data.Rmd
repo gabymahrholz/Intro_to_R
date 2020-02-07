@@ -13,7 +13,7 @@ This lesson is led by [Gaby Mahrholz](http://www.psy.gla.ac.uk/staff/index.php?i
 
 All the functions for tidying data are within `tidyverse` so we need to make sure to load it into the library. Today's lecture will make use of built-in dataframes which means we do not have to load any data into our `Global Environment` for the minute.
 
-```{r, message=FALSE}
+```{r L5, message=FALSE}
 library(tidyverse)
 ```
 
@@ -383,7 +383,8 @@ We would need the data `table5`, a new column we want to create `year`, the two 
 ```{r}
 unite(table5, year, century, year, sep = "")
 ```
-Yay! The data of `table5` is in a tidier format now (let's ignore the column `rate` for the minute as we already know how to fix that)
+
+Yay! The data of `table5` is in a tidier format now - at least for column `year`. Ah, but we didn't save the changes as an object in our `Global Environment`.
 
 
 ```{block, type="task"}

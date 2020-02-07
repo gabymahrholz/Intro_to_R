@@ -8,7 +8,7 @@
 
 We will be working with `ggplot2` today which is part of `tidyverse`. Load `tidyverse` into the library and read the data we will be working with today into our `Global Environment`. 
 
-```{r, message=FALSE}
+```{r L7, message=FALSE}
 library(tidyverse)
 migration_scot <- read_csv("free_movement_uk.csv") #downloaded from the Scottish Government Stats website
 ```

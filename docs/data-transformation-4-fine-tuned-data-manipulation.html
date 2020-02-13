@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Rebecca J. Lai, Kate Haining, Greta Todorova, and Wilhelmiina Toivo" />
 
 
-<meta name="date" content="2020-02-07" />
+<meta name="date" content="2020-02-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -244,7 +244,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.3.3" data-path="data-transformation-4-fine-tuned-data-manipulation.html"><a href="data-transformation-4-fine-tuned-data-manipulation.html#case_when"><i class="fa fa-check"></i><b>6.3.3</b> case_when()</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="data-transformation-4-fine-tuned-data-manipulation.html"><a href="data-transformation-4-fine-tuned-data-manipulation.html#distinct"><i class="fa fa-check"></i><b>6.4</b> distinct()</a></li>
-<li class="chapter" data-level="6.5" data-path="data-transformation-4-fine-tuned-data-manipulation.html"><a href="data-transformation-4-fine-tuned-data-manipulation.html#summative-homework-2"><i class="fa fa-check"></i><b>6.5</b> Summative Homework</a></li>
+<li class="chapter" data-level="6.5" data-path="data-transformation-4-fine-tuned-data-manipulation.html"><a href="data-transformation-4-fine-tuned-data-manipulation.html#recap"><i class="fa fa-check"></i><b>6.5</b> Recap</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="data-transformation-4-fine-tuned-data-manipulation.html"><a href="data-transformation-4-fine-tuned-data-manipulation.html#question-1"><i class="fa fa-check"></i><b>6.5.1</b> Question 1</a></li>
+<li class="chapter" data-level="6.5.2" data-path="data-transformation-4-fine-tuned-data-manipulation.html"><a href="data-transformation-4-fine-tuned-data-manipulation.html#question-2"><i class="fa fa-check"></i><b>6.5.2</b> Question 2</a></li>
+<li class="chapter" data-level="6.5.3" data-path="data-transformation-4-fine-tuned-data-manipulation.html"><a href="data-transformation-4-fine-tuned-data-manipulation.html#question-3"><i class="fa fa-check"></i><b>6.5.3</b> Question 3</a></li>
+<li class="chapter" data-level="6.5.4" data-path="data-transformation-4-fine-tuned-data-manipulation.html"><a href="data-transformation-4-fine-tuned-data-manipulation.html#question-4"><i class="fa fa-check"></i><b>6.5.4</b> Question 4</a></li>
+<li class="chapter" data-level="6.5.5" data-path="data-transformation-4-fine-tuned-data-manipulation.html"><a href="data-transformation-4-fine-tuned-data-manipulation.html#question-5"><i class="fa fa-check"></i><b>6.5.5</b> Question 5</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="data-transformation-4-fine-tuned-data-manipulation.html"><a href="data-transformation-4-fine-tuned-data-manipulation.html#summative-homework-2"><i class="fa fa-check"></i><b>6.6</b> Summative Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html"><i class="fa fa-check"></i><b>7</b> Data Visualisation 1</a><ul>
 <li class="chapter" data-level="" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#intended-learning-outcomes-7"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
@@ -348,7 +355,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="rename" class="section level2">
 <h2><span class="header-section-number">6.2</span> rename()</h2>
-<p><code>rename()</code> is a very useful function if we wanted to change column names. All available column names are retained, so nothing is lost. It follows a very simple pattern of</p>
+<p><code>rename()</code> is a very useful function if we wanted to change column names. All available column are retained, so nothing is lost. If you had 5 variables in a tibble, and wanted to change the name of one of them, your output would be 5 columns in total - one column with a changed name and 4 columns with the previous names. The <code>rename()</code> function follows a very simple pattern of</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rename</span>(data, <span class="dt">new_column_name =</span> old_column_name)</code></pre></div>
 <p>You can rename multiple column headers by including more arguments, separating them with a comma. Let’s take a look at a simple example in <code>table1</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table1</code></pre></div>
@@ -361,7 +368,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 4 Brazil       2000  80488  174504898
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
-<p>If we wanted to change the column headers of <code>country</code> to <code>Country</code> and <code>population</code> to <code>Population</code>, we would code</p>
+<p>If we wanted to change the column headers of <code>country</code> to <code>Country</code> and <code>population</code> to <code>Population</code>, and keep the columns <code>year</code> and <code>cases</code> as they are, we would code</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rename</span>(table1, <span class="dt">Country =</span> country,
        <span class="dt">Population =</span> population)</code></pre></div>
 <pre><code>## # A tibble: 6 x 4
@@ -390,8 +397,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="conditional-statements" class="section level2">
 <h2><span class="header-section-number">6.3</span> Conditional statements</h2>
-<p>Conditional statements are used when you want to create an output value that is conditioned on an evaluation.</p>
-<p>Here, we are showing you how to use them in combination with <code>mutate()</code> by either modifying the values within one column, or by adding a new column.</p>
+<p>Conditional statements are used when you want to create an output value that is conditioned on an evaluation. Here, we are showing you how to use them in combination with <code>mutate()</code> by either modifying the values within one column, or by adding a new column.</p>
+<p>Example scenario: Imagine that we have data in which a column <code>Sex</code> holds values of <code>1</code> and <code>2</code> that stand for <code>Male</code>, and <code>Female</code> participants respectively. Conditional statements make an evaluation: <em>if <code>Sex</code> is <code>1</code>, then put the value of <code>Male</code> in a new column called <code>Sex_char</code>; if <code>Sex</code> is <code>2</code> put <code>Female</code> in column <code>Sex_char</code>.</em></p>
 <p>Let’s create some fake data for this. 40 participants (17 male, 20 female, 3 other), they are between 16 and 40 years of age, they study at 4 different institutions (University of Glasgow, University of Strathclyde, Glasgow Caledonian University, University of the West of Scotland), and we had them complete an R assignment and recorded their grade points.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">999</span>) <span class="co">#so we all get the same random data</span>
 fake_data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">PP_ID =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">40</span>,
@@ -407,6 +414,300 @@ fake_data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span cla
 ## $ Age          &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 20, 22, 21...
 ## $ Institution  &lt;dbl&gt; 3, 1, 1, 4, 2, 3, 1, 4, 3, 4, 3, 4, 4, 4, 2, 3, 3, 99,...
 ## $ Grade_points &lt;dbl&gt; 0, 20, 15, 20, 11, 22, 21, 9, 13, 22, 19, 13, 10, 0, 1...</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(fake_data)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">PP_ID</th>
+<th align="right">Sex</th>
+<th align="right">Age</th>
+<th align="right">Institution</th>
+<th align="right">Grade_points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">19</td>
+<td align="right">3</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">22</td>
+<td align="right">1</td>
+<td align="right">20</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">24</td>
+<td align="right">1</td>
+<td align="right">15</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">29</td>
+<td align="right">4</td>
+<td align="right">20</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">16</td>
+<td align="right">2</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">1</td>
+<td align="right">25</td>
+<td align="right">3</td>
+<td align="right">22</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">1</td>
+<td align="right">37</td>
+<td align="right">1</td>
+<td align="right">21</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">1</td>
+<td align="right">18</td>
+<td align="right">4</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="right">1</td>
+<td align="right">38</td>
+<td align="right">3</td>
+<td align="right">13</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="right">1</td>
+<td align="right">39</td>
+<td align="right">4</td>
+<td align="right">22</td>
+</tr>
+<tr class="odd">
+<td align="right">11</td>
+<td align="right">1</td>
+<td align="right">30</td>
+<td align="right">3</td>
+<td align="right">19</td>
+</tr>
+<tr class="even">
+<td align="right">12</td>
+<td align="right">1</td>
+<td align="right">20</td>
+<td align="right">4</td>
+<td align="right">13</td>
+</tr>
+<tr class="odd">
+<td align="right">13</td>
+<td align="right">1</td>
+<td align="right">22</td>
+<td align="right">4</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="right">14</td>
+<td align="right">1</td>
+<td align="right">21</td>
+<td align="right">4</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">15</td>
+<td align="right">1</td>
+<td align="right">34</td>
+<td align="right">2</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="right">16</td>
+<td align="right">1</td>
+<td align="right">26</td>
+<td align="right">3</td>
+<td align="right">17</td>
+</tr>
+<tr class="odd">
+<td align="right">17</td>
+<td align="right">1</td>
+<td align="right">33</td>
+<td align="right">3</td>
+<td align="right">20</td>
+</tr>
+<tr class="even">
+<td align="right">18</td>
+<td align="right">2</td>
+<td align="right">16</td>
+<td align="right">99</td>
+<td align="right">22</td>
+</tr>
+<tr class="odd">
+<td align="right">19</td>
+<td align="right">2</td>
+<td align="right">20</td>
+<td align="right">2</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="right">2</td>
+<td align="right">34</td>
+<td align="right">3</td>
+<td align="right">20</td>
+</tr>
+<tr class="odd">
+<td align="right">21</td>
+<td align="right">2</td>
+<td align="right">27</td>
+<td align="right">3</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="right">22</td>
+<td align="right">2</td>
+<td align="right">24</td>
+<td align="right">4</td>
+<td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="right">23</td>
+<td align="right">2</td>
+<td align="right">36</td>
+<td align="right">1</td>
+<td align="right">15</td>
+</tr>
+<tr class="even">
+<td align="right">24</td>
+<td align="right">2</td>
+<td align="right">38</td>
+<td align="right">99</td>
+<td align="right">21</td>
+</tr>
+<tr class="odd">
+<td align="right">25</td>
+<td align="right">2</td>
+<td align="right">20</td>
+<td align="right">2</td>
+<td align="right">19</td>
+</tr>
+<tr class="even">
+<td align="right">26</td>
+<td align="right">2</td>
+<td align="right">40</td>
+<td align="right">2</td>
+<td align="right">15</td>
+</tr>
+<tr class="odd">
+<td align="right">27</td>
+<td align="right">2</td>
+<td align="right">19</td>
+<td align="right">4</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="right">28</td>
+<td align="right">2</td>
+<td align="right">39</td>
+<td align="right">3</td>
+<td align="right">16</td>
+</tr>
+<tr class="odd">
+<td align="right">29</td>
+<td align="right">2</td>
+<td align="right">40</td>
+<td align="right">4</td>
+<td align="right">21</td>
+</tr>
+<tr class="even">
+<td align="right">30</td>
+<td align="right">2</td>
+<td align="right">30</td>
+<td align="right">2</td>
+<td align="right">20</td>
+</tr>
+<tr class="odd">
+<td align="right">31</td>
+<td align="right">2</td>
+<td align="right">38</td>
+<td align="right">1</td>
+<td align="right">16</td>
+</tr>
+<tr class="even">
+<td align="right">32</td>
+<td align="right">2</td>
+<td align="right">31</td>
+<td align="right">1</td>
+<td align="right">19</td>
+</tr>
+<tr class="odd">
+<td align="right">33</td>
+<td align="right">2</td>
+<td align="right">26</td>
+<td align="right">4</td>
+<td align="right">17</td>
+</tr>
+<tr class="even">
+<td align="right">34</td>
+<td align="right">2</td>
+<td align="right">17</td>
+<td align="right">1</td>
+<td align="right">18</td>
+</tr>
+<tr class="odd">
+<td align="right">35</td>
+<td align="right">2</td>
+<td align="right">24</td>
+<td align="right">1</td>
+<td align="right">21</td>
+</tr>
+<tr class="even">
+<td align="right">36</td>
+<td align="right">2</td>
+<td align="right">16</td>
+<td align="right">3</td>
+<td align="right">21</td>
+</tr>
+<tr class="odd">
+<td align="right">37</td>
+<td align="right">2</td>
+<td align="right">33</td>
+<td align="right">1</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="right">38</td>
+<td align="right">3</td>
+<td align="right">39</td>
+<td align="right">2</td>
+<td align="right">18</td>
+</tr>
+<tr class="odd">
+<td align="right">39</td>
+<td align="right">3</td>
+<td align="right">23</td>
+<td align="right">1</td>
+<td align="right">17</td>
+</tr>
+<tr class="even">
+<td align="right">40</td>
+<td align="right">3</td>
+<td align="right">19</td>
+<td align="right">2</td>
+<td align="right">18</td>
+</tr>
+</tbody>
+</table>
 <p>Now, the data doesn’t look very readable at the moment. If we pass this data set onto a fellow researcher, they would ask us how the columns <code>Sex</code> and <code>Institution</code> are coded.</p>
 <p>Best would be to adjust the values to make that clearer. There are the options of using the function <code>recode()</code>, an <code>ifelse</code> statement or <code>case_when()</code>.</p>
 <div id="recode" class="section level3">
@@ -771,8 +1072,162 @@ The values are sorted by occurrence. R goes through the tibble row by row to det
 </div>
 </div>
 </div>
+<div id="recap" class="section level2">
+<h2><span class="header-section-number">6.5</span> Recap</h2>
+<p>Let’s just have some fun with <code>fake_data</code> whilst recapping a little bit of what we did in the past 5 weeks.</p>
+<div id="question-1" class="section level3">
+<h3><span class="header-section-number">6.5.1</span> Question 1</h3>
+<p>Select the variables <code>PP_ID</code>, <code>Sex_char</code>, <code>Age</code>, <code>Institution_char</code>, <code>Grade_points</code>, <code>Grade</code>, and <code>Pass_Fail</code> from <code>fake_data</code>and save it as <code>fake_data</code> in your Global Environment (i.e. overwrite/replace <code>fake_data</code>). Rename the following variables:</p>
+<ul>
+<li><code>PP_ID</code> as <code>Participant_ID</code></li>
+<li><code>Sex_Char</code> as <code>Sex</code></li>
+<li><code>Institution_char</code> as <code>Institution</code></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># solution using select:</span>
+fake_data &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="dt">Participant_ID =</span> PP_ID, <span class="dt">Sex =</span> Sex_char, Age, <span class="dt">Institution =</span> Institution_char, Grade_points, Grade, Pass_Fail)
+
+fake_data</code></pre></div>
+<pre><code>## # A tibble: 40 x 7
+##    Participant_ID Sex     Age Institution Grade_points Grade Pass_Fail
+##             &lt;int&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    
+##  1              1 Male     19 GCU                    0 H     Fail     
+##  2              2 Male     22 UoG                   20 A     Pass     
+##  3              3 Male     24 UoG                   15 B     Pass     
+##  4              4 Male     29 UWS                   20 A     Pass     
+##  5              5 Male     16 Strathclyde           11 D     Pass     
+##  6              6 Male     25 GCU                   22 A     Pass     
+##  7              7 Male     37 UoG                   21 A     Pass     
+##  8              8 Male     18 UWS                    9 D     Fail     
+##  9              9 Male     38 GCU                   13 C     Pass     
+## 10             10 Male     39 UWS                   22 A     Pass     
+## # ... with 30 more rows</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># solution involving select and rename:</span>
+<span class="co"># fake_data &lt;- fake_data %&gt;% </span>
+<span class="co">#   select(PP_ID, Sex_char, Age, Institution_char, Grade_points, Grade, Pass_Fail) %&gt;%</span>
+<span class="co">#   rename(Participant_ID = PP_ID, Sex = Sex_char, Institution = Institution_char)</span></code></pre></div>
+</div>
+</div>
+<div id="question-2" class="section level3">
+<h3><span class="header-section-number">6.5.2</span> Question 2</h3>
+<p>Calculate the average grade points for each University. Store the output as a new object <code>grade_points</code> in your <code>Global Environment</code>. The new column should be named <code>Average_grade_points</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">grade_points &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">grade_points &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(Institution) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Average_grade_points =</span> <span class="kw">mean</span>(Grade_points)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ungroup</span>()
+
+grade_points</code></pre></div>
+<pre><code>## # A tibble: 4 x 2
+##   Institution Average_grade_points
+##   &lt;chr&gt;                      &lt;dbl&gt;
+## 1 GCU                         15.8
+## 2 Strathclyde                 16.8
+## 3 UoG                         18  
+## 4 UWS                         14.1</code></pre>
+</div>
+</div>
+<div id="question-3" class="section level3">
+<h3><span class="header-section-number">6.5.3</span> Question 3</h3>
+<p>Join the <code>fake_data</code> and <code>grade_points</code>, and calculate how much each person differs from the mean of their university (column name is <code>grade_diff</code>. Store the output in your <code>Global Environment</code> as a new object called <code>fake_data_mean</code>. Sort the data by <code>Institution</code> and <code>Sex</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data_meandiff &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data_meandiff &lt;-<span class="st"> </span><span class="kw">left_join</span>(fake_data, grade_points) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">grade_diff =</span> Grade_points <span class="op">-</span><span class="st"> </span>Average_grade_points) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(Institution, Sex)</code></pre></div>
+<pre><code>## Joining, by = &quot;Institution&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data_meandiff</code></pre></div>
+<pre><code>## # A tibble: 40 x 9
+##    Participant_ID Sex     Age Institution Grade_points Grade Pass_Fail
+##             &lt;int&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    
+##  1             20 Fema~    34 GCU                   20 A     Pass     
+##  2             21 Fema~    27 GCU                   10 D     Pass     
+##  3             28 Fema~    39 GCU                   16 B     Pass     
+##  4             36 Fema~    16 GCU                   21 A     Pass     
+##  5              1 Male     19 GCU                    0 H     Fail     
+##  6              6 Male     25 GCU                   22 A     Pass     
+##  7              9 Male     38 GCU                   13 C     Pass     
+##  8             11 Male     30 GCU                   19 A     Pass     
+##  9             16 Male     26 GCU                   17 B     Pass     
+## 10             17 Male     33 GCU                   20 A     Pass     
+## # ... with 30 more rows, and 2 more variables: Average_grade_points &lt;dbl&gt;,
+## #   grade_diff &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<div id="question-4" class="section level3">
+<h3><span class="header-section-number">6.5.4</span> Question 4</h3>
+<p>Our colleague is interested in what the grade point average for each university would be if we were only looking at the students who passed the R assignment initially (i.e. grade points above 9). Store the output in your <code>Global Environment</code> as a new object called <code>fake_data_pass</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data_pass &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># filter Grade_points</span>
+fake_data_pass &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(Grade_points <span class="op">&gt;</span><span class="st"> </span><span class="dv">9</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(Institution) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Average_grade_points_pass =</span> <span class="kw">mean</span>(Grade_points)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ungroup</span>()
+
+<span class="co"># filter Pass_Fail</span>
+fake_data_pass &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(Pass_Fail <span class="op">==</span><span class="st"> &quot;Pass&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(Institution) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Average_grade_points_pass =</span> <span class="kw">mean</span>(Grade_points)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ungroup</span>()
+
+fake_data_pass</code></pre></div>
+<pre><code>## # A tibble: 4 x 2
+##   Institution Average_grade_points_pass
+##   &lt;chr&gt;                           &lt;dbl&gt;
+## 1 GCU                              17.6
+## 2 Strathclyde                      16.8
+## 3 UoG                              18  
+## 4 UWS                              16.5</code></pre>
+</div>
+</div>
+<div id="question-5" class="section level3">
+<h3><span class="header-section-number">6.5.5</span> Question 5</h3>
+<p>Now our colleague wants to know whether the males or the females did better at each university. They are asking for a table with 4 columns in which the first column titled <code>Institution</code> lists the university, the second column is called <code>Males</code> for the average grade point scores of the males at each institution, the third column called <code>Females</code> with average grade point scores for the females, and the fourth column <code>Better</code> should say <code>&quot;female&quot;</code> or <code>&quot;male&quot;</code> if the females or males had higher grade points respectively. Store the output in your <code>Global Environment</code> as a new object called <code>fake_data_sex</code>. Use <code>fake_data</code> as the reference dataframe.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data_sex &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data_sex &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(Sex <span class="op">!=</span><span class="st"> &quot;Other&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># this step could actually be left out</span>
+<span class="st">  </span><span class="kw">group_by</span>(Institution, Sex) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Average_gp =</span> <span class="kw">mean</span>(Grade_points)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">spread</span>(Sex, Average_gp) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(Institution, <span class="dt">Males =</span> Male, <span class="dt">Females =</span> Female) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Better =</span> <span class="kw">ifelse</span>(Males <span class="op">&gt;</span><span class="st"> </span>Females, <span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>))
+
+fake_data_sex</code></pre></div>
+<pre><code>## # A tibble: 4 x 4
+##   Institution Males Females Better
+##   &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; 
+## 1 GCU          15.2    16.8 female
+## 2 Strathclyde  11.5    18.2 female
+## 3 UoG          18.7    17.8 male  
+## 4 UWS          12.3    16.8 female</code></pre>
+</div>
+</div>
+</div>
 <div id="summative-homework-2" class="section level2">
-<h2><span class="header-section-number">6.5</span> Summative Homework</h2>
+<h2><span class="header-section-number">6.6</span> Summative Homework</h2>
 <p>The third summative assignment is available on moodle now.</p>
 <p>Good luck.</p>
 <p>Check that your Rmd file knits into a html file before submitting. Upload your Rmd file (not the knitted html) to moodle.</p>

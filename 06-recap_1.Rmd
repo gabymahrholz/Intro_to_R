@@ -21,7 +21,7 @@ library(tidyverse)
 
 ## rename()
 
-`rename()` is a very useful function if we wanted to change column names. All available column names are retained, so nothing is lost. It follows a very simple pattern of
+`rename()` is a very useful function if we wanted to change column names. All available column are retained, so nothing is lost. If you had 5 variables in a tibble, and wanted to change the name of one of them, your output would be 5 columns in total - one column with a changed name and 4 columns with the previous names. The `rename()` function follows a very simple pattern of
 
 ```{r, eval=FALSE}
 rename(data, new_column_name = old_column_name)
@@ -33,7 +33,7 @@ You can rename multiple column headers by including more arguments, separating t
 table1
 ```
 
-If we wanted to change the column headers of `country` to `Country` and `population` to `Population`, we would code
+If we wanted to change the column headers of `country` to `Country` and `population` to `Population`, and keep the columns `year` and `cases` as they are, we would code
 
 ```{r}
 rename(table1, Country = country,
@@ -56,13 +56,13 @@ select(table1, Country = country,
 
 ## Conditional statements
 
-Conditional statements are used when you want to create an output value that is conditioned on an evaluation.
+Conditional statements are used when you want to create an output value that is conditioned on an evaluation. Here, we are showing you how to use them in combination with `mutate()` by either modifying the values within one column, or by adding a new column.
 
-Here, we are showing you how to use them in combination with `mutate()` by either modifying the values within one column, or by adding a new column.
+Example scenario: Imagine that we have data in which a column `Sex` holds values of `1` and `2` that stand for `Male`, and `Female` participants respectively. Conditional statements make an evaluation: *if `Sex` is `1`, then put the value of `Male` in a new column called `Sex_char`; if `Sex` is `2` put `Female` in column `Sex_char`.*
 
 Let's create some fake data for this. 40 participants (17 male, 20 female, 3 other), they are between 16 and 40 years of age, they study at 4 different institutions (University of Glasgow, University of Strathclyde, Glasgow Caledonian University, University of the West of Scotland), and we had them complete an R assignment and recorded their grade points.
 
-```{r}
+```{r fake_data}
 set.seed(999) #so we all get the same random data
 fake_data <- tibble(PP_ID = 1:40,
                     Sex = c(rep(1,17), rep(2,20), rep(3,3)),
@@ -72,6 +72,11 @@ fake_data <- tibble(PP_ID = 1:40,
 glimpse(fake_data)
 
 ```
+
+```{r}
+kable(fake_data)
+```
+
 
 Now, the data doesn't look very readable at the moment. If we pass this data set onto a fellow researcher, they would ask us how the columns `Sex` and `Institution` are coded.
 
@@ -343,6 +348,145 @@ You can see they are not sorted by either of the column. Why is that?
 The values are sorted by occurrence. R goes through the tibble row by row to determine whether the values are distinct from the ones in the row before. So if you look at your original dataframe `fake_data`, you can see the first row is a male participant from Glasgow Caledonian University. The participant in row 2 is from the University of Glasgow, but so is participant 3 (which means he is not listed in the distinct tibble). The next unique value would be detected in row 4, then in row 7, then in row 18, 20, 22, 23, 38, and 39.
 ```
 `r unhide()`
+
+
+
+## Recap
+
+Let's just have some fun with `fake_data` whilst recapping a little bit of what we did in the past 5 weeks.
+
+### Question 1
+
+Select the variables `PP_ID`, `Sex_char`, `Age`, `Institution_char`, `Grade_points`, `Grade`, and `Pass_Fail` from `fake_data`and save it as `fake_data` in your Global Environment (i.e. overwrite/replace `fake_data`). Rename the following variables:
+
+* `PP_ID` as `Participant_ID`
+* `Sex_Char` as `Sex`
+* `Institution_char` as `Institution`
+
+```{r, eval=FALSE}
+fake_data <- NULL
+```
+
+
+`r hide("Solution")`
+```{r}
+# solution using select:
+fake_data <- fake_data %>% 
+  select(Participant_ID = PP_ID, Sex = Sex_char, Age, Institution = Institution_char, Grade_points, Grade, Pass_Fail)
+
+fake_data
+
+# solution involving select and rename:
+# fake_data <- fake_data %>% 
+#   select(PP_ID, Sex_char, Age, Institution_char, Grade_points, Grade, Pass_Fail) %>%
+#   rename(Participant_ID = PP_ID, Sex = Sex_char, Institution = Institution_char)
+
+```
+
+`r unhide()`
+
+
+
+### Question 2
+
+Calculate the average grade points for each University. Store the output as a new object `grade_points` in your `Global Environment`. The new column should be named `Average_grade_points`.
+
+```{r, eval=FALSE}
+grade_points <- NULL
+```
+
+
+`r hide("Solution")`
+```{r}
+grade_points <- fake_data %>% 
+  group_by(Institution) %>% 
+  summarise(Average_grade_points = mean(Grade_points)) %>% 
+  ungroup()
+
+grade_points
+```
+
+`r unhide()`
+
+
+### Question 3
+
+Join the `fake_data` and `grade_points`, and calculate how much each person differs from the mean of their university (column name is `grade_diff`. Store the output in your `Global Environment` as a new object called `fake_data_mean`. Sort the data by `Institution` and `Sex`.
+
+```{r, eval=FALSE}
+fake_data_meandiff <- NULL
+```
+
+
+`r hide("Solution")`
+```{r}
+fake_data_meandiff <- left_join(fake_data, grade_points) %>% 
+  mutate(grade_diff = Grade_points - Average_grade_points) %>% 
+  arrange(Institution, Sex)
+
+fake_data_meandiff
+```
+
+`r unhide()`
+
+
+
+### Question 4
+
+Our colleague is interested in what the grade point average for each university would be if we were only looking at the students who passed the R assignment initially (i.e. grade points above 9). Store the output in your `Global Environment` as a new object called `fake_data_pass`.
+
+```{r, eval=FALSE}
+fake_data_pass <- NULL
+```
+
+`r hide("Solution")`
+```{r}
+# filter Grade_points
+fake_data_pass <- fake_data %>% 
+  filter(Grade_points > 9) %>% 
+  group_by(Institution) %>% 
+  summarise(Average_grade_points_pass = mean(Grade_points)) %>% 
+  ungroup()
+
+# filter Pass_Fail
+fake_data_pass <- fake_data %>% 
+  filter(Pass_Fail == "Pass") %>% 
+  group_by(Institution) %>% 
+  summarise(Average_grade_points_pass = mean(Grade_points)) %>% 
+  ungroup()
+
+fake_data_pass
+```
+
+`r unhide()`
+
+
+
+### Question 5
+
+Now our colleague wants to know whether the males or the females did better at each university. They are asking for a table with 4 columns in which the first column titled `Institution` lists the university, the second column is called `Males` for the average grade point scores of the males at each institution, the third column called `Females` with average grade point scores for the females, and the fourth column `Better` should say `"female"` or `"male"` if the females or males had higher grade points respectively. Store the output in your `Global Environment` as a new object called `fake_data_sex`. Use `fake_data` as the reference dataframe.
+
+```{r, eval=FALSE}
+fake_data_sex <- NULL
+```
+
+
+`r hide("Solution")`
+```{r}
+fake_data_sex <- fake_data %>% 
+  filter(Sex != "Other") %>% # this step could actually be left out
+  group_by(Institution, Sex) %>% 
+  summarise(Average_gp = mean(Grade_points)) %>% 
+  ungroup() %>% 
+  spread(Sex, Average_gp) %>% 
+  select(Institution, Males = Male, Females = Female) %>% 
+  mutate(Better = ifelse(Males > Females, "male", "female"))
+
+fake_data_sex
+```
+
+`r unhide()`
+
 
 
 ## Summative Homework

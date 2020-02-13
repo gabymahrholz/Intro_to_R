@@ -492,8 +492,6 @@ head(df_mtcars)
 
 
 
-
-
 ## Additional information
 
 More information on stuff we covered today and beyond can be found here:

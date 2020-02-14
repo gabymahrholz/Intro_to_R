@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Data Transformation 4: Fine-tuned Data Manipulation | Introduction to R</title>
   <meta name="description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Data Transformation 4: Fine-tuned Data Manipulation | Introduction to R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Rebecca J. Lai, Kate Haining, Greta Todorova, and Wilhelmiina Toivo" />
 
 
-<meta name="date" content="2020-02-13" />
+<meta name="date" content="2020-02-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,41 +53,68 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -351,14 +378,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="pre-steps-4" class="section level2">
 <h2><span class="header-section-number">6.1</span> Pre-steps</h2>
 <p>Before we can start to focus on some other functions that might come in handy for data manipulation, we need to make sure to load <code>tidyverse</code> into the library.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb277-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 </div>
 <div id="rename" class="section level2">
 <h2><span class="header-section-number">6.2</span> rename()</h2>
 <p><code>rename()</code> is a very useful function if we wanted to change column names. All available column are retained, so nothing is lost. If you had 5 variables in a tibble, and wanted to change the name of one of them, your output would be 5 columns in total - one column with a changed name and 4 columns with the previous names. The <code>rename()</code> function follows a very simple pattern of</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rename</span>(data, <span class="dt">new_column_name =</span> old_column_name)</code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb278-1"></a><span class="kw">rename</span>(data, <span class="dt">new_column_name =</span> old_column_name)</span></code></pre></div>
 <p>You can rename multiple column headers by including more arguments, separating them with a comma. Let’s take a look at a simple example in <code>table1</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table1</code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb279-1"></a>table1</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -369,8 +396,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
 <p>If we wanted to change the column headers of <code>country</code> to <code>Country</code> and <code>population</code> to <code>Population</code>, and keep the columns <code>year</code> and <code>cases</code> as they are, we would code</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rename</span>(table1, <span class="dt">Country =</span> country,
-       <span class="dt">Population =</span> population)</code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb281-1"></a><span class="kw">rename</span>(table1, <span class="dt">Country =</span> country,</span>
+<span id="cb281-2"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb281-2"></a>       <span class="dt">Population =</span> population)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   Country      year  cases Population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -381,10 +408,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
 <p>If you want to select a few columns and rename them in the process, you could use <code>select()</code>. The structure is the same as with <code>rename()</code>, the only difference is that the new data only retains the columns mentioned explicitly within <code>select()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(data, <span class="dt">new_column_name =</span> old_column_name)</code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb283-1"></a><span class="kw">select</span>(data, <span class="dt">new_column_name =</span> old_column_name)</span></code></pre></div>
 <p>Modifying the <code>rename()</code> example from above would lead to selecting <strong>only</strong> the columns <code>country</code> and <code>population</code> from <code>table1</code> and renaming them as <code>Country</code> and <code>Population</code> at the same time.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(table1, <span class="dt">Country =</span> country,
-       <span class="dt">Population =</span> population)</code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb284-1"></a><span class="kw">select</span>(table1, <span class="dt">Country =</span> country,</span>
+<span id="cb284-2"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb284-2"></a>       <span class="dt">Population =</span> population)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   Country     Population
 ##   &lt;chr&gt;            &lt;int&gt;
@@ -400,21 +427,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Conditional statements are used when you want to create an output value that is conditioned on an evaluation. Here, we are showing you how to use them in combination with <code>mutate()</code> by either modifying the values within one column, or by adding a new column.</p>
 <p>Example scenario: Imagine that we have data in which a column <code>Sex</code> holds values of <code>1</code> and <code>2</code> that stand for <code>Male</code>, and <code>Female</code> participants respectively. Conditional statements make an evaluation: <em>if <code>Sex</code> is <code>1</code>, then put the value of <code>Male</code> in a new column called <code>Sex_char</code>; if <code>Sex</code> is <code>2</code> put <code>Female</code> in column <code>Sex_char</code>.</em></p>
 <p>Let’s create some fake data for this. 40 participants (17 male, 20 female, 3 other), they are between 16 and 40 years of age, they study at 4 different institutions (University of Glasgow, University of Strathclyde, Glasgow Caledonian University, University of the West of Scotland), and we had them complete an R assignment and recorded their grade points.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">999</span>) <span class="co">#so we all get the same random data</span>
-fake_data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">PP_ID =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">40</span>,
-                    <span class="dt">Sex =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">17</span>), <span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">20</span>), <span class="kw">rep</span>(<span class="dv">3</span>,<span class="dv">3</span>)),
-                    <span class="dt">Age =</span> <span class="kw">sample</span>(<span class="dv">16</span><span class="op">:</span><span class="dv">40</span>, <span class="dv">40</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),
-                    <span class="dt">Institution =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">10</span>), <span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">8</span>), <span class="kw">rep</span>(<span class="dv">3</span>,<span class="dv">10</span>), <span class="kw">rep</span>(<span class="dv">4</span>,<span class="dv">10</span>), <span class="kw">rep</span>(<span class="dv">99</span>,<span class="dv">2</span>))),
-                    <span class="dt">Grade_points =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">9</span><span class="op">:</span><span class="dv">22</span>), <span class="dv">40</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))
-<span class="kw">glimpse</span>(fake_data)</code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb286-1"></a><span class="kw">set.seed</span>(<span class="dv">999</span>) <span class="co">#so we all get the same random data</span></span>
+<span id="cb286-2"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb286-2"></a>fake_data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">PP_ID =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">40</span>,</span>
+<span id="cb286-3"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb286-3"></a>                    <span class="dt">Sex =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">17</span>), <span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">20</span>), <span class="kw">rep</span>(<span class="dv">3</span>,<span class="dv">3</span>)),</span>
+<span id="cb286-4"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb286-4"></a>                    <span class="dt">Age =</span> <span class="kw">sample</span>(<span class="dv">16</span><span class="op">:</span><span class="dv">40</span>, <span class="dv">40</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb286-5"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb286-5"></a>                    <span class="dt">Institution =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">10</span>), <span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">8</span>), <span class="kw">rep</span>(<span class="dv">3</span>,<span class="dv">10</span>), <span class="kw">rep</span>(<span class="dv">4</span>,<span class="dv">10</span>), <span class="kw">rep</span>(<span class="dv">99</span>,<span class="dv">2</span>))),</span>
+<span id="cb286-6"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb286-6"></a>                    <span class="dt">Grade_points =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">9</span><span class="op">:</span><span class="dv">22</span>), <span class="dv">40</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))</span>
+<span id="cb286-7"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb286-7"></a><span class="kw">glimpse</span>(fake_data)</span></code></pre></div>
 <pre><code>## Observations: 40
 ## Variables: 5
-## $ PP_ID        &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,...
-## $ Sex          &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, ...
-## $ Age          &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 20, 22, 21...
-## $ Institution  &lt;dbl&gt; 3, 1, 1, 4, 2, 3, 1, 4, 3, 4, 3, 4, 4, 4, 2, 3, 3, 99,...
-## $ Grade_points &lt;dbl&gt; 0, 20, 15, 20, 11, 22, 21, 9, 13, 22, 19, 13, 10, 0, 1...</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(fake_data)</code></pre></div>
+## $ PP_ID        &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15...
+## $ Sex          &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1...
+## $ Age          &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 20, 2...
+## $ Institution  &lt;dbl&gt; 3, 1, 1, 4, 2, 3, 1, 4, 3, 4, 3, 4, 4, 4, 2, 3, 3...
+## $ Grade_points &lt;dbl&gt; 0, 20, 15, 20, 11, 22, 21, 9, 13, 22, 19, 13, 10,...</code></pre>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb288-1"></a><span class="kw">kable</span>(fake_data)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -714,27 +741,27 @@ fake_data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span cla
 <h3><span class="header-section-number">6.3.1</span> recode()</h3>
 <p>Can be used for character, numeric, and factors columns.</p>
 <p>The structure for <code>recode()</code> is:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">recode</span>(variable_to_recode, <span class="dt">old_value =</span> new_value)</code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb289-1"></a><span class="kw">recode</span>(variable_to_recode, <span class="dt">old_value =</span> new_value)</span></code></pre></div>
 <p>This is a bit tricky to remember as it doesn’t follow the usual tidyverse logic. In <code>select()</code>, <code>rename()</code>, and <code>mutate()</code> for example it is the other way around <code>new_thing = old_thing</code> or <code>new_thing = something_computational</code>)</p>
 <p>In combination with <code>mutate()</code>, the structure looks as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mutate</span>(data, <span class="dt">new_column_name =</span> <span class="kw">recode</span>(variable_to_recode, <span class="dt">old_value =</span> new_value))</code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb290-1"></a><span class="kw">mutate</span>(data, <span class="dt">new_column_name =</span> <span class="kw">recode</span>(variable_to_recode, <span class="dt">old_value =</span> new_value))</span></code></pre></div>
 <p>What is a bit unusual in this structure is that we need a new column name within the <code>mutate()</code> function but also a reference column within <code>recode()</code> on which the conditional recoding is based upon.</p>
 <p>The new column name within <code>mutate()</code> can either be an entirely new column name, or if it is an existing column name that original column would be overwritten by the new values we recode.</p>
 <p>So, let’s turn to our <code>fake_data</code>, and apply that logic for recoding the values of the column <code>Sex</code> where 1 = “Male”, 2 = “Female”, and 3 = “Other”. We will add a new column <code>Sex_char</code> onto our <code>fake_data</code>.</p>
 <p>The only tricky thing to remember here is that recoding numeric values requires backticks (if the numbers are on the left side of the equation).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Sex_char =</span> <span class="kw">recode</span>(Sex, 
-                                                 <span class="st">`</span><span class="dt">1</span><span class="st">`</span> =<span class="st"> &quot;Male&quot;</span>, 
-                                                 <span class="st">`</span><span class="dt">2</span><span class="st">`</span> =<span class="st"> &quot;Female&quot;</span>, 
-                                                 <span class="st">`</span><span class="dt">3</span><span class="st">`</span> =<span class="st"> &quot;Other&quot;</span>))
-<span class="kw">glimpse</span>(fake_data)</code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb291-1"></a>fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Sex_char =</span> <span class="kw">recode</span>(Sex, </span>
+<span id="cb291-2"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb291-2"></a>                                                 <span class="st">`</span><span class="dt">1</span><span class="st">`</span> =<span class="st"> &quot;Male&quot;</span>, </span>
+<span id="cb291-3"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb291-3"></a>                                                 <span class="st">`</span><span class="dt">2</span><span class="st">`</span> =<span class="st"> &quot;Female&quot;</span>, </span>
+<span id="cb291-4"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb291-4"></a>                                                 <span class="st">`</span><span class="dt">3</span><span class="st">`</span> =<span class="st"> &quot;Other&quot;</span>))</span>
+<span id="cb291-5"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb291-5"></a><span class="kw">glimpse</span>(fake_data)</span></code></pre></div>
 <pre><code>## Observations: 40
 ## Variables: 6
-## $ PP_ID        &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,...
-## $ Sex          &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, ...
-## $ Age          &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 20, 22, 21...
-## $ Institution  &lt;dbl&gt; 3, 1, 1, 4, 2, 3, 1, 4, 3, 4, 3, 4, 4, 4, 2, 3, 3, 99,...
-## $ Grade_points &lt;dbl&gt; 0, 20, 15, 20, 11, 22, 21, 9, 13, 22, 19, 13, 10, 0, 1...
-## $ Sex_char     &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;...</code></pre>
+## $ PP_ID        &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15...
+## $ Sex          &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1...
+## $ Age          &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 20, 2...
+## $ Institution  &lt;dbl&gt; 3, 1, 1, 4, 2, 3, 1, 4, 3, 4, 3, 4, 4, 4, 2, 3, 3...
+## $ Grade_points &lt;dbl&gt; 0, 20, 15, 20, 11, 22, 21, 9, 13, 22, 19, 13, 10,...
+## $ Sex_char     &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;...</code></pre>
 <div class="warning">
 <p>
 If you forget to recode one condition (for example <code>`3` = “Other”</code>), values for 3 would be displayed as <code>NA</code> in the new column. This becomes more important when you decide to overwrite an existing column.
@@ -772,22 +799,22 @@ Add a new column <code>Institution_char</code> to <code>fake_data</code> that ho
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Institution_char =</span> <span class="kw">recode</span>(Institution, 
-                                                         <span class="st">`</span><span class="dt">1</span><span class="st">`</span> =<span class="st"> &quot;UoG&quot;</span>, 
-                                                         <span class="st">`</span><span class="dt">2</span><span class="st">`</span> =<span class="st"> &quot;Strathclyde&quot;</span>, 
-                                                         <span class="st">`</span><span class="dt">3</span><span class="st">`</span> =<span class="st"> &quot;GCU&quot;</span>, 
-                                                         <span class="st">`</span><span class="dt">4</span><span class="st">`</span> =<span class="st"> &quot;UWS&quot;</span>, 
-                                                         <span class="st">`</span><span class="dt">99</span><span class="st">`</span> =<span class="st"> &quot;Strathclyde&quot;</span>))
-<span class="kw">glimpse</span>(fake_data)</code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb293-1"></a>fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Institution_char =</span> <span class="kw">recode</span>(Institution, </span>
+<span id="cb293-2"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb293-2"></a>                                                         <span class="st">`</span><span class="dt">1</span><span class="st">`</span> =<span class="st"> &quot;UoG&quot;</span>, </span>
+<span id="cb293-3"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb293-3"></a>                                                         <span class="st">`</span><span class="dt">2</span><span class="st">`</span> =<span class="st"> &quot;Strathclyde&quot;</span>, </span>
+<span id="cb293-4"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb293-4"></a>                                                         <span class="st">`</span><span class="dt">3</span><span class="st">`</span> =<span class="st"> &quot;GCU&quot;</span>, </span>
+<span id="cb293-5"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb293-5"></a>                                                         <span class="st">`</span><span class="dt">4</span><span class="st">`</span> =<span class="st"> &quot;UWS&quot;</span>, </span>
+<span id="cb293-6"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb293-6"></a>                                                         <span class="st">`</span><span class="dt">99</span><span class="st">`</span> =<span class="st"> &quot;Strathclyde&quot;</span>))</span>
+<span id="cb293-7"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb293-7"></a><span class="kw">glimpse</span>(fake_data)</span></code></pre></div>
 <pre><code>## Observations: 40
 ## Variables: 7
-## $ PP_ID            &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,...
-## $ Sex              &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
-## $ Age              &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 20, 22...
-## $ Institution      &lt;dbl&gt; 3, 1, 1, 4, 2, 3, 1, 4, 3, 4, 3, 4, 4, 4, 2, 3, 3,...
-## $ Grade_points     &lt;dbl&gt; 0, 20, 15, 20, 11, 22, 21, 9, 13, 22, 19, 13, 10, ...
-## $ Sex_char         &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;M...
-## $ Institution_char &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, &quot;GCU&quot;, ...</code></pre>
+## $ PP_ID            &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14...
+## $ Sex              &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+## $ Age              &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 2...
+## $ Institution      &lt;dbl&gt; 3, 1, 1, 4, 2, 3, 1, 4, 3, 4, 3, 4, 4, 4, 2, ...
+## $ Grade_points     &lt;dbl&gt; 0, 20, 15, 20, 11, 22, 21, 9, 13, 22, 19, 13,...
+## $ Sex_char         &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male...
+## $ Institution_char &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, &quot;G...</code></pre>
 </div>
 <p>An alternative to recode is <code>ifelse()</code>. Let’s see how <code>Sex</code> and <code>Institution</code> could have been recoded using <code>ifelse()</code>.</p>
 </div>
@@ -795,7 +822,7 @@ Solution
 <h3><span class="header-section-number">6.3.2</span> ifelse()</h3>
 <p><code>ifelse()</code> is a good option when dealing with character or numeric input but struggles with dates and factors. None of the columns in <code>fake_data</code> are dates or factors, so we can easily use <code>ifelse()</code> for recoding variables.</p>
 <p>The generic structure for <code>ifelse()</code> is:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ifelse</span>(test, yes, no)</code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb295-1"></a><span class="kw">ifelse</span>(test, yes, no)</span></code></pre></div>
 <ul>
 <li>test: is an expression to test that creates an output of <code>TRUE</code> or <code>FALSE</code></li>
 <li>yes: if test has a <code>TRUE</code> outcome, this is what would be coded in the new column</li>
@@ -803,23 +830,23 @@ Solution
 </ul>
 <p>The interpretation of <code>ifelse()</code> is: if the test expression is <code>TRUE</code>, write the value of yes, otherwise no.</p>
 <p>In combination with <code>mutate()</code>, the structure looks as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mutate</span>(data, <span class="dt">new_column_name =</span> <span class="kw">ifelse</span>(test, yes, no))</code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb296-1"></a><span class="kw">mutate</span>(data, <span class="dt">new_column_name =</span> <span class="kw">ifelse</span>(test, yes, no))</span></code></pre></div>
 <p>How would we apply that to recoding <code>Sex</code>? We would want the expression to test whether the Sex column holds a value of 1, then a new column should code it as “Male”, otherwise as “Female”. Let’s add a new column <code>Sex_ifelse</code> to <code>fake_data</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Sex_ifelse =</span> <span class="kw">ifelse</span>(Sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>))
-<span class="kw">glimpse</span>(fake_data)</code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb297-1"></a>fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Sex_ifelse =</span> <span class="kw">ifelse</span>(Sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>))</span>
+<span id="cb297-2"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb297-2"></a><span class="kw">glimpse</span>(fake_data)</span></code></pre></div>
 <pre><code>## Observations: 40
 ## Variables: 8
-## $ PP_ID            &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,...
-## $ Sex              &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
-## $ Age              &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 20, 22...
-## $ Institution      &lt;dbl&gt; 3, 1, 1, 4, 2, 3, 1, 4, 3, 4, 3, 4, 4, 4, 2, 3, 3,...
-## $ Grade_points     &lt;dbl&gt; 0, 20, 15, 20, 11, 22, 21, 9, 13, 22, 19, 13, 10, ...
-## $ Sex_char         &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;M...
-## $ Institution_char &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, &quot;GCU&quot;, ...
-## $ Sex_ifelse       &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;M...</code></pre>
+## $ PP_ID            &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14...
+## $ Sex              &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+## $ Age              &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 2...
+## $ Institution      &lt;dbl&gt; 3, 1, 1, 4, 2, 3, 1, 4, 3, 4, 3, 4, 4, 4, 2, ...
+## $ Grade_points     &lt;dbl&gt; 0, 20, 15, 20, 11, 22, 21, 9, 13, 22, 19, 13,...
+## $ Sex_char         &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male...
+## $ Institution_char &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, &quot;G...
+## $ Sex_ifelse       &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male...</code></pre>
 <p>AHHHH!!! But what about the 3 participants that chose option 3? They are now coded as “Female”. Hmmm. One way to get around that would be a nested <code>ifelse()</code> statement. Instead of replacing the no argument (<code>FALSE</code> evaluation) with “Female”, we could include a second <code>ifelse()</code> statement.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Sex_ifelse =</span> <span class="kw">ifelse</span>(Sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;Male&quot;</span>,
-                                                   <span class="kw">ifelse</span>(Sex <span class="op">==</span><span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Other&quot;</span>)))</code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb299-1"></a>fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Sex_ifelse =</span> <span class="kw">ifelse</span>(Sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;Male&quot;</span>,</span>
+<span id="cb299-2"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb299-2"></a>                                                   <span class="kw">ifelse</span>(Sex <span class="op">==</span><span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Other&quot;</span>)))</span></code></pre></div>
 <p>Now everything is coded as it should be.</p>
 <div class="task">
 <p>
@@ -847,61 +874,61 @@ Recode <code>Institution</code> using <code>ifelse()</code>. Add a new column <c
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Institution_ifelse =</span> <span class="kw">ifelse</span>(Institution <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;UoG&quot;</span>, 
-                                                           <span class="kw">ifelse</span>(Institution <span class="op">==</span><span class="st"> </span><span class="dv">3</span>, <span class="st">&quot;GCU&quot;</span>, 
-                                                                  <span class="kw">ifelse</span>(Institution <span class="op">==</span><span class="st">  </span><span class="dv">4</span>, <span class="st">&quot;UWS&quot;</span>, <span class="st">&quot;Strathclyde&quot;</span>))))
-
-<span class="kw">glimpse</span>(fake_data)</code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb300-1"></a>fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Institution_ifelse =</span> <span class="kw">ifelse</span>(Institution <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;UoG&quot;</span>, </span>
+<span id="cb300-2"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb300-2"></a>                                                           <span class="kw">ifelse</span>(Institution <span class="op">==</span><span class="st"> </span><span class="dv">3</span>, <span class="st">&quot;GCU&quot;</span>, </span>
+<span id="cb300-3"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb300-3"></a>                                                                  <span class="kw">ifelse</span>(Institution <span class="op">==</span><span class="st">  </span><span class="dv">4</span>, <span class="st">&quot;UWS&quot;</span>, <span class="st">&quot;Strathclyde&quot;</span>))))</span>
+<span id="cb300-4"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb300-4"></a></span>
+<span id="cb300-5"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb300-5"></a><span class="kw">glimpse</span>(fake_data)</span></code></pre></div>
 <pre><code>## Observations: 40
 ## Variables: 9
-## $ PP_ID              &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1...
-## $ Sex                &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
-## $ Age                &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 20, ...
-## $ Institution        &lt;dbl&gt; 3, 1, 1, 4, 2, 3, 1, 4, 3, 4, 3, 4, 4, 4, 2, 3, ...
-## $ Grade_points       &lt;dbl&gt; 0, 20, 15, 20, 11, 22, 21, 9, 13, 22, 19, 13, 10...
-## $ Sex_char           &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, ...
-## $ Institution_char   &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, &quot;GCU&quot;...
-## $ Sex_ifelse         &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, ...
-## $ Institution_ifelse &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, &quot;GCU&quot;...</code></pre>
+## $ PP_ID              &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ...
+## $ Sex                &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1...
+## $ Age                &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30,...
+## $ Institution        &lt;dbl&gt; 3, 1, 1, 4, 2, 3, 1, 4, 3, 4, 3, 4, 4, 4, 2...
+## $ Grade_points       &lt;dbl&gt; 0, 20, 15, 20, 11, 22, 21, 9, 13, 22, 19, 1...
+## $ Sex_char           &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Ma...
+## $ Institution_char   &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, ...
+## $ Sex_ifelse         &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Ma...
+## $ Institution_ifelse &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, ...</code></pre>
 </div>
 <p>It does look a bit convoluted, and there is definitely the need to count opening and closing brackets, but it gets us the output we wanted. Before showing you how this can be coded in a slightly neater way with <code>case_when()</code>, I’d like to highlight one advantage <code>ifelse()</code> has over <code>recode()</code>, namely that the test expression can evaluate more complex “things” as long as they return a logical value. For example, if we wanted to add a column <code>Pass_Fail</code> to <code>fake_data</code>, that holds values of “Pass” for grade points above 9, and “Fail” for values of 9 and below, we would code</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Pass_Fail =</span> <span class="kw">ifelse</span>(Grade_points <span class="op">&gt;</span><span class="st"> </span><span class="dv">9</span>, <span class="st">&quot;Pass&quot;</span>, <span class="st">&quot;Fail&quot;</span>))
-<span class="kw">glimpse</span>(fake_data)</code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb302-1"></a>fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Pass_Fail =</span> <span class="kw">ifelse</span>(Grade_points <span class="op">&gt;</span><span class="st"> </span><span class="dv">9</span>, <span class="st">&quot;Pass&quot;</span>, <span class="st">&quot;Fail&quot;</span>))</span>
+<span id="cb302-2"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb302-2"></a><span class="kw">glimpse</span>(fake_data)</span></code></pre></div>
 <pre><code>## Observations: 40
 ## Variables: 10
-## $ PP_ID              &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1...
-## $ Sex                &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
-## $ Age                &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 20, ...
-## $ Institution        &lt;dbl&gt; 3, 1, 1, 4, 2, 3, 1, 4, 3, 4, 3, 4, 4, 4, 2, 3, ...
-## $ Grade_points       &lt;dbl&gt; 0, 20, 15, 20, 11, 22, 21, 9, 13, 22, 19, 13, 10...
-## $ Sex_char           &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, ...
-## $ Institution_char   &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, &quot;GCU&quot;...
-## $ Sex_ifelse         &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, ...
-## $ Institution_ifelse &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, &quot;GCU&quot;...
-## $ Pass_Fail          &lt;chr&gt; &quot;Fail&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass&quot;, ...</code></pre>
+## $ PP_ID              &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ...
+## $ Sex                &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1...
+## $ Age                &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30,...
+## $ Institution        &lt;dbl&gt; 3, 1, 1, 4, 2, 3, 1, 4, 3, 4, 3, 4, 4, 4, 2...
+## $ Grade_points       &lt;dbl&gt; 0, 20, 15, 20, 11, 22, 21, 9, 13, 22, 19, 1...
+## $ Sex_char           &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Ma...
+## $ Institution_char   &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, ...
+## $ Sex_ifelse         &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Ma...
+## $ Institution_ifelse &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, ...
+## $ Pass_Fail          &lt;chr&gt; &quot;Fail&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pa...</code></pre>
 <p>We could also add a column <code>Grade</code> to <code>fake_data</code> that tells us the primary band the students got in their test. <code>Grade_points</code> between 18 and 22 result in A, 15 to 17 = B, 12 to 14 = C, 9 to 11 = D, 6 to 8 = E, 3 to 5 = F, 1 and 2 = G, and 0 = H. Here we can use the <code>%in%</code> operator.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Grade =</span> <span class="kw">ifelse</span>(Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">18</span><span class="op">:</span><span class="dv">22</span>, <span class="st">&quot;A&quot;</span>,
-                                              <span class="kw">ifelse</span>(Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">15</span><span class="op">:</span><span class="dv">17</span>, <span class="st">&quot;B&quot;</span>,
-                                                     <span class="kw">ifelse</span>(Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">12</span><span class="op">:</span><span class="dv">14</span>, <span class="st">&quot;C&quot;</span>,
-                                                            <span class="kw">ifelse</span>(Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">9</span><span class="op">:</span><span class="dv">11</span>, <span class="st">&quot;D&quot;</span>,
-                                                                   <span class="kw">ifelse</span>(Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">6</span><span class="op">:</span><span class="dv">8</span>, <span class="st">&quot;E&quot;</span>,
-                                                                          <span class="kw">ifelse</span>(Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="st">&quot;F&quot;</span>,
-                                                                                 <span class="kw">ifelse</span>(Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="st">&quot;G&quot;</span>,<span class="st">&quot;H&quot;</span>))))))))
-
-<span class="kw">glimpse</span>(fake_data)</code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb304-1"></a>fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Grade =</span> <span class="kw">ifelse</span>(Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">18</span><span class="op">:</span><span class="dv">22</span>, <span class="st">&quot;A&quot;</span>,</span>
+<span id="cb304-2"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb304-2"></a>                                              <span class="kw">ifelse</span>(Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">15</span><span class="op">:</span><span class="dv">17</span>, <span class="st">&quot;B&quot;</span>,</span>
+<span id="cb304-3"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb304-3"></a>                                                     <span class="kw">ifelse</span>(Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">12</span><span class="op">:</span><span class="dv">14</span>, <span class="st">&quot;C&quot;</span>,</span>
+<span id="cb304-4"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb304-4"></a>                                                            <span class="kw">ifelse</span>(Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">9</span><span class="op">:</span><span class="dv">11</span>, <span class="st">&quot;D&quot;</span>,</span>
+<span id="cb304-5"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb304-5"></a>                                                                   <span class="kw">ifelse</span>(Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">6</span><span class="op">:</span><span class="dv">8</span>, <span class="st">&quot;E&quot;</span>,</span>
+<span id="cb304-6"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb304-6"></a>                                                                          <span class="kw">ifelse</span>(Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="st">&quot;F&quot;</span>,</span>
+<span id="cb304-7"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb304-7"></a>                                                                                 <span class="kw">ifelse</span>(Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="st">&quot;G&quot;</span>,<span class="st">&quot;H&quot;</span>))))))))</span>
+<span id="cb304-8"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb304-8"></a></span>
+<span id="cb304-9"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb304-9"></a><span class="kw">glimpse</span>(fake_data)</span></code></pre></div>
 <pre><code>## Observations: 40
 ## Variables: 11
-## $ PP_ID              &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1...
-## $ Sex                &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
-## $ Age                &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 20, ...
-## $ Institution        &lt;dbl&gt; 3, 1, 1, 4, 2, 3, 1, 4, 3, 4, 3, 4, 4, 4, 2, 3, ...
-## $ Grade_points       &lt;dbl&gt; 0, 20, 15, 20, 11, 22, 21, 9, 13, 22, 19, 13, 10...
-## $ Sex_char           &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, ...
-## $ Institution_char   &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, &quot;GCU&quot;...
-## $ Sex_ifelse         &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, ...
-## $ Institution_ifelse &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, &quot;GCU&quot;...
-## $ Pass_Fail          &lt;chr&gt; &quot;Fail&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass&quot;, ...
-## $ Grade              &lt;chr&gt; &quot;H&quot;, &quot;A&quot;, &quot;B&quot;, &quot;A&quot;, &quot;D&quot;, &quot;A&quot;, &quot;A&quot;, &quot;D&quot;, &quot;C&quot;, &quot;A&quot;...</code></pre>
+## $ PP_ID              &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ...
+## $ Sex                &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1...
+## $ Age                &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30,...
+## $ Institution        &lt;dbl&gt; 3, 1, 1, 4, 2, 3, 1, 4, 3, 4, 3, 4, 4, 4, 2...
+## $ Grade_points       &lt;dbl&gt; 0, 20, 15, 20, 11, 22, 21, 9, 13, 22, 19, 1...
+## $ Sex_char           &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Ma...
+## $ Institution_char   &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, ...
+## $ Sex_ifelse         &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Ma...
+## $ Institution_ifelse &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, ...
+## $ Pass_Fail          &lt;chr&gt; &quot;Fail&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pa...
+## $ Grade              &lt;chr&gt; &quot;H&quot;, &quot;A&quot;, &quot;B&quot;, &quot;A&quot;, &quot;D&quot;, &quot;A&quot;, &quot;A&quot;, &quot;D&quot;, &quot;C&quot;...</code></pre>
 </div>
 <div id="case_when" class="section level3">
 <h3><span class="header-section-number">6.3.3</span> case_when()</h3>
@@ -913,28 +940,28 @@ Solution
 <li>The LHS must evaluate to a logical vector. The RHS does not need to be logical, but all RHSs must evaluate to the same type of vector.</li>
 </ul>
 <p>Let’s apply this to recoding the values in the column <code>Institution</code>. Combining <code>case_when()</code> with <code>mutate()</code>, we will add another column called <code>Institution_case_when</code> to <code>fake_data</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Institution_case_when =</span> <span class="kw">case_when</span>(
-  Institution <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;UoG&quot;</span>,
-  Institution <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;GCU&quot;</span>,
-  Institution <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;UWS&quot;</span>,
-  <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;Strathclyde&quot;</span>
-  )
-)
-<span class="kw">glimpse</span>(fake_data)</code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb306-1"></a>fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Institution_case_when =</span> <span class="kw">case_when</span>(</span>
+<span id="cb306-2"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb306-2"></a>  Institution <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;UoG&quot;</span>,</span>
+<span id="cb306-3"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb306-3"></a>  Institution <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;GCU&quot;</span>,</span>
+<span id="cb306-4"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb306-4"></a>  Institution <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;UWS&quot;</span>,</span>
+<span id="cb306-5"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb306-5"></a>  <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;Strathclyde&quot;</span></span>
+<span id="cb306-6"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb306-6"></a>  )</span>
+<span id="cb306-7"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb306-7"></a>)</span>
+<span id="cb306-8"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb306-8"></a><span class="kw">glimpse</span>(fake_data)</span></code></pre></div>
 <pre><code>## Observations: 40
 ## Variables: 12
-## $ PP_ID                 &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14...
-## $ Sex                   &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
-## $ Age                   &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 2...
-## $ Institution           &lt;dbl&gt; 3, 1, 1, 4, 2, 3, 1, 4, 3, 4, 3, 4, 4, 4, 2, ...
-## $ Grade_points          &lt;dbl&gt; 0, 20, 15, 20, 11, 22, 21, 9, 13, 22, 19, 13,...
-## $ Sex_char              &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male...
-## $ Institution_char      &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, &quot;G...
-## $ Sex_ifelse            &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male...
-## $ Institution_ifelse    &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, &quot;G...
-## $ Pass_Fail             &lt;chr&gt; &quot;Fail&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass...
-## $ Grade                 &lt;chr&gt; &quot;H&quot;, &quot;A&quot;, &quot;B&quot;, &quot;A&quot;, &quot;D&quot;, &quot;A&quot;, &quot;A&quot;, &quot;D&quot;, &quot;C&quot;, ...
-## $ Institution_case_when &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, &quot;G...</code></pre>
+## $ PP_ID                 &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1...
+## $ Sex                   &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1...
+## $ Age                   &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, ...
+## $ Institution           &lt;dbl&gt; 3, 1, 1, 4, 2, 3, 1, 4, 3, 4, 3, 4, 4, 4...
+## $ Grade_points          &lt;dbl&gt; 0, 20, 15, 20, 11, 22, 21, 9, 13, 22, 19...
+## $ Sex_char              &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, ...
+## $ Institution_char      &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde...
+## $ Sex_ifelse            &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, ...
+## $ Institution_ifelse    &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde...
+## $ Pass_Fail             &lt;chr&gt; &quot;Fail&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass&quot;, ...
+## $ Grade                 &lt;chr&gt; &quot;H&quot;, &quot;A&quot;, &quot;B&quot;, &quot;A&quot;, &quot;D&quot;, &quot;A&quot;, &quot;A&quot;, &quot;D&quot;, ...
+## $ Institution_case_when &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde...</code></pre>
 <p>The <code>TRUE</code> statement at the end is similar to the the “else” in the <code>ifelse()</code> function. A further similarity between the two is that arguments are evaluated in order, so you must proceed from the most specific to the most general.</p>
 <div class="task">
 <p>
@@ -974,45 +1001,45 @@ grade points 18 - 22 = A,
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Grade_case_when =</span> <span class="kw">case_when</span>(
-  Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">18</span><span class="op">:</span><span class="dv">22</span> <span class="op">~</span><span class="st"> &quot;A&quot;</span>,
-  Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">15</span><span class="op">:</span><span class="dv">17</span> <span class="op">~</span><span class="st"> &quot;B&quot;</span>,
-  Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">12</span><span class="op">:</span><span class="dv">14</span> <span class="op">~</span><span class="st"> &quot;C&quot;</span>,
-  Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">9</span><span class="op">:</span><span class="dv">11</span> <span class="op">~</span><span class="st"> &quot;D&quot;</span>,
-  Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">6</span><span class="op">:</span><span class="dv">8</span> <span class="op">~</span><span class="st"> &quot;E&quot;</span>,
-  Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">3</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;F&quot;</span>,
-  Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;G&quot;</span>,
-  <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;H&quot;</span>
-  )
-)
-<span class="kw">glimpse</span>(fake_data)</code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb308-1"></a>fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Grade_case_when =</span> <span class="kw">case_when</span>(</span>
+<span id="cb308-2"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb308-2"></a>  Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">18</span><span class="op">:</span><span class="dv">22</span> <span class="op">~</span><span class="st"> &quot;A&quot;</span>,</span>
+<span id="cb308-3"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb308-3"></a>  Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">15</span><span class="op">:</span><span class="dv">17</span> <span class="op">~</span><span class="st"> &quot;B&quot;</span>,</span>
+<span id="cb308-4"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb308-4"></a>  Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">12</span><span class="op">:</span><span class="dv">14</span> <span class="op">~</span><span class="st"> &quot;C&quot;</span>,</span>
+<span id="cb308-5"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb308-5"></a>  Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">9</span><span class="op">:</span><span class="dv">11</span> <span class="op">~</span><span class="st"> &quot;D&quot;</span>,</span>
+<span id="cb308-6"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb308-6"></a>  Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">6</span><span class="op">:</span><span class="dv">8</span> <span class="op">~</span><span class="st"> &quot;E&quot;</span>,</span>
+<span id="cb308-7"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb308-7"></a>  Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">3</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;F&quot;</span>,</span>
+<span id="cb308-8"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb308-8"></a>  Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;G&quot;</span>,</span>
+<span id="cb308-9"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb308-9"></a>  <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;H&quot;</span></span>
+<span id="cb308-10"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb308-10"></a>  )</span>
+<span id="cb308-11"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb308-11"></a>)</span>
+<span id="cb308-12"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb308-12"></a><span class="kw">glimpse</span>(fake_data)</span></code></pre></div>
 <pre><code>## Observations: 40
 ## Variables: 13
-## $ PP_ID                 &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14...
-## $ Sex                   &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
-## $ Age                   &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 2...
-## $ Institution           &lt;dbl&gt; 3, 1, 1, 4, 2, 3, 1, 4, 3, 4, 3, 4, 4, 4, 2, ...
-## $ Grade_points          &lt;dbl&gt; 0, 20, 15, 20, 11, 22, 21, 9, 13, 22, 19, 13,...
-## $ Sex_char              &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male...
-## $ Institution_char      &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, &quot;G...
-## $ Sex_ifelse            &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male...
-## $ Institution_ifelse    &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, &quot;G...
-## $ Pass_Fail             &lt;chr&gt; &quot;Fail&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass...
-## $ Grade                 &lt;chr&gt; &quot;H&quot;, &quot;A&quot;, &quot;B&quot;, &quot;A&quot;, &quot;D&quot;, &quot;A&quot;, &quot;A&quot;, &quot;D&quot;, &quot;C&quot;, ...
-## $ Institution_case_when &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, &quot;G...
-## $ Grade_case_when       &lt;chr&gt; &quot;H&quot;, &quot;A&quot;, &quot;B&quot;, &quot;A&quot;, &quot;D&quot;, &quot;A&quot;, &quot;A&quot;, &quot;D&quot;, &quot;C&quot;, ...</code></pre>
+## $ PP_ID                 &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1...
+## $ Sex                   &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1...
+## $ Age                   &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, ...
+## $ Institution           &lt;dbl&gt; 3, 1, 1, 4, 2, 3, 1, 4, 3, 4, 3, 4, 4, 4...
+## $ Grade_points          &lt;dbl&gt; 0, 20, 15, 20, 11, 22, 21, 9, 13, 22, 19...
+## $ Sex_char              &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, ...
+## $ Institution_char      &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde...
+## $ Sex_ifelse            &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, ...
+## $ Institution_ifelse    &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde...
+## $ Pass_Fail             &lt;chr&gt; &quot;Fail&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass&quot;, ...
+## $ Grade                 &lt;chr&gt; &quot;H&quot;, &quot;A&quot;, &quot;B&quot;, &quot;A&quot;, &quot;D&quot;, &quot;A&quot;, &quot;A&quot;, &quot;D&quot;, ...
+## $ Institution_case_when &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde...
+## $ Grade_case_when       &lt;chr&gt; &quot;H&quot;, &quot;A&quot;, &quot;B&quot;, &quot;A&quot;, &quot;D&quot;, &quot;A&quot;, &quot;A&quot;, &quot;D&quot;, ...</code></pre>
 </div>
 </div>
 </div>
 <div id="distinct" class="section level2">
 <h2><span class="header-section-number">6.4</span> distinct()</h2>
 <p>The <code>distinct()</code> function is used to remove duplicate rows in your dataframe. If we are using <code>distinct()</code> without specifying any arguments, R checks the whole row and excludes any row that is exactly repeated.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data_no_dup &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">distinct</span>()</code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb310-1"></a>fake_data_no_dup &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb310-2"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb310-2"></a><span class="st">  </span><span class="kw">distinct</span>()</span></code></pre></div>
 <p>We can see that all rows are still there. This is not surprising, given every participant has a unique ID number. However, <code>distinct()</code> does take arguments as well, namely the variable columns you are trying to determine uniqueness for. Say we we wanted to see how many different institutions we have data from.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">institution_distinct &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">distinct</span>(Institution_char)
-institution_distinct</code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb311-1"></a>institution_distinct &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb311-2"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb311-2"></a><span class="st">  </span><span class="kw">distinct</span>(Institution_char)</span>
+<span id="cb311-3"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb311-3"></a>institution_distinct</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 1
 ##   Institution_char
 ##   &lt;chr&gt;           
@@ -1021,9 +1048,9 @@ institution_distinct</code></pre></div>
 ## 3 UWS             
 ## 4 Strathclyde</code></pre>
 <p>We can see that there are 4 distinct institutions. But what happened to the output? We still have the output from the column we specified but all other information is gone. One quick solution would be to use the argument <code>.keep_all</code> and set that to <code>TRUE</code> (the default here is <code>FALSE</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">institution_distinct &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">distinct</span>(Institution_char, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>)
-institution_distinct</code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb313-1"></a>institution_distinct &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb313-2"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb313-2"></a><span class="st">  </span><span class="kw">distinct</span>(Institution_char, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb313-3"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb313-3"></a>institution_distinct</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 13
 ##   PP_ID   Sex   Age Institution Grade_points Sex_char Institution_char
 ##   &lt;int&gt; &lt;dbl&gt; &lt;int&gt;       &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;           
@@ -1036,9 +1063,9 @@ institution_distinct</code></pre></div>
 ## #   Grade_case_when &lt;chr&gt;</code></pre>
 <p>In the new <code>institution_distinct</code> dataframe, we still have 4 institutions listed but we kept all 13 columns. If there are multiple rows with the same input (in this case 40 participants from 4 different institutions), <code>distinct()</code> only preserves the first row a new value occurs.</p>
 <p>The <code>distinct()</code> function also allows you to eliminate duplicate rows with multiple variables in the dataframe. So if we wanted to see where participants were studying but also the different sexes taking part in the study, we would code…</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">institution_sex_distinct &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">distinct</span>(Institution_char, Sex_char, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>)
-institution_sex_distinct</code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb315-1"></a>institution_sex_distinct &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb315-2"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb315-2"></a><span class="st">  </span><span class="kw">distinct</span>(Institution_char, Sex_char, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb315-3"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb315-3"></a>institution_sex_distinct</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 13
 ##    PP_ID   Sex   Age Institution Grade_points Sex_char Institution_char
 ##    &lt;int&gt; &lt;dbl&gt; &lt;int&gt;       &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;           
@@ -1077,22 +1104,22 @@ The values are sorted by occurrence. R goes through the tibble row by row to det
 <p>Let’s just have some fun with <code>fake_data</code> whilst recapping a little bit of what we did in the past 5 weeks.</p>
 <div id="question-1" class="section level3">
 <h3><span class="header-section-number">6.5.1</span> Question 1</h3>
-<p>Select the variables <code>PP_ID</code>, <code>Sex_char</code>, <code>Age</code>, <code>Institution_char</code>, <code>Grade_points</code>, <code>Grade</code>, and <code>Pass_Fail</code> from <code>fake_data</code>and save it as <code>fake_data</code> in your Global Environment (i.e. overwrite/replace <code>fake_data</code>). Rename the following variables:</p>
+<p>Select the variables <code>PP_ID</code>, <code>Sex_char</code>, <code>Age</code>, <code>Institution_char</code>, <code>Grade_points</code>, <code>Grade</code>, and <code>Pass_Fail</code> from <code>fake_data</code>and save it as <code>fake_data</code> in your Global Environment (i.e. overwrite/replace <code>fake_data</code>). Rename the following variables in the process:</p>
 <ul>
 <li><code>PP_ID</code> as <code>Participant_ID</code></li>
-<li><code>Sex_Char</code> as <code>Sex</code></li>
+<li><code>Sex_char</code> as <code>Sex</code></li>
 <li><code>Institution_char</code> as <code>Institution</code></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb317-1"></a>fake_data &lt;-<span class="st"> </span><span class="ot">NULL</span></span></code></pre></div>
 <div class="solution">
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># solution using select:</span>
-fake_data &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(<span class="dt">Participant_ID =</span> PP_ID, <span class="dt">Sex =</span> Sex_char, Age, <span class="dt">Institution =</span> Institution_char, Grade_points, Grade, Pass_Fail)
-
-fake_data</code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb318-1"></a><span class="co"># solution using select:</span></span>
+<span id="cb318-2"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb318-2"></a>fake_data &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb318-3"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb318-3"></a><span class="st">  </span><span class="kw">select</span>(<span class="dt">Participant_ID =</span> PP_ID, <span class="dt">Sex =</span> Sex_char, Age, <span class="dt">Institution =</span> Institution_char, Grade_points, Grade, Pass_Fail)</span>
+<span id="cb318-4"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb318-4"></a></span>
+<span id="cb318-5"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb318-5"></a>fake_data</span></code></pre></div>
 <pre><code>## # A tibble: 40 x 7
 ##    Participant_ID Sex     Age Institution Grade_points Grade Pass_Fail
 ##             &lt;int&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    
@@ -1107,26 +1134,26 @@ fake_data</code></pre></div>
 ##  9              9 Male     38 GCU                   13 C     Pass     
 ## 10             10 Male     39 UWS                   22 A     Pass     
 ## # ... with 30 more rows</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># solution involving select and rename:</span>
-<span class="co"># fake_data &lt;- fake_data %&gt;% </span>
-<span class="co">#   select(PP_ID, Sex_char, Age, Institution_char, Grade_points, Grade, Pass_Fail) %&gt;%</span>
-<span class="co">#   rename(Participant_ID = PP_ID, Sex = Sex_char, Institution = Institution_char)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb320-1"></a><span class="co"># solution involving select and rename:</span></span>
+<span id="cb320-2"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb320-2"></a><span class="co"># fake_data &lt;- fake_data %&gt;% </span></span>
+<span id="cb320-3"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb320-3"></a><span class="co">#   select(PP_ID, Sex_char, Age, Institution_char, Grade_points, Grade, Pass_Fail) %&gt;%</span></span>
+<span id="cb320-4"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb320-4"></a><span class="co">#   rename(Participant_ID = PP_ID, Sex = Sex_char, Institution = Institution_char)</span></span></code></pre></div>
 </div>
 </div>
 <div id="question-2" class="section level3">
 <h3><span class="header-section-number">6.5.2</span> Question 2</h3>
 <p>Calculate the average grade points for each University. Store the output as a new object <code>grade_points</code> in your <code>Global Environment</code>. The new column should be named <code>Average_grade_points</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">grade_points &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb321-1"></a>grade_points &lt;-<span class="st"> </span><span class="ot">NULL</span></span></code></pre></div>
 <div class="solution">
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">grade_points &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(Institution) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Average_grade_points =</span> <span class="kw">mean</span>(Grade_points)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ungroup</span>()
-
-grade_points</code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb322-1"></a>grade_points &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb322-2"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb322-2"></a><span class="st">  </span><span class="kw">group_by</span>(Institution) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb322-3"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb322-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Average_grade_points =</span> <span class="kw">mean</span>(Grade_points)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb322-4"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb322-4"></a><span class="st">  </span><span class="kw">ungroup</span>()</span>
+<span id="cb322-5"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb322-5"></a></span>
+<span id="cb322-6"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb322-6"></a>grade_points</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 2
 ##   Institution Average_grade_points
 ##   &lt;chr&gt;                      &lt;dbl&gt;
@@ -1138,17 +1165,17 @@ grade_points</code></pre></div>
 </div>
 <div id="question-3" class="section level3">
 <h3><span class="header-section-number">6.5.3</span> Question 3</h3>
-<p>Join the <code>fake_data</code> and <code>grade_points</code>, and calculate how much each person differs from the mean of their university (column name is <code>grade_diff</code>. Store the output in your <code>Global Environment</code> as a new object called <code>fake_data_mean</code>. Sort the data by <code>Institution</code> and <code>Sex</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data_meandiff &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+<p>Join the <code>fake_data</code> and <code>grade_points</code>, and calculate how much each person differs from the mean of their university. Results should be stored in a column named <code>grade_diff</code>. Store the output in your <code>Global Environment</code> as a new object called <code>fake_data_meandiff</code>. Sort the data by <code>Institution</code> and <code>Sex</code>.</p>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb324-1"></a>fake_data_meandiff &lt;-<span class="st"> </span><span class="ot">NULL</span></span></code></pre></div>
 <div class="solution">
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data_meandiff &lt;-<span class="st"> </span><span class="kw">left_join</span>(fake_data, grade_points) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">grade_diff =</span> Grade_points <span class="op">-</span><span class="st"> </span>Average_grade_points) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">arrange</span>(Institution, Sex)</code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb325-1"></a>fake_data_meandiff &lt;-<span class="st"> </span><span class="kw">left_join</span>(fake_data, grade_points) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb325-2"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb325-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">grade_diff =</span> Grade_points <span class="op">-</span><span class="st"> </span>Average_grade_points) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb325-3"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb325-3"></a><span class="st">  </span><span class="kw">arrange</span>(Institution, Sex)</span></code></pre></div>
 <pre><code>## Joining, by = &quot;Institution&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data_meandiff</code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb327-1"></a>fake_data_meandiff</span></code></pre></div>
 <pre><code>## # A tibble: 40 x 9
 ##    Participant_ID Sex     Age Institution Grade_points Grade Pass_Fail
 ##             &lt;int&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    
@@ -1169,26 +1196,26 @@ Solution
 <div id="question-4" class="section level3">
 <h3><span class="header-section-number">6.5.4</span> Question 4</h3>
 <p>Our colleague is interested in what the grade point average for each university would be if we were only looking at the students who passed the R assignment initially (i.e. grade points above 9). Store the output in your <code>Global Environment</code> as a new object called <code>fake_data_pass</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data_pass &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb329-1"></a>fake_data_pass &lt;-<span class="st"> </span><span class="ot">NULL</span></span></code></pre></div>
 <div class="solution">
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># filter Grade_points</span>
-fake_data_pass &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(Grade_points <span class="op">&gt;</span><span class="st"> </span><span class="dv">9</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(Institution) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Average_grade_points_pass =</span> <span class="kw">mean</span>(Grade_points)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ungroup</span>()
-
-<span class="co"># filter Pass_Fail</span>
-fake_data_pass &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(Pass_Fail <span class="op">==</span><span class="st"> &quot;Pass&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(Institution) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Average_grade_points_pass =</span> <span class="kw">mean</span>(Grade_points)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ungroup</span>()
-
-fake_data_pass</code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb330-1"></a><span class="co"># filter Grade_points</span></span>
+<span id="cb330-2"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb330-2"></a>fake_data_pass &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb330-3"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb330-3"></a><span class="st">  </span><span class="kw">filter</span>(Grade_points <span class="op">&gt;</span><span class="st"> </span><span class="dv">9</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb330-4"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb330-4"></a><span class="st">  </span><span class="kw">group_by</span>(Institution) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb330-5"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb330-5"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Average_grade_points_pass =</span> <span class="kw">mean</span>(Grade_points)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb330-6"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb330-6"></a><span class="st">  </span><span class="kw">ungroup</span>()</span>
+<span id="cb330-7"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb330-7"></a></span>
+<span id="cb330-8"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb330-8"></a><span class="co"># filter Pass_Fail</span></span>
+<span id="cb330-9"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb330-9"></a>fake_data_pass &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb330-10"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb330-10"></a><span class="st">  </span><span class="kw">filter</span>(Pass_Fail <span class="op">==</span><span class="st"> &quot;Pass&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb330-11"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb330-11"></a><span class="st">  </span><span class="kw">group_by</span>(Institution) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb330-12"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb330-12"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Average_grade_points_pass =</span> <span class="kw">mean</span>(Grade_points)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb330-13"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb330-13"></a><span class="st">  </span><span class="kw">ungroup</span>()</span>
+<span id="cb330-14"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb330-14"></a></span>
+<span id="cb330-15"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb330-15"></a>fake_data_pass</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 2
 ##   Institution Average_grade_points_pass
 ##   &lt;chr&gt;                           &lt;dbl&gt;
@@ -1200,22 +1227,22 @@ fake_data_pass</code></pre></div>
 </div>
 <div id="question-5" class="section level3">
 <h3><span class="header-section-number">6.5.5</span> Question 5</h3>
-<p>Now our colleague wants to know whether the males or the females did better at each university. They are asking for a table with 4 columns in which the first column titled <code>Institution</code> lists the university, the second column is called <code>Males</code> for the average grade point scores of the males at each institution, the third column called <code>Females</code> with average grade point scores for the females, and the fourth column <code>Better</code> should say <code>&quot;female&quot;</code> or <code>&quot;male&quot;</code> if the females or males had higher grade points respectively. Store the output in your <code>Global Environment</code> as a new object called <code>fake_data_sex</code>. Use <code>fake_data</code> as the reference dataframe.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data_sex &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+<p>Now our colleague wants to know whether the males or the females did better at each university. They are asking for a table with 4 columns in which the first column titled <code>Institution</code> lists the university, the second column is called <code>Males</code> for the average grade point scores of the males at each institution, the third column called <code>Females</code> with average grade point scores for the females, and the fourth column <code>Better</code> should say <code>"female"</code> or <code>"male"</code> if the females or males had higher grade points respectively. Store the output in your <code>Global Environment</code> as a new object called <code>fake_data_sex</code>. Use <code>fake_data</code> as the reference dataframe.</p>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb332-1"></a>fake_data_sex &lt;-<span class="st"> </span><span class="ot">NULL</span></span></code></pre></div>
 <div class="solution">
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data_sex &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(Sex <span class="op">!=</span><span class="st"> &quot;Other&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># this step could actually be left out</span>
-<span class="st">  </span><span class="kw">group_by</span>(Institution, Sex) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Average_gp =</span> <span class="kw">mean</span>(Grade_points)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">spread</span>(Sex, Average_gp) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(Institution, <span class="dt">Males =</span> Male, <span class="dt">Females =</span> Female) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Better =</span> <span class="kw">ifelse</span>(Males <span class="op">&gt;</span><span class="st"> </span>Females, <span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>))
-
-fake_data_sex</code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb333-1"></a>fake_data_sex &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb333-2"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb333-2"></a><span class="st">  </span><span class="kw">filter</span>(Sex <span class="op">!=</span><span class="st"> &quot;Other&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># this step could actually be left out</span></span>
+<span id="cb333-3"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb333-3"></a><span class="st">  </span><span class="kw">group_by</span>(Institution, Sex) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb333-4"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb333-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Average_gp =</span> <span class="kw">mean</span>(Grade_points)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb333-5"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb333-5"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb333-6"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb333-6"></a><span class="st">  </span><span class="kw">spread</span>(Sex, Average_gp) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb333-7"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb333-7"></a><span class="st">  </span><span class="kw">select</span>(Institution, <span class="dt">Males =</span> Male, <span class="dt">Females =</span> Female) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb333-8"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb333-8"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Better =</span> <span class="kw">ifelse</span>(Males <span class="op">&gt;</span><span class="st"> </span>Females, <span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>))</span>
+<span id="cb333-9"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb333-9"></a></span>
+<span id="cb333-10"><a href="data-transformation-4-fine-tuned-data-manipulation.html#cb333-10"></a>fake_data_sex</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 4
 ##   Institution Males Females Better
 ##   &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; 
@@ -1338,7 +1365,6 @@ window.onload = function() {
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -1357,10 +1383,6 @@ gitbook.start({
 "text": null
 },
 "history": {
-"link": null,
-"text": null
-},
-"view": {
 "link": null,
 "text": null
 },

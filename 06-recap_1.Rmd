@@ -357,10 +357,10 @@ Let's just have some fun with `fake_data` whilst recapping a little bit of what 
 
 ### Question 1
 
-Select the variables `PP_ID`, `Sex_char`, `Age`, `Institution_char`, `Grade_points`, `Grade`, and `Pass_Fail` from `fake_data`and save it as `fake_data` in your Global Environment (i.e. overwrite/replace `fake_data`). Rename the following variables:
+Select the variables `PP_ID`, `Sex_char`, `Age`, `Institution_char`, `Grade_points`, `Grade`, and `Pass_Fail` from `fake_data`and save it as `fake_data` in your Global Environment (i.e. overwrite/replace `fake_data`). Rename the following variables in the process:
 
 * `PP_ID` as `Participant_ID`
-* `Sex_Char` as `Sex`
+* `Sex_char` as `Sex`
 * `Institution_char` as `Institution`
 
 ```{r, eval=FALSE}
@@ -411,7 +411,7 @@ grade_points
 
 ### Question 3
 
-Join the `fake_data` and `grade_points`, and calculate how much each person differs from the mean of their university (column name is `grade_diff`. Store the output in your `Global Environment` as a new object called `fake_data_mean`. Sort the data by `Institution` and `Sex`.
+Join the `fake_data` and `grade_points`, and calculate how much each person differs from the mean of their university. Results should be stored in a column named `grade_diff`. Store the output in your `Global Environment` as a new object called `fake_data_meandiff`. Sort the data by `Institution` and `Sex`.
 
 ```{r, eval=FALSE}
 fake_data_meandiff <- NULL

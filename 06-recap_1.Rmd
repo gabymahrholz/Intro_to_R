@@ -151,7 +151,7 @@ glimpse(fake_data)
 ```
 `r unhide()`
 
-An alternative to recode is `ifelse()`. Let's see how `Sex` and `Institution` could have been recoded using `ifelse()`.
+An alternative to `recode()` is `ifelse()`. Let's see how `Sex` and `Institution` could have been recoded using `ifelse()`.
 
 
 
@@ -333,7 +333,7 @@ The `distinct()` function also allows you to eliminate duplicate rows with multi
 
 ```{r}
 institution_sex_distinct <- fake_data %>% 
-  distinct(Institution_char, Sex_char, .keep_all = TRUE)
+  distinct(Institution_char, Sex_char)
 institution_sex_distinct
 ```
 

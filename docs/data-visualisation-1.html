@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Rebecca J. Lai, Kate Haining, Greta Todorova, and Wilhelmiina Toivo" />
 
 
-<meta name="date" content="2020-02-17" />
+<meta name="date" content="2020-02-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -340,10 +340,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 7</span> Data Visualisation 1</h1>
 <div id="intended-learning-outcomes-7" class="section level2 unnumbered">
 <h2>Intended Learning Outcomes</h2>
+<ol style="list-style-type: decimal">
+<li>Develop an understanding of the basics of ggplot2 and how layering works</li>
+<li>Learn how to make simple two layer plots</li>
+<li>Learn how to make plots with more than 2 layers</li>
+<li>Learn how to create groups in plots</li>
+<li>Learn how to make a variety of plots based on the type of variables we have</li>
+</ol>
 </div>
 <div id="pre-steps-5" class="section level2">
 <h2><span class="header-section-number">7.1</span> Pre-steps</h2>
-<p>We will be working with <code>ggplot2</code> today which is part of <code>tidyverse</code>. Load <code>tidyverse</code> into the library and read the data we will be working with today into our <code>Global Environment</code>.</p>
+<p>Today, we will be working with <code>ggplot2</code> which is part of <code>tidyverse</code> and data from the Scottish Government saved in the file <code>free_movement_uk.csv</code>. Load <code>tidyverse</code> into the library and read the data into our <code>Global Environment</code> as <code>migration_scot</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 migration_scot &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;free_movement_uk.csv&quot;</span>) <span class="co">#downloaded from the Scottish Government Stats website</span></code></pre></div>
 </div>
@@ -351,10 +358,6 @@ migration_scot &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<s
 <h2><span class="header-section-number">7.2</span> Introduction to the data</h2>
 <p>This data is provided freely from the Scottish Government, and it introduces the flow of people at different ages and sex into and out of the Scotland. We have several variables to work with:</p>
 <table>
-<colgroup>
-<col width="24%" />
-<col width="75%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Variable</th>
@@ -364,7 +367,7 @@ migration_scot &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<s
 <tbody>
 <tr class="odd">
 <td align="left">FeatureCode</td>
-<td align="left">codes given by the Scottish Governemnt</td>
+<td align="left">Codes given by the Scottish Government</td>
 </tr>
 <tr class="even">
 <td align="left">DateCode</td>
@@ -372,11 +375,11 @@ migration_scot &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<s
 </tr>
 <tr class="odd">
 <td align="left">Measurement</td>
-<td align="left">what type of measurment it is (Here we have only counts)</td>
+<td align="left">What type of measurement it is (here we have only counts)</td>
 </tr>
 <tr class="even">
 <td align="left">Units</td>
-<td align="left">units(here we have only people)</td>
+<td align="left">Units (here we have only people)</td>
 </tr>
 <tr class="odd">
 <td align="left">Value</td>
@@ -384,72 +387,70 @@ migration_scot &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<s
 </tr>
 <tr class="even">
 <td align="left">Age</td>
-<td align="left">Age of the counted people (Separate age, and total)</td>
+<td align="left">Age of the counted people (separate age, and total)</td>
 </tr>
 <tr class="odd">
 <td align="left">Sex</td>
-<td align="left">sex of the counted people (separate sex and total)</td>
+<td align="left">Sex of the counted people (separate sex, and total)</td>
 </tr>
 <tr class="even">
 <td align="left">Migration Source</td>
-<td align="left">Where or from the people are comming from ( Overseas, RUK)</td>
+<td align="left">Where the people are coming from (Overseas, RUK)</td>
 </tr>
 <tr class="odd">
 <td align="left">Migration Type</td>
-<td align="left">whether people are comming or leavin ( In or OUT and Net)</td>
+<td align="left">Whether people are coming or leaving (In, Out, and Net)</td>
 </tr>
 </tbody>
 </table>
-<p>The data is a bit messy so lets clean it a little bit before we can work with it.</p>
+<p>The data is a bit messy, so let’s clean it a little bit before we can work with it.</p>
 <div id="some-warm-up-tasks" class="section level3">
 <h3><span class="header-section-number">7.2.1</span> Some warm-up tasks</h3>
 <ol style="list-style-type: decimal">
-<li>Keep only the total number of people by age (‘All’)</li>
-<li>Keep only the necessary variable - DateCode, Value, Sex, Age, ‘Migration Source’ &amp; ‘Migration Type’</li>
-<li>Filter the data , and keep only 2016</li>
-<li>Keep only the information about the number of people that have came in and left scotland ( we do not want to know about the net value)</li>
+<li>Keep only the total number of people by <code>Age</code> (‘All’)</li>
+<li>Keep only the necessary variable - <code>DateCode</code>, <code>Value</code>, <code>Sex</code>, <code>Age</code>, <code>Migration Source</code> &amp; <code>Migration Type</code> (notice that some variable names include spaces)</li>
+<li>Filter the data in column <code>Year</code>, and keep only observations from 2016</li>
+<li>Keep only the information about the number of people that came into and left Scotland (we do not want to know about the net value)</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">traffic_scot &lt;-<span class="st"> </span>migration_scot <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(Age <span class="op">==</span><span class="st"> &#39;All&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(DateCode, Value, Sex, <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(DateCode <span class="op">==</span><span class="st"> &#39;2016&#39;</span>, <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span><span class="op">!=</span><span class="st">&#39;Net&#39;</span>, Sex <span class="op">!=</span><span class="st"> &#39;All&#39;</span>)</code></pre></div>
+<span class="st">  </span><span class="kw">filter</span>(DateCode <span class="op">==</span><span class="st"> &#39;2016&#39;</span>, <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span> <span class="op">!=</span><span class="st"> &#39;Net&#39;</span>, Sex <span class="op">!=</span><span class="st"> &#39;All&#39;</span>)</code></pre></div>
 </div>
 </div>
 <div id="the-package-ggplot2" class="section level2">
 <h2><span class="header-section-number">7.3</span> The package GGPLOT2</h2>
-<p>We use the <code>ggplot2</code> package due to its ease of layering and variety.</p>
-<p>The <code>ggplot2</code> package allows us to create beautiful and various plots, that can show us much more than just the simplicities of the base R plots.</p>
+<p>We use the <code>ggplot2</code> package due to its ease of layering and variety. The <code>ggplot2</code> package allows us to create beautiful and various plots that can show us much more than just the simplicities of the base R plots.</p>
 </div>
 <div id="layering" class="section level2">
 <h2><span class="header-section-number">7.4</span> Layering</h2>
-<p>Plots created with ggplot work by using layers.</p>
-<p>In the simplest form we have two layers.</p>
+<p>Plots created with ggplot work by using layers. In the simplest form we have two layers.</p>
 <ul>
-<li>Layer1: what data are we going to use</li>
-<li>Layer2: how do we want it to look</li>
+<li>Layer 1: what data are we going to use</li>
+<li>Layer 2: how do we want it to look</li>
 </ul>
-<p>Layer 1: ggplot(data, aes(x,y, …)) + Layer 2: geom_something(…)</p>
+<p>Layer 1: ggplot(data, aes(x,y, …)) + <br /> Layer 2:   geom_something(…)</p>
 <div id="layer-1" class="section level3">
 <h3><span class="header-section-number">7.4.1</span> Layer 1</h3>
-<p>Plots always start with <em>ggplot()</em>. This initialises the plot. It is used to tell <em>R</em> what data we are going to use. We can also set the aesthetics of the plot which will be used to specify the axes we are going to use, any groupings, varialbes we are going to colour based on, etc. Unless specifically overwritten in the following layers, all the data information you give in this firts layer will be inheritted in everythiing else you do.</p>
-<p>For now we are going to stick with one global specifcation - i.e. we are going to specify all our data in this first layer.</p>
-<p>If you run just the first command, R is going to show you the first layer - i.e. a blank screen</p>
-<p>Let’s try it quickly. Uncomment the comand bellow and see what appears in the ‘Plots’ section.</p>
+<p>Plots always start with <em>ggplot()</em>. This initialises the plot. It is used to tell <em>R</em> what data we are going to use. We can also set the aesthetics of the plot which will be used to specify the axes we are going to use, any groupings, variables we are going to colour based on, etc. Unless specifically overwritten in the following layers, all the data information you give in this first layer will be inherited in everything else you do.</p>
+<p>For now we are going to stick with one global specification - i.e. we are going to specify all our data in this first layer.</p>
+<p>If you run just the first command, R is going to show you the first layer - i.e. a blank screen.</p>
+<p>Let’s try it quickly. Uncomment the command below and see what appears in the ‘Plots’ section.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>()</code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-250-1.png" width="672" /></p>
-<p>Now let’s add some information. Lats give the data and the axes. From our data w ewant to put sex on the x axis and value on the y axis.</p>
+<p>Now let’s add some information. Let’s include the data and the axes. From our data we want to put sex on the x axis and value on the y axis.</p>
 <p>What’s the difference?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value))</code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-251-1.png" width="672" /></p>
 <div class="question">
 <p>
-What is the dfference between the above two lines? What does the first layer give you?
+What is the difference between the above two lines? What does the first layer give you?
 </p>
 </div>
 </div>
 <div id="layer-2-and-onwards" class="section level3">
 <h3><span class="header-section-number">7.4.2</span> Layer 2 and onwards</h3>
-<p>From the second layer onwards, we are specifying how we want our plot to look like. From the type of graph, to the titles and colours. For now we are going to stick with the basics.</p>
+<p>From the second layer onwards, we are specifying what we want our plot to look like: from the type of graph to the titles and colours. For now we are going to stick with the basics.</p>
 </div>
 </div>
 <div id="how-do-we-choose-the-type-of-plot" class="section level2">
@@ -461,16 +462,16 @@ What is the dfference between the above two lines? What does the first layer giv
 <h3><span class="header-section-number">7.5.1</span> Types of data</h3>
 <div id="continuous" class="section level4">
 <h4><span class="header-section-number">7.5.1.1</span> Continuous</h4>
-<p>Continuous data is that which there are not bounds and the distance between any two consecutivepoints is equivalent to the distance between any other two consecutive points - i.e. the difference between 1 and 2 is the same as the difference between 3 and 4, 5 and 6 etc.</p>
+<p>Continuous data is that which there are no bounds and the distance between any two consecutive points is equivalent to the distance between any other two consecutive points - i.e. the difference between 1 and 2 is the same as the difference between 3 and 4, or 5 and 6 etc.</p>
 </div>
 <div id="discrete" class="section level4">
 <h4><span class="header-section-number">7.5.1.2</span> Discrete</h4>
-<p>Discrete data simply put, groups data. The data in each group or category vary solely on one characteristick and usually those characteristics can not be ranked - i.e. sex, race, nationality etc.</p>
+<p>Discrete data, simply put, groups data. The data in each group or category vary solely on one characteristic and usually those characteristics cannot be ranked - i.e. sex, race, nationality etc.</p>
 </div>
 </div>
 <div id="number-of-variables" class="section level3">
 <h3><span class="header-section-number">7.5.2</span> Number of variables</h3>
-<p>Next we need to know the relationship between how many variables do we want to show. in a 2D plot we can usually graphically show between 1 and 3 variables with ease. After that more than 2 dimensions are necessary.</p>
+<p>Next we need to know the relationship between how many variables we want to show. In a 2D plot, we can usually graphically show between 1 and 3 variables with ease. After that, more than 2 dimensions are necessary.</p>
 <div class="info">
 <p>
 <strong>Tip</strong>: Most of the time, if you cannot represent a graph in 2D then you are probably trying to show too much, and you should reconsider splitting the graphs
@@ -481,19 +482,65 @@ What is the dfference between the above two lines? What does the first layer giv
 See the five plots below. What type of data are used? How many variables do we need?
 </p>
 </div>
-<div class="figure">
-<img src="density.png" height="250" />
-
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="solved">
+<p>
+2 variables: 1 continuous, 1 categorical
+</p>
 </div>
-<p><input class='solveme nospaces' size='40' data-answer='["2 variables, 1 continuous, 1 categorical"]'/> <br></p>
-<p><img src="box.png" height="250" /> <input class='solveme nospaces' size='36' data-answer='["3 vriables, 2 discrete, 1 continuous"]'/> <br></p>
-<p><img src="bar.png" height="250" /> <input class='solveme nospaces' size='37' data-answer='["2 variables, 1 discrete, 1 continuous"]'/> <br></p>
-<p><img src="line.png" height="250" /> <input class='solveme nospaces' size='25' data-answer='["2 variables, 2 continuous"]'/> <br></p>
-<p><img src="line_sex.png" height="250" /> <input class='solveme nospaces' size='37' data-answer='["3 variables, 2 continuous, 1 discrete"]'/> <br></p>
+</div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-257-1.png" width="672" /></p>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="solved">
+<p>
+3 variables: 2 discrete, 1 continuous
+</p>
+</div>
+</div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-259-1.png" width="672" /></p>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="solved">
+<p>
+2 variables: 1 discrete, 1 continuous
+</p>
+</div>
+</div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-261-1.png" width="672" /></p>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="solved">
+<p>
+2 variables: 2 continuous
+</p>
+</div>
+</div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-263-1.png" width="672" /></p>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="solved">
+<p>
+3 variables: 2 continuous, 1 discrete
+</p>
+</div>
+</div>
 <p>Let’s get back to our free movement data.</p>
 <div class="question">
 <p>
-What types of data are we trying to plot? Continuous or Discrete, or both?
+What types of data are we trying to plot? Continuous, discrete, or both?
 </p>
 </div>
 <div class="solution">
@@ -502,32 +549,33 @@ Solution
 </button>
 <div class="solved">
 <p>
-We are using both Continous (Value or count of people) and Discrete (sex).
+We are using both continuous (value or count of people) and discrete (sex).
 </p>
 </div>
 </div>
 <div class="question">
 <p>
-How many variabes have we chosen so far?
+How many variables have we chosen so far? Type the number in the box below.
 </p>
 </div>
 <p><input class='solveme nospaces' size='1' data-answer='["2"]'/> <br></p>
 <p>Create a column or a bar plot to show the data use <code>geom_col()</code>. How does the data look like?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>()</code></pre></div>
-<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-258-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_col</span>()</code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-268-1.png" width="672" /></p>
 <div class="question">
 <p>
 Do we need to use another variable to clarify the situation? If yes, which one?
 </p>
 </div>
-<p><input class='solveme nospaces' size='14' data-answer='["Migration Type"]'/> <br></p>
+<p><input class='solveme nospaces ignorecase' size='14' data-answer='["Migration Type"]'/> <br></p>
 <div class="solution">
 <button>
 Explanation
 </button>
 <div class="solved">
 <p>
-If you worked in the emigration office, you would want to know how many people left and how many people came in. Knowing how many people moved about is not particularly informative. in what ways can we differentiate the males and females who came in and who went out of Scotland?
+If you worked in the emigration office, you would want to know how many people left and how many people came into Scotland. Knowing how many people moved about is not particularly informative. In what ways can we differentiate the males and females who came into and who went out of Scotland?
 </p>
 </div>
 </div>
@@ -536,9 +584,10 @@ If you worked in the emigration office, you would want to know how many people l
 <h3><span class="header-section-number">7.5.3</span> Groupings</h3>
 <p>When we want to group data to provide a better representation, we can usually use colour, shapes etc. Most of the time this will depend on the type of graph we want to use. If we are using line graphs, then colours are usually best. If we are using dot plots then we can use the shape as well as the colours to differentiate the different groups.</p>
 <p>Let’s first look at colour.</p>
-<p>Depending on the type of graph colouring in can be done either with colour or with fill. For our column plots we use fill.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value, <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>)</code></pre></div>
-<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-261-1.png" width="672" /> Let’s decompose the code above:</p>
+<p>Depending on the type of graph, colouring in can be done either with colour or with fill. For our column plots we use fill.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value, <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>)</code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-271-1.png" width="672" /> Let’s decompose the code above:</p>
 <p>We have our data and our two variables. They are the same as before. This time we are saying that we want the data to be separated even further by Migration Type.</p>
 <div class="task">
 <p>
@@ -546,119 +595,131 @@ Simple task:
 </p>
 <ol style="list-style-type: decimal">
 <li>
-Remove <code>position =‘dodge’</code> from the geom and describe what happens.
+Remove <code>position =‘dodge’</code> from the geom and describe what happens in your stub file.
 </li>
 </ol>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value, <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>()</code></pre></div>
-<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-263-1.png" width="672" /></p>
-<p>Answer: <input class='solveme nospaces' size='3' data-answer='["xyz"]'/></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value, <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_col</span>()</code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-273-1.png" width="672" /></p>
 <p>We have also added <code>position = 'dodge'</code> in the <code>geom_col()</code>. This makes sure that any groupings we create and create new columns are then presented separately.</p>
 <div class="task">
 <p>
-Simple task: 1. Use <code>position = ‘fill’</code> and describe what happens.
+Simple task: 1. Use <code>position = ‘fill’</code> and describe what happens in your stub.
 </p>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#create your plot here</span>
-<span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value, <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;fill&#39;</span>)</code></pre></div>
-<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-265-1.png" width="672" /></p>
-<p>Answer: <input class='solveme nospaces' size='3' data-answer='["xyz"]'/></p>
-<p>The argument <code>position</code> is an argument specific for the <code>geom_col</code>. It is just one example of an additional argument that helps us to represent the ata better. These types of arguments allow for better control over the plots that we create.</p>
-<p>Geoms in <code>ggplot2</code> have a large slecetion of arguments to allow you to adjust your visualisations. This is what makes it one of the most preffered visualisation packages by the R community.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create your plot here</span>
+<span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value, <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;fill&#39;</span>)</code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-275-1.png" width="672" /></p>
+<p>The argument <code>position</code> is an argument specific for the <code>geom_col</code>. It is just one example of an additional argument that helps us to represent the data better. These types of arguments allow for better control over the plots that we create.</p>
+<p>Geoms in <code>ggplot2</code> have a large selection of arguments to allow you to adjust your visualisations. This is what makes it one of the most preferred visualisation packages by the R community.</p>
 <div id="more-groupings" class="section level4">
 <h4><span class="header-section-number">7.5.3.1</span> More groupings</h4>
-<p>Now lets consider that we want to know whether the individuals are moving to/from Overseas or RUK as well as all the information we have so far. Should we create more groups? LEt’s try.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value, <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">shade =</span><span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>)</code></pre></div>
-<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-266-1.png" width="672" /></p>
-<p>Here I have used the argument <code>colour</code> to give different borders to the migration sources. As you can see this makes it much more difficult to see. NExt week we will work on separating the plots.</p>
+<p>Now let’s consider that we want to know whether the individuals are moving to/from Overseas or RUK as well as all the information we have so far. Should we create more groups? Let’s try.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value, <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">shade =</span><span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>)</code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-276-1.png" width="672" /></p>
+<p>Here I have used the argument <code>colour</code> to give different borders to the migration sources. As you can see, this makes it much more difficult to see. Next week, we will work on separating the plots.</p>
 <div class="question">
 <p>
-Would you think there is a better way to represent the data?
+Would you think there is a better way to represent the data? Write it down in your stub file.
 </p>
 </div>
-<p><input class='solveme nospaces' size='3' data-answer='["xyz"]'/> <br></p>
 </div>
 </div>
 </div>
 <div id="now-lets-have-a-look-at-different-plots-with-more-complexity" class="section level2">
 <h2><span class="header-section-number">7.6</span> Now lets have a look at different plots with more complexity</h2>
-Imagine you want to see the difference in the number of people comming in and out of Scottland from both the RUK and Oveseas throughout the years.
+<p>Imagine you want to see the difference in the number of people coming into and moving out of Scotland from both the RUK and Overseas throughout the years.</p>
 <div class="question">
 <p>
-What Variables would you use?
+What variables would you use? Write them down in your stub file.
 </p>
 </div>
-<p><input class='solveme nospaces' size='3' data-answer='["xyz"]'/> <br></p>
-<div class="solution">
-<button>
-Solution
-</button>
-<p>DateCode, Migration Type and Migration Source, Value</p>
-</div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#first lests get the data we will need</span>
-<span class="co"># We want our chosen variables, and the overall data for the rest </span>
-
-traffic_scot2&lt;-<span class="st"> </span>migration_scot <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(Age <span class="op">==</span><span class="st"> &#39;All&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(DateCode, Value, Sex, <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(<span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span><span class="op">!=</span><span class="st">&#39;Net&#39;</span>, Sex <span class="op">==</span><span class="st"> &#39;All&#39;</span>)</code></pre></div>
-<div class="question">
-<p>
-What type of data are these variables?
-</p>
-</div>
-<p>DateCode: <select class='solveme' data-answer='["continuous"]'> <option></option> <option>continuous</option> <option>categorical</option></select> Value: <select class='solveme' data-answer='["continuous"]'> <option></option> <option>continuous</option> <option>categorical</option></select> Sex: <select class='solveme' data-answer='["categorical"]'> <option></option> <option>continuous</option> <option>categorical</option></select> Migration Source:<select class='solveme' data-answer='["categorical"]'> <option></option> <option>continuous</option> <option>categorical</option></select> Migration Type:<select class='solveme' data-answer='["categorical"]'> <option></option> <option>continuous</option> <option>categorical</option></select></p>
-<p>So we need to use a different type of plot - one that can portray continuous data well enough.</p>
-<p>Good way to portay data like this are point graphs and line graphs.</p>
-<p>We have several varialbes again. It will help if we separate them with different aesthetics.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(traffic_scot2, <span class="kw">aes</span>(DateCode, Value, <span class="dt">shape =</span> <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>, <span class="dt">colour =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>() </code></pre></div>
-<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-271-1.png" width="672" /></p>
-<p>This seems difficult to look at. Let’s make it easier by adding a line that conects the data. We can do this by addind another <em>Layer</em>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(traffic_scot2, <span class="kw">aes</span>(DateCode, Value, <span class="dt">shape =</span> <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>, <span class="dt">colour =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_line</span>()</code></pre></div>
-<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-272-1.png" width="672" /></p>
-<div class="question">
-<p>
-Question: How do we know that the line graph is going to connect the Migration Type and not the Migration Source?
-</p>
-</div>
-<p><input class='solveme nospaces' size='3' data-answer='["xyz"]'/> <br></p>
 <div class="solution">
 <button>
 Solution
 </button>
 <div class="solved">
 <p>
-If we look up <code>geom_point</code> and <code>geom_line</code> we can see the type of aesthetics that they take. Look them up in the Help or by using <code>?geom_point()</code>. There you will find a section caled aesthetics, which willtell you which aesthetics each of them can have. Because lines cannot use an aesthetic of shape, it will only inherit the colour aesthetic from ggplot.
+DateCode, Migration Type, Migration Source, Value
+</p>
+</div>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># First, let&#39;s get the data we will need</span>
+<span class="co"># We want our chosen variables, and the overall data for the rest </span>
+
+traffic_scot2&lt;-<span class="st"> </span>migration_scot <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(Age <span class="op">==</span><span class="st"> &#39;All&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(DateCode, Value, Sex, <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span> <span class="op">!=</span><span class="st"> &#39;Net&#39;</span>, Sex <span class="op">==</span><span class="st"> &#39;All&#39;</span>)</code></pre></div>
+<div class="question">
+<p>
+What type of data are these variables?
+</p>
+</div>
+<ul>
+<li>DateCode: <select class='solveme' data-answer='["continuous"]'> <option></option> <option>continuous</option> <option>categorical</option></select></li>
+<li>Value: <select class='solveme' data-answer='["continuous"]'> <option></option> <option>continuous</option> <option>categorical</option></select></li>
+<li>Sex: <select class='solveme' data-answer='["categorical"]'> <option></option> <option>continuous</option> <option>categorical</option></select></li>
+<li>Migration Source:<select class='solveme' data-answer='["categorical"]'> <option></option> <option>continuous</option> <option>categorical</option></select></li>
+<li>Migration Type:<select class='solveme' data-answer='["categorical"]'> <option></option> <option>continuous</option> <option>categorical</option></select></li>
+</ul>
+<p>So we need to use a different type of plot - one that can portray continuous data well enough.</p>
+<p>Good way to portray data like this are point graphs and line graphs.</p>
+<p>We have several variables again. It will help if we separate them with different aesthetics.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(traffic_scot2, <span class="kw">aes</span>(DateCode, Value, <span class="dt">shape =</span> <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>, <span class="dt">colour =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() </code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-282-1.png" width="672" /></p>
+<p>This seems difficult to look at. Let’s make it easier by adding a line that connects the data. We can do this by adding another <em>Layer</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(traffic_scot2, <span class="kw">aes</span>(DateCode, Value, <span class="dt">shape =</span> <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>, <span class="dt">colour =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>()</code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-283-1.png" width="672" /></p>
+<div class="question">
+<p>
+Question: How do we know that the line graph is going to connect the Migration Type and not the Migration Source?
+</p>
+</div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="solved">
+<p>
+If we look up <code>geom_point</code> and <code>geom_line</code> we can see the type of aesthetics that they take. Look them up in the <code>Help</code> tab or by using <code>?geom_point()</code>. There you will find a section called aesthetics, which will tell you the aesthetics each of them can have. Because lines cannot use an aesthetic of shape, it will only inherit the colour aesthetic from ggplot.
 </p>
 </div>
 </div>
 <div class="info">
 <p>
-Dot plots are excellent representation of the data as they show us where every data point is. In this way no data can hide behind a bar chart.
+Dot plots are excellent representations of the data as they show us where each data point is. In this way no data can hide behind a bar chart.
 </p>
 </div>
 <div id="other-plots" class="section level3">
 <h3><span class="header-section-number">7.6.1</span> Other plots</h3>
 <p>Let’s make some more plots.</p>
 <p><em>Violin plots and Box plots</em> We need a continuous variable and a categorical variable for both of them.</p>
-<p>Lets get back to the original data and plot the distribution of all females entering and leaving Scotland from overseas.</p>
-<p>For this we need to tidy the data into what we need.</p>
+<p>Let’s get back to the original data and plot the distribution of all females entering and leaving Scotland from overseas.</p>
+<p>For this, we need to tidy the data into what we need.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">boxes &lt;-<span class="st"> </span>migration_scot <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(Sex <span class="op">==</span><span class="st"> &#39;Female&#39;</span>, <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span> <span class="op">==</span><span class="st"> &#39;To-from Overseas&#39;</span>, Age <span class="op">==</span><span class="st"> &#39;All&#39;</span>, <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span> <span class="op">!=</span><span class="st"> &#39;Net&#39;</span>)
+<span class="st">  </span><span class="kw">filter</span>(Sex <span class="op">==</span><span class="st"> &#39;Female&#39;</span>, 
+         <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span> <span class="op">==</span><span class="st"> &#39;To-from Overseas&#39;</span>, 
+         Age <span class="op">==</span><span class="st"> &#39;All&#39;</span>, 
+         <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span> <span class="op">!=</span><span class="st"> &#39;Net&#39;</span>)
 
 <span class="co"># make box plots</span>
-<span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-276-1.png" width="672" /></p>
+<span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-287-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#make violin plots</span>
-
-<span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_violin</span>()</code></pre></div>
-<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-276-2.png" width="672" /></p>
+<span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_violin</span>()</code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-287-2.png" width="672" /></p>
 <div class="info">
 <p>
-These plots show us the distribution of females entering and leaving Scotland. What we can tell that throughout the years, we havent have less than 12000 women coming to Scotland and no more than 16000 women leaving. These types of plots also tell us where the bulk of the data is. We can see from the violin plots that the most common number amount of females comming into Scotland throughout the years is between 22000 and 18000. Boxplots on the otherhand tell you where the middle 50% of the data is.
+These plots show us the distribution of females entering and leaving Scotland. What we can tell that over the years, we haven’t have less than 12000 women coming to Scotland and no more than 16000 women leaving. These types of plots also tell us where the bulk of the data are. We can see from the violin plots that the most common number of females coming into Scotland throughout the years is between 22000 and 18000. Boxplots on the other hand, tell you where the middle 50% of the data are.
 </p>
 </div>
 <div class="task">
@@ -682,7 +743,7 @@ Select the total for both sex ( i.e. ‘all’).
 Select migration In and Out of Scotland.
 </li>
 <li>
-Pick whether you are going to look at ‘To-from Resdt of UK’ or ‘To-from Overseas’.
+Pick whether you are going to look at <code>To-from Rest of UK</code> or <code>To-from Overseas</code>.
 </li>
 <li>
 Plot the overall people, regardless of age and year, that have moved into and left Scotland.
@@ -698,7 +759,7 @@ Pick any variables and create a plot that tells a story.
 </li>
 </ol>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Example answer </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Example answer </span>
 
 traffic_scot &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;free_movement_uk.csv&quot;</span>) <span class="co">#download from the Scottish Government Stats website</span></code></pre></div>
 <pre><code>## Parsed with column specification:
@@ -717,24 +778,28 @@ traffic_scot &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<spa
 <span class="st">  </span><span class="kw">filter</span>(Age <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;21 years&#39;</span>, <span class="st">&#39;41 years&#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(DateCode, Value, Age, Sex, <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(DateCode <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;2013&#39;</span>, <span class="st">&#39;2018&#39;</span>), 
-         <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span><span class="op">!=</span><span class="st">&#39;Net&#39;</span>, 
-         <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span><span class="op">==</span><span class="st">&#39;To-from Overseas&#39;</span>, 
+         <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span> <span class="op">!=</span><span class="st"> &#39;Net&#39;</span>, 
+         <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span> <span class="op">==</span><span class="st"> &#39;To-from Overseas&#39;</span>, 
          Sex <span class="op">==</span><span class="st"> &#39;All&#39;</span>)
 
 
-q6 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(formative, <span class="kw">aes</span>(<span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, Value)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>()
+q6 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(formative, <span class="kw">aes</span>(<span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, Value)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_col</span>()
 q6</code></pre></div>
-<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-279-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">q7 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(formative, <span class="kw">aes</span>(<span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, Value, <span class="dt">fill =</span> <span class="kw">as.character</span>(DateCode))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>)
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-290-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">q7 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(formative, <span class="kw">aes</span>(<span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, Value, <span class="dt">fill =</span> <span class="kw">as.character</span>(DateCode))) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>)
 q7 </code></pre></div>
-<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-279-2.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">q8 &lt;-<span class="kw">ggplot</span>(formative, <span class="kw">aes</span>(<span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, Value, <span class="dt">fill =</span> Age)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>)
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-290-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">q8 &lt;-<span class="kw">ggplot</span>(formative, <span class="kw">aes</span>(<span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, Value, <span class="dt">fill =</span> Age)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>)
 q8</code></pre></div>
-<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-279-3.png" width="672" /></p>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-290-3.png" width="672" /></p>
 </div>
 </div>
 <div id="formative-homework-2" class="section level2">
 <h2><span class="header-section-number">7.7</span> Formative Homework</h2>
+<p>The formative homework for this week can now be found on moodle.</p>
 
 </div>
 </div>

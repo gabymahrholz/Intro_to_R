@@ -511,7 +511,7 @@ q8 <-ggplot(my_data, aes(`Migration Type`, Value, fill = Age)) +
   geom_col(position = 'dodge')
 q8
 ```
-`unhide()`
+`r unhide()`
 
 ## Formative Homework
 

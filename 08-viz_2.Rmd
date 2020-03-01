@@ -151,7 +151,7 @@ ggplot(traffic_scot, aes(x = Sex, y = Value,
 Let's look at these plots. 
 
 * Which sex tends to move to Scotland more, regardless of migration location? `r mcq(c(answer = 'Female', 'Male'))`
-* To which which migration location do both males and females migrate to more when they leave Scotland? `r mcq(c(answer = 'To Overseas', 'To RUK'))`
+* Which migration location do both males and females migrate to more when they leave Scotland? `r mcq(c('To Overseas', answer = 'To RUK'))`
 
 
 ## Global and Local aesthetics

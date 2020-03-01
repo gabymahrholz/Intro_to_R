@@ -63,7 +63,7 @@ All University of Glasgow Library computers should have this software installed.
 After the first lesson you will be given the task of either installing R and RStudio on your own personal computer, or finding another suitable method of accessing the software. Full instructions will be given in [Chapter 1](\@ref(#accessing)) of this coursebook.
 
 ```{block, type = "info"}
-**If you are having issues with access talk to your tutors via the Moodle forum as soon as possible so that we can help you!** R, like any skill, will get better with practice and we want to ensure you can practice and complete the asessments as easily as possible.
+**If you are having issues with access talk to your tutors via the Moodle forum as soon as possible so that we can help you!** R, like any skill, will get better with practice and we want to ensure you can practice and complete the assessments as easily as possible.
 ```
 
 ## About the Assessments {-}
@@ -84,12 +84,15 @@ If you encounter something in the formative assessments that you want to ask a q
 
 **These are the assessments that count towards your course grade**.
 
-There will be 5 take-home exercises to complete as you progress through this course. They will be evenly spaced across the entire 10 week span (after L2, L4, L6, L8, and L10), occuring every two weeks. You will have one week from the time of the release of each assessment to submit your answer(s). The solutions of the summative assessments will be released with the grades and feedback (see Schedule).
+There will be 5 take-home exercises to complete as you progress through this course. They will be evenly spaced across the entire 10 week span (after L2, L4, L6, L8, and L10), occurring every two weeks. You will have one week from the time of the release of each assessment to submit your answer(s). The solutions of the summative assessments will be released with the grades and feedback (see schedule below).
+
+For the summative assignments, we ask you to **complete .Rmd files** (either by answering multiple choice questions or producing code), and upload them to Moodle in the submission sections of a particular week. The .Rmd files and data for specific assignments will be provided in a **zip folder** you are asked to download and unzip before you start an assignment. The questions, whilst readable in the .Rmds, will also be posted in the `Summative Assignment - questions` section. It is strongly recommended to **read the question page in combination with the .Rmd**, as they might provide additional information (such as giving you hints what output to expect, etc.).
+
 
 ```{block, type = "warning"}
-Summative assessments will be due **ONE HOUR before the start of the next class** the following week (see Schedule for specific dates).
+Summative assessments will be due **ONE HOUR before the start of the next class** the following week (see schedule below for specific dates).
 
-We recommend that you start these early and, if required, seek assistance from the staff as early as possible.
+We recommend that you start these early and, if required, seek assistance from the staff as early as possible. Please make use of the Moodle `Help Forum`.
 ```
 
 
@@ -97,7 +100,7 @@ We recommend that you start these early and, if required, seek assistance from t
 
 ```{r, echo=FALSE}
 assessments <- tibble(`Summative assessment` = c("1 (week 2)", "2 (week 4)", "3 (week 6)", "4 (week 8)", "5 (week 10)"),
-                      `Assesses ILOs from lectures` = c("1 and 2", "3 and 4", "3, 4, and 5", "7 and 8", "7, 8, and 9"),
+                      `Assesses ILOs from lectures` = c("1 and 2", "3 and 4", "5 and 6", "7 and 8", "7, 8, and 9"),
                       `Assessment released` = c("20/01 at 6pm", "03/02 at 6pm", "17/02 at 6pm", "02/03 at 6pm", "16/03 at 6pm"),
                       `Submission due` = c("27/01 at 5pm", "10/02 at 5pm", "24/02 at 5pm", "09/03 at 5pm", "23/03 at 5pm"),
                       
@@ -119,7 +122,7 @@ We will never ask you to memorise any code as this is not how people produce cod
 
 There will be penalties for late submissions. Your work will be assessed in the usual way, and the primary grade and secondary band will be adjusted to include reductions by two secondary bands for each working day (or part of a working day) the work was submitted late. For example, for submitting an assessment 6 hours after deadline with an assessed grade (had it been submitted on time) of A5, a penalty of 2 secondary bands reduction would result in a final grade of B2.
 
-For exentions after 5 working days, you have to submit a good cause form. If an extention for good cause has been granted, and the extension is past the date that solutions for the assessment have been released, an alternative assessment will be provided.
+For extensions after 5 working days, you have to submit a good cause form. If an extension for good cause has been granted, and the extension is past the date that solutions for the assessment have been released, an alternative assessment will be provided.
 
 Any blank document, or document that was submitted in a format other than an R Markdown file ending in .Rmd, will be considered as not submitted.
 

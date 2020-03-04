@@ -118,7 +118,7 @@ glimpse(short_MH_gen)
 
 
 
-## The pipe operator (%>%)
+## The pipe operator (%>%) {#pipes}
 
 As you may have noticed, your environment pane has become increasingly cluttered. Indeed, every time you introduced a new line of code, you created a uniquely-named object (unless your original object is overwritten). This can become confusing and time-consuming. One solution is the pipe operator (`%>%`) which aims to increase efficiency and improve the readability of your code. The pipe operator (`%>%`) read as **"and then"** allows you to chain functions together, eliminating the need to create intermediary objects. There is no limit as to how many functions you can chain together in a single pipeline.
 

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Data Visualisation 2 | Introduction to R</title>
   <meta name="description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Data Visualisation 2 | Introduction to R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Rebecca J. Lai, Kate Haining, Greta Todorova, and Wilhelmiina Toivo" />
 
 
-<meta name="date" content="2020-03-01" />
+<meta name="date" content="2020-03-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,41 +53,66 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -208,7 +233,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="data-transformation-2-more-one-and-two-table-verbs.html"><a href="data-transformation-2-more-one-and-two-table-verbs.html#intended-learning-outcomes-4"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
 <li class="chapter" data-level="4.1" data-path="data-transformation-2-more-one-and-two-table-verbs.html"><a href="data-transformation-2-more-one-and-two-table-verbs.html#pre-steps-2"><i class="fa fa-check"></i><b>4.1</b> Pre-Steps</a></li>
 <li class="chapter" data-level="4.2" data-path="data-transformation-2-more-one-and-two-table-verbs.html"><a href="data-transformation-2-more-one-and-two-table-verbs.html#group_by-and-summarise"><i class="fa fa-check"></i><b>4.2</b> group_by() and summarise()</a></li>
-<li class="chapter" data-level="4.3" data-path="data-transformation-2-more-one-and-two-table-verbs.html"><a href="data-transformation-2-more-one-and-two-table-verbs.html#the-pipe-operator"><i class="fa fa-check"></i><b>4.3</b> The pipe operator (%&gt;%)</a></li>
+<li class="chapter" data-level="4.3" data-path="data-transformation-2-more-one-and-two-table-verbs.html"><a href="data-transformation-2-more-one-and-two-table-verbs.html#pipes"><i class="fa fa-check"></i><b>4.3</b> The pipe operator (%&gt;%)</a></li>
 <li class="chapter" data-level="4.4" data-path="data-transformation-2-more-one-and-two-table-verbs.html"><a href="data-transformation-2-more-one-and-two-table-verbs.html#two-table-verbs"><i class="fa fa-check"></i><b>4.4</b> Two-Table Verbs</a><ul>
 <li class="chapter" data-level="4.4.1" data-path="data-transformation-2-more-one-and-two-table-verbs.html"><a href="data-transformation-2-more-one-and-two-table-verbs.html#mutating-join-verbs"><i class="fa fa-check"></i><b>4.4.1</b> Mutating Join Verbs</a></li>
 <li class="chapter" data-level="4.4.2" data-path="data-transformation-2-more-one-and-two-table-verbs.html"><a href="data-transformation-2-more-one-and-two-table-verbs.html#binding-join-verbs"><i class="fa fa-check"></i><b>4.4.2</b> Binding Join Verbs</a></li>
@@ -292,17 +317,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.10" data-path="data-visualisation-2.html"><a href="data-visualisation-2.html#summative-homework-3"><i class="fa fa-check"></i><b>8.10</b> Summative Homework</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>9</b> Errors</a><ul>
-<li class="chapter" data-level="9.1" data-path="errors.html"><a href="errors.html#under-construction"><i class="fa fa-check"></i><b>9.1</b> Under Construction</a></li>
 <li class="chapter" data-level="" data-path="errors.html"><a href="errors.html#intended-learning-outcomes-9"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
-<li class="chapter" data-level="9.2" data-path="errors.html"><a href="errors.html#errors-how-to-avoid-some-and-live-through-the-rest"><i class="fa fa-check"></i><b>9.2</b> Errors: How to avoid some and live through the rest</a><ul>
-<li class="chapter" data-level="9.2.1" data-path="errors.html"><a href="errors.html#debugging"><i class="fa fa-check"></i><b>9.2.1</b> Debugging</a></li>
-<li class="chapter" data-level="9.2.2" data-path="errors.html"><a href="errors.html#debugging-questions"><i class="fa fa-check"></i><b>9.2.2</b> Debugging Questions</a></li>
+<li class="chapter" data-level="9.1" data-path="errors.html"><a href="errors.html#errors-how-to-avoid-some-and-live-through-the-rest"><i class="fa fa-check"></i><b>9.1</b> Errors: How to avoid some and live through the rest</a></li>
+<li class="chapter" data-level="9.2" data-path="errors.html"><a href="errors.html#debugging"><i class="fa fa-check"></i><b>9.2</b> Debugging</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="errors.html"><a href="errors.html#messages-from-r"><i class="fa fa-check"></i><b>9.2.1</b> Messages from R</a></li>
+<li class="chapter" data-level="9.2.2" data-path="errors.html"><a href="errors.html#error-messages"><i class="fa fa-check"></i><b>9.2.2</b> Error Messages</a></li>
+<li class="chapter" data-level="9.2.3" data-path="errors.html"><a href="errors.html#multiple-errors"><i class="fa fa-check"></i><b>9.2.3</b> Multiple Errors</a></li>
+<li class="chapter" data-level="9.2.4" data-path="errors.html"><a href="errors.html#finding-errors-in-longer-code-segments"><i class="fa fa-check"></i><b>9.2.4</b> Finding errors in longer code segments</a></li>
+<li class="chapter" data-level="9.2.5" data-path="errors.html"><a href="errors.html#warning-messages"><i class="fa fa-check"></i><b>9.2.5</b> Warning Messages</a></li>
+<li class="chapter" data-level="9.2.6" data-path="errors.html"><a href="errors.html#other-messages"><i class="fa fa-check"></i><b>9.2.6</b> Other Messages</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="errors.html"><a href="errors.html#seeking-help"><i class="fa fa-check"></i><b>9.3</b> Seeking Help</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="errors.html"><a href="errors.html#searching-for-help-online"><i class="fa fa-check"></i><b>9.3.1</b> Searching for Help Online</a></li>
+<li class="chapter" data-level="9.3" data-path="errors.html"><a href="errors.html#searching-for-help-online"><i class="fa fa-check"></i><b>9.3</b> Searching for Help Online</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="errors.html"><a href="errors.html#googling-it"><i class="fa fa-check"></i><b>9.3.1</b> Googling It</a></li>
+<li class="chapter" data-level="9.3.2" data-path="errors.html"><a href="errors.html#stack-overflow"><i class="fa fa-check"></i><b>9.3.2</b> Stack Overflow</a></li>
+<li class="chapter" data-level="9.3.3" data-path="errors.html"><a href="errors.html#youtube"><i class="fa fa-check"></i><b>9.3.3</b> YouTube</a></li>
+<li class="chapter" data-level="9.3.4" data-path="errors.html"><a href="errors.html#further-reading"><i class="fa fa-check"></i><b>9.3.4</b> Further Reading</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="errors.html"><a href="errors.html#custom-functions"><i class="fa fa-check"></i><b>9.4</b> Custom Functions</a></li>
-<li class="chapter" data-level="9.5" data-path="errors.html"><a href="errors.html#living-through-errors-how-reproducible-code-enables-science-to-self-correct"><i class="fa fa-check"></i><b>9.5</b> Living Through Errors: How reproducible code enables science to self-correct</a></li>
+<li class="chapter" data-level="9.4" data-path="errors.html"><a href="errors.html#formative-exercises"><i class="fa fa-check"></i><b>9.4</b> Formative Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html"><i class="fa fa-check"></i><b>10</b> Recap: Before the final assessment</a><ul>
 <li class="chapter" data-level="10.1" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#outline-for-today"><i class="fa fa-check"></i><b>10.1</b> Outline for today</a></li>
@@ -311,7 +342,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html"><i class="fa fa-check"></i>Appendices</a><ul>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#changing-the-appearance-of-rmarkdown"><i class="fa fa-check"></i>Changing the Appearance of RMarkdown</a></li>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#source-materials"><i class="fa fa-check"></i>Source Materials</a></li>
-<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#further-reading"><i class="fa fa-check"></i>Further Reading</a><ul>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#further-reading-1"><i class="fa fa-check"></i>Further Reading</a><ul>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#statistics"><i class="fa fa-check"></i>Statistics</a></li>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#more-advanced-use-of-r"><i class="fa fa-check"></i>More Advanced Use of R</a></li>
 </ul></li>
@@ -350,16 +381,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="pre-steps-6" class="section level2">
 <h2><span class="header-section-number">8.1</span> Pre-steps</h2>
 <p>Today, we will be working with <code>ggplot2</code> which is part of <code>tidyverse</code> and data from the Scottish Government saved in the file <code>free_movement_uk.csv</code>. Load <code>tidyverse</code> into the library, and read the data into our <code>Global Environment</code> as <code>migration_scot</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-migration_scot &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;free_movement_uk.csv&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb354-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb354-2" title="2">migration_scot &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;free_movement_uk.csv&quot;</span>)</a></code></pre></div>
 </div>
 <div id="re-introduction-to-the-data" class="section level2">
 <h2><span class="header-section-number">8.2</span> Re-introduction to the data</h2>
 <p>This data is openly available from the Scottish Government, and it introduces the flow of people at different ages and sex into and out of Scotland from the rest of UK (RUK) and Overseas. We have several variables to work with:</p>
 <table>
 <colgroup>
-<col width="24%" />
-<col width="75%" />
+<col width="23%" />
+<col width="76%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -407,11 +438,11 @@ migration_scot &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<s
 </tbody>
 </table>
 <p>This is the wrangled data from last week.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">traffic_scot &lt;-<span class="st"> </span>migration_scot <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(DateCode, Value, Sex, 
-         <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, Age) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(DateCode <span class="op">==</span><span class="st"> &#39;2016&#39;</span>, Age <span class="op">==</span><span class="st"> &#39;All&#39;</span>, 
-         Sex <span class="op">!=</span><span class="st"> &#39;All&#39;</span>, <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span> <span class="op">!=</span><span class="st"> &#39;Net&#39;</span>)</code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb355-1" title="1">traffic_scot &lt;-<span class="st"> </span>migration_scot <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb355-2" title="2"><span class="st">  </span><span class="kw">select</span>(DateCode, Value, Sex, </a>
+<a class="sourceLine" id="cb355-3" title="3">         <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, Age) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb355-4" title="4"><span class="st">  </span><span class="kw">filter</span>(DateCode <span class="op">==</span><span class="st"> &#39;2016&#39;</span>, Age <span class="op">==</span><span class="st"> &#39;All&#39;</span>, </a>
+<a class="sourceLine" id="cb355-5" title="5">         Sex <span class="op">!=</span><span class="st"> &#39;All&#39;</span>, <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span> <span class="op">!=</span><span class="st"> &#39;Net&#39;</span>)</a></code></pre></div>
 </div>
 <div id="create-multiple-plots-in-one" class="section level2">
 <h2><span class="header-section-number">8.3</span> Create multiple plots in one</h2>
@@ -427,13 +458,13 @@ Simple Task 1:
 From the data we just created, select only data relevant for movement to and from the rest of the UK and save it to the <code>Global Environment</code> as an object called <code>rest_of_uk</code> .
 </p>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rest_of_uk &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb356-1" title="1">rest_of_uk &lt;-<span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
 <div class="solution">
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rest_of_uk &lt;-<span class="st"> </span>traffic_scot <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(<span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span> <span class="op">==</span><span class="st"> &#39;To-from Rest of UK&#39;</span>)</code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb357-1" title="1">rest_of_uk &lt;-<span class="st"> </span>traffic_scot <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb357-2" title="2"><span class="st">  </span><span class="kw">filter</span>(<span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span> <span class="op">==</span><span class="st"> &#39;To-from Rest of UK&#39;</span>)</a></code></pre></div>
 </div>
 <div class="task">
 <p>
@@ -443,14 +474,14 @@ Simple Task 2:
 Create a column plot that shows the number of people for each sex using the data we just created using <code>geom_col()</code>. Separate the data by using different colours based on <code>Migration Type</code>. Don’t forget to use <code>position = ‘dodge’</code> so that your columns do not overlap.
 </p>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="ot">NULL</span>) <span class="op">+</span><span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb358-1" title="1"><span class="kw">ggplot</span>(<span class="ot">NULL</span>) <span class="op">+</span><span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
 <div class="solution">
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(rest_of_uk, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value, 
-                       <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>)</code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" title="1"><span class="kw">ggplot</span>(rest_of_uk, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value, </a>
+<a class="sourceLine" id="cb359-2" title="2">                       <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb359-3" title="3"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>)</a></code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-299-1.png" width="672" /></p>
 </div>
 <div class="task">
@@ -461,19 +492,19 @@ Simple Task 3:
 Now plot only the data for the movement to and from Overseas following the previous two steps. This time, make sure you save your wrangled data into an object called <code>overseas</code> and then use it to create your plot.
 </p>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">overseas &lt;-<span class="st"> </span><span class="ot">NULL</span>
-
-<span class="kw">ggplot</span>(<span class="ot">NULL</span>) <span class="op">+</span><span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" title="1">overseas &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb360-2" title="2"></a>
+<a class="sourceLine" id="cb360-3" title="3"><span class="kw">ggplot</span>(<span class="ot">NULL</span>) <span class="op">+</span><span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
 <div class="solution">
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">overseas&lt;-<span class="st"> </span>traffic_scot <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(<span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span> <span class="op">==</span><span class="st"> &#39;To-from Overseas&#39;</span>)
-
-<span class="kw">ggplot</span>(overseas, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value, 
-                     <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>)</code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" title="1">overseas&lt;-<span class="st"> </span>traffic_scot <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb361-2" title="2"><span class="st">  </span><span class="kw">filter</span>(<span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span> <span class="op">==</span><span class="st"> &#39;To-from Overseas&#39;</span>)</a>
+<a class="sourceLine" id="cb361-3" title="3"></a>
+<a class="sourceLine" id="cb361-4" title="4"><span class="kw">ggplot</span>(overseas, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value, </a>
+<a class="sourceLine" id="cb361-5" title="5">                     <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb361-6" title="6"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>)</a></code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-302-1.png" width="672" /></p>
 </div>
 <p>This becomes very cumbersome when we have more than one variable. Imagine you have data for 10 different countries. Can you imagine doing these plots by hand. Moreover, when you have to arrange them on a page to show how things differ you will loose a lot of time. Instead we can use <em>facets</em>.</p>
@@ -491,10 +522,10 @@ Solution
 <li><code>facet_wrap(variable)</code> creates a grid with rectangular slots for the plots based on your variables</li>
 </ul>
 <p>Let’s replicate the two plots we just created but using <code>facet_grid()</code> and put them side-by-side in one. Now we have both plots next to each other, which makes it much easier to look at the differences in the migration patterns between the two Migration Sources.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value, 
-                         <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_grid</span>(.<span class="op">~</span><span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>)</code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb362-1" title="1"><span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value, </a>
+<a class="sourceLine" id="cb362-2" title="2">                         <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb362-3" title="3"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb362-4" title="4"><span class="st">  </span><span class="kw">facet_grid</span>(.<span class="op">~</span><span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>)</a></code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-303-1.png" width="672" /></p>
 <p><span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span></p>
 <p>Let’s look at these plots.</p>
@@ -510,19 +541,19 @@ Solution
 <p>Sometimes, we want to use multiple data and put multiple plots on top of each other. For these occasions we can specify the aesthetics at a local level - i.e. in the geoms.</p>
 <p>If you remember from last week, we specified both the colour and the shape in our <code>ggplot()</code> when we were making the line graph. The <code>geom_line()</code> inherited the colour but not the shape argument. However, if we have two geoms that share the same characteristics but we do not want to have the same colours, we can move them to each of the geoms instead of specifying them in <code>ggplot()</code>.</p>
 <p>Let’s redo the violins and boxplots from last week, and put them together into two separate layers of the same graph. This time, we will give them some colour. We will colour the violins with the <code>fill</code> argument and make the boxplots transparent using the <code>alpha</code> argument.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">boxes &lt;-<span class="st"> </span>migration_scot <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(Sex <span class="op">==</span><span class="st"> &#39;Female&#39;</span>, 
-         <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span> <span class="op">==</span><span class="st"> &#39;To-from Overseas&#39;</span>, 
-         Age <span class="op">==</span><span class="st"> &#39;All&#39;</span>, 
-         <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span> <span class="op">!=</span><span class="st"> &#39;Net&#39;</span>)
-
-
-
-<span class="co">#make violins and boxplots </span>
-
-<span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>))</code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" title="1">boxes &lt;-<span class="st"> </span>migration_scot <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb363-2" title="2"><span class="st">  </span><span class="kw">filter</span>(Sex <span class="op">==</span><span class="st"> &#39;Female&#39;</span>, </a>
+<a class="sourceLine" id="cb363-3" title="3">         <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span> <span class="op">==</span><span class="st"> &#39;To-from Overseas&#39;</span>, </a>
+<a class="sourceLine" id="cb363-4" title="4">         Age <span class="op">==</span><span class="st"> &#39;All&#39;</span>, </a>
+<a class="sourceLine" id="cb363-5" title="5">         <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span> <span class="op">!=</span><span class="st"> &#39;Net&#39;</span>)</a>
+<a class="sourceLine" id="cb363-6" title="6"></a>
+<a class="sourceLine" id="cb363-7" title="7"></a>
+<a class="sourceLine" id="cb363-8" title="8"></a>
+<a class="sourceLine" id="cb363-9" title="9"><span class="co">#make violins and boxplots </span></a>
+<a class="sourceLine" id="cb363-10" title="10"></a>
+<a class="sourceLine" id="cb363-11" title="11"><span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb363-12" title="12"><span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb363-13" title="13"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>))</a></code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-304-1.png" width="672" /></p>
 <p>Because <code>alpha</code> (the transparency argument) and <code>fill</code> are arguments for both box plots and violins, if we had put them in the <code>ggplot()</code> layer, they would both be inherited by the two geoms.</p>
 </div>
@@ -532,62 +563,64 @@ Solution
 <div id="ready-made-themes" class="section level3">
 <h3><span class="header-section-number">8.5.1</span> Ready-made themes</h3>
 <p>ggplot2 comes with several ready made themes. Some of them are:</p>
-<p>theme_bw(): a white background with major axes and border. theme_minimal(): a white background with major axes and more. Just use the cheetsheet for visualisations with ggplot for some more examples.</p>
+<p>theme_bw(): a white background with major axes and border.
+theme_minimal(): a white background with major axes
+and more. Just use the cheetsheet for visualisations with ggplot for some more examples.</p>
 <p>Themes are just like any other layer for ggplot. You just add them at the end of your plot with <code>+</code>. Let’s add one of these theme formats to our plot above.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" title="1"><span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb364-2" title="2"><span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb364-3" title="3"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb364-4" title="4"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-305-1.png" width="672" /></p>
 </div>
 <div id="adding-axes-titles-and-headings" class="section level3">
 <h3><span class="header-section-number">8.5.2</span> Adding axes titles and headings</h3>
 <p>Next, let’s add some titles and better labels with <code>labs()</code>. You need to specify which labels you want to change - x, y or the title, and type in the labels you want.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Female migration to and from Overseas into Scotland&#39;</span>, 
-       <span class="dt">x =</span> <span class="st">&#39;Migration direction&#39;</span>, 
-       <span class="dt">y =</span> <span class="st">&#39;Number of people&#39;</span>)</code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb365-1" title="1"><span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb365-2" title="2"><span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb365-3" title="3"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb365-4" title="4"><span class="st">  </span><span class="kw">theme_bw</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb365-5" title="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Female migration to and from Overseas into Scotland&#39;</span>, </a>
+<a class="sourceLine" id="cb365-6" title="6">       <span class="dt">x =</span> <span class="st">&#39;Migration direction&#39;</span>, </a>
+<a class="sourceLine" id="cb365-7" title="7">       <span class="dt">y =</span> <span class="st">&#39;Number of people&#39;</span>)</a></code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-306-1.png" width="672" /></p>
 <p>Sometimes, we need the titles to be a specific size. We can change all of that in an additional <code>theme()</code> layer. We specify the argument we want to change and what we need to change. In our case, we want to change the size of the x axis title to 12pt, and the graph title to 20pt. Let’s also pretend we do not want the y axis title. We can also specify this in the <code>theme()</code> layer.</p>
 <p>We do this by specifying <code>element_text()</code> and <code>element_blank()</code> for the correct theme arguments (<code>axis.title.x</code>, <code>title</code>, <code>axis.title.x</code>). Simply, for that element of the plot, what do we want to change - text and to make it blank.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Female migration to and from</span><span class="ch">\n</span><span class="st">Overseas into Scotland&#39;</span>, 
-       <span class="dt">x =</span> <span class="st">&#39;Migration direction&#39;</span>, 
-       <span class="dt">y =</span> <span class="st">&#39;Number of people&#39;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(
-    <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>), 
-    <span class="co"># read this as: change the size of element_text of the </span>
-    <span class="co">#title of the x axis</span>
-    <span class="dt">title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">20</span>),
-    <span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>() 
-    <span class="co"># read this as: change the title of the y axis to blank</span>
-  )</code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb366-1" title="1"><span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb366-2" title="2"><span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb366-3" title="3"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb366-4" title="4"><span class="st">  </span><span class="kw">theme_bw</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb366-5" title="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Female migration to and from</span><span class="ch">\n</span><span class="st">Overseas into Scotland&#39;</span>, </a>
+<a class="sourceLine" id="cb366-6" title="6">       <span class="dt">x =</span> <span class="st">&#39;Migration direction&#39;</span>, </a>
+<a class="sourceLine" id="cb366-7" title="7">       <span class="dt">y =</span> <span class="st">&#39;Number of people&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb366-8" title="8"><span class="st">  </span><span class="kw">theme</span>(</a>
+<a class="sourceLine" id="cb366-9" title="9">    <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>), </a>
+<a class="sourceLine" id="cb366-10" title="10">    <span class="co"># read this as: change the size of element_text of the </span></a>
+<a class="sourceLine" id="cb366-11" title="11">    <span class="co">#title of the x axis</span></a>
+<a class="sourceLine" id="cb366-12" title="12">    <span class="dt">title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">20</span>),</a>
+<a class="sourceLine" id="cb366-13" title="13">    <span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>() </a>
+<a class="sourceLine" id="cb366-14" title="14">    <span class="co"># read this as: change the title of the y axis to blank</span></a>
+<a class="sourceLine" id="cb366-15" title="15">  )</a></code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-307-1.png" width="672" /></p>
 </div>
 </div>
 <div id="changing-colours" class="section level2">
 <h2><span class="header-section-number">8.6</span> Changing colours</h2>
 <p>We can rely on the colour schemes automatically, or we can manually specify colours. To change any of the colours, we need to specify which scale we are changing. This is done by specifying the aesthetic. In our case, we are changing the colours of the <code>fill</code> aesthetic so we use <code>scale_fill_manual()</code>. Instead of using names, you can use any hex colour you want. A hex color is the representation of a color using a 6 digit code. <code>scale_fill_manual()</code> works like another layer, which overwrites the automatic colour schemes. Because it overwrites an existing function, it has to be after the geom that uses the <code>fill</code> argument.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&#39;#127d69&#39;</span>, <span class="st">&#39;#cedc00&#39;</span>)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="co">#here I have picked two specific colours</span>
-<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Female migration to and from</span><span class="ch">\n</span><span class="st">Overseas into Scotland&#39;</span>, 
-       <span class="dt">x =</span> <span class="st">&#39;Migration direction&#39;</span>, 
-       <span class="dt">y =</span> <span class="st">&#39;Number of people&#39;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(
-    <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>),
-    <span class="dt">title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">20</span>),
-    <span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>()
-  )</code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" title="1"><span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb367-2" title="2"><span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb367-3" title="3"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb367-4" title="4"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&#39;#127d69&#39;</span>, <span class="st">&#39;#cedc00&#39;</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb367-5" title="5"><span class="st">  </span><span class="co">#here I have picked two specific colours</span></a>
+<a class="sourceLine" id="cb367-6" title="6"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb367-7" title="7"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Female migration to and from</span><span class="ch">\n</span><span class="st">Overseas into Scotland&#39;</span>, </a>
+<a class="sourceLine" id="cb367-8" title="8">       <span class="dt">x =</span> <span class="st">&#39;Migration direction&#39;</span>, </a>
+<a class="sourceLine" id="cb367-9" title="9">       <span class="dt">y =</span> <span class="st">&#39;Number of people&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb367-10" title="10"><span class="st">  </span><span class="kw">theme</span>(</a>
+<a class="sourceLine" id="cb367-11" title="11">    <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>),</a>
+<a class="sourceLine" id="cb367-12" title="12">    <span class="dt">title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">20</span>),</a>
+<a class="sourceLine" id="cb367-13" title="13">    <span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>()</a>
+<a class="sourceLine" id="cb367-14" title="14">  )</a></code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-308-1.png" width="672" /></p>
 </div>
 <div id="legends" class="section level2">
@@ -595,82 +628,82 @@ Solution
 <p>We can see that for any additional aesthetic we have put, ggplot has created a legend on the side.</p>
 <p>Now let’s change what the labels actually say. We do this in the same place we specified the colours <code>scale_fill_manual</code> because again, we are overwriting the automatic <code>fill</code> labels.</p>
 <p>Let’s also: 1) hide the legend associated with the box plots; 2) move the legend to the bottom of the graph using the <code>legend.position</code> argument; and 3) change the size of the legend labels (using <code>legend.title</code>). We do step 3 in the <code>theme()</code> layer as well. Because we have more than one legend, everything we do will be applied to both legends. This is a good idea for consistency. But when we want to hide one of the legends, we have to specify that in the geom itself using the argument <code>show.legend</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&#39;#127d69&#39;</span>, <span class="st">&#39;#cedc00&#39;</span>),
-                    <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&#39;Coming to Scotland&#39;</span>,
-                               <span class="st">&#39;Leaving Scotland&#39;</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Female migration to and from</span><span class="ch">\n</span><span class="st">Overseas into Scotland&#39;</span>,
-       <span class="dt">x =</span> <span class="st">&#39;Migration direction&#39;</span>,
-       <span class="dt">y =</span> <span class="st">&#39;Number of people&#39;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(
-    <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>),
-    <span class="dt">title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">20</span>),
-    <span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>(),
-    <span class="dt">legend.position =</span> <span class="st">&#39;bottom&#39;</span>, <span class="co">#move the legend to the bottom</span>
-    <span class="dt">legend.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">10</span>)
-  )</code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb368-1" title="1"><span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb368-2" title="2"><span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb368-3" title="3"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb368-4" title="4"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&#39;#127d69&#39;</span>, <span class="st">&#39;#cedc00&#39;</span>),</a>
+<a class="sourceLine" id="cb368-5" title="5">                    <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&#39;Coming to Scotland&#39;</span>,</a>
+<a class="sourceLine" id="cb368-6" title="6">                               <span class="st">&#39;Leaving Scotland&#39;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb368-7" title="7"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb368-8" title="8"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Female migration to and from</span><span class="ch">\n</span><span class="st">Overseas into Scotland&#39;</span>,</a>
+<a class="sourceLine" id="cb368-9" title="9">       <span class="dt">x =</span> <span class="st">&#39;Migration direction&#39;</span>,</a>
+<a class="sourceLine" id="cb368-10" title="10">       <span class="dt">y =</span> <span class="st">&#39;Number of people&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb368-11" title="11"><span class="st">  </span><span class="kw">theme</span>(</a>
+<a class="sourceLine" id="cb368-12" title="12">    <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>),</a>
+<a class="sourceLine" id="cb368-13" title="13">    <span class="dt">title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">20</span>),</a>
+<a class="sourceLine" id="cb368-14" title="14">    <span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb368-15" title="15">    <span class="dt">legend.position =</span> <span class="st">&#39;bottom&#39;</span>, <span class="co">#move the legend to the bottom</span></a>
+<a class="sourceLine" id="cb368-16" title="16">    <span class="dt">legend.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb368-17" title="17">  )</a></code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-309-1.png" width="672" /></p>
 </div>
 <div id="changing-axes-ticks" class="section level2">
 <h2><span class="header-section-number">8.8</span> Changing axes ticks</h2>
 <p>Now, we also need to change what is stated on our x axis to match the legend. We use <code>scale_x_discrete()</code> to give new names inside graph, so that we do not have to change our dataset. We specify the labels of the new groups by giving the old name in quotes and then the new name, also in quotes. We use <code>scale_x_discrete()</code>, because we have discrete groups - a categorical variable.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&#39;#127d69&#39;</span>, <span class="st">&#39;#cedc00&#39;</span>),
-                    <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&#39;Coming to Scotland&#39;</span>,
-                               <span class="st">&#39;Leaving Scotland&#39;</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&#39;In&#39;</span> =<span class="st"> &#39;Coming to Scotland&#39;</span>, 
-                              <span class="st">&#39;Out&#39;</span> =<span class="st"> &#39;Leaving Scotland&#39;</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Female migration to and from</span><span class="ch">\n</span><span class="st">Overseas into Scotland&#39;</span>, 
-       <span class="dt">x =</span> <span class="st">&#39;Migration direction&#39;</span>, 
-       <span class="dt">y =</span> <span class="st">&#39;Number of people&#39;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(
-    <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>),
-    <span class="dt">title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">20</span>),
-    <span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>(),
-    <span class="dt">legend.position =</span> <span class="st">&#39;bottom&#39;</span>,
-    <span class="dt">legend.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">10</span>)
-  )</code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb369-1" title="1"><span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb369-2" title="2"><span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb369-3" title="3"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb369-4" title="4"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&#39;#127d69&#39;</span>, <span class="st">&#39;#cedc00&#39;</span>),</a>
+<a class="sourceLine" id="cb369-5" title="5">                    <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&#39;Coming to Scotland&#39;</span>,</a>
+<a class="sourceLine" id="cb369-6" title="6">                               <span class="st">&#39;Leaving Scotland&#39;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb369-7" title="7"><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&#39;In&#39;</span> =<span class="st"> &#39;Coming to Scotland&#39;</span>, </a>
+<a class="sourceLine" id="cb369-8" title="8">                              <span class="st">&#39;Out&#39;</span> =<span class="st"> &#39;Leaving Scotland&#39;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb369-9" title="9"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb369-10" title="10"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Female migration to and from</span><span class="ch">\n</span><span class="st">Overseas into Scotland&#39;</span>, </a>
+<a class="sourceLine" id="cb369-11" title="11">       <span class="dt">x =</span> <span class="st">&#39;Migration direction&#39;</span>, </a>
+<a class="sourceLine" id="cb369-12" title="12">       <span class="dt">y =</span> <span class="st">&#39;Number of people&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb369-13" title="13"><span class="st">  </span><span class="kw">theme</span>(</a>
+<a class="sourceLine" id="cb369-14" title="14">    <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>),</a>
+<a class="sourceLine" id="cb369-15" title="15">    <span class="dt">title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">20</span>),</a>
+<a class="sourceLine" id="cb369-16" title="16">    <span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb369-17" title="17">    <span class="dt">legend.position =</span> <span class="st">&#39;bottom&#39;</span>,</a>
+<a class="sourceLine" id="cb369-18" title="18">    <span class="dt">legend.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb369-19" title="19">  )</a></code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-310-1.png" width="672" /></p>
 <p>Let’s also say that we are plotting data which is continuous but we want to show each of the values. For example we have years and we want to show every year. <code>ggplot</code> will try and skip some of the years to make the graph look neater. There are several ways we can change that. We can either make the variable into a factor or a character using <code>as.character</code>so that <code>ggplot</code> will be forced to look at it as a discrete variable or we can change the ticks of the x axis by giving them <code>limits</code> and <code>breaks</code> in the layer that overwrites the original x values - <code>scale_x_continuous()</code>.</p>
 <p>Let’s use the graph from last week which showed us the change in migration across the years.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># First, we are getting the data from last week to recreate the code.</span>
-
-traffic_scot2 &lt;-<span class="st"> </span>migration_scot <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(Age <span class="op">==</span><span class="st"> &#39;All&#39;</span>, 
-         <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span> <span class="op">!=</span><span class="st"> &#39;Net&#39;</span>,
-         Sex <span class="op">==</span><span class="st"> &#39;All&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(DateCode, Value,<span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)
-
-
-
-<span class="kw">ggplot</span>(traffic_scot2, <span class="kw">aes</span>(DateCode, Value,
-                          <span class="dt">shape =</span> <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>, 
-                          <span class="dt">colour =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">2002</span>,<span class="dv">2018</span>), <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">2002</span><span class="op">:</span><span class="dv">2018</span>))</code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" title="1"><span class="co"># First, we are getting the data from last week to recreate the code.</span></a>
+<a class="sourceLine" id="cb370-2" title="2"></a>
+<a class="sourceLine" id="cb370-3" title="3">traffic_scot2 &lt;-<span class="st"> </span>migration_scot <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb370-4" title="4"><span class="st">  </span><span class="kw">filter</span>(Age <span class="op">==</span><span class="st"> &#39;All&#39;</span>, </a>
+<a class="sourceLine" id="cb370-5" title="5">         <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span> <span class="op">!=</span><span class="st"> &#39;Net&#39;</span>,</a>
+<a class="sourceLine" id="cb370-6" title="6">         Sex <span class="op">==</span><span class="st"> &#39;All&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb370-7" title="7"><span class="st">  </span><span class="kw">select</span>(DateCode, Value,<span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)</a>
+<a class="sourceLine" id="cb370-8" title="8"></a>
+<a class="sourceLine" id="cb370-9" title="9"></a>
+<a class="sourceLine" id="cb370-10" title="10"></a>
+<a class="sourceLine" id="cb370-11" title="11"><span class="kw">ggplot</span>(traffic_scot2, <span class="kw">aes</span>(DateCode, Value,</a>
+<a class="sourceLine" id="cb370-12" title="12">                          <span class="dt">shape =</span> <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>, </a>
+<a class="sourceLine" id="cb370-13" title="13">                          <span class="dt">colour =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb370-14" title="14"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb370-15" title="15"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb370-16" title="16"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">2002</span>,<span class="dv">2018</span>), <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">2002</span><span class="op">:</span><span class="dv">2018</span>))</a></code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-311-1.png" width="672" /></p>
 </div>
 <div id="saving-plots" class="section level2">
 <h2><span class="header-section-number">8.9</span> Saving plots</h2>
 <p>If you want to save your plot to your working directory, you can use the function <code>ggsave</code>. First, you have to save your plot into an object in the <code>Global Environment</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Save your plot to the Global Environment.</span>
-
-plot1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(traffic_scot2, <span class="kw">aes</span>(DateCode, Value,
-                          <span class="dt">shape =</span> <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>, 
-                          <span class="dt">colour =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_line</span>() 
-
-
-<span class="co"># Then save it to your working directory folder</span>
-<span class="kw">ggsave</span>(<span class="st">&#39;myplot.png&#39;</span>, plot1, <span class="dt">width =</span> <span class="dv">9</span> , <span class="dt">height =</span> <span class="dv">6</span>)</code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb371-1" title="1"><span class="co"># Save your plot to the Global Environment.</span></a>
+<a class="sourceLine" id="cb371-2" title="2"></a>
+<a class="sourceLine" id="cb371-3" title="3">plot1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(traffic_scot2, <span class="kw">aes</span>(DateCode, Value,</a>
+<a class="sourceLine" id="cb371-4" title="4">                          <span class="dt">shape =</span> <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>, </a>
+<a class="sourceLine" id="cb371-5" title="5">                          <span class="dt">colour =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb371-6" title="6"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb371-7" title="7"><span class="st">  </span><span class="kw">geom_line</span>() </a>
+<a class="sourceLine" id="cb371-8" title="8"></a>
+<a class="sourceLine" id="cb371-9" title="9"></a>
+<a class="sourceLine" id="cb371-10" title="10"><span class="co"># Then save it to your working directory folder</span></a>
+<a class="sourceLine" id="cb371-11" title="11"><span class="kw">ggsave</span>(<span class="st">&#39;myplot.png&#39;</span>, plot1, <span class="dt">width =</span> <span class="dv">9</span> , <span class="dt">height =</span> <span class="dv">6</span>)</a></code></pre></div>
 </div>
 <div id="summative-homework-3" class="section level2">
 <h2><span class="header-section-number">8.10</span> Summative Homework</h2>

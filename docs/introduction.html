@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 1 Introduction | Introduction to R</title>
   <meta name="description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Introduction | Introduction to R" />
   <meta property="og:type" content="book" />
@@ -53,9 +53,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +64,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -564,13 +566,13 @@ You must not add any code or text to the lines which contain backticks other tha
 <p>Comments can- and should- be used throughout both .r and .Rmd file types. These are anything written <em>after</em> a hashtag symbol (and, if using a .Rmd file, within a code chunk). This symbol instructs the computer to disregard this text, letting it know that this is not for it to interpret as exectuable code but rather it is something for the human user to read and interpret.</p>
 <p>These are handy for letting others know what each piece of code was written to do, or to inform your future self of what you were doing.</p>
 <p>Make use of comments in the code we write in class and let this function as your class-notes.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># this is what a comment looks like. Anything AFTER a hashtag.</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="co"># R doesn&#39;t &quot;speak&quot; natural languages so it would not be able </span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="co"># to understand any of this and would give errors!</span></a>
-<a class="sourceLine" id="cb1-4" title="4"></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="co"># comments are for humans. You can use them to put notes in scripts to</span></a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="co"># remind yourself of what is happening, or to inform people with whom</span></a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="co"># you have shared your code.</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction.html#cb1-1"></a><span class="co"># this is what a comment looks like. Anything AFTER a hashtag.</span></span>
+<span id="cb1-2"><a href="introduction.html#cb1-2"></a><span class="co"># R doesn&#39;t &quot;speak&quot; natural languages so it would not be able </span></span>
+<span id="cb1-3"><a href="introduction.html#cb1-3"></a><span class="co"># to understand any of this and would give errors!</span></span>
+<span id="cb1-4"><a href="introduction.html#cb1-4"></a></span>
+<span id="cb1-5"><a href="introduction.html#cb1-5"></a><span class="co"># comments are for humans. You can use them to put notes in scripts to</span></span>
+<span id="cb1-6"><a href="introduction.html#cb1-6"></a><span class="co"># remind yourself of what is happening, or to inform people with whom</span></span>
+<span id="cb1-7"><a href="introduction.html#cb1-7"></a><span class="co"># you have shared your code.</span></span></code></pre></div>
 </div>
 <div id="saving-your-file" class="section level2">
 <h2><span class="header-section-number">1.5</span> Saving your file</h2>
@@ -642,7 +644,7 @@ This is at best rude and at worst it can break their installation.
 <img src="images/console.png" alt="The Console" style="margin:10px 10px">
 </center>
 <p>Types the following in and then hit “enter”:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="op">&gt;</span><span class="st"> </span><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="introduction.html#cb2-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
 <p>Note that the name of the package is in quotation marks when used here. This is not always the case!</p>
 <p>The console will then fill with a lot of text showing you what is being done. It is not neccessary to understand all of this.</p>
 <p>Look out for this message being printed in the console</p>
@@ -660,7 +662,7 @@ This is at best rude and at worst it can break their installation.
 <p>Now that we have installed Tidyverse it is on our machine but it is not ready to use yet!</p>
 <p>It is easier to understand if you think about it like this: if you install Instagram on your phone you only do it once and you have to open the app each time you want to use it.</p>
 <p>Similarly, once Tidyverse is installed it is on your computer until you remove it. If you want to use it you need to “open it”. This is done by using another <strong>function</strong>, <code>library()</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction.html#cb3-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 <p>This must be done before you use Tidyverse. We normally do this in the first chunk in the document, essentially gathering our tools before we start working.</p>
 <p>If you want to load other packages you would reuse the <strong>function</strong> <code>library()</code>, replacing “tidyverse” with the name of the package you want to load.</p>
 </div>
@@ -676,7 +678,7 @@ This is at best rude and at worst it can break their installation.
 <div id="the-anatomy-of-a-function-names-and-arguments" class="section level3">
 <h3><span class="header-section-number">1.8.2</span> The Anatomy of a Function: names and arguments</h3>
 <p>Functions are made up of elements. See the code chunk below:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">function_name</span>(argument1, argument2, etc...)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="introduction.html#cb4-1"></a><span class="kw">function_name</span>(argument1, argument2, etc...)</span></code></pre></div>
 <p>The part outside of the brackets is the <strong>name of the function</strong>. This tells R exactly what to do- the action to be performed. The parts inside the brackets are called <strong>arguments</strong>… these provide information to R on what to perform the actions on (and input) and can provide information on slight changes to the actions.</p>
 <div class="info">
 <p>
@@ -975,7 +977,6 @@ window.onload = function() {
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -994,10 +995,6 @@ gitbook.start({
 "text": null
 },
 "history": {
-"link": null,
-"text": null
-},
-"view": {
 "link": null,
 "text": null
 },

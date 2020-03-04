@@ -8,7 +8,7 @@
 3. Learn how to work with themes: adding labels, changing font size, colours and axes ticks. 
 4. Learn to work with legends.
 
-
+This lesson is led by [Greta Todorova](http://www.psy.gla.ac.uk/staff/index.php?id=GKT01).
 
 ## Pre-steps
 

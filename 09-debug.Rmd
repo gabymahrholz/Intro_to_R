@@ -72,7 +72,7 @@ For example, this might happen if you try to use `filter(variable > 150)`, which
 
 We have some error messages below- let's look at them and see if we can solve them.
 
-If you want you can download [cars_for_sale.csv](data/cars_for_sale.csv) and test them out as we go.
+If you want you can download [cars_for_sale.csv](https://moodle.gla.ac.uk/mod/resource/view.php?id=1465239) and test them out as we go.
 
 ```
 

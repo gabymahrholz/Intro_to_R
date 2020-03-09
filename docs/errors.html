@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Rebecca J. Lai, Kate Haining, Greta Todorova, and Wilhelmiina Toivo" />
 
 
-<meta name="date" content="2020-03-04" />
+<meta name="date" content="2020-03-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -695,9 +695,10 @@ Solution
 <button>
 Solution
 </button>
-<p>You are attempting to plot a “line of best fit” to show a correlation between two variables, and those two variables should be presented on each of the axes. The erroneous code specifies only one axis (the <code>x</code> axis).</p>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" title="1"><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> cty, <span class="dt">y =</span> hwy)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb403-2" title="2"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) </a></code></pre></div>
+<p>You are attempting to plot a “line of best fit” to show a correlation between two variables, and those two variables should be presented on each of the axes. The erroneous code specifies only one axis (the <code>x</code> axis). The correct code also specifies the missing <code>y</code> axis:</p>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" title="1"><span class="co"># first two lines should read:</span></a>
+<a class="sourceLine" id="cb403-2" title="2"><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> cty, <span class="dt">y =</span> hwy)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb403-3" title="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) </a></code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-341-1.png" width="672" /></p>
 </div>
 </div>
@@ -736,7 +737,7 @@ Solution
 <a class="sourceLine" id="cb406-5" title="5">        <span class="dt">y =</span> <span class="st">&quot;Highway MPG&quot;</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb407-1" title="1"><span class="co">## Error: stat_count() must not be used with a y aesthetic.</span></a></code></pre></div>
 <p><code>stat_count()</code> is another way of producing a <code>geom_bar()</code> style of graph. With this in mind, what do you think is wrong with the code segment?</p>
-<p>Do you think a bar graph is a good way to demonstrate the relationship between two sets of continuous scales?</p>
+<p>Do you think a bar graph is a good way to demonstrate the relationship between two sets of continuous values?</p>
 <p>Have a think and figure out what the problem is now. Run each line of code individually and see where the problem is coming from.</p>
 <div class="solution">
 <button>

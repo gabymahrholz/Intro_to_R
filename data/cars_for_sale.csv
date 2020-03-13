@@ -1,0 +1,67 @@
+manufacturer,model,displ,year,cyl,trans,drv,cty,hwy,fl,class
+audi,a4,1.8,2005,4,manual,f,21,29,p,compact
+audi,a4,2,2010,4,manual,f,20,31,p,compact
+audi,a4,2.8,2000,6,manual,f,18,26,p,compact
+audi,a4 quattro,1.8,2000,4,manual,4,18,26,p,compact
+audi,a4 quattro,2,2009,4,manual,4,20,28,p,compact
+audi,a4 quattro,2.8,2001,6,manual,4,17,25,p,compact
+audi,a4 quattro,3.1,2008,6,manual,4,15,25,p,compact
+chevrolet,corvette,5.7,2002,8,manual,r,16,26,p,2seater
+chevrolet,corvette,6.2,2008,8,manual,r,16,26,p,2seater
+chevrolet,corvette,7,2009,8,manual,r,15,24,p,2seater
+dodge,dakota pickup 4wd,3.7,2009,6,manual,4,15,19,r,pickup
+dodge,dakota pickup 4wd,3.9,2000,6,manual,4,14,17,r,pickup
+dodge,dakota pickup 4wd,5.2,2002,8,manual,4,11,17,r,pickup
+dodge,ram 1500 pickup 4wd,4.7,2008,8,manual,4,12,16,r,pickup
+dodge,ram 1500 pickup 4wd,4.7,2010,8,manual,4,9,12,e,pickup
+dodge,ram 1500 pickup 4wd,5.2,2002,8,manual,4,11,16,r,pickup
+ford,explorer 4wd,4,2003,6,manual,4,15,19,r,suv
+ford,f150 pickup 4wd,4.2,2000,6,manual,4,14,17,r,pickup
+ford,f150 pickup 4wd,4.6,2002,8,manual,4,13,16,r,pickup
+ford,mustang,3.8,2000,6,manual,r,18,26,r,subcompact
+ford,mustang,4,2011,6,manual,r,17,26,r,subcompact
+ford,mustang,4.6,2002,8,manual,r,15,22,r,subcompact
+ford,mustang,4.6,2008,8,manual,r,15,23,r,subcompact
+ford,mustang,5.4,2009,8,manual,r,14,20,p,subcompact
+honda,civic,1.6,2002,4,manual,f,28,33,r,subcompact
+honda,civic,1.6,2001,4,manual,f,23,29,p,subcompact
+honda,civic,1.8,2012,4,manual,f,26,34,r,subcompact
+honda,civic,2,2008,4,manual,f,21,29,p,subcompact
+hyundai,sonata,2.4,2001,4,manual,f,18,27,r,midsize
+hyundai,sonata,2.4,2011,4,manual,f,21,31,r,midsize
+hyundai,tiburon,2,2001,4,manual,f,19,29,r,subcompact
+hyundai,tiburon,2,2009,4,manual,f,20,28,r,subcompact
+hyundai,tiburon,2.7,2010,6,manual,f,16,24,r,subcompact
+hyundai,tiburon,2.7,2008,6,manual,f,17,24,r,subcompact
+nissan,altima,2.4,2001,4,manual,f,21,29,r,compact
+nissan,altima,2.5,2010,4,manual,f,23,32,r,midsize
+nissan,maxima,3,2000,6,manual,f,19,25,r,midsize
+nissan,pathfinder 4wd,3.3,2001,6,manual,4,15,17,r,suv
+subaru,forester awd,2.5,2000,4,manual,4,18,25,r,suv
+subaru,forester awd,2.5,2008,4,manual,4,20,27,r,suv
+subaru,impreza awd,2.2,2001,4,manual,4,19,26,r,subcompact
+subaru,impreza awd,2.5,2011,4,manual,4,19,25,p,compact
+subaru,impreza awd,2.5,2009,4,manual,4,20,27,r,compact
+toyota,4runner 4wd,2.7,2001,4,manual,4,15,20,r,suv
+toyota,4runner 4wd,3.4,2002,6,manual,4,15,17,r,suv
+toyota,camry,2.2,2000,4,manual,f,21,29,r,midsize
+toyota,camry,2.4,2009,4,manual,f,21,31,r,midsize
+toyota,camry,3,1999,6,manual,f,18,26,r,midsize
+toyota,camry solara,2.2,2000,4,manual,f,21,29,r,compact
+toyota,camry solara,2.4,2010,4,manual,f,21,31,r,compact
+toyota,corolla,1.8,2000,4,manual,f,26,35,r,compact
+toyota,corolla,1.8,2008,4,manual,f,28,37,r,compact
+toyota,toyota tacoma 4wd,2.7,2000,4,manual,4,15,20,r,pickup
+toyota,toyota tacoma 4wd,2.7,2010,4,manual,4,17,22,r,pickup
+toyota,toyota tacoma 4wd,4,2009,6,manual,4,15,18,r,pickup
+volkswagen,gti,2,2003,4,manual,f,21,29,r,compact
+volkswagen,gti,2,2010,4,manual,f,21,29,p,compact
+volkswagen,jetta,1.9,1999,4,manual,f,33,44,d,compact
+volkswagen,jetta,2,2008,4,manual,f,21,29,p,compact
+volkswagen,jetta,2.5,2011,5,manual,f,21,29,r,compact
+volkswagen,jetta,2.8,2001,6,manual,f,17,24,r,compact
+volkswagen,new beetle,1.9,2001,4,manual,f,35,44,d,subcompact
+volkswagen,new beetle,2.5,2008,5,manual,f,20,28,r,subcompact
+volkswagen,passat,1.8,2001,4,manual,f,21,29,p,midsize
+volkswagen,passat,2,2010,4,manual,f,21,29,p,midsize
+volkswagen,passat,2.8,2002,6,manual,f,18,26,p,midsize

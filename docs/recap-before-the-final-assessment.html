@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 Recap: Before the final assessment | Introduction to R</title>
   <meta name="description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
-  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 Recap: Before the final assessment | Introduction to R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Rebecca J. Lai, Kate Haining, Greta Todorova, and Wilhelmiina Toivo" />
 
 
-<meta name="date" content="2020-03-09" />
+<meta name="date" content="2020-03-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,68 +53,41 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -339,7 +312,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html"><i class="fa fa-check"></i><b>10</b> Recap: Before the final assessment</a><ul>
 <li class="chapter" data-level="10.1" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#outline-for-today"><i class="fa fa-check"></i><b>10.1</b> Outline for today</a></li>
-<li class="chapter" data-level="10.2" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#in-class-practice-exam"><i class="fa fa-check"></i><b>10.2</b> In-class practice exam</a></li>
+<li class="chapter" data-level="10.2" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#lecture-10-bringing-your-skills-together"><i class="fa fa-check"></i><b>10.2</b> Lecture 10: Bringing your skills together</a><ul>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-1-1"><i class="fa fa-check"></i>Question 1</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-2-1"><i class="fa fa-check"></i>Question 2</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-3-1"><i class="fa fa-check"></i>Question 3</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-4-1"><i class="fa fa-check"></i>Question 4</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-5-1"><i class="fa fa-check"></i>Question 5</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-6"><i class="fa fa-check"></i>Question 6</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-7"><i class="fa fa-check"></i>Question 7</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-8"><i class="fa fa-check"></i>Question 8</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-9"><i class="fa fa-check"></i>Question 9</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-10"><i class="fa fa-check"></i>Question 10</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-11"><i class="fa fa-check"></i>Question 11</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-12-bonus"><i class="fa fa-check"></i>Question 12 (Bonus)</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-13-bonus"><i class="fa fa-check"></i>Question 13 (Bonus)</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-14-bonus"><i class="fa fa-check"></i>Question 14 (Bonus)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#solutions"><i class="fa fa-check"></i><b>10.3</b> Solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html"><i class="fa fa-check"></i>Appendices</a><ul>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#changing-the-appearance-of-rmarkdown"><i class="fa fa-check"></i>Changing the Appearance of RMarkdown</a></li>
@@ -373,13 +362,371 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 10</span> Recap: Before the final assessment</h1>
 <div id="outline-for-today" class="section level2">
 <h2><span class="header-section-number">10.1</span> Outline for today</h2>
-<p>This lecture is structured a bit differently. First 30 min is time for you to ask any questions you have, clarify whatever you want to have clarified, etc.</p>
-<p>Then we will have an in-class practice exam that is structured fairly similar to the homework.</p>
-<p>Think about it: Either they do it themselves for 1 hour, and then we’ll go through possible solutions at the end, or run each question with guidance, as in how would you answer it, give you 5 min to think about it, then we’ll discuss.</p>
-<p>I like the idea of pair-programming (or pairs and a group of 3): give them a task to discuss and do together for a short time, then go over it as a class and discuss everyone’s thinking before repeating the process for the rest of the questions. All the time making sure they are taking notes/commenting their code and the code they get from the answer - Rebecca</p>
+<p>This lecture is structured a bit differently. First 10-15 min is time for you to ask any questions you have, clarify whatever you want to have clarified, etc. Then we will have an in-class practice exam that is structured fairly similar to the final summative homework assignment.</p>
+<p>This in-class practice exam is led by <a href="http://www.psy.gla.ac.uk/staff/index.php?id=TIWT1">Wilhelmiina Toivo</a>.</p>
 </div>
-<div id="in-class-practice-exam" class="section level2">
-<h2><span class="header-section-number">10.2</span> In-class practice exam</h2>
+<div id="lecture-10-bringing-your-skills-together" class="section level2">
+<h2><span class="header-section-number">10.2</span> Lecture 10: Bringing your skills together</h2>
+<p>In this practice exam, you will use all the skills you have learnt to tidy up, summarise, and visualise an actual data set. These data are from an experiment where participants were asked to rate 240 words on a scale from 1-9, 1 being <em>not exciting at all</em> and 9 being <em>extremely exciting</em>. This dimension is called emotional arousal of language. The words are split into three conditions: HA = <em>High arousal</em>, LA = <em>Low arousal</em> and DI = <em>neutral distractor words</em>. Each of the words has their own item number ranging from 1-240.</p>
+<p>There are three datafiles:</p>
+<ul>
+<li><code>ratings.csv</code> contains ratings from 47 participants.</li>
+<li><code>item_info.csv</code> contains more information about the words: <code>AROUSAL</code> column shows how people from a larger database (different to our participants) have rated the words on arousal, and <code>VALENCE</code> column shows how people have rated these words on valence (i.e. how positive or negative they think the words are).</li>
+<li><code>groups</code> contains information about our participants, who were either bilingual speakers <code>B</code> or monolingual native English speakers <code>E</code>.</li>
+</ul>
+<p>Before we get started, make sure you have downloaded and unzipped the folder, and you have the three datafiles and this .Rmd file in it. Now set your working directory to the folder and we are ready to go.</p>
+<p>Again, DON’T CHANGE THE OBJECT NAMES. Replace the NULLs with your code.</p>
+<p>This exercise is <strong>NOT GRADED</strong>, but it is very similar to the summative assignment you will be given after this class, and should help you prepare for it.</p>
+<div id="question-1-1" class="section level3 unnumbered">
+<h3>Question 1</h3>
+<p>Load in the package <code>tidyverse</code>. Type your code in the code chunk below.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">NULL</span></code></pre></div>
+</div>
+<div id="question-2-1" class="section level3 unnumbered">
+<h3>Question 2</h3>
+<p>Read the data files into your <code>Global Environment</code>. Store <code>item_info.csv</code> as <code>words</code>, <code>ratings.csv</code> as <code>ratings</code>, and <code>groups.csv</code> as <code>groups</code>. Type your code in the code chunk below.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">words &lt;-<span class="st"> </span><span class="ot">NULL</span>
+ratings &lt;-<span class="st"> </span><span class="ot">NULL</span>
+groups &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+</div>
+<div id="question-3-1" class="section level3 unnumbered">
+<h3>Question 3</h3>
+<p>Look at <code>ratings</code>. Oh dear - whoever has entered <code>ratings</code> data clearly doesn’t know about tidy data! Right now, each participant has their own row and each of the 240 words has their own column. We want to transform this data into long format so that the item numbers of the words (1-240) are in one column and all the ratings are in one column. Using <code>gather()</code>, make a new dataframe that has a column called <code>item</code>. This column should include the column headers (item number). Make another column that is called <code>rating</code>, which should include the cell values from columns that contain word ratings.</p>
+<ul>
+<li>Hint 1: Remember how to index columns which have numerical names?</li>
+<li>Hint 2: Go to lecture 5 inclass material to see how to specify the arguments in <code>gather()</code></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ratings_long &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+<p>You should end up with a dataframe that has 11280 observations and just three columns. The first 6 rows of <code>ratings_long</code> should look like the ones shown in the tibble below.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">participant</th>
+<th align="left">item</th>
+<th align="right">rating</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">1</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">1</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">1</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">1</td>
+<td align="right">6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="question-4-1" class="section level3 unnumbered">
+<h3>Question 4</h3>
+<p>Now look at <code>words</code> dataframe. We don’t need all these columns. Make a new dataframe called <code>words_small</code> that only includes columns <code>item</code>, <code>Word</code>,<code>AROUSAL</code> and <code>VALENCE</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">words_small &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+<p>The first 6 rows of <code>words_small</code> should look like the ones shown in the tibble below.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">item</th>
+<th align="left">Word</th>
+<th align="right">AROUSAL</th>
+<th align="right">VALENCE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1_HA</td>
+<td align="left">porn</td>
+<td align="right">7.24</td>
+<td align="right">4.32</td>
+</tr>
+<tr class="even">
+<td align="left">2_LA</td>
+<td align="left">ford</td>
+<td align="right">2.85</td>
+<td align="right">5.79</td>
+</tr>
+<tr class="odd">
+<td align="left">3_DI</td>
+<td align="left">bolt</td>
+<td align="right">4.55</td>
+<td align="right">3.90</td>
+</tr>
+<tr class="even">
+<td align="left">4_HA</td>
+<td align="left">leopard</td>
+<td align="right">6.26</td>
+<td align="right">6.43</td>
+</tr>
+<tr class="odd">
+<td align="left">5_LA</td>
+<td align="left">dryer</td>
+<td align="right">2.43</td>
+<td align="right">5.21</td>
+</tr>
+<tr class="even">
+<td align="left">6_DI</td>
+<td align="left">fireman</td>
+<td align="right">4.52</td>
+<td align="right">6.47</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="question-5-1" class="section level3 unnumbered">
+<h3>Question 5</h3>
+<p>Now we should put the tables together. But there is a problem! The columns don’t match. We need to change the <code>words_small</code> dataframe slightly. Separate the <code>item</code> column into two columns called <code>item</code> and <code>condition</code>, and remove the underscore.</p>
+<p>Hint: Look at lecture 5 for help with this.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">words_small &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+<p>The first 6 rows of <code>words_small</code> should look like the ones shown in the tibble below.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">item</th>
+<th align="left">condition</th>
+<th align="left">Word</th>
+<th align="right">AROUSAL</th>
+<th align="right">VALENCE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">HA</td>
+<td align="left">porn</td>
+<td align="right">7.24</td>
+<td align="right">4.32</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">LA</td>
+<td align="left">ford</td>
+<td align="right">2.85</td>
+<td align="right">5.79</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">DI</td>
+<td align="left">bolt</td>
+<td align="right">4.55</td>
+<td align="right">3.90</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">HA</td>
+<td align="left">leopard</td>
+<td align="right">6.26</td>
+<td align="right">6.43</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">LA</td>
+<td align="left">dryer</td>
+<td align="right">2.43</td>
+<td align="right">5.21</td>
+</tr>
+<tr class="even">
+<td align="left">6</td>
+<td align="left">DI</td>
+<td align="left">fireman</td>
+<td align="right">4.52</td>
+<td align="right">6.47</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="question-6" class="section level3 unnumbered">
+<h3>Question 6</h3>
+<p>Join <code>ratings_long</code> with <code>words_small</code> and store this in <code>combined_data</code>. Here, we want to use a mutating join that will join the tables based on the column they have in common.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">combined_data &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+</div>
+<div id="question-7" class="section level3 unnumbered">
+<h3>Question 7</h3>
+<p>We are almost ready to look at summary statistics, but we need to do two more things first. The participants have entered 0 as a rating when they didn’t know the word, or didn’t have time to read it. We only want to look at the trials where the participant knows what the word is. Remove the rows where the rating is 0 from <code>combined_data</code>. Store this in a dataframe called <code>combined_recog</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">combined_recog &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+</div>
+<div id="question-8" class="section level3 unnumbered">
+<h3>Question 8</h3>
+<p>Final step before summary statistics! Join <code>combined_recog</code> with <code>groups</code> and save it to <code>preprocessed_data</code>. You will get an error message trying to do this. Solve the error so you get the dataframe we are asking for.</p>
+<p>HINT: There are multiple ways of solving the error. You can change your dataframe heading in an additional step, or you can use the help function to figure out what to do when the dataframes you are trying to join don’t match.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">preprocessed_data &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+</div>
+<div id="question-9" class="section level3 unnumbered">
+<h3>Question 9</h3>
+<p>Now we can calculate summary statistics from <code>preprocessed_data</code>. Make a new dataframe <code>rating_summary</code> in which you calculate mean rating and standard deviation of ratings (<code>rating</code> column) for each of the conditions and both participant groups. Call the columns in your summary table <code>mean</code> and <code>sd</code>.</p>
+<ul>
+<li>Hint 1: You need to do this in two steps. Combine the steps together with a pipeline operator: %&gt;%</li>
+<li>Hint 2: You first want to make R think of the data in subgroups based on <code>condition</code> and <code>Group</code>. Only after that you should calculate the summary statistics.</li>
+<li>Hint 3: Which dplyr function lets you calculate summary statistics for data?</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rating_summary &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+<p>Now let’s visualise the data! We will use <code>preprocessed_data</code> for all the visualisations.</p>
+</div>
+<div id="question-10" class="section level3 unnumbered">
+<h3>Question 10</h3>
+<p>Make a boxplot of ratings. You want <code>condition</code> as the x-axis and <code>rating</code> as the y-axis. Make the ticks on the y-axis to show numbers from 1-9. Also, facet the plot by <code>Group</code>, and make the different <code>conditions</code> different colours (hint: use <code>fill</code> argument in the ggplot aes() to achieve this). When you are done, your boxplot should look like the one below.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">NULL</span></code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/Q10S-1.png" width="672" /></p>
+</div>
+<div id="question-11" class="section level3 unnumbered">
+<h3>Question 11</h3>
+<p>Next, we want to see how the different features of the words we have collected from the database map onto each other. In dataframe <code>preprocessed_data</code>, we have a column for arousal ratings taken from the database called <code>AROUSAL</code>. We also have a column called <code>VALENCE</code> which shows how negative or positive the participants think these words are. Create a scatterplot to map <code>VALENCE</code> against <code>AROUSAL</code>. Extra challenge: make the scatterplot points into different colours based on the word type (<code>condition</code>). When you are done, your scatterplot should look like the one below.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">NULL</span></code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/Q11S-1.png" width="672" /></p>
+<p><span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Finished</span></p>
+<p>Well done, this is the end of the in-class exercise! We have three extra questions for those who are up for a challenge and would like to play around with the data a bit more.</p>
+<H2>
+Bonus Questions
+</H2>
+<p>We want to know which word people think is the most exciting and which one is the most boring. Let’s find out!</p>
+</div>
+<div id="question-12-bonus" class="section level3 unnumbered">
+<h3>Question 12 (Bonus)</h3>
+<p>We’ll go back to working with the <code>combined_recog</code> dataframe. Calculate a mean rating based on our participants’ ratings (the <code>rating</code> column) for each of the words. Call this column <code>mean_rating</code>. This process involves two steps, but put them together with the pipe operator and store it in <code>by_item_ratings</code>. Hint: You need to make R think about the data in subsets based on the column <code>Word</code>, and then calculate the mean scores.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">by_item_ratings &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+<p>You should end up with a dataframe that has 240 rows and 2 columns.</p>
+</div>
+<div id="question-13-bonus" class="section level3 unnumbered">
+<h3>Question 13 (Bonus)</h3>
+<p>Now we just need to find out which are the words with highest and lowest mean ratings. Arrange <code>by_item_ratings</code> in ascending order based on the mean rating.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">by_item_arranged &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+</div>
+<div id="question-14-bonus" class="section level3 unnumbered">
+<h3>Question 14 (Bonus)</h3>
+<p>Which word is the least exciting (lowest mean rating) and which one is the most exciting (highest mean rating)? Type the words in the code chunk below. REMEMBER TO TYPE THEM WITH QUOTATION MARKS.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">least_boring &lt;-<span class="st"> &quot;NULL&quot;</span>
+most_exciting &lt;-<span class="st"> &quot;NULL&quot;</span></code></pre></div>
+</div>
+</div>
+<div id="solutions" class="section level2">
+<h2><span class="header-section-number">10.3</span> Solutions</h2>
+<div class="solution">
+<button>
+Question 1
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
+</div>
+<div class="solution">
+<button>
+Question 2
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">words &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;item_info.csv&quot;</span>)
+ratings &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;ratings.csv&quot;</span>)
+groups &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;groups.csv&quot;</span>)</code></pre></div>
+</div>
+<div class="solution">
+<button>
+Question 3
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ratings_long &lt;-<span class="st"> </span><span class="kw">gather</span>(ratings, <span class="st">&quot;item&quot;</span>, <span class="st">&quot;rating&quot;</span>, <span class="st">`</span><span class="dt">1</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">240</span><span class="st">`</span>)</code></pre></div>
+</div>
+<div class="solution">
+<button>
+Question 4
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">words_small &lt;-<span class="st"> </span><span class="kw">select</span>(words, item, Word, AROUSAL, VALENCE)</code></pre></div>
+</div>
+<div class="solution">
+<button>
+Question 5
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">words_small &lt;-<span class="st"> </span><span class="kw">separate</span>(words_small, item, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;item&quot;</span>, <span class="st">&quot;condition&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>)</code></pre></div>
+</div>
+<div class="solution">
+<button>
+Question 6
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">combined_data &lt;-<span class="st"> </span><span class="kw">inner_join</span>(ratings_long, words_small, <span class="dt">by =</span> <span class="st">&quot;item&quot;</span>)</code></pre></div>
+</div>
+<div class="solution">
+<button>
+Question 7
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">combined_recog &lt;-<span class="st"> </span><span class="kw">filter</span>(combined_data, rating<span class="op">!=</span><span class="dv">0</span>)</code></pre></div>
+</div>
+<div class="solution">
+<button>
+Question 8
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Solution 1 - renaming the column in `combined_recog`</span>
+combined_data &lt;-<span class="st"> </span>combined_recog <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="st">&quot;Participant&quot;</span> =<span class="st"> </span>participant)
+preprocessed_data &lt;-<span class="st"> </span><span class="kw">inner_join</span>(combined_data, groups, <span class="dt">by =</span> <span class="st">&quot;Participant&quot;</span>)
+
+<span class="co"># Solution 1 as a pipe</span>
+preprocessed_data &lt;-<span class="st"> </span>combined_recog <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="st">&quot;Participant&quot;</span> =<span class="st"> </span>participant) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">inner_join</span>(groups, <span class="dt">by =</span> <span class="st">&quot;Participant&quot;</span>)
+
+<span class="co"># Solution 2 - using inner_join to match two headers that don&#39;t match</span>
+preprocessed_data &lt;-<span class="st"> </span><span class="kw">inner_join</span>(combined_recog, groups, <span class="kw">c</span>(<span class="st">&quot;participant&quot;</span> =<span class="st"> &quot;Participant&quot;</span>))</code></pre></div>
+</div>
+<div class="solution">
+<button>
+Question 9
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rating_summary &lt;-<span class="st"> </span><span class="kw">group_by</span>(preprocessed_data, condition, Group) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(rating), <span class="dt">sd =</span> <span class="kw">sd</span>(rating))</code></pre></div>
+</div>
+<div class="solution">
+<button>
+Question 10
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(preprocessed_data, <span class="kw">aes</span>(condition, rating, <span class="dt">fill=</span>condition)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Group)</code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-358-1.png" width="672" /></p>
+</div>
+<div class="solution">
+<button>
+Question 11
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(preprocessed_data, <span class="kw">aes</span>(<span class="dt">x=</span>AROUSAL, <span class="dt">y=</span>VALENCE, <span class="dt">colour=</span>condition)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-359-1.png" width="672" /></p>
+</div>
+<div class="solution">
+<button>
+Question 12 (Bonus)
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">by_item_ratings &lt;-<span class="st"> </span>combined_recog <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(Word) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_rating =</span> <span class="kw">mean</span>(rating))</code></pre></div>
+</div>
+<div class="solution">
+<button>
+Question 13 (Bonus)
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">by_item_arranged &lt;-<span class="st"> </span><span class="kw">arrange</span>(by_item_ratings, mean_rating)</code></pre></div>
+</div>
+<div class="solution">
+<button>
+Question 14 (Bonus)
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">least_exciting &lt;-<span class="st"> &quot;slow&quot;</span>
+most_exciting &lt;-<span class="st"> &quot;pleasure&quot;</span></code></pre></div>
+</div>
 
 </div>
 </div>
@@ -487,6 +834,7 @@ window.onload = function() {
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
+"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -505,6 +853,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

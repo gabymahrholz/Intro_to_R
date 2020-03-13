@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Errors | Introduction to R</title>
   <meta name="description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
-  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Errors | Introduction to R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Rebecca J. Lai, Kate Haining, Greta Todorova, and Wilhelmiina Toivo" />
 
 
-<meta name="date" content="2020-03-09" />
+<meta name="date" content="2020-03-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,68 +53,41 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -339,7 +312,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html"><i class="fa fa-check"></i><b>10</b> Recap: Before the final assessment</a><ul>
 <li class="chapter" data-level="10.1" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#outline-for-today"><i class="fa fa-check"></i><b>10.1</b> Outline for today</a></li>
-<li class="chapter" data-level="10.2" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#in-class-practice-exam"><i class="fa fa-check"></i><b>10.2</b> In-class practice exam</a></li>
+<li class="chapter" data-level="10.2" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#lecture-10-bringing-your-skills-together"><i class="fa fa-check"></i><b>10.2</b> Lecture 10: Bringing your skills together</a><ul>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-1-1"><i class="fa fa-check"></i>Question 1</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-2-1"><i class="fa fa-check"></i>Question 2</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-3-1"><i class="fa fa-check"></i>Question 3</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-4-1"><i class="fa fa-check"></i>Question 4</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-5-1"><i class="fa fa-check"></i>Question 5</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-6"><i class="fa fa-check"></i>Question 6</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-7"><i class="fa fa-check"></i>Question 7</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-8"><i class="fa fa-check"></i>Question 8</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-9"><i class="fa fa-check"></i>Question 9</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-10"><i class="fa fa-check"></i>Question 10</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-11"><i class="fa fa-check"></i>Question 11</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-12-bonus"><i class="fa fa-check"></i>Question 12 (Bonus)</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-13-bonus"><i class="fa fa-check"></i>Question 13 (Bonus)</a></li>
+<li class="chapter" data-level="" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#question-14-bonus"><i class="fa fa-check"></i>Question 14 (Bonus)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="recap-before-the-final-assessment.html"><a href="recap-before-the-final-assessment.html#solutions"><i class="fa fa-check"></i><b>10.3</b> Solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html"><i class="fa fa-check"></i>Appendices</a><ul>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#changing-the-appearance-of-rmarkdown"><i class="fa fa-check"></i>Changing the Appearance of RMarkdown</a></li>
@@ -413,12 +402,12 @@ It is important to note that <strong>not all red text indicates an error!</stron
 <div id="error-messages" class="section level3">
 <h3><span class="header-section-number">9.2.2</span> Error Messages</h3>
 <p>These are definitely the ones that people worry about the most, but error messages given information about what has gone wrong. By reading and interpreting these messages we can diagnose the problem and fix it- a process called <strong>debugging</strong>. Let’s do something that will definitely generate an error and have a look at it:</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="errors.html#cb372-1"></a>demo &lt;-<span class="st"> </span><span class="kw">read_cvs</span>(<span class="st">&quot;some_file_name.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">demo &lt;-<span class="st"> </span><span class="kw">read_cvs</span>(<span class="st">&quot;some_file_name.csv&quot;</span>)</code></pre></div>
 <pre><code>## Error in read_cvs(&quot;some_file_name.csv&quot;): could not find function &quot;read_cvs&quot;</code></pre>
 <p>Breaking it down:</p>
 <ul>
 <li><code>Error...</code>: error messages are always preceded by the word error</li>
-<li><code>could not find function "read_cvs"</code>: the content of the error message. In this case the function I have tried to call is not found.</li>
+<li><code>could not find function &quot;read_cvs&quot;</code>: the content of the error message. In this case the function I have tried to call is not found.</li>
 </ul>
 <div class="info">
 <p>
@@ -446,46 +435,46 @@ For example, this might happen if you try to use <code>filter(variable &gt; 150)
 We have some error messages below- let’s look at them and see if we can solve them.
 </p>
 <p>
-If you want you can download <a href="https://moodle.gla.ac.uk/mod/resource/view.php?id=1465239">cars_for_sale.csv</a> and test them out as we go.
+If you want you can download <a href="data/cars_for_sale.csv" download>cars_for_sale.csv</a> and test them out as we go.
 </p>
 </div>
 <div id="could-not-find-function-1" class="section level4 unnumbered">
 <h4>Could not find function: 1</h4>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="errors.html#cb374-1"></a>demonstration &lt;-<span class="st"> </span><span class="kw">read_cvs</span>(<span class="st">&quot;cars_for_sale.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">demonstration &lt;-<span class="st"> </span><span class="kw">read_cvs</span>(<span class="st">&quot;cars_for_sale.csv&quot;</span>)</code></pre></div>
 <pre><code>## Error in read_cvs(&quot;cars_for_sale.csv&quot;): could not find function &quot;read_cvs&quot;</code></pre>
 <p>What do you think this error message means? How is it fixed?</p>
 <div class="solution">
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="errors.html#cb376-1"></a>demonstration &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;cars_for_sale.csv&quot;</span>)</span>
-<span id="cb376-2"><a href="errors.html#cb376-2"></a></span>
-<span id="cb376-3"><a href="errors.html#cb376-3"></a><span class="co"># We tried to run the function read_cvs()- this doesn&#39;t </span></span>
-<span id="cb376-4"><a href="errors.html#cb376-4"></a><span class="co"># exist! Again, it might seem trivial, but R really </span></span>
-<span id="cb376-5"><a href="errors.html#cb376-5"></a><span class="co"># wont know what this means.</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">demonstration &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;cars_for_sale.csv&quot;</span>)
+
+<span class="co"># We tried to run the function read_cvs()- this doesn&#39;t </span>
+<span class="co"># exist! Again, it might seem trivial, but R really </span>
+<span class="co"># wont know what this means.</span></code></pre></div>
 </div>
 </div>
 <div id="could-not-find-function-2" class="section level4 unnumbered">
 <h4>Could not find function: 2</h4>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="errors.html#cb377-1"></a>demonstration &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;cars_for_sale.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="errors.html#cb378-1"></a><span class="co">## Error in read_cvs(&quot;cars_for_sale.csv&quot;): could not find function &quot;read_csv&quot;</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">demonstration &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;cars_for_sale.csv&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Error in read_cvs(&quot;cars_for_sale.csv&quot;): could not find function &quot;read_csv&quot;</code></pre></div>
 <p>What do you think this error message means? How is it fixed?</p>
 <div class="solution">
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="errors.html#cb379-1"></a>demonstration &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;cars_for_sale.csv&quot;</span>)</span>
-<span id="cb379-2"><a href="errors.html#cb379-2"></a></span>
-<span id="cb379-3"><a href="errors.html#cb379-3"></a><span class="co"># We tried to run the function read_csv(), but if tidyverse</span></span>
-<span id="cb379-4"><a href="errors.html#cb379-4"></a><span class="co"># is not loaded then this function, which is part of tidyverse,</span></span>
-<span id="cb379-5"><a href="errors.html#cb379-5"></a><span class="co"># is not available for use.</span></span>
-<span id="cb379-6"><a href="errors.html#cb379-6"></a></span>
-<span id="cb379-7"><a href="errors.html#cb379-7"></a><span class="co"># We need to run library(tidyverse) before we can use it</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">demonstration &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;cars_for_sale.csv&quot;</span>)
+
+<span class="co"># We tried to run the function read_csv(), but if tidyverse</span>
+<span class="co"># is not loaded then this function, which is part of tidyverse,</span>
+<span class="co"># is not available for use.</span>
+
+<span class="co"># We need to run library(tidyverse) before we can use it</span></code></pre></div>
 </div>
 </div>
 <div id="unexpected" class="section level4 unnumbered">
 <h4>Unexpected ‘)’</h4>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="errors.html#cb380-1"></a><span class="kw">library</span>(tidyverse)<span class="er">)</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)<span class="er">)</span></code></pre></div>
 <pre><code>## Error: &lt;text&gt;:1:19: unexpected &#39;)&#39;
 ## 1: library(tidyverse))
 ##                       ^</code></pre>
@@ -494,18 +483,18 @@ Solution
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="errors.html#cb382-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb382-2"><a href="errors.html#cb382-2"></a></span>
-<span id="cb382-3"><a href="errors.html#cb382-3"></a><span class="co"># There was an extra ) in there. It might seem trivial, </span></span>
-<span id="cb382-4"><a href="errors.html#cb382-4"></a><span class="co"># but this prevented the line of code from being run.</span></span>
-<span id="cb382-5"><a href="errors.html#cb382-5"></a></span>
-<span id="cb382-6"><a href="errors.html#cb382-6"></a><span class="co"># This can happen with any function that uses brackets, </span></span>
-<span id="cb382-7"><a href="errors.html#cb382-7"></a><span class="co"># but also with other symbols such as &quot;,&quot;.</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+
+<span class="co"># There was an extra ) in there. It might seem trivial, </span>
+<span class="co"># but this prevented the line of code from being run.</span>
+
+<span class="co"># This can happen with any function that uses brackets, </span>
+<span class="co"># but also with other symbols such as &quot;,&quot;.</span></code></pre></div>
 </div>
 </div>
 <div id="not-in-current-working-directory" class="section level4 unnumbered">
 <h4>Not in current working directory</h4>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="errors.html#cb383-1"></a>demonstration &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;cars_for_sale.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">demonstration &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;cars_for_sale.csv&quot;</span>)</code></pre></div>
 <pre><code>## Error: &#39;cars_for_sale.csv&#39; does not exist in current working directory (&#39;C:/Users/gabym/OneDrive - University of Glasgow/Intro_to_R&#39;).</code></pre>
 <p>What do you think this error means? We have all seen it at least once. I see it all the time because I always forget to do something when I start working.</p>
 <div class="solution">
@@ -513,45 +502,45 @@ Solution
 Solution
 </button>
 <p>If you are coding along and have correctly set your working directory before trying to replicate this error… you won’t see the error! Well done!</p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="errors.html#cb385-1"></a>demonstration &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;cars_for_sale.csv&quot;</span>)</span>
-<span id="cb385-2"><a href="errors.html#cb385-2"></a></span>
-<span id="cb385-3"><a href="errors.html#cb385-3"></a><span class="co"># We tried to run the function read_csv() and to read</span></span>
-<span id="cb385-4"><a href="errors.html#cb385-4"></a><span class="co"># cars_for_sale.csv, but in this instance the file was </span></span>
-<span id="cb385-5"><a href="errors.html#cb385-5"></a><span class="co"># not in the current working directory</span></span>
-<span id="cb385-6"><a href="errors.html#cb385-6"></a></span>
-<span id="cb385-7"><a href="errors.html#cb385-7"></a><span class="co"># to fix this we can go to the Session Menu, Set Working</span></span>
-<span id="cb385-8"><a href="errors.html#cb385-8"></a><span class="co"># Directory and Choose Directory to tell R where this file</span></span>
-<span id="cb385-9"><a href="errors.html#cb385-9"></a><span class="co"># can be found</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">demonstration &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;cars_for_sale.csv&quot;</span>)
+
+<span class="co"># We tried to run the function read_csv() and to read</span>
+<span class="co"># cars_for_sale.csv, but in this instance the file was </span>
+<span class="co"># not in the current working directory</span>
+
+<span class="co"># to fix this we can go to the Session Menu, Set Working</span>
+<span class="co"># Directory and Choose Directory to tell R where this file</span>
+<span class="co"># can be found</span></code></pre></div>
 </div>
 </div>
 <div id="could-not-find-object" class="section level4 unnumbered">
 <h4>Could not find object</h4>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="errors.html#cb386-1"></a><span class="kw">head</span>(demonstration)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(demonstration)</code></pre></div>
 <pre><code>## Error in head(demonstration): object &#39;demonstration&#39; not found</code></pre>
 <p>I’ve tried to use the function head on the object I tried to create above. Have a think about why this error has been returned and how to fix it.</p>
 <div class="solution">
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="errors.html#cb388-1"></a><span class="kw">head</span>(demonstration)</span>
-<span id="cb388-2"><a href="errors.html#cb388-2"></a></span>
-<span id="cb388-3"><a href="errors.html#cb388-3"></a><span class="co"># This code is correct, but errors can be cumulative... </span></span>
-<span id="cb388-4"><a href="errors.html#cb388-4"></a><span class="co"># that is, if a later piece of code is contingent on a </span></span>
-<span id="cb388-5"><a href="errors.html#cb388-5"></a><span class="co"># previous piece of code running successfully then</span></span>
-<span id="cb388-6"><a href="errors.html#cb388-6"></a><span class="co"># the later piece of code won&#39;t work if the earlier</span></span>
-<span id="cb388-7"><a href="errors.html#cb388-7"></a><span class="co"># one wasn&#39;t run!</span></span>
-<span id="cb388-8"><a href="errors.html#cb388-8"></a></span>
-<span id="cb388-9"><a href="errors.html#cb388-9"></a><span class="co"># The previous code creating the object had many errors, </span></span>
-<span id="cb388-10"><a href="errors.html#cb388-10"></a><span class="co"># one loading tidyverse into the library which is </span></span>
-<span id="cb388-11"><a href="errors.html#cb388-11"></a><span class="co"># necessary for the `read_csv()` function to be usable </span></span>
-<span id="cb388-12"><a href="errors.html#cb388-12"></a><span class="co"># and the second was a typo in the `read_csv()` function, </span></span>
-<span id="cb388-13"><a href="errors.html#cb388-13"></a><span class="co"># so the object `demonstration` was not created, and </span></span>
-<span id="cb388-14"><a href="errors.html#cb388-14"></a><span class="co"># thus there is no object to call using `head()`</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(demonstration)
+
+<span class="co"># This code is correct, but errors can be cumulative... </span>
+<span class="co"># that is, if a later piece of code is contingent on a </span>
+<span class="co"># previous piece of code running successfully then</span>
+<span class="co"># the later piece of code won&#39;t work if the earlier</span>
+<span class="co"># one wasn&#39;t run!</span>
+
+<span class="co"># The previous code creating the object had many errors, </span>
+<span class="co"># one loading tidyverse into the library which is </span>
+<span class="co"># necessary for the `read_csv()` function to be usable </span>
+<span class="co"># and the second was a typo in the `read_csv()` function, </span>
+<span class="co"># so the object `demonstration` was not created, and </span>
+<span class="co"># thus there is no object to call using `head()`</span></code></pre></div>
 </div>
 </div>
 <div id="code-wont-run-in-the-console" class="section level4 unnumbered">
 <h4>Code won’t run, + in the console</h4>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="errors.html#cb389-1"></a>demonstration &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;cars_for_sale.csv&quot;</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">demonstration &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;cars_for_sale.csv&quot;</span></code></pre></div>
 <p>This error appears in the console as below:</p>
 <center>
 <img src="images/plus_error.gif">
@@ -561,22 +550,22 @@ Solution
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="errors.html#cb390-1"></a>demonstration &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;cars_for_sale.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">demonstration &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;cars_for_sale.csv&quot;</span>)</code></pre></div>
 <pre><code>## Error: &#39;cars_for_sale.csv&#39; does not exist in current working directory (&#39;C:/Users/gabym/OneDrive - University of Glasgow/Intro_to_R&#39;).</code></pre>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="errors.html#cb392-1"></a><span class="co"># This time there is a missing bracket at the end!</span></span>
-<span id="cb392-2"><a href="errors.html#cb392-2"></a></span>
-<span id="cb392-3"><a href="errors.html#cb392-3"></a><span class="co"># This means R is still expecting some kind of input.</span></span>
-<span id="cb392-4"><a href="errors.html#cb392-4"></a><span class="co"># It&#39;s kinda like talking to someone but forgetting to </span></span>
-<span id="cb392-5"><a href="errors.html#cb392-5"></a><span class="co"># finish the sentence! The person listening will be</span></span>
-<span id="cb392-6"><a href="errors.html#cb392-6"></a><span class="co"># confused because they expected a bit more.</span></span>
-<span id="cb392-7"><a href="errors.html#cb392-7"></a></span>
-<span id="cb392-8"><a href="errors.html#cb392-8"></a><span class="co"># To get rid of the +, click in the console then </span></span>
-<span id="cb392-9"><a href="errors.html#cb392-9"></a><span class="co"># press the escape key (&quot;esc&quot;, top-left of the keyboard)</span></span>
-<span id="cb392-10"><a href="errors.html#cb392-10"></a><span class="co"># until you see the more familiar &gt; symbol.</span></span>
-<span id="cb392-11"><a href="errors.html#cb392-11"></a></span>
-<span id="cb392-12"><a href="errors.html#cb392-12"></a><span class="co"># Next, correct the code by giving R what it expected </span></span>
-<span id="cb392-13"><a href="errors.html#cb392-13"></a><span class="co"># you to finish with, in this case the closing ).</span></span>
-<span id="cb392-14"><a href="errors.html#cb392-14"></a><span class="co"># Run the code again to create the object.</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># This time there is a missing bracket at the end!</span>
+
+<span class="co"># This means R is still expecting some kind of input.</span>
+<span class="co"># It&#39;s kinda like talking to someone but forgetting to </span>
+<span class="co"># finish the sentence! The person listening will be</span>
+<span class="co"># confused because they expected a bit more.</span>
+
+<span class="co"># To get rid of the +, click in the console then </span>
+<span class="co"># press the escape key (&quot;esc&quot;, top-left of the keyboard)</span>
+<span class="co"># until you see the more familiar &gt; symbol.</span>
+
+<span class="co"># Next, correct the code by giving R what it expected </span>
+<span class="co"># you to finish with, in this case the closing ).</span>
+<span class="co"># Run the code again to create the object.</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -598,26 +587,26 @@ Solution
 <h4><span class="header-section-number">9.2.4.1</span> Errors in Pipes</h4>
 <p>As we saw before, pipes allow us to chain multiple functions together. For a recap of pipes, see the section on pipes in <a href="data-transformation-2-more-one-and-two-table-verbs.html#pipes">lecture 4</a>. This makes life a lot easier, <em>if the code works</em>. If there is an error, it makes debugging a little more difficult as we need to establish which line the error occurs in.</p>
 <p>Let’s get a working example going, and we’ll use some of the data built in to the tidyverse called <code>starwars</code> so we don’t need to import any new data. let’s look at it:</p>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="errors.html#cb393-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb393-2"><a href="errors.html#cb393-2"></a></span>
-<span id="cb393-3"><a href="errors.html#cb393-3"></a><span class="kw">head</span>(starwars)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+
+<span class="kw">head</span>(starwars)</code></pre></div>
 <pre><code>## # A tibble: 6 x 13
-##   name  height  mass hair_color skin_color eye_color birth_year gender
-##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
-## 1 Luke~    172    77 blond      fair       blue            19   male  
-## 2 C-3PO    167    75 &lt;NA&gt;       gold       yellow         112   &lt;NA&gt;  
-## 3 R2-D2     96    32 &lt;NA&gt;       white, bl~ red             33   &lt;NA&gt;  
-## 4 Dart~    202   136 none       white      yellow          41.9 male  
-## 5 Leia~    150    49 brown      light      brown           19   female
-## 6 Owen~    178   120 brown, gr~ light      blue            52   male  
-## # ... with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
-## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+##   name  height  mass hair_color skin_color eye_color birth_year gender homeworld
+##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    
+## 1 Luke~    172    77 blond      fair       blue            19   male   Tatooine 
+## 2 C-3PO    167    75 &lt;NA&gt;       gold       yellow         112   &lt;NA&gt;   Tatooine 
+## 3 R2-D2     96    32 &lt;NA&gt;       white, bl~ red             33   &lt;NA&gt;   Naboo    
+## 4 Dart~    202   136 none       white      yellow          41.9 male   Tatooine 
+## 5 Leia~    150    49 brown      light      brown           19   female Alderaan 
+## 6 Owen~    178   120 brown, gr~ light      blue            52   male   Tatooine 
+## # ... with 4 more variables: species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;,
+## #   starships &lt;list&gt;</code></pre>
 <p>This is the data on the characters in the Star Wars universe (I have no idea if it counts the newer movies).</p>
 <p>Let’s look at this (faulty) code which counts the number of each species and their genders featured then arranges them by number in descending order:</p>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="errors.html#cb395-1"></a>species_count &lt;-<span class="st"> </span>starwars <span class="op">%&gt;%</span></span>
-<span id="cb395-2"><a href="errors.html#cb395-2"></a><span class="st">  </span><span class="kw">group_by</span>(starwars, species, gender) <span class="op">%&gt;%</span></span>
-<span id="cb395-3"><a href="errors.html#cb395-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span></span>
-<span id="cb395-4"><a href="errors.html#cb395-4"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">species_count &lt;-<span class="st"> </span>starwars <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(starwars, species, gender) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))</code></pre></div>
 <pre><code>## Error: Column `starwars` is unknown</code></pre>
 <p>What is the best way to find out which part is wrong?</p>
 <p>Going through it a bit at a time will help you!</p>
@@ -648,10 +637,10 @@ Solution
 <p>Because the pipe operator already does this, the function then interprets the extra <code>starwars</code> as a column to group by. There is no column called that in the data frame, so we get an error message saying that there is no column called <code>starwars</code>.</p>
 <pre><code>## Error: Column `starwars` is unknown</code></pre>
 <p>This would be the correct code to use:</p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="errors.html#cb399-1"></a>species_count &lt;-<span class="st"> </span>starwars <span class="op">%&gt;%</span></span>
-<span id="cb399-2"><a href="errors.html#cb399-2"></a><span class="st">  </span><span class="kw">group_by</span>(species, gender) <span class="op">%&gt;%</span></span>
-<span id="cb399-3"><a href="errors.html#cb399-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span></span>
-<span id="cb399-4"><a href="errors.html#cb399-4"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">species_count &lt;-<span class="st"> </span>starwars <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(species, gender) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))</code></pre></div>
 <p>This is a common error for those who are new to using pipelines in their code.</p>
 </div>
 </div>
@@ -663,11 +652,11 @@ Solution
 <p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-336-1.png" width="672" /></p>
 <p>Plots are made by code, and like all the other code, it can be subject to the same errors from misplaced or missing brackets, commas and non-existent objects in the environment. We won’t be looking at these here because they’ve been covered above and you should be able to extrapolate that information when the same error occurs under different circumstances.</p>
 <p>Let’s look at a few errors that can occur specifically when creating plots:</p>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="errors.html#cb400-1"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> cty)) <span class="op">+</span></span>
-<span id="cb400-2"><a href="errors.html#cb400-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) </span>
-<span id="cb400-3"><a href="errors.html#cb400-3"></a>  <span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> class)) <span class="op">+</span></span>
-<span id="cb400-4"><a href="errors.html#cb400-4"></a><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;City MPG&quot;</span>,</span>
-<span id="cb400-5"><a href="errors.html#cb400-5"></a>        <span class="dt">y =</span> <span class="st">&quot;Highway MPG&quot;</span>)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> cty)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) 
+  <span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> class)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;City MPG&quot;</span>,
+        <span class="dt">y =</span> <span class="st">&quot;Highway MPG&quot;</span>)</code></pre></div>
 <p>Here is the code to recreate the graph presented above, but I’ve created 3 errors in it. These are probably the most common errors you will encounter.</p>
 <p><span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span></p>
 <p>Let’s look at fixing these 3 errors. As a bonus, the same method used in debugging pipes is also used.</p>
@@ -676,14 +665,14 @@ Solution
 <h5>stat_smooth requires the following missing aesthetics: y</h5>
 <p>This is our first attempt at replicating the graph above. This time we have three errors, two with error messages (currently), but let’s focus only on the first one for now. The error message that appears first in the console is the one that happens first in the code and <strong>error messages can be cumulative</strong>- even if we correct the second one it still might not work because of the earlier code.</p>
 <p>When I run this code, I get the following print out in the console, indicating the errors that have occurred:</p>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="errors.html#cb401-1"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> cty)) <span class="op">+</span></span>
-<span id="cb401-2"><a href="errors.html#cb401-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) </span>
-<span id="cb401-3"><a href="errors.html#cb401-3"></a>  <span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> class)) <span class="op">+</span></span>
-<span id="cb401-4"><a href="errors.html#cb401-4"></a><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;City MPG&quot;</span>,</span>
-<span id="cb401-5"><a href="errors.html#cb401-5"></a>        <span class="dt">y =</span> <span class="st">&quot;Highway MPG&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="errors.html#cb402-1"></a><span class="co">## Error: stat_smooth requires the following missing aesthetics: y</span></span>
-<span id="cb402-2"><a href="errors.html#cb402-2"></a>  <span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) </span>
-<span id="cb402-3"><a href="errors.html#cb402-3"></a><span class="co">## Error: Cannot add ggproto objects together. Did you forget to add this object to a ggplot object?</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> cty)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) 
+  <span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> class)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;City MPG&quot;</span>,
+        <span class="dt">y =</span> <span class="st">&quot;Highway MPG&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Error: stat_smooth requires the following missing aesthetics: y
+  <span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) 
+## Error: Cannot add ggproto objects together. Did you forget to add this object to a ggplot object?</code></pre></div>
 <p>Let’s do the same thing that we did with pipes, highlight the first line and run it. This time we don’t stop at a pipe, because there is no pipe, we <strong>stop before the <code>+</code></strong>.</p>
 <center>
 <img src="images/gg_error_2.gif" />
@@ -700,22 +689,22 @@ Solution
 Solution
 </button>
 <p>You are attempting to plot a “line of best fit” to show a correlation between two variables, and those two variables should be presented on each of the axes. The erroneous code specifies only one axis (the <code>x</code> axis). The correct code also specifies the missing <code>y</code> axis:</p>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="errors.html#cb403-1"></a><span class="co"># first two lines should read:</span></span>
-<span id="cb403-2"><a href="errors.html#cb403-2"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> cty, <span class="dt">y =</span> hwy)) <span class="op">+</span></span>
-<span id="cb403-3"><a href="errors.html#cb403-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) </span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># first two lines should read:</span>
+<span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> cty, <span class="dt">y =</span> hwy)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) </code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-341-1.png" width="672" /></p>
 </div>
 </div>
 <div id="cannot-add-ggproto-objects-together.-did-you-forget-to-add-this-object-to-a-ggplot-object" class="section level5 unnumbered">
 <h5>Cannot add ggproto objects together. Did you forget to add this object to a ggplot object?</h5>
 <p>Here you can clearly see that I have 2 <code>geom</code> layers, but only the <code>geom_smooth</code> is showing (that’s the line of the correlation between the variables on the x and y axes).</p>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="errors.html#cb404-1"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> cty, <span class="dt">y=</span> hwy)) <span class="op">+</span></span>
-<span id="cb404-2"><a href="errors.html#cb404-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) </span>
-<span id="cb404-3"><a href="errors.html#cb404-3"></a>  <span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> class)) <span class="op">+</span></span>
-<span id="cb404-4"><a href="errors.html#cb404-4"></a><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;City MPG&quot;</span>,</span>
-<span id="cb404-5"><a href="errors.html#cb404-5"></a>        <span class="dt">y =</span> <span class="st">&quot;Highway MPG&quot;</span>)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> cty, <span class="dt">y=</span> hwy)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) 
+  <span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> class)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;City MPG&quot;</span>,
+        <span class="dt">y =</span> <span class="st">&quot;Highway MPG&quot;</span>)</code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2019-2020_files/figure-html/unnamed-chunk-343-1.png" width="672" /></p>
-<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="errors.html#cb405-1"></a><span class="co">## Error: Cannot add ggproto objects together. Did you forget to add this object to a ggplot object?</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Error: Cannot add ggproto objects together. Did you forget to add this object to a ggplot object?</code></pre></div>
 <p>Let’s do the same thing that we did with pipes, highlight the first line and run it. As above, we don’t stop at a pipe we <strong>stop before the <code>+</code></strong>.</p>
 <center>
 <img src="images/gg_error_1.gif" />
@@ -734,12 +723,12 @@ Solution
 <div id="stat_count-must-not-be-used-with-a-y-aesthetic." class="section level5 unnumbered">
 <h5>stat_count() must not be used with a y aesthetic.</h5>
 <p>Now that the previous error is fixed we can have a look at the next one.</p>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="errors.html#cb406-1"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> cty, <span class="dt">y=</span> hwy)) <span class="op">+</span></span>
-<span id="cb406-2"><a href="errors.html#cb406-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></span>
-<span id="cb406-3"><a href="errors.html#cb406-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> class)) <span class="op">+</span></span>
-<span id="cb406-4"><a href="errors.html#cb406-4"></a><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;City MPG&quot;</span>,</span>
-<span id="cb406-5"><a href="errors.html#cb406-5"></a>        <span class="dt">y =</span> <span class="st">&quot;Highway MPG&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="errors.html#cb407-1"></a><span class="co">## Error: stat_count() must not be used with a y aesthetic.</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> cty, <span class="dt">y=</span> hwy)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> class)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;City MPG&quot;</span>,
+        <span class="dt">y =</span> <span class="st">&quot;Highway MPG&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Error: stat_count() must not be used with a y aesthetic.</code></pre></div>
 <p><code>stat_count()</code> is another way of producing a <code>geom_bar()</code> style of graph. With this in mind, what do you think is wrong with the code segment?</p>
 <p>Do you think a bar graph is a good way to demonstrate the relationship between two sets of continuous values?</p>
 <p>Have a think and figure out what the problem is now. Run each line of code individually and see where the problem is coming from.</p>
@@ -785,10 +774,7 @@ Even though these functions use the same name, they do not perform the same func
 <div id="googling-it" class="section level3">
 <h3><span class="header-section-number">9.3.1</span> Googling It</h3>
 <p>The first thing you should do with an error is to Google it. It sounds daft, but if you are having an issue there is probably someone on the internet who has also had that same problem.</p>
-<p>The main thing that you need to remember is that you need to include the right level of information in your query:
-* searching for “R code not working” will not get you information which is specific enough.
-* searching for “R” and the text given in the error message will give you a lot more, but some error message text can be the same for different functions.
-* searching for “R”, the text given in the error message and the name of the function that is giving that error message will give you a lot more, specific information.</p>
+<p>The main thing that you need to remember is that you need to include the right level of information in your query: * searching for “R code not working” will not get you information which is specific enough. * searching for “R” and the text given in the error message will give you a lot more, but some error message text can be the same for different functions. * searching for “R”, the text given in the error message and the name of the function that is giving that error message will give you a lot more, specific information.</p>
 <p>Learning to Google with appropriate levels of detail in your question is a skill in itself! We know this because we were in exactly the same position as you when we were first learning- and we still frequently Google things!</p>
 </div>
 <div id="stack-overflow" class="section level3">
@@ -918,6 +904,7 @@ window.onload = function() {
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
+"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -936,6 +923,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
